@@ -15,7 +15,7 @@ pageContext.setAttribute("domain", domain);
   <meta charset="UTF-8">
   <title>마이페이지</title>
   <!-- 기타 공통 스타일 -->
-  <link rel="stylesheet" href="/GungOn/common/css/common.css">
+  <link rel="stylesheet" href="/gung_on/common/css/common.css">
   <c:import url="/common/jsp/external_file.jsp"/>
 
   
@@ -54,7 +54,7 @@ $(function(){
 	});//click
 	
 	$("#changePass").click(function(){
-		location.href="/GungOn/mypage/changePassword.jsp";
+		location.href="/gung_on/mypage/changePassword.jsp";
 	})
 	
 	
@@ -112,7 +112,7 @@ $(function(){
 
 <!-- ✅ 탭 내용 1: 회원정보수정 -->
 <div id="info-tab" class="tab-content" style="position: relative; right: 70px">
-  <form method="post" name="frm" id="frm" action="/GungOn/process.jsp" class="signup-form" style="width: 900px;">
+  <form method="post" name="frm" id="frm" action="/gung_on/process.jsp" class="signup-form" style="width: 900px;">
     <table class="signup-table">
       <tr>
         <th>아이디</th>
@@ -143,7 +143,7 @@ $(function(){
       <button type="button" class="submit" id = "btnConfirm">수정</button>
       <button type="button" class="submit btn btn-success" id = "changePass">비밀번호 변경</button>
     </div>
-    <a href="/GungOn/mypage/removeAccount.jsp" class="withdraw-link">회원탈퇴</a>
+    <a href="/gung_on/mypage/removeAccount.jsp" class="withdraw-link">회원탈퇴</a>
   </form>
 </div>
 

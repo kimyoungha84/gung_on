@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
     <title>로그인</title>
     <c:import url="/common/jsp/external_file.jsp"/>
-    <link rel="stylesheet" href="/GungOn/common/css/common.css">
+    <link rel="stylesheet" href="/gung_on/common/css/common.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     window.onload = function() {
@@ -47,7 +47,7 @@
             dataType: "json",
             success: function(jsonObj) {
                 if (jsonObj.loginResult) {
-                    location.href = "/GungOn/mainpage/mainpage.jsp"; // 로그인 성공 시 이동할 페이지
+                    location.href = "/gung_on/mainpage/mainpage.jsp"; // 로그인 성공 시 이동할 페이지
                 } else {
                 	alert("아이디나 비밀번호를 확인해주세요.");
                 }//end else
@@ -74,9 +74,9 @@
 
     <div class="link-container">
         <div class="link-box">
-            <a href="/GungOn/mypage/searchAccount.jsp" style="margin-right: 20px;">아이디/비밀번호 찾기</a>
+            <a href="/gung_on/mypage/searchAccount.jsp" style="margin-right: 20px;">아이디/비밀번호 찾기</a>
             <span class="divider"></span>
-            <a href="/GungOn/signup/sign_up.jsp" style="margin-left: 10px;">회원가입</a>
+            <a href="/gung_on/signup/sign_up.jsp" style="margin-left: 10px;">회원가입</a>
         </div>
     </div>
 </div>

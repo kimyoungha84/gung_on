@@ -7,7 +7,7 @@
 <html lang="ko">
 <head>
 <!-- 기타 공통 스타일 -->
-  <link rel="stylesheet" href="/GungOn/common/css/common.css">
+  <link rel="stylesheet" href="/gung_on/common/css/common.css">
   <c:import url="/common/jsp/external_file.jsp"/>
   <meta charset="UTF-8">
   <title>예약내역 변경/취소</title>
@@ -34,7 +34,7 @@
   <div class="section">
     <div class="section-title">경복궁 행사</div>
     <div class="event-info">
-      <img src="http://localhost/gungon/images/program/4.jpg" alt="경복궁 이미지" style="height: 100%">
+      <img src="/gung_on/common/images/program/GyeongbokgungStarlightNight.jpg" alt="경복궁 이미지" style="height: 100%">
       <div class="event-details" style="width: 80%">
         <table>
           <tr><th style="width: 20%">예약자</th><td>홍길동</td></tr>

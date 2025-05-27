@@ -7,7 +7,7 @@ pageContext.getAttribute("userData");
 <html>
 <head>
     <title>회원탈퇴</title>
-    <link rel="stylesheet" href="/GungOn/common/css/common.css">
+    <link rel="stylesheet" href="/gung_on/common/css/common.css">
     <c:import url="/common/jsp/external_file.jsp"/>
 </head>
 <body class="login">

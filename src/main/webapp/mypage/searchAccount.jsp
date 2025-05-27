@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>SEARCH - 아이디 찾기 / 비밀번호 찾기</title>
-<link rel="stylesheet" href="/GungOn/common/css/common.css">
+<link rel="stylesheet" href="/gung_on/common/css/common.css">
 <c:import url="/common/jsp/external_file.jsp"/>
 </head>
 <body class="page-body">

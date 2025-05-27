@@ -8,5 +8,5 @@
   // session.removeAttribute("userData");
 
   // 로그아웃 후 메인 페이지나 로그인 페이지로 리디렉션
-  response.sendRedirect("/GungOn/mainpage/mainpage.jsp");
+  response.sendRedirect("/gung_on/mainpage/mainpage.jsp");
 %>
