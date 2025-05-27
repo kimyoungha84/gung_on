@@ -12,7 +12,7 @@
 <div class="user-status-bar" >
   <jsp:include page="/common/jsp/userStatus.jsp"/>
 </div>
-<link rel="stylesheet" href="/GungOn/common/css/common.css">
+<link rel="stylesheet" href="/gung_on/common/css/common.css">
 <!-- 헤더 네비게이션 -->
 <div class="header">
   <nav class="header-nav">
@@ -36,7 +36,7 @@
         </ul>
       </li>
       <li class="header-nav-item">
-       <a href="/GungOn/mainpage/mainpage.jsp"> <img src="/GungOn/common/images/mainpage/header_icon.png" alt="로고"></a>
+       <a href="/gung_on/mainpage/mainpage.jsp"> <img src="/gung_on/common/images/mainpage/header_icon.png" alt="로고"></a>
       </li>
       <li class="header-nav-item">
         <a href="http://192.168.10.73/jsp_prj/project/course_rule.jsp" class="header-nav-link">관람 안내</a>
