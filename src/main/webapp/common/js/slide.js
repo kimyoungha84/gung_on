@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
     link.href = "palaceInfo.jsp?name=" + palaceName;
 
     const img = document.createElement("img");
-    img.src = "/GungOn/common/images/program/" + imageFiles2[index - 1];
+    img.src = "/Gung_On/common/images/program/" + imageFiles2[index - 1];
     img.alt = "포스터 " + index;
 
     link.appendChild(img);
