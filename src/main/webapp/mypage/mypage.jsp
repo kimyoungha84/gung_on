@@ -3,11 +3,15 @@
 <%@ include file="/common/jsp/login_chk.jsp" %>
 <% 
 String email=((MemberDTO) session.getAttribute("userData")).getUseEmail();
+String id = ((MemberDTO) session.getAttribute("userData")).getId();
 String domain=email.substring(email.indexOf("@")+1);
 email = email.substring(0,email.indexOf("@"));
 
 pageContext.setAttribute("email", email);
 pageContext.setAttribute("domain", domain);
+
+session.setAttribute("changePass", true);
+session.setAttribute("id", id);
   %>
  <!DOCTYPE html>
 <html lang="ko">
@@ -15,7 +19,7 @@ pageContext.setAttribute("domain", domain);
   <meta charset="UTF-8">
   <title>마이페이지</title>
   <!-- 기타 공통 스타일 -->
-  <link rel="stylesheet" href="/gung_on/common/css/common.css">
+  <link rel="stylesheet" href="/Gung_On/common/css/common.css">
   <c:import url="/common/jsp/external_file.jsp"/>
 
   
@@ -23,7 +27,10 @@ pageContext.setAttribute("domain", domain);
  <script type="text/javascript">
 $(function(){
 	
-	
+	$("#detailProgram").click(function(){
+		location.href="/Gung_On/mypage/detail_program.jsp";
+		
+	});
 	
 	$("#btnConfirm").click(function(){
 		if (!checkField()) return; // 여기서 잘못되면 중단
@@ -54,9 +61,24 @@ $(function(){
 	});//click
 	
 	$("#changePass").click(function(){
-		location.href="/gung_on/mypage/changePassword.jsp";
+		
+		location.href="/Gung_On/mypage/changePassword.jsp";
 	})
 	
+	$("#tel").keyup(function (evt) {
+		const raw = $(this).val().replace(/[^0-9]/g, ''); // 숫자만 추출
+
+	    let formatted = '';
+	    if (raw.length <= 3) {
+	        formatted = raw;
+	    } else if (raw.length <= 7) {
+	        formatted = raw.slice(0, 3) + '-' + raw.slice(3);
+	    } else {
+	        formatted = raw.slice(0, 3) + '-' + raw.slice(3, 7) + '-' + raw.slice(7);
+	    }
+
+	    $(this).val(formatted);
+	});
 	
 });//ready
 
@@ -112,7 +134,7 @@ $(function(){
 
 <!-- ✅ 탭 내용 1: 회원정보수정 -->
 <div id="info-tab" class="tab-content" style="position: relative; right: 70px">
-  <form method="post" name="frm" id="frm" action="/gung_on/process.jsp" class="signup-form" style="width: 900px;">
+  <form method="post" name="frm" id="frm" action="/Gung_On/process.jsp" class="signup-form" style="width: 900px;">
     <table class="signup-table">
       <tr>
         <th>아이디</th>
@@ -143,7 +165,7 @@ $(function(){
       <button type="button" class="submit" id = "btnConfirm">수정</button>
       <button type="button" class="submit btn btn-success" id = "changePass">비밀번호 변경</button>
     </div>
-    <a href="/gung_on/mypage/removeAccount.jsp" class="withdraw-link">회원탈퇴</a>
+    <a href="/Gung_On/mypage/removeAccount.jsp" class="withdraw-link">회원탈퇴</a>
   </form>
 </div>
 
@@ -162,7 +184,7 @@ $(function(){
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr id="detailProgram" style="cursor: pointer;">
           <td style="border: 1px solid #ccc; padding: 8px;">20250501133211</td>
           <td style="border: 1px solid #ccc; padding: 8px;">경복궁 공식 해설</td>
           <td style="border: 1px solid #ccc; padding: 8px;">2025-05-05 11:00</td>

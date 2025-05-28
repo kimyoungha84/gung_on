@@ -164,7 +164,7 @@ public class MemberDAO {
 			// 4.쿼리문 생성객체 얻기
 			StringBuilder selectIdQuery = new StringBuilder();
 			selectIdQuery
-			.append("	select member_id, member_name, member_tel, member_email, member_ip,member_reg_date	")
+			.append("	select member_id, member_name, member_tel, member_email, member_ip,member_reg_date, member_flag	")
 			.append("	from member	")
 			.append("	where member_id=?	")
 			;
@@ -183,6 +183,7 @@ public class MemberDAO {
 				mDTO.setUseEmail(rs.getString("member_email"));
 				mDTO.setIp(rs.getString("member_ip"));
 				mDTO.setInput_date(rs.getDate("member_reg_date"));
+				mDTO.setFlag(rs.getString("member_flag"));
 				
 			}//end if
 		} finally {
@@ -193,6 +194,47 @@ public class MemberDAO {
 
 	}// selectOneMember
 	
+	public String selectMemberName(String name, String email) throws SQLException {
+
+		
+		String id = "";
+		DbConnection db = DbConnection.getInstance();
+
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Connection con = null;
+
+		try {
+			// 1.JNDI 사용객체 생성
+			// 2.DBCP에서 연결객체 얻기(DataSource)
+			// 3.Connection 얻기
+			con = db.getDbConn();
+			// 4.쿼리문 생성객체 얻기
+			StringBuilder selectIdQuery = new StringBuilder();
+			selectIdQuery
+			.append("	select member_id	")
+			.append("	from member	")
+			.append("	where member_email=? and member_name=?	")
+			;
+
+			pstmt = con.prepareStatement(selectIdQuery.toString());
+			// 5.바인드변수에 값 할당
+			pstmt.setString(1, email);
+			pstmt.setString(2, name);
+			// 6.쿼리문 수행 후 결과 얻기
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				id = rs.getString("member_id");
+				
+			}//end if
+		} finally {
+			// 7.연결 끊기
+			db.dbClose(rs, pstmt, con);
+		} // end finally
+		return id;
+
+	}// selectOneMember
 	
 	public void updateMember(MemberDTO mDTO) throws SQLException {
 
@@ -227,4 +269,68 @@ public class MemberDAO {
 
 	}// updateMember
 	
+	
+	public void updateMemberPass(String id, String pass) throws SQLException {
+		
+		DbConnection db = DbConnection.getInstance();
+		
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		
+		try {
+			// 1.JNDI 사용객체 생성
+			// 2.DBCP에서 연결객체 얻기(DataSource)
+			// 3.Connection 얻기
+			con = db.getDbConn();
+			// 4.쿼리문 생성객체 얻기
+			StringBuilder updateWebMember = new StringBuilder();
+			updateWebMember
+			.append("	update member	")
+			.append("	set member_pass=?	")
+			.append("	where member_id=?	");
+			
+			pstmt = con.prepareStatement(updateWebMember.toString());
+			// 5.바인드변수에 값 할당
+			pstmt.setString(1, pass);
+			pstmt.setString(2, id);
+			// 6.쿼리문 수행 후 결과 얻기
+			pstmt.executeQuery();
+		} finally {
+			// 7.연결 끊기
+			db.dbClose(null, pstmt, con);
+		} // end finally
+		
+	}// updateMember
+	
+	public void deleteMember(MemberDTO mDTO) throws SQLException {
+		
+		DbConnection db = DbConnection.getInstance();
+		
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		
+		try {
+			// 1.JNDI 사용객체 생성
+			// 2.DBCP에서 연결객체 얻기(DataSource)
+			// 3.Connection 얻기
+			con = db.getDbConn();
+			// 4.쿼리문 생성객체 얻기
+			StringBuilder updateWebMember = new StringBuilder();
+			updateWebMember
+			.append("	update member	")
+			.append("	set member_flag=?	")
+			.append("	where member_id=?	");
+			
+			pstmt = con.prepareStatement(updateWebMember.toString());
+			// 5.바인드변수에 값 할당
+			pstmt.setString(1, "Y");
+			pstmt.setString(2, mDTO.getId());
+			// 6.쿼리문 수행 후 결과 얻기
+			pstmt.executeQuery();
+		} finally {
+			// 7.연결 끊기
+			db.dbClose(null, pstmt, con);
+		} // end finally
+		
+	}// updateMember
 }// class

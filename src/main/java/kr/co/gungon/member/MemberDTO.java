@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class MemberDTO {
 
-	private String id,pass,name,tel,email,domain,useEmail,ip;
+	private String id,pass,name,tel,email,domain,useEmail,ip,flag;
 	private Date input_date;
 	
 }//class

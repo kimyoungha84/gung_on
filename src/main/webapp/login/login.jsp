@@ -47,6 +47,10 @@
             dataType: "json",
             success: function(jsonObj) {
                 if (jsonObj.loginResult) {
+                	if(jsonObj.loginFlag){
+                		alert("탈퇴한 회원입니다.");
+                		return;
+                	}
                     location.href = "/Gung_On/mainpage/mainpage.jsp"; // 로그인 성공 시 이동할 페이지
                 } else {
                 	alert("아이디나 비밀번호를 확인해주세요.");

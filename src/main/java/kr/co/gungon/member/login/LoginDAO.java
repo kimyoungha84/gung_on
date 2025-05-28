@@ -38,7 +38,7 @@ public class LoginDAO {
 			// 4.쿼리문 생성객체 얻기
 			StringBuilder selectLoginInfo = new StringBuilder();
 			selectLoginInfo
-			.append("	select member_name,member_email,	member_tel")
+			.append("	select member_name,member_email,member_tel,member_flag ")
 			.append("	from member	")
 			.append("	where member_id=? and member_pass=?	");
 
@@ -52,8 +52,9 @@ public class LoginDAO {
 				mDTO= new MemberDTO();
 				mDTO.setId(lDTO.getId()); //parameter로 입력된 아이디 사용.
 				mDTO.setName(rs.getString("member_name")); //암호화된 데이터
-				mDTO.setTel(rs.getString("member_tel")); //암호화된 데이터
 				mDTO.setUseEmail(rs.getString("member_email")); //암호화된 데이터
+				mDTO.setTel(rs.getString("member_tel")); //암호화된 데이터
+				mDTO.setFlag(rs.getString("member_flag")); //암호화된 데이터
 				
 			}// 검색결과가 있다면 DTO객체에 값을 생성
 		} finally {

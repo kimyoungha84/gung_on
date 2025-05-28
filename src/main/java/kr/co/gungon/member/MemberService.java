@@ -86,6 +86,22 @@ public class MemberService {
 		
 	}//searchOneMember
 	
+	public String searchMemberName(String name, String email) {
+		
+		String id = "";
+		
+		MemberDAO mDAO = MemberDAO.getInstance();
+		
+		try {
+			id = mDAO.selectMemberName(name,email);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return id;
+		
+	}//searchOneMember
+	
 	public boolean modifyMember(MemberDTO mDTO, HttpSession session) {
 		boolean flag=false;
 		mDTO.setUseEmail(mDTO.getEmail()+"@"+mDTO.getDomain());
@@ -99,5 +115,37 @@ public class MemberService {
 		
 		return flag;
 	}//modifyMember
+	
+	public boolean modifyMemberPass(String id, String pass, HttpSession session) {
+		boolean flag=false;
+		MemberDAO mDAO = MemberDAO.getInstance();
+		try {
+			pass = (DataEncryption.messageDigest("SHA-256", pass));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		try {
+			mDAO.updateMemberPass(id,pass);
+			flag=true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return flag;
+	}//modifyMemberPass
+	
+	public boolean removeMember(MemberDTO mDTO, HttpSession session) {
+		boolean flag=false;
+		MemberDAO mDAO = MemberDAO.getInstance();
+		try {
+			mDAO.deleteMember(mDTO);
+			flag=true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//end catch
+		
+		return flag;
+	}//modifyMember
+	
 	
 }//class

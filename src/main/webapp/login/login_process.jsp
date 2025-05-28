@@ -1,3 +1,4 @@
+<%@page import="kr.co.gungon.member.MemberDTO"%>
 <%@page import="kr.co.gungon.member.login.LoginService"%>
 <%@ page language="java" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,8 +19,10 @@ request.setCharacterEncoding("UTF-8");
 if("POST".equals(request.getMethod().toUpperCase()) ){
 	LoginService ls = new LoginService();
 	boolean flag = ls.loginProcess(lDTO, session);
+	boolean loginFlag = false;
+	loginFlag = "Y".equals(((MemberDTO) session.getAttribute("userData")).getFlag());
 %>
-{"loginResult":<%= flag %>}
+{"loginResult":<%= flag %>,"loginFlag": <%=loginFlag%> }
 <%
 
 }//end if

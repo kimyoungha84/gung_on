@@ -41,6 +41,30 @@ $(function(){
 		
 	});//click
 	
+	$("#btnConfirm").click(function(){
+		var id=$("#idCon").val();
+		var hidId=$("#id").val();
+		if (!checkField()) return; // 여기서 잘못되면 중단
+		if(id !== hidId){
+			alert("중복확인 해주세요.");
+			return;
+		}
+		if(!passFlag){
+			alert("비밀번호를 확인해주세요.");
+			return;
+		}
+		
+		$("#frm").submit();
+		
+	});//click
+	
+	$("#btnCancel").click(function(){
+		location.href = "/gung_on/mainpage/mainpage.jsp";
+	});//click
+	
+	
+	
+	
 	$("#pass, #pass2").keyup(function (evt) {
 		const allowed = /[A-Za-z0-9!@#$%^&*()]/g;
 
@@ -70,27 +94,21 @@ $(function(){
 		  $("#errMsg").html(msg);
 		});
 	
-	$("#btnConfirm").click(function(){
-		var id=$("#idCon").val();
-		var hidId=$("#id").val();
-		if (!checkField()) return; // 여기서 잘못되면 중단
-		if(id !== hidId){
-			alert("중복확인 해주세요.");
-			return;
-		}
-		if(!passFlag){
-			alert("비밀번호를 확인해주세요.");
-			return;
-		}
-		
-		$("#frm").submit();
-		
-	});//click
-	
-	$("#btnCancel").click(function(){
-		location.href = "/gung_on/mainpage/mainpage.jsp";
-	});//click
-	
+	$("#tel").keyup(function (evt) {
+		const raw = $(this).val().replace(/[^0-9]/g, ''); // 숫자만 추출
+
+	    let formatted = '';
+	    if (raw.length <= 3) {
+	        formatted = raw;
+	    } else if (raw.length <= 7) {
+	        formatted = raw.slice(0, 3) + '-' + raw.slice(3);
+	    } else {
+	        formatted = raw.slice(0, 3) + '-' + raw.slice(3, 7) + '-' + raw.slice(7);
+	    }
+
+	    $(this).val(formatted);
+	});
+
 	
 });//ready
 
@@ -140,7 +158,7 @@ function isStrongPassword(str) {
   <form method="post" action="/gung_on/signup/sign_up_process.jsp" class="signup-form" id="frm" name="frm">
     
     <!-- 약관 -->
-    <div class="terms-box">
+    <!-- <div class="terms-box">
       <p><strong>제1장 총칙</strong><br>제1조 목적<br>이 약관은 ...</p>
     </div>
     <div class="checkbox">
@@ -154,7 +172,7 @@ function isStrongPassword(str) {
     <div class="checkbox">
       <input type="checkbox" id="agree2" name="agree2">
       <label for="agree2">개인정보취급방침에 동의합니다.</label>
-    </div>
+    </div> -->
 
     <!-- 회원정보 입력 -->
     

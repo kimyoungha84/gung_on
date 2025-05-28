@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpSession;
 
+import kr.co.gungon.member.MemberDAO;
 import kr.co.gungon.member.MemberDTO;
 import kr.co.sist.cipher.DataEncryption;
 

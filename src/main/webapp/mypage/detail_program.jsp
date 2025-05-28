@@ -7,7 +7,7 @@
 <html lang="ko">
 <head>
 <!-- 기타 공통 스타일 -->
-  <link rel="stylesheet" href="/gung_on/common/css/common.css">
+  <link rel="stylesheet" href="/Gung_On/common/css/common.css">
   <c:import url="/common/jsp/external_file.jsp"/>
   <meta charset="UTF-8">
   <title>예약내역 변경/취소</title>
@@ -25,7 +25,7 @@
 
 <jsp:include page="/common/jsp/header.jsp"/>
 
-<h2 style="width: 100%; padding-left: 20px; text-align: center;">예약내역 변경/취소</h2>
+<h2 style="width: 100%; position:relative; top:25px; margin-bottom:50px; padding-left: 20px; text-align: center;">예약내역 변경/취소</h2>
 
 <!-- ✅ 콘텐츠 영역만 가운데 정렬 -->
 <div class="content-wrapper">
@@ -34,7 +34,7 @@
   <div class="section">
     <div class="section-title">경복궁 행사</div>
     <div class="event-info">
-      <img src="/gung_on/common/images/program/GyeongbokgungStarlightNight.jpg" alt="경복궁 이미지" style="height: 100%">
+      <img src="/Gung_On/common/images/program/GyeongbokgungStarlightNight.jpg" alt="경복궁 이미지" style="height: 100%">
       <div class="event-details" style="width: 80%">
         <table>
           <tr><th style="width: 20%">예약자</th><td>홍길동</td></tr>
