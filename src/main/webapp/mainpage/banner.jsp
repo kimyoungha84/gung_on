@@ -6,12 +6,12 @@
   <div class="swiper-wrapper">
 <div class="custom-banner-controls">
   <div class="page-info"><span id="page-now">1</span>/<span id="page-total">5</span></div>
-  <img src="gung_on/common/images/mainpage/left-button.png" style="cursor: pointer;" class="custom-prev"/>
-  <img src="gung_on/common/images/mainpage/right-button.png" style="cursor: pointer;" class="custom-next"/>
+  <img src="/Gung_On/common/images/mainpage/left-button.png" style="cursor: pointer;" class="custom-prev"/>
+  <img src="/Gung_On/common/images/mainpage/right-button.png" style="cursor: pointer;" class="custom-next"/>
 </div>
     <div class="swiper-slide">
       <a href="palaceInfo.jsp?name=gyeongbokgung" class="slide-link">
-      	<img class="banner-slide" src="/gung_on/common/images/gung/gyeongbokgung/gyeongbokgung.jpg"/>
+      	<img class="banner-slide" src="/Gung_On/common/images/gung/gyeongbokgung/gyeongbokgung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
             <p class="sub-title">Gyeongbokgung Palace</p>
@@ -20,7 +20,7 @@
     </div>
     <div class="swiper-slide">
       <a href="palaceInfo.jsp?name=gyeonghuigung" class="slide-link">
-      	<img class="banner-slide" src="/gung_on/common/images/gung/gyeonghuigung/gyeonghuigung.jpg"/>
+      	<img class="banner-slide" src="/Gung_On/common/images/gung/gyeonghuigung/gyeonghuigung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
             <p class="sub-title">Gyeonghuigung Palace</p>
@@ -29,7 +29,7 @@
     </div>
     <div class="swiper-slide">
       <a href="palaceInfo.jsp?name=changdeokgung" class="slide-link">
-      	<img class="banner-slide" src="/gung_on/common/images/gung/changdeokgung/changdeokgung.jpg"/>
+      	<img class="banner-slide" src="/Gung_On/common/images/gung/changdeokgung/changdeokgung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
             <p class="sub-title">Changdeokgung Palace</p>
@@ -38,7 +38,7 @@
     </div>
     <div class="swiper-slide">
       <a href="palaceInfo.jsp?name=changgyeonggung" class="slide-link">
-      	<img class="banner-slide" src="/gung_on/common/images/gung/changgyeonggung/changgyeonggung.jpg"/>
+      	<img class="banner-slide" src="/Gung_On/common/images/gung/changgyeonggung/changgyeonggung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
             <p class="sub-title">Changgyeonggung Palace</p>
@@ -47,7 +47,7 @@
     </div>
     <div class="swiper-slide">
       <a href="palaceInfo.jsp?name=deoksugung" class="slide-link">
-      	<img class="banner-slide" src="/gung_on/common/images/gung/deoksugung/deoksugung.jpg"/>
+      	<img class="banner-slide" src="/Gung_On/common/images/gung/deoksugung/deoksugung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
             <p class="sub-title">Deoksugung Palace</p>

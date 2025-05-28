@@ -8,7 +8,7 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-logo">
-      <img src="/gung_on/common/images/mainpage/footer_icon.png" alt="궁온 로고">
+      <img src="/Gung_On/common/images/mainpage/footer_icon.png" alt="궁온 로고">
       <br>
     </div>
     <div class="footer-menus">

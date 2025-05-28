@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
   <!-- 기타 공통 스타일 -->
-  <link rel="stylesheet" href="/gung_on/common/css/common.css">
+  <link rel="stylesheet" href="/Gung_On/common/css/common.css">
  
   
   <!-- <style>
@@ -21,7 +21,7 @@
   
 <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-	<script src="/gung_on/common/js/slide.js"></script>
+	<script src="/Gung_On/common/js/slide.js"></script>
   <script>
     
   </script>
