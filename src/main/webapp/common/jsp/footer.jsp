@@ -33,10 +33,10 @@
       <div>
         <strong>관람 안내</strong>
         <ul>
-          <li><a href="#">관람 규칙</a></li>
-          <li><a href="#">관람 시간</a></li>
-          <li><a href="#">관람 코스</a></li>
-          <li><a href="#">사용자 추천 코스</a></li>
+          <li><a href="/Gung_On/course/course_rule.jsp">관람 규칙</a></li>
+          <li><a href="/Gung_On/course/course_time.jsp">관람 시간</a></li>
+          <li><a href="/Gung_On/course/course.jsp">관람 코스</a></li>
+          <li><a href="/Gung_On/course/users_course.jsp">사용자 추천 코스</a></li>
         </ul>
       </div>
       <div>

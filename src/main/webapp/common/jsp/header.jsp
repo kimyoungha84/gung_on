@@ -39,12 +39,12 @@
        <a href="/Gung_On/mainpage/mainpage.jsp"> <img src="/Gung_On/common/images/mainpage/header_icon.png" alt="로고"></a>
       </li>
       <li class="header-nav-item">
-        <a href="http://192.168.10.73/jsp_prj/project/course_rule.jsp" class="header-nav-link">관람 안내</a>
+        <a href="/Gung_On/course/course_rule.jsp" class="header-nav-link">관람 안내</a>
         <ul class="header-submenu">
-          <li><a href="http://192.168.10.73/jsp_prj/project/course_rule.jsp">관람 규칙</a></li>
-          <li><a href="http://192.168.10.73/jsp_prj/project/course_time.jsp">관람 시간</a></li>
-          <li><a href="#">관람 코스</a></li>
-          <li><a href="#">사용자 추천 코스</a></li>
+          <li><a href="/Gung_On/course/course_rule.jsp">관람 규칙</a></li>
+          <li><a href="/Gung_On/course/course_time.jsp">관람 시간</a></li>
+          <li><a href="/Gung_On/course/course.jsp">관람 코스</a></li>
+          <li><a href="/Gung_On/course/users_course.jsp">사용자 추천 코스</a></li>
         </ul>
       </li>
       <li class="header-nav-item">
