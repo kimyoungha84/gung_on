@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <c:import url="/common/jsp/external_file.jsp"/>
-  <link rel="stylesheet" href="/gung_on/common/css/common.css">
+  <link rel="stylesheet" href="/Gung_On/common/css/common.css">
   <title>회원가입</title>
   
   <script type="text/javascript">
@@ -59,7 +59,7 @@ $(function(){
 	});//click
 	
 	$("#btnCancel").click(function(){
-		location.href = "/gung_on/mainpage/mainpage.jsp";
+		location.href = "/Gung_On/mainpage/mainpage.jsp";
 	});//click
 	
 	
@@ -155,7 +155,7 @@ function isStrongPassword(str) {
 
 <jsp:include page="/common/jsp/header.jsp"/>
 
-  <form method="post" action="/gung_on/signup/sign_up_process.jsp" class="signup-form" id="frm" name="frm">
+  <form method="post" action="/Gung_On/signup/sign_up_process.jsp" class="signup-form" id="frm" name="frm">
     
     <!-- 약관 -->
     <!-- <div class="terms-box">

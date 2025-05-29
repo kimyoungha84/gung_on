@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="/common/jsp/external_file.jsp"/>
- <link rel="stylesheet" href="/gung_on/common/css/common.css">
+ <link rel="stylesheet" href="/Gung_On/common/css/common.css">
 
 <style type="text/css">
 </style>
@@ -59,7 +59,7 @@ request.setCharacterEncoding("UTF-8");
 <div>
 <div style="position: relative; margin:0px auto; font-size: 25px">
 <strong><c:out value="${ param.name }"/>님 </strong> 회원가입 되셨습니다.
-<a href="javascript:location.replace('http://localhost/gung_on/mainpage/mainpage.jsp')" class="btn btn-secondary btn-sm">메인으로</a>
+<a href="javascript:location.replace('/Gung_On/mainpage/mainpage.jsp')" class="btn btn-secondary btn-sm">메인으로</a>
 </div>
 </div>
 </c:when>
@@ -69,7 +69,7 @@ request.setCharacterEncoding("UTF-8");
 <h2>회원가입이 정상적으로 이루어지지 않았습니다.</h2>
 </div>
 <h3>잠시 후 다시 시도해주세요.</h3>
-<a href="http://localhost/gung_on/mainpage/mainpage.jsp">메인화면</a>
+<a href="/Gung_On/mainpage/mainpage.jsp">메인화면</a>
 <a href="javascript:history.back()" class="btn btn-danger btn-sm">다시시도</a>
 </c:otherwise>
 
