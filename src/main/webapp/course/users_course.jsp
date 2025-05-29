@@ -8,6 +8,48 @@
 <head>
   <meta charset="UTF-8">
   <title>관람코스</title>
+  <style type="text/css">
+  .board-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      
+    }
+   .write-button {
+  margin-left: auto; /* 버튼을 오른쪽으로 밀어줌 */
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+    .board-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .board-table th,
+    .board-table td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .board-table th {
+      background-color: #f1f1f1;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    
+  </style>
 
   <!-- Swiper CSS -->
 	<link rel="stylesheet" type="text/css" href="/Gung_On/course/css/users_course_style.css" />
@@ -28,7 +70,9 @@
     <!-- 사이드바와 콘텐츠를 감싸는 container div -->
     <!-- sub-header와 container 사이에 margin-top 또는 sub-header에 margin-bottom으로 간격 조절 -->
     <div class="container">
+    
         <div class="sidebar">
+        
             <h3>관람안내 메뉴</h3>
             <nav class="sub-nav">
                 <ul>
@@ -42,7 +86,41 @@
 
 	<article class="content">
             <h1>사용자 추천 코스</h1>
-
+			
+	<div class="board-header">
+      <button class="write-button">글쓰기</button>
+    </div>
+    
+			<table class="board-table">
+      <thead>
+        <tr>
+          <th>썸네일</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img src="/Gung_On/common/images/program/ChangdeokgungMoonlightTravel.jpg"
+           alt="썸네일" class="thumbnail"></td>
+          <td>첫 번째 게시글입니다</td>
+          <td>홍길동</td>
+          <td>2025-05-29</td>
+        </tr>
+        <tr>
+        
+        	<!-- 이미지 크기 80x60  -->
+          <td><img src="/Gung_On/common/images/program/GyeongbokgungStarlightNight.jpg" alt="썸네일" class="thumbnail"></td>
+          <td>두 번째 게시글입니다</td>
+          <td>이순신</td>
+          <td>2025-05-28</td>
+        </tr>
+      </tbody>
+    </table>
+			
+			
+			
 	</article>
            
     </div> <!-- .container 닫는 태그 -->
