@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_레이어_2" data-name="레이어 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.99 8.99">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: .87px;
+      }
+    </style>
+  </defs>
+  <g id="_레이어_1-2" data-name="레이어 1">
+    <path id="_주자창아이콘" data-name="주자창아이콘" class="cls-1" d="M3.48,6.87V2.47h1.35c.75,0,1.35.61,1.35,1.35s-.61,1.35-1.35,1.35h-1.35M7.12,7.6c-.71.6-1.62.96-2.62.96C2.25,8.56.43,6.74.43,4.5c0-1,.36-1.92.96-2.62M1.87,1.4c.71-.6,1.62-.96,2.62-.96,2.24,0,4.06,1.82,4.06,4.06,0,1-.36,1.92-.96,2.62"/>
+  </g>
+</svg>
