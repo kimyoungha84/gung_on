@@ -1,0 +1,71 @@
+@charset "UTF-8";
+        table {
+            border-collapse: collapse;
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            width: 14.2%;
+            height: 30px;
+            vertical-align: middle;
+            position: relative;
+            padding: 2px;
+        }
+        .sunday { color: #f44336; }
+        .saturday { color: #2196f3; }
+        .today {
+            background-color: #a38c67;
+            color: black;
+            font-weight: bold;
+            border-radius: 30%;
+        }
+        .gray { color: #b0b0b0; }
+        .nav-buttons {
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .nav-buttons a {
+            margin: 0 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            color: #616161;
+        }
+        .nav-buttons a:hover {
+            color: #ff9800;
+        }
+        th {
+            background-color: #fafafa;
+            font-weight: bold;
+            color: #616161;
+            font-size: 10px;
+            padding: 5px;
+        }
+        td {
+            background-color: #ffffff;
+            font-size: 10px;
+            padding: 8px;
+            cursor: default;
+        }
+        .circle {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin: 0 auto;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .blackCircle {
+            background-color: black;
+        }
+        td.clickable {
+            cursor: pointer;
+        }
