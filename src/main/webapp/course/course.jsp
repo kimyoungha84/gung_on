@@ -14,6 +14,27 @@
 
 <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+
+<script type="text/javascript">
+  window.addEventListener('DOMContentLoaded', () => {
+    const elem = document.getElementById('panzoom-container');
+    const panzoom = Panzoom(elem, {
+      maxScale: 5,
+      minScale: 0.5,
+      step: 0.2
+    });
+
+    // 마우스 휠로 줌
+    elem.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
+
+    // 버튼 이벤트
+    document.getElementById('zoomInButton').addEventListener('click', () => panzoom.zoomIn());
+    document.getElementById('zoomOutButton').addEventListener('click', () => panzoom.zoomOut());
+    document.getElementById('resetButton').addEventListener('click', () => panzoom.reset());
+  });
+</script>
+
 
 <script type="text/javascript">
 	/*tab_menu*/
@@ -107,31 +128,6 @@
 		$('.course_map_wrap .amenities_wrap ul li a').on('click', function(e){
 			e.preventDefault();
 		});
-
-		/* 확대/축소 START */
-		var instance = document.querySelector('.course_map_wrap');
-		var maxScale = 4;
-		var panzoom = new Panzoom(instance.querySelector(".zoomable"), {
-			  minScale: 1,
-			  maxScale: maxScale,
-			  step: 0.5,
-			  //contain: "outside",
-			  panzoomMouseMove: 0,
-			  panOnlyWhenZoomed: 1,
-			  //cursor: 'zoom-in',	//pointer
-		});
-
-		//버튼
-		$(".zoomIn").click(function(){
-			panzoom.zoomIn({ animate: true, step: 0.4 });
-		});
-		$(".zoomOut").click(function(){
-			panzoom.zoomOut({ animate: true, step: 0.4 });
-		});
-		$(".zoomReset").click(function(){
-			panzoom.reset();
-		});
-
 		
 	});
 
@@ -391,22 +387,24 @@
 							<div class="tab_con map_info current">
 								<div class="hidden gubunNm">전체</div>
 								<div class="f-custom-controls top-right">
-										<button class="zoomIn" data-panzoom-action="zoomIn" title="확대">
+								
+								
+										<button id="zoomInButton" class="zoomIn" data-panzoom-action="zoomIn" title="확대">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 								            	<path d="M12 5v14M5 12h14"></path>
 								            </svg>
 										</button>
-										<button class="zoomOut" data-panzoom-action="zoomOut" title="축소">
+										<button id="zoomOutButton" class="zoomOut" data-panzoom-action="zoomOut" title="축소">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 								            	<path d="M5 12h14"></path>
 								            </svg>
 										</button>
-										<button class="zoomReset" data-panzoom-action="zoomReset" data-panzoom-change="{" angle":="" 90}"="" title="초기화">
+										<button id="resetButton" class="zoomReset" data-panzoom-action="zoomReset" data-panzoom-change="{" angle":="" 90}"="" title="초기화">
 											<img src="course_img/ic_refresh.png" width="20px">
 										</button>
 									</div>
 								<div class="course_map" style="overflow: hidden; user-select: none; touch-action: none;">
-									<div class="zoomable" id="zoomable" style="cursor: move; user-select: none; touch-action: none; transform-origin: 50% 50%; transition: none; transform: scale(1) translate(0px, 0px);">
+									<div class="zoomable" id="panzoom-container" style="cursor: move; user-select: none; touch-action: none; transform-origin: 50% 50%; transition: none; transform: scale(1) translate(0px, 0px);">
 										<img data-id="1" class="map_content" src="course_img/gbg_img/gbg_map_all.png" alt="전체 맵" draggable="true">
 									</div>
 								</div>
