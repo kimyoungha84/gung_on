@@ -402,3 +402,45 @@ footer {
 	box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 	padding: 20px;
 }
+
+
+ .board-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      
+    }
+   .write-button {
+  margin-left: auto; /* 버튼을 오른쪽으로 밀어줌 */
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+    .board-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .board-table th,
+    .board-table td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .board-table th {
+      background-color: #f1f1f1;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    

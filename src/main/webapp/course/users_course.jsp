@@ -9,46 +9,7 @@
   <meta charset="UTF-8">
   <title>관람코스</title>
   <style type="text/css">
-  .board-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      
-    }
-   .write-button {
-  margin-left: auto; /* 버튼을 오른쪽으로 밀어줌 */
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-    .board-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .board-table th,
-    .board-table td {
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-      text-align: center;
-    }
-
-    .board-table th {
-      background-color: #f1f1f1;
-    }
-
-    .thumbnail {
-      width: 80px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-    
+ 
   </style>
 
   <!-- Swiper CSS -->
@@ -94,25 +55,22 @@
 			<table class="board-table">
       <thead>
         <tr>
-          <th>썸네일</th>
-          <th>제목</th>
+          <th>번호</th>
+          <th colspan="2">제목</th>
           <th>작성자</th>
           <th>작성일</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><img src="/Gung_On/common/images/program/ChangdeokgungMoonlightTravel.jpg"
-           alt="썸네일" class="thumbnail"></td>
-          <td>첫 번째 게시글입니다</td>
+          <td>1</td>
+          <td colspan="2"><img src="/Gung_On/common/images/program/ChangdeokgungMoonlightTravel.jpg" alt="썸네일" class="thumbnail"> 첫 번째 게시글입니다</td>
           <td>홍길동</td>
           <td>2025-05-29</td>
         </tr>
         <tr>
-        
-        	<!-- 이미지 크기 80x60  -->
-          <td><img src="/Gung_On/common/images/program/GyeongbokgungStarlightNight.jpg" alt="썸네일" class="thumbnail"></td>
-          <td>두 번째 게시글입니다</td>
+		  <td>1</td>        
+          <td colspan="2"><img src="/Gung_On/common/images/program/GyeongbokgungStarlightNight.jpg" alt="썸네일" class="thumbnail"> 두 번째 게시글입니다</td>
           <td>이순신</td>
           <td>2025-05-28</td>
         </tr>
@@ -130,6 +88,6 @@
 
   <!-- 푸터 -->
   <jsp:include page="/common/jsp/footer.jsp" />
-<div> 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/mike-zuidgeest" title="Mike Zuidgeest"> Mike Zuidgeest </a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com'</a></div>
+<!-- <div> 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/mike-zuidgeest" title="Mike Zuidgeest"> Mike Zuidgeest </a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com'</a></div> -->
 </body>
 </html>

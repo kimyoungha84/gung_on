@@ -12,474 +12,9 @@
   <link rel="stylesheet" type="text/css" href="/Gung_On/course/css/course_style.css" />
   <c:import url="/common/jsp/external_file.jsp"/>
 
+
 <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script type="text/javascript">
-	//도메인변경 이동처리
-	var wl = window.location.href;
-	if(wl.indexOf("royal.cha.go.kr") > -1){
-		location.href = wl.replace("royal.cha.go.kr","royal.khs.go.kr");
-	}
-
-	var reservation_tab2 = undefined;
-
-	// $(window).on('resize', fn_init).trigger('resize');
-	var delta = 150;
-	var timer = null;
-
-	$( window ).on( 'resize', function() {
-		clearTimeout( timer );
-		timer = setTimeout( fn_init, delta );
-	} );
-
-	$(function() {
-		//숫자만 입력되게
-		$(document).on("keyup", ".numberOnly", function() {
-			$(this).val($(this).val().replace(/[^0-9]/g, ""));
-		});
-		//숫자,대쉬만 입력되게 (전화번호 사용 자동대쉬)
-		$(document).on("keyup", ".numberDashOnly", function() {
-			//$(this).val($(this).val().replace(/[^0-9\-]/g,""));
-			$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
-		});
-
-		// 외부영역 클릭 시 팝업 닫기
-		$(document).mouseup(function (e){
-			//통합검색 레이어팝업
-			if($(e.target).parents('.hd_search_trigger_wrap').length < 1 && $(".trigger_wrap").has(e.target).length === 0){
-				close_trigger_wrap();
-			}
-			//레이어 팝업
-// 			if($(".dim").has(e.target).length === 0){
-// 				$(".layer_popup").closest(".dim").hide();
-// 				$(".dim").hide();
-// 			}
-			//모바일 푸터 팝업
-			if($(".mo_hd_box_inn").has(e.target).length === 0){
-				$(".mo_hd_wrap").removeClass("open");
-			}
-			//SNS 팝업
-			if($(".util_wrap").has(e.target).length === 0){
-				$(".util_item").removeClass("on");
-			}
-		});
-
-		$(".icon_search2").on('click', function() {
-			$('.multiLangBox').hide();
-			$(this).parents('.search_lng_wrap').find('.multiLangBox').toggle();
-			return false;
-		});
-		$('.multiLangBox .multiLang ul.language li a').on('click', function() {
-			$('.multiLangBox .multiLang ul.language li a').hasClass("selected");
-			$('.multiLangBox .multiLang ul.language li a').removeClass("selected");
-			$(this).addClass("selected");
-			var multiLangIndex = $('.multiLangBox .multiLang ul.language li a').index($(this));
-			$('.multiLangBox .multiLang .languageContents').hide();
-			$('.multiLangBox .multiLang .languageContents').eq(multiLangIndex).show();
-			return false;
-		});
-		$('.multiLangBox.multiLang ul.language li:first-child a').trigger('click');
-		$('p.multiLangBox_close a').on("click", function() {
-			$('.multiLangBox').hide();
-			return false;
-		});
-		$('.multiLangBox .multiLang .languageContents ul li a').on('click', function(e) {
-			$(this).parents('.search_lng_wrap').find('.lang_input')[0].value += $(this)[0].innerHTML;
-		});
-		fn_gnbMenu();
-		//fn_mobileMenu();
-	});
-
-	var hdTimer;
-	function fn_gnbMenu() {
-		$.ajax({
-			url : "/ROYAL/module/select_user_gbn_menu.ajax",
-			data : "",
-			success : function(data) {
-				var add = "";
-				$("#gnbMenuDiv").empty().html(add+""+data);
-
-				clearTimeout(hdTimer);
-				hdTimer = setTimeout(function() {
-					fn_init();
-					fn_mobInit();
-				}, 350);
-			},
-			error : function(request, status, error) {
-				//alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-			}
-		});
-	}
-
-	function fn_mobInit(){
-		var win_w = $(window).innerWidth();
-		var isMobile = "false";
-
-		if (win_w < 1024 && isMobile) {
-			$('.header_wrap .gnb').before('<div class="mob-gnb-depth1"></div>');
-			// $('#hd_search_trigger_wrap').clone().prependTo('.header_wrap .header_btm .inner .gnb_wrap');
-			// $('.header_left #hd_search_trigger_wrap').remove();
-			// $('#hd_search_trigger_wrap').removeClass('trigger_wrap');
-			// $('#hd_search_trigger_wrap .hd_search').remove();
-			// $('#hd_search_trigger_wrap .trigger_close').remove();
-			$('.header_wrap .gnb .menu-gnb-depth1__item .depth1__a').clone().appendTo('.mob-gnb-depth1');
-			// var mobMenuHei = $('.mob-gnb-depth1').height();
-			// $('.header_wrap .gnb').css('height',mobMenuHei);
-
-			$('.mob-gnb-depth1 a').on('click',function(e){
-				var idx = $(this).index();
-				var gnb_top = $('.menu-gnb-depth1 > li').eq(idx).position().top;
-				$('.header_wrap .gnb').animate({scrollTop:gnb_top});
-				e.preventDefault();
-			})
-
-			$('.header_wrap .gnb').scroll(function() {
-				var scrollDistance = $('.header_wrap .gnb').scrollTop();
-				scrollDistance = scrollDistance + 10;
-				$('.menu-gnb-depth1 > li').each(function(i) {
-					if ($(this).position().top <= scrollDistance) {
-						$('.header_wrap .header_btm>.inner .gnb_wrap .mob-gnb-depth1 a.active').removeClass('active');
-						$('.header_wrap .header_btm>.inner .gnb_wrap .mob-gnb-depth1 a').eq(i).addClass('active');
-					}
-				});
-			}).scroll();
-		}
-	}
-
-
-	function fn_init() {
-		var $body = $("body");
-		var $headerWrap = $(".header_wrap");
-		var $gnb = $(".menu-gnb-depth1");
-		var $gnbInner = $(".menu-gnb-depth1 .inner");
-		var $depth1 = $(".depth1__a"); //li > a
-		var $depth2 = $(".menu-gnb-depth2__item a"); //li > a
-		var $depth1_hasDepth2 = $(".has_depth2 .depth1__a");
-		var $depth2_hasDepth3 = $(".has_depth3 .depth2__a");
-		var $depth1_wrap = $(".menu-gnb-depth1__item"); //li
-		var $depth2_wrap = $(".menu-gnb-depth2__item"); //li
-		var $depth = $(".menu-gnb-depth1__item a"); //li a
-		var $menu = $(".h_menu");
-		var win_w = $(window).innerWidth();
-		var isMobile = "false";
-
-		if (win_w >= 1024 || !isMobile) {
-			//pc
-			$depth1_hasDepth2.off("click");
-			$("meta[name='viewport']").attr("content","width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0");
-
-			//통합검색 필터
-			$(".filter_wrap").addClass("open");
-			$(".filter_trigger").addClass("on");
-			$(".filter_trigger .hide_txt").html("닫기");
-
-			$depth1.off().on("mouseenter focus", function() {
-				$depth1_wrap.removeClass("open");
-				$(this).closest(".menu-gnb-depth1__item").addClass("open");
-				$(this).closest(".header_wrap").addClass("open");
-			});
-			// $depth2.off().on("mouseenter focus", function() {
-			// 	$(this).closest(".menu-gnb-depth2__item").addClass("active");
-			// });
-			$depth1_wrap.on("mouseleave blur", function() {
-				$(this).removeClass("open");
-				$(this).closest(".header_wrap").removeClass("open");
-			});
-			$depth2_wrap.off().on("mouseleave blur", function() {
-				$(this).removeClass("active");
-			});
-			$depth1_wrap.each(function() {
-				$(this).find("a").last().on("blur",function() {
-					$(this).closest(".menu-gnb-depth1__item").removeClass("open");
-					$(this).closest(".header_wrap").removeClass("open");
-				});
-			});
-			$depth2_hasDepth3.off().on("click", function(e) {
-				e.preventDefault();
-				close_trigger_wrap();
-				if($(this).closest(".menu-gnb-depth2__item").hasClass("open")){
-					$(this).closest(".menu-gnb-depth2__item").removeClass("open");
-				}else{
-					$(".menu-gnb-depth2__item").removeClass("open");
-					$(this).closest(".menu-gnb-depth2__item").addClass("open");
-				}
-			});
-		} else {
-			//mo
-			$depth1.off("mouseenter focus");
-			$depth1_wrap.off("mouseleave");
-			// $("meta[name='viewport']").attr("content","width=500,user-scalable=no");
-
-			$depth1_hasDepth2.off().on("click", function(e) {
-				e.preventDefault();
-				close_trigger_wrap();
-				$(".menu-gnb-depth1__item").removeClass("open");
-				$(this).closest(".menu-gnb-depth1__item").addClass("open");
-			});
-			$depth2_hasDepth3.off().on("click", function(e) {
-				e.preventDefault();
-				close_trigger_wrap();
-				$(".menu-gnb-depth2__item").removeClass("open");
-				$(this).closest(".menu-gnb-depth2__item").addClass("open");
-			});
-
-			$(".h_close").on("click", function(e) {
-				$body.removeClass("m_open");
-				$(".menu-gnb-depth1__item").removeClass("open");
-			});
-
-			/*header menu*/
-			$menu.off().on("click", function() {
-				$body.toggleClass("m_open");
-			});
-
-
-			var swiper = new Swiper(".palace_list_mo", {
-				slidesPerView: 3,
-				spaceBetween: 10,
-			});
-		}
-
-		//모바일 탭 드롭다운
-		setTimeout(function() {
-			$(".tab_select_wrap").each(function() {
-				var on_txt = $(this).find(".tab_select li.on").text();
-				$(this).find(".tab_select_now").html(on_txt);
-			})
-		}, 30)
-
-		$(".tab_select > li > a").on("click", function() {
-			var on_txt = $(this).text();
-			$(this).closest(".tab_select_wrap").find(".tab_select_now")
-					.html(on_txt);
-			$(this).closest(".tab_select_wrap").removeClass("open");
-
-		});
-
-		$(".sns_item_trigger").off().on("click", function() {
-			if ($(this).closest(".sns_item_mo").hasClass("open")) {
-				$(".sns_item_mo").removeClass("open");
-				$(this).closest(".sns_item_mo").removeClass("open");
-			} else {
-				$(".sns_item_mo").removeClass("open");
-				$(this).closest(".sns_item_mo").addClass("open");
-			}
-		})
-
-		//trigger
-		$(".trigger").off().on("click", function() {
-			var thisWrap = "#" + $(this).attr("id") + "_wrap";
-			if ($(thisWrap).hasClass("open")) {
-				$(thisWrap).removeClass("open");
-				$(this).find(".hide_txt").html("열기");
-			} else {
-				$(thisWrap).addClass("open");
-				$(this).find(".hide_txt").html("닫기");
-			}
-		});
-		//trigger close
-		$(".trigger_close").off().on("click", function() {
-			var targetWrap = $(this).closest(".trigger_wrap");
-			targetWrap.find(".hide_txt").html("열기");
-			targetWrap.removeClass("open");
-			targetWrap.find(".trigger").focus();
-			if (targetWrap.hasClass("filter_wrap")) {
-				$(".filter_trigger").removeClass("on");
-			}
-			if (targetWrap.hasClass("lnb_wrap")) {
-				$(".contents_main").removeClass("lnb_open");
-			}
-		});
-
-		/*lnb*/
-		setTimeout(function(){
-			$(".lnb_depth2_trigger").attr("title", "하위메뉴 펼치기");
-			$('.lnb_depth2_item.current .lnb_depth2_trigger').attr("title", "하위메뉴 열림");
-		},500);
-
-		$(".lnb_depth2_trigger").off().on("click", function() {
-			var item = $(this).parent();
-			if (!item.hasClass("current")) {
-				if (!item.hasClass('active')) {
-					$(this).attr("title", "하위메뉴 접기");
-					$('.lnb_depth2_item.active').children('.lnb_depth2_trigger').attr("title", "하위메뉴 펼치기");
-					$('.lnb_depth2_item.active').removeClass('active');
-					item.addClass('active');
-				} else {
-					$(this).attr("title", "하위메뉴 펼치기");
-					item.removeClass('active');
-				}
-			}
-		});
-
-		/*del_search_word*/
-		$(".del_search_word").on("click", function() {
-			$(this).closest(".search_input_wrap").find("input[type='text']").val("");
-		});
-
-		$('.search_input_wrap .trigger_close').on('focusout',function(){
-			$('.hd_search_wrap').removeClass('open');
-		})
-
-		/*tab_menu*/
-		$(".tab_link a").on("click", function() {
-			var thisCon = "." + $(this).parent().attr("data-tab");
-
-			$(this).closest(".tab_menu").find('.tab_link').removeClass('current');
-			$(this).closest(".tab_menu").find(".hidden").remove();
-			$(this).parent().addClass('current');
-			$(this).append('<span class="hidden">현재 선택됨</span>');
-
-			$(thisCon).siblings(".tab_con").removeClass("current");
-			$(thisCon).addClass("current");
-
-			// if ($(".tab_con .slick-slider").length != 0) {
-			// 	$('.slick-slider').resize();
-			// 	$('.slick-slider').slick('refresh');
-			// }
-		});
-
-		//slider resize
-		if ($(".slick-slider").length != 0) {
-			$('.slick-slider').slick('resize');
-			$('.slick-slider').slick('refresh');
-		}
-
-		if ($(".reservation_tab").length != 0 && $(".reservation_tab").find(".swiper-wrapper").length != 0) {
-			$(".reservation_tab .swiper-slide").each(function(index){
-				$(this).attr("data-num", index);
-			})
-			var data_num = $(".reservation_tab .swiper-slide.current").attr("data-num");
-			data_num = parseInt(data_num);
-
-			var reservation_tab = new Swiper(".reservation_tab", {
-				speed: 800,
-				loop: false,
-				loopAdditionalSlides: 1,
-				initialSlide: 0,
-				observer: true,
-				observeParents: true,
-				slidesPerView: "auto",
-			});
-
-			reservation_tab.slideTo(data_num, 10, false);
-		}
-
-		if ($(".reservation_tab2").length != 0 && $(".reservation_tab2").find(".swiper-wrapper").length != 0) {
-			$(".reservation_tab2 .swiper-slide").each(function(index){
-				$(this).attr("data-num", index);
-			})
-			var data_num = $(".reservation_tab2 .swiper-slide.current").attr("data-num");
-			data_num = parseInt(data_num);
-
-			if (win_w >= 1024  && reservation_tab2 != undefined) {
-				reservation_tab2.destroy();
-				reservation_tab2 = undefined;
-			}else if(win_w < 1024  && reservation_tab2 == undefined) {
-				reservation_tab2 = new Swiper(".reservation_tab2", {
-					speed: 800,
-					navigation: {
-						nextEl: ".noti_next",
-						prevEl: ".noti_prev",
-					},
-					slidesPerView: "auto",
-				});
-				reservation_tab2.slideTo(data_num, 10, false);
-			}
-		}
-
-		if ($(".sub_con_tab").length != 0 && $(".sub_con_tab").find(".swiper-wrapper").length != 0) {
-			var sub_con_tab = new Swiper(".sub_con_tab", {
-				speed: 800,
-				loop: false,
-				loopAdditionalSlides: 1,
-				initialSlide: 0,
-				observer: true,
-				observeParents: true,
-				slidesPerView: "auto",
-			});
-		}
-
-		if ($(".sub_menu_tab").length != 0 && $(".sub_menu_tab").find(".swiper-wrapper").length != 0) {
-			var sub_menu_tab = new Swiper(".sub_menu_tab", {
-				speed: 800,
-				loop: false,
-				loopAdditionalSlides: 1,
-				initialSlide: 0,
-				observer: true,
-				observeParents: true,
-				slidesPerView: "auto",
-				spaceBetween: 15,
-			});
-		}
-
-		if ($(".history_tab").length != 0 && $(".history_tab").find(".swiper-wrapper").length != 0) {
-			var swiper1 = new Swiper(".history_tab", {
-				speed: 800,
-				loop: false,
-				loopAdditionalSlides: 1,
-				initialSlide: 0,
-				observer: true,
-				observeParents: true,
-				slidesPerView: "auto",
-			});
-		}
-	}
-
-	function fn_mobileMenu() {
-		$.ajax({
-			url : "/ROYAL/module/select_user_mobile_all_menu.ajax",
-			data : "",
-			success : function(data) {
-				$("#mMenuDiv").empty().html(data);
-			},
-			error : function(request, status, error) {
-				alert("code:" + request.status + "\n" + "message:"
-						+ request.responseText + "\n" + "error:" + error);
-			}
-		});
-	}
-
-	//메시지박스
-	function msgBox(data) {
-		toastr.options.escapeHtml = true;
-		toastr.options.newestOnTop = false;
-		toastr.options.progressBar = true;
-		toastr.options.preventDuplicates = false;
-		toastr.options.onclick = function() {
-			//fn_search();
-		}
-		toastr.options.onHidden = function() {
-		}
-		var msg = data.msg;
-		if (data.status == "OK") {
-			if (!msg)
-				msg = "저장되었습니다.";
-			toastr.info("알림", msg, {
-				timeOut : 1000
-			});
-		} else {
-			if (!msg)
-				msg = "저장에 실패하였습니다.";
-			toastr.info("알림", msg, {
-				timeOut : 1000
-			});
-		}
-	}
-
-	//통합검색
-	function fn_totalSearch(){
-		var f = document.mainSearchForm;
-		if(f.query.value == "" || f.query.value == null){
-			alert("검색어를 입력해주세요.");
-			f.query.focus();
-			return false;
-		}else{
-			f.action = "/ROYAL/contents/R09000000.do";
-			f.submit();
-		}
-	}
-</script>
 </head>
 <body class="main">
 
@@ -505,27 +40,15 @@
         	<article class="content">
             <h1>관람코스</h1>
 
-<!-- [S] sub_con_section -->
-<div class="sub_con_section">
-	<div class="tab_con_wrap">
-		<div class="tab_con current">
-			<!-- [S] course_tab_wrap -->
-					<div class="course_tab_wrap">
-						<!-- [S] 코스안내 -->
-						<div class="left course_pop_con">
-							<span class="course_tit"><img src="course_img/ic_loca.jpg" alt=""> 코스안내</span>
-								<ul class="list course_info_list">
-									<li class="item">
-											<a href="#;" data-num="0"><span class="inn">🚶40분  코스</span></a>
-										</li>
-									<li class="item">
-											<a href="#;" data-num="1"><span class="inn">🚶60분  코스</span></a>
-										</li>
-									<li class="item">
-											<a href="#;" data-num="2"><span class="inn">🚶90분 코스</span></a>
-										</li>
-									</ul>
-							</div>
+			<div class="course_tab_wrap">
+				<div class="left course_pop_con">
+					<span class="course_tit"><img src="course_img/ic_loca.jpg" alt=""> 코스안내</span>
+						<ul class="list course_info_list">
+							<li class="item"><a href="#;" data-num="0"><span class="inn">🚶40분  코스</span></a></li>
+							<li class="item"><a href="#;" data-num="1"><span class="inn">🚶60분  코스</span></a></li>
+							<li class="item"><a href="#;" data-num="2"><span class="inn">🚶90분 코스</span></a></li>
+						</ul>
+				</div>
 						<ul class="course_tab tab_menu right">
 							<li class="tab_link current" data-tab="total"><a href="#;">전체</a></li>
 							<li class="tab_link" data-tab="tour"><a href="#;">둘러보기</a></li>
@@ -539,26 +62,67 @@
             		<option value="5">경희궁</option>
              </select>
 					</div>
+					
+					<!-- [S] sub_con_section -->
+<div class="sub_con_section">
+	<div class="tab_con_wrap">
+		<div class="tab_con current">
+			<!-- [S] course_tab_wrap -->
+					<div class="course_tab_wrap">
+						<!-- [S] 코스안내 -->
+						<div class="left course_pop_con">
+							<span class="course_tit"><img src="/resource/templete/royal/img/sub/information/ic_loca.png" alt=""> 코스안내</span>
+								<ul class="list course_info_list">
+									<li class="item">
+											<a href="#;" onclick="open_layer_pop('pop_course01',this)" data-num="0">
+												<span class="inn"><img src="/resource/templete/royal/img/sub/information/ic_course.png" alt="">40분  코스</span>
+											</a>
+										</li>
+									<li class="item">
+											<a href="#;" onclick="open_layer_pop('pop_course01',this)" data-num="1">
+												<span class="inn"><img src="/resource/templete/royal/img/sub/information/ic_course.png" alt="">60분  코스</span>
+											</a>
+										</li>
+									<li class="item">
+											<a href="#;" onclick="open_layer_pop('pop_course01',this)" data-num="2">
+												<span class="inn"><img src="/resource/templete/royal/img/sub/information/ic_course.png" alt="">90분 코스</span>
+											</a>
+										</li>
+									</ul>
+							</div>
+						<ul class="course_tab tab_menu right">
+							<li class="tab_link current" data-tab="total"><a href="#;">전체</a></li>
+							<li class="tab_link" data-tab="tour"><a href="#;">둘러보기</a></li>
+							<li class="tab_link" data-tab="amenities"><a href="#;">편의시설</a></li>
+						</ul>
+					</div>
+					<!-- [E] course_tab_wrap -->
+
+					<!-- [S] course_map_wrap -->
 					<div class="course_map_wrap" id="course_map_wrap">
 						<div class="course_map_fix">
-							<div class="amenities_wrap">
+							<div class="amenities_wrap hid">
 									<ul>
-										<li><a href=""><em><img src="course_img/icon_1.svg" alt=""></em><span>안내</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_2.svg" alt=""></em><span>매표소</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_3.svg" alt=""></em><span>음성안내기 대여소</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_4.svg" alt=""></em><span>휠체어 대여소</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_5.svg" alt=""></em><span>유모차 대여소</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_6.svg" alt=""></em><span>주차장</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_7.svg" alt=""></em><span>기념품점</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_8.svg" alt=""></em><span>물품보관함</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_9.svg" alt=""></em><span>수유실</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_10.svg" alt=""></em><span>자판기</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_11.svg" alt=""></em><span>휠체어리프트</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_12.svg" alt=""></em><span>화장실</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_13.svg" alt=""></em><span>구급약</span></a></li>
-										<li><a href=""><em><img src="course_img/icon_14.svg" alt=""></em><span>심장제세동기</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities1.svg" alt=""></em><span>안내</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities2.svg" alt=""></em><span>매표소</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities3.svg" alt=""></em><span>음성안내기 대여소</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities4.svg" alt=""></em><span>휠체어 대여소</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities5.svg" alt=""></em><span>유모차 대여소</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities6.svg" alt=""></em><span>주차장</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities7.svg" alt=""></em><span>기념품점</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities8.svg" alt=""></em><span>물품보관함</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities12.svg" alt=""></em><span>수유실</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities13.svg" alt=""></em><span>자판기</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities14.svg" alt=""></em><span>휠체어리프트</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities9.svg" alt=""></em><span>화장실</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities10.svg" alt=""></em><span>구급약</span></a></li>
+										<li><a href=""><em><img src="/resource/templete/royal/img/sub/information/icon_amenities11.svg" alt=""></em><span>심장제세동기</span></a></li>
 									</ul>
 								</div>
+							<div class="btn_wrap flex">
+								<a href="/ROYAL/contents/R601000000.do?schGroupCode=gbg" class="btn course_btn" title="온라인예약"><img src="/resource/templete/royal/img/sub/information/ic_reserved.png" alt="온라인예약"/>온라인예약</a>
+								<a href="#;" class="btn course_btn bg_black hidden"><img src="/resource/templete/royal/img/sub/information/ic_360.png" alt="VR보기">VR보기</a>
+							</div>
 						</div>
 						<div class="tab_con_wrap">
 							<div class="tab_con map_info current">
@@ -566,23 +130,21 @@
 								<div class="f-custom-controls top-right">
 										<button class="zoomIn" data-panzoom-action="zoomIn" title="확대">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-								            	<path d="M12 5v14M5 12h14"></path>
+								            	<path d="M12 5v14M5 12h14" />
 								            </svg>
 										</button>
 										<button class="zoomOut" data-panzoom-action="zoomOut" title="축소">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-								            	<path d="M5 12h14"></path>
+								            	<path d="M5 12h14" />
 								            </svg>
 										</button>
-										<button class="zoomReset" data-panzoom-action="zoomReset" data-panzoom-change="{" angle":="" 90}"="" title="초기화">
-											<img src="/Gung_On/course/course_img/ic_refresh.png" width="20px">
+										<button class="zoomReset" data-panzoom-action="zoomReset" data-panzoom-change="{"angle": 90}" title="초기화">
+											<img src="/resource/templete/royal/img/sub/information/ic_refresh.png" width="20px">
 										</button>
 									</div>
-								<div class="course_map" style="overflow: hidden; user-select: none; touch-action: none;">
-									<div class="zoomable" id="zoomable" style="cursor: move; user-select: none; touch-action: none; transform-origin: 50% 50%; transition: none; transform: scale(1) translate(0px, 0px);">
-										<img data-id="1" class="map_content" src="/Gung_On/course/course_img/gbg_img/gbg_map_all.png" alt="전체 맵" draggable="true">
-										
-										
+								<div class="course_map">
+									<div class="zoomable" id="zoomable">
+										<img data-id="1" class="map_content" src="" alt="" draggable="true">
 									</div>
 								</div>
 							</div>
@@ -1028,7 +590,7 @@
 		<a href="#;" class="pop_close ic_close"><span class="hidden">레이어 팝업 닫기</span></a>
 	</div>
 </div>
-
+					
 <script type="text/javascript">
 	/*tab_menu*/
 	$(".tab_link a").on("click", function() {
@@ -1342,7 +904,8 @@
 
 		location.href="?" + tmpQuery;
 	}
-</script><!-- [S] survey_wrap -->
+</script><!-- [S] survey_wrap -->					
+					
 
 </article>
     </div> <!-- .container 닫는 태그 -->
