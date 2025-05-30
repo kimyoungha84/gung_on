@@ -197,11 +197,11 @@ ul {
     display: block;
 }
 
-     .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-    }
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
 
 .sec_li {
     margin-bottom: 20px;
