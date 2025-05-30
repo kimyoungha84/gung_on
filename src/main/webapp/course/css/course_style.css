@@ -233,8 +233,6 @@ ul {
 .pop_course .popup_body .top{ width: 100%; padding: 10px 50px 0;}
 .pop_course .popup_body .btm{ width: 100%; padding: 50px; background: #F8F8F8; border-radius:0 0 16px 16px;}
 
-@charset "utf-8";
-
 /* [S] Popup_wrap */
 .popupzone {
 	position:fixed;
