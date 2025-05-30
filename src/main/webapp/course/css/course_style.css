@@ -185,6 +185,13 @@ ul {
     margin-bottom: 30px;
 }
 
+img {
+    vertical-align: middle;
+    max-width: 100%;
+    overflow-clip-margin: content-box;
+    overflow: clip
+}
+
 
 .quick-links {
     margin-bottom: 30px;
