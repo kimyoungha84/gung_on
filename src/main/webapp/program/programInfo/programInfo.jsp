@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>궁온 헤더 탭</title>
-  <link rel="stylesheet" href="../gungInfo/mainCSS.css" />
+  <link rel="stylesheet" href="/Gung_On/common/css/common.css">
   <link rel="stylesheet" href="../programInfo/programInfo.css" />
   <style>
 
@@ -22,7 +22,7 @@
 
 <div class="sub_visual">
   <div class="img_wrap">
-    <img src="<%= request.getContextPath() %>/test/images/program.png" alt="행사 이미지" />
+    <img src="<%= request.getContextPath() %>/program/images/program.png" alt="행사 이미지" />
   </div>
   <div class="txt_wrap">
     <h2 class="sub_tit">행사 안내</h2>
@@ -37,13 +37,13 @@
     </div>
     <div class="menu_items_wrapper">
       <div class="menu_item <%= request.getRequestURI().endsWith("programInfo.jsp") ? "active" : "" %>">
-        <a href="<%= request.getContextPath() %>/test/programInfo/programInfo.jsp">행사</a>
+        <a href="<%= request.getContextPath() %>/program/programInfo/programInfo.jsp">행사</a>
       </div>
       <div class="menu_item <%= request.getRequestURI().endsWith("programAll.jsp") ? "active" : "" %>">
-        <a href="<%= request.getContextPath() %>/test/programAll/programAll.jsp">행사 모아보기</a>
+        <a href="<%= request.getContextPath() %>/program/programAll/programAll.jsp">행사 모아보기</a>
       </div>
       <div class="menu_item <%= request.getRequestURI().endsWith("programSelect.jsp") ? "active" : "" %>">
-        <a href="<%= request.getContextPath() %>/test/programSelect/programSelect.jsp">예약조회 / 취소</a>
+        <a href="<%= request.getContextPath() %>/program/programSelect/programSelect.jsp">예약조회 / 취소</a>
       </div>
     </div>
   </div>
@@ -60,7 +60,7 @@
 
       <div id="calendarAndList" style="display: flex; gap: 50px;">
         <div class="calendar_wrapper">
-          <iframe id="calendarIframe" src="<%= request.getContextPath() %>/test/programInfo/scheduler.jsp" frameborder="0"></iframe>
+          <iframe id="calendarIframe" src="<%= request.getContextPath() %>/program/programInfo/scheduler.jsp" frameborder="0"></iframe>
         </div>
 
         <div id="eventList">

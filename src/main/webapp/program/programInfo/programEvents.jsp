@@ -28,7 +28,7 @@
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd(E)", java.util.Locale.KOREAN);
 
         for (ProgramDTO dto : list) {
-            String imgPath = request.getContextPath() + "/test/images/" + dto.getProgImgName();
+            String imgPath = request.getContextPath() + "/program/images/" + dto.getProgImgName();
 
             sb.append("<div style='display:flex; margin-bottom:20px; width:500px;'>");
 
@@ -45,7 +45,7 @@
               .append(sdf.format(dto.getEndDate())).append("</span>");
             sb.append("<span>행사장소 : ").append(dto.getProgramPlace()).append("</span>");
             sb.append("<button class='detail-btn' type='button' onclick=\"location.href='")
-            .append(contextPath).append("/test/programDetail/programDetail.jsp?programName=")
+            .append(contextPath).append("/program/programDetail/programDetail.jsp?programName=")
             .append(URLEncoder.encode(dto.getProgramName(), "UTF-8"))
             .append("'\">상세보기</button>");
             sb.append("</div></div>");
