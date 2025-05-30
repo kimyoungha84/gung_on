@@ -1,0 +1,76 @@
+.side-menu {
+	width: 300px;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	font-family: 'Noto Sans KR', sans-serif;
+	padding: 0;
+	margin-left: 150px; /* ✅ 오른쪽 여백 제거하여 container 왼쪽에 밀착 */
+	margin-top: 50px;
+}
+
+.side-menu h2 {
+	background: #111;
+	color: #fff;
+	padding: 15px;
+	font-size: 18px;
+	margin: 0;
+}
+
+/* 리스트 스타일 초기화 */
+.accordion,
+.accordion li,
+.submenu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* 항목마다 위쪽 선 */
+.accordion > li {
+	border-top: 1px solid #ccc;
+}
+
+.accordion .toggle {
+	background: none;
+	border: none;
+	width: 100%;
+	text-align: left;
+	padding: 15px;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	position: relative;
+}
+
+.accordion .toggle::after {
+	content: "▾";
+	position: absolute;
+	bottom: 5px;
+	right: 20px;
+	font-size: 35px;
+	transition: transform 0.3s;
+}
+
+.accordion .toggle.active::after {
+	transform: rotate(180deg);
+}
+
+.submenu {
+	display: none;
+	background: #f9f9f9;
+	padding-left: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.submenu li {
+	padding: 6px 0;
+	margin: 0;
+}
+
+.submenu li a {
+	text-decoration: none;
+	color: #333;
+	display: block;
+}

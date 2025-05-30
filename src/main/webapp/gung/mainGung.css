@@ -1,0 +1,116 @@
+@charset "UTF-8";
+/* 전체 컨테이너를 flex로 구성하여 좌우 배치 */
+#container {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px; /* 사이 간격 좁힘 */
+	padding: 10px; /* 좌우 여백 최소화 */
+}
+
+/* 궁 정보 콘텐츠 영역 */
+#gung-content {
+	flex: 1;
+	max-width: 100%;
+	margin: 0; /* 좌측 여백 제거 */
+	text-align: center;
+	padding: 10px; /* 여백 축소 */
+}
+
+/* 궁 이미지 */
+.gung-img {
+	max-width: 90%;
+	height: auto;
+	margin: 10px auto; /* 상하 여백 축소 */
+	display: block;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+
+.ic_wrap img {
+	display: block;
+	margin: 30px auto 20px;
+	max-width: 90%;
+	height: auto;
+	border-radius: 10px;
+}
+
+.tit_wrap {
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 30px;
+}
+
+.txt_wrap {
+	padding: 0 12%;
+	font-size: 16px;
+	line-height: 1.8;
+	color: #444;
+	text-align: justify;
+}
+
+p.\30 {
+	padding: 0 12%;
+	font-size: 16px;
+	line-height: 1.8;
+	color: #444;
+	text-align: justify;
+}
+
+.txt_wrap p {
+	margin-bottom: 20px;
+}
+
+.txt_section_tit {
+	text-align: center;
+	font-size: 35px;
+	font-weight: bold;
+	color: #222;
+	margin-top: 60px;
+	margin-bottom: 30px;
+}
+
+.wrap {
+	padding: 0 10%;
+}
+
+table.history_table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 15px;
+	margin-bottom: 50px;
+}
+
+table.history_table caption {
+	display: none;
+}
+
+table.history_table th, table.history_table td {
+	border: 1px solid #ddd;
+	padding: 12px;
+	text-align: center;
+}
+
+table.history_table th {
+	background-color: #f5f5f5;
+	font-weight: bold;
+	color: #111;
+}
+
+table.history_table tr:nth-child(even) {
+	background-color: #fafafa;
+}
+
+.t_inn_wrap.tal {
+	text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+	.txt_wrap {
+		padding: 0 5%;
+	}
+	.wrap {
+		padding: 0 5%;
+	}
+}

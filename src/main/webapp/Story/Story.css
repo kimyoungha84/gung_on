@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.gung-wrap {
+	width: 500px;
+	max-width: 800px;
+	margin-left: 300px;
+	padding-top: 50px;
+}
+
+.gung-button-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.gung-btn {
+	padding: 10px 16px;
+	background-color: #f2f2f2;
+	border: 1px solid #aaa;
+	cursor: pointer;
+	border-radius: 4px;
+	font-size: 16px;
+	transition: background-color 0.3s;
+}
+
+.gung-btn:hover {
+	background-color: #ddd;
+}
+
+.gung-info-box {
+	padding: 20px;
+	border: 1px solid #ccc;
+	background-color: #fafafa;
+}
