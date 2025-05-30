@@ -255,7 +255,7 @@ img {
 }
 
 .sub_con_section img {
-    max-width: 300px; /* 이미지 최대 너비 예시 */
+    max-width: 1000px; /* 이미지 최대 너비 예시 */
     height: auto;
     display: block;
 }
@@ -359,6 +359,8 @@ nav, ul, li {
     height: 100%;
 }
 .course_map_wrap .amenities_wrap ul li a img {
+	left:3.5px;
+	top:2.5px;
     position: relative;
     z-index: 1;
     width: 18px;
@@ -6096,7 +6098,6 @@ a {
 	font-weight: 600
 }
 
-/*ê¶ëŠ¥ì†Œê°œ - ì¡°ì„ ì™•ë¦‰ - ì „ì‹œê´€*/
 .royal_tomb_tab {
 	border-bottom: 1px solid #EAEAEA;
 	justify-content: center;
@@ -6769,7 +6770,7 @@ a {
 	width: 100%;
 	border-radius: 20px;
 	border: solid 1px #DADADA;
-	overflow: hidden
+	overflow: hidden;
 }
 
 .course_info {
