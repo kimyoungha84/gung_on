@@ -3,6 +3,217 @@
     info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript">
+  window.addEventListener('DOMContentLoaded', () => {
+    const elem = document.getElementById('panzoom-container');
+    const panzoom = Panzoom(elem, {
+      maxScale: 5,
+      minScale: 0.5,
+      step: 0.2
+    });
+
+    // 마우스 휠로 줌
+    
+    /* elem.parentElement.addEventListener('wheel', panzoom.zoomWithWheel); */
+
+    // 버튼 이벤트
+    document.getElementById('zoomInButton').addEventListener('click', () => panzoom.zoomIn());
+    document.getElementById('zoomOutButton').addEventListener('click', () => panzoom.zoomOut());
+    document.getElementById('resetButton').addEventListener('click', () => panzoom.reset());
+  });
+</script>
+
+
+<script type="text/javascript">
+</script><!-- [S] sub_con_wrap -->
+<style type="text/css">
+.f-custom-controls {
+	position: absolute;
+	border-radius: 4px;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.f-custom-controls.top-right {
+	right: 16px;
+	top: 16px;
+}
+
+.f-custom-controls.bottom-right {
+	right: 16px;
+	bottom: 16px;
+}
+
+.f-custom-controls button {
+	width: 32px;
+	height: 32px;
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	background: #222;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.f-custom-controls svg {
+	pointer-events: none;
+	width: 18px;
+	height: 18px;
+	stroke: #fff;
+	stroke-width: 2;
+}
+
+.f-custom-controls button[disabled] svg {
+	opacity: 0.7;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabLinks = document.querySelectorAll('.course_num_list .course_num_item');
+    const tabContents = document.querySelectorAll('#photoDiv .tab_con'); 
+    tabLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const targetTab = this.getAttribute('data-tab');
+
+            tabLinks.forEach(function(item) {
+                item.classList.remove('current');
+            });
+            this.classList.add('current');
+            tabContents.forEach(function(content) {
+                content.classList.remove('current');
+            });
+
+            const activeContent = document.querySelector('#photoDiv .tab_con.' + targetTab);
+            if (activeContent) {
+                activeContent.classList.add('current');
+            }
+        });
+    });
+
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	  const courseLinks = document.querySelectorAll('ul.list.course_info_list li.item a');
+	  const dim = document.querySelector('.dim');
+	  const popup = document.getElementById('pop_course01');
+	  const tabLinks = popup ? popup.querySelectorAll('.tab_menu .item') : [];
+	  const tabContents = popup ? popup.querySelectorAll('.tab_con') : [];
+
+	  const swipers = {};
+
+	  function initSwipers() {
+	    if (popup && tabContents.length > 0) {
+          tabContents.forEach(content => {
+            const swiperEl = content.querySelector('.course_pop_slide');
+            if (swiperEl && !swiperEl.swiper) {
+              swipers[swiperEl.id] = new Swiper('#' + swiperEl.id, {
+                direction: 'horizontal',
+                loop: false,
+                navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                },
+                slidesPerView: 'auto', // 'auto'로 변경 (컨텐츠 너비에 맞춤)
+                spaceBetween: 15, // 간격 조정
+                observer: true, // 부모 요소 변화 감지
+                observeParents: true, // 부모의 부모 요소 변화 감지
+              });
+            }
+          });
+	    }
+	  }
+
+	  function openPopup(tabId) {
+	    if (dim && popup) { // 팝업 요소가 존재할 때만 실행
+          dim.style.display = 'block';
+          popup.style.display = 'block';
+
+          tabLinks.forEach(link => {
+            const anchor = link.querySelector('a');
+            if (anchor) {
+              link.classList.toggle('current', anchor.getAttribute('data-tab') === tabId);
+            }
+          });
+
+          tabContents.forEach(content => {
+            content.classList.toggle('current', content.classList.contains(tabId));
+            if (content.classList.contains(tabId)) {
+              const swiperEl = content.querySelector('.course_pop_slide');
+              if (swiperEl && swipers[swiperEl.id]) {
+                swipers[swiperEl.id].update();
+                swipers[swiperEl.id].slideTo(0, 0); // 첫 슬라이드로 이동
+              }
+            }
+          });
+
+	    }
+	  }
+
+	  function closePopup() {
+	    if (dim && popup) { // 팝업 요소가 존재할 때만 실행
+          dim.style.display = 'none';
+          popup.style.display = 'none';
+          Object.values(swipers).forEach(swiper => swiper.slideTo(0, 0));
+	    }
+	  }
+	  courseLinks.forEach(link => {
+	    link.addEventListener('click', e => {
+	      e.preventDefault();
+	      const tabNum = link.parentElement.getAttribute('data-num');
+	      openPopup('cs' + tabNum); // 클릭된 data-num에 해당하는 tabId로 팝업 열기
+	    });
+	  });
+
+	  if (dim) { // dim 요소가 있을 때만 이벤트 연결
+          dim.addEventListener('click', e => {
+              if (e.target === dim) {
+                closePopup();
+              }
+          });
+	  }
+
+	  tabLinks.forEach(link => {
+	    link.addEventListener('click', e => {
+	      e.preventDefault();
+	      const tabId = link.querySelector('a').getAttribute('data-tab');
+	      openPopup(tabId); 
+	    });
+	  });
+
+	  const closeBtn = popup ? popup.querySelector('.popup_close') : null; 
+	  if (closeBtn) { 
+	    closeBtn.addEventListener('click', e => {
+	      e.preventDefault();
+	      closePopup();
+	    });
+	  }
+
+	  initSwipers();
+
+    if (popup) { 
+        const initialActiveContent = popup.querySelector('.tab_con.current');
+        if (initialActiveContent) {
+             const initialSwiperElement = initialActiveContent.querySelector('.course_pop_slide');
+             if (initialSwiperElement && swipers[initialSwiperElement.id]) {
+                  swipers[initialSwiperElement.id].update();
+             }
+        }
+    }
+});
+
+
+
+
+</script>
+
 <style type="text/css">
 .f-custom-controls {
 	position: absolute;
@@ -83,12 +294,15 @@
 									</ul>
 							</div>
 						<select class="sel_st">
-            		<option value="1" selected="selected">경복궁</option>
-            		<option value="2">창덕궁</option>
-            		<option value="3">덕수궁</option>
-            		<option value="4">창경궁</option>
-            		<option value="5">경희궁</option>
+           			<option value="gbg" >경복궁</option>
+            		<option value="cdg" selected="selected">창덕궁</option>
+            		<option value="dsg">덕수궁</option>
+            		<option value="cgg">창경궁</option>
+            		<option value="ghg">경희궁</option>
              </select>
+             
+             
+             
 					</div>
 					<div class="course_map_wrap" id="course_map_wrap">
 						<div class="course_map_fix">
@@ -865,8 +1079,6 @@
 									</div>
 							<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
 						</div>
-					<a href="#" class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-21f8ddcd5d7d5394" aria-disabled="false"><span class="sr_only">슬라이드 이전</span></a>
-					<a href="#" class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-21f8ddcd5d7d5394" aria-disabled="false"><span class="sr_only">슬라이드 다음</span></a>
 			</div>
 		</div>
 	</div>

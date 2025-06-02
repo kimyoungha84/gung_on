@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     %>
-<!-- favicon 설정 -->
 
 <!--  bootstrap CDN -->
 <link rel="stylesheet" type="text/css"

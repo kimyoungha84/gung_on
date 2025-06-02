@@ -39,7 +39,6 @@
 
 <script type="text/javascript">
 </script><!-- [S] sub_con_wrap -->
-<script type="text/javascript" src="course_js/panzoom.min.js"></script>
 <style type="text/css">
 .f-custom-controls {
 	position: absolute;
@@ -99,8 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.classList.remove('current');
             });
             this.classList.add('current');
-            // -------------------------------------
-
             tabContents.forEach(function(content) {
                 content.classList.remove('current');
             });
@@ -120,16 +117,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	  const courseLinks = document.querySelectorAll('ul.list.course_info_list li.item a');
 	  const dim = document.querySelector('.dim');
 	  const popup = document.getElementById('pop_course01');
-	  // 팝업 요소가 존재할 때만 querySelectorAll 실행
 	  const tabLinks = popup ? popup.querySelectorAll('.tab_menu .item') : [];
 	  const tabContents = popup ? popup.querySelectorAll('.tab_con') : [];
 
-	  // Swiper 인스턴스 저장용
 	  const swipers = {};
 
-	  // Swiper 초기화 함수 (팝업 내 모든 슬라이드)
 	  function initSwipers() {
-	    // 팝업 요소가 존재하고 콘텐츠들이 있을 때만 초기화 시도
 	    if (popup && tabContents.length > 0) {
           tabContents.forEach(content => {
             const swiperEl = content.querySelector('.course_pop_slide');
@@ -145,33 +138,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 spaceBetween: 15, // 간격 조정
                 observer: true, // 부모 요소 변화 감지
                 observeParents: true, // 부모의 부모 요소 변화 감지
-                // 기타 필요한 옵션 추가
               });
             }
           });
 	    }
 	  }
 
-	  // 팝업 열기 및 탭 활성화 함수
 	  function openPopup(tabId) {
 	    if (dim && popup) { // 팝업 요소가 존재할 때만 실행
           dim.style.display = 'block';
           popup.style.display = 'block';
 
-          // 팝업 내부 탭 메뉴 활성화
           tabLinks.forEach(link => {
-            // data-tab 속성을 가진 <a> 태그를 찾고 그 부모 li에 current 클래스 토글
             const anchor = link.querySelector('a');
             if (anchor) {
               link.classList.toggle('current', anchor.getAttribute('data-tab') === tabId);
             }
           });
 
-          // 팝업 내부 탭 콘텐츠 표시
           tabContents.forEach(content => {
-            // 해당 tabId 클래스를 가진 .tab_con 콘텐츠에 current 클래스 토글
             content.classList.toggle('current', content.classList.contains(tabId));
-            // 활성화된 콘텐츠의 Swiper 업데이트
             if (content.classList.contains(tabId)) {
               const swiperEl = content.querySelector('.course_pop_slide');
               if (swiperEl && swipers[swiperEl.id]) {
@@ -181,24 +167,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
           });
 
-          // 모든 스와이퍼가 제대로 업데이트되었는지 확인 (선택 사항)
-          // Object.values(swipers).forEach(swiper => swiper.update());
 	    }
 	  }
 
-	  // 팝업 닫기 함수
 	  function closePopup() {
 	    if (dim && popup) { // 팝업 요소가 존재할 때만 실행
           dim.style.display = 'none';
           popup.style.display = 'none';
-          // 팝업 닫힐 때 슬라이드 초기화 (첫 슬라이드로 이동)
           Object.values(swipers).forEach(swiper => swiper.slideTo(0, 0));
 	    }
 	  }
-
-	  // --- 이벤트 리스너 연결 ---
-
-	  // 1. 메인 코스 링크 클릭 이벤트
 	  courseLinks.forEach(link => {
 	    link.addEventListener('click', e => {
 	      e.preventDefault();
@@ -207,7 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	    });
 	  });
 
-	  // 2. 팝업 배경 클릭 시 닫기
 	  if (dim) { // dim 요소가 있을 때만 이벤트 연결
           dim.addEventListener('click', e => {
               if (e.target === dim) {
@@ -216,44 +193,38 @@ document.addEventListener('DOMContentLoaded', function() {
           });
 	  }
 
-	  // 3. 팝업 내 탭 메뉴 클릭 시 탭 전환
 	  tabLinks.forEach(link => {
 	    link.addEventListener('click', e => {
 	      e.preventDefault();
 	      const tabId = link.querySelector('a').getAttribute('data-tab');
-	      openPopup(tabId); // 클릭된 팝업 탭 ID로 팝업 열기 (실제로는 내용만 전환)
+	      openPopup(tabId); 
 	    });
 	  });
 
-	  // 4. 팝업 내 닫기 버튼 클릭 시 닫기
-	  const closeBtn = popup ? popup.querySelector('.popup_close') : null; // 팝업 요소가 있을 때만 닫기 버튼 찾기
-	  if (closeBtn) { // 닫기 버튼이 있을 때만 이벤트 연결
+	  const closeBtn = popup ? popup.querySelector('.popup_close') : null; 
+	  if (closeBtn) { 
 	    closeBtn.addEventListener('click', e => {
 	      e.preventDefault();
 	      closePopup();
 	    });
 	  }
 
-	  // --- 초기화 실행 ---
-	  // 페이지 로드 시 팝업 내부 Swiper 초기화 시도 (팝업이 숨겨져 있어도 observer 옵션이 도움)
 	  initSwipers();
 
-    // --- 페이지 로드 시 팝업 내부의 기본 탭 활성화 (선택 사항) ---
-    // 만약 팝업이 열리기 전에도 팝업 내부에서 특정 탭이 'current' 클래스를 가지고 있다면,
-    // 해당 내용을 미리 보이도록 CSS를 설정하고, 여기서 해당 스와이퍼를 업데이트 해줘야 합니다.
-    // 예시: HTML에 <div class="tab_con cs0 current">...</div> 가 있다면, CSS에서 기본 보이도록 하고
-    // 아래 코드를 추가하여 해당 Swiper를 초기 업데이트 해줍니다.
-    if (popup) { // 팝업 요소가 있을 때만 실행
+    if (popup) { 
         const initialActiveContent = popup.querySelector('.tab_con.current');
         if (initialActiveContent) {
              const initialSwiperElement = initialActiveContent.querySelector('.course_pop_slide');
-             // Swiper 인스턴스가 존재하고 초기화되었다면 업데이트 시도
              if (initialSwiperElement && swipers[initialSwiperElement.id]) {
                   swipers[initialSwiperElement.id].update();
              }
         }
     }
 });
+
+
+
+
 </script>
 
 
@@ -265,11 +236,88 @@ document.addEventListener('DOMContentLoaded', function() {
   <jsp:include page="/common/jsp/header.jsp" />
 
   <!-- 본문:  -->
+    <div id="main-content">
   <jsp:include page="/course/course_cdg.jsp" />
-
+	</div>
 
   <!-- 푸터 -->
   <jsp:include page="/common/jsp/footer.jsp" />
+  
+  
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // select 박스 요소를 가져옵니다. 클래스명이 sel_st이므로 해당 클래스로 선택합니다.
+    const selectElement = document.querySelector('.sel_st');
+    const mainContentDiv = document.getElementById('main-content');
+
+    // (이벤트 위임을 사용하실 경우 이전에 설명드린 document 레벨 리스너는 유지하시면 좋습니다.)
+    // document.addEventListener('click', function(event) { ... });
+
+    // select 박스의 값이 변경될 때마다 실행될 이벤트 리스너를 추가합니다.
+    selectElement.addEventListener('change', function() {
+        // 선택된 option의 value 값을 가져옵니다.
+        const selectedValue = this.value;
+        // 가져올 JSP 파일의 경로를 생성합니다.
+        const targetJspPath = '/Gung_On/course/' +'course_'+ selectedValue + '.jsp';
+
+        // AJAX 요청을 보냅니다. (fetch API 사용)
+        fetch(targetJspPath)
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Network response was not ok ' + response.statusText);
+                    return Promise.reject('페이지 로드 실패: ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(html => {
+                // --- HTML 내용에서 스크립트 추출 및 실행 로직 시작 ---
+
+                // 1. 임시 DOM 요소를 만들어 가져온 HTML 문자열을 파싱합니다.
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+
+                // 2. 파싱된 HTML에서 모든 <script> 요소를 찾습니다.
+                const scriptsToExecute = Array.from(tempDiv.querySelectorAll('script'));
+
+                // 3. <script> 요소는 mainContentDiv.innerHTML에 삽입하면 실행되지 않으므로,
+                //    원본 HTML에서는 제거하고 HTML 내용만 가져옵니다.
+                scriptsToExecute.forEach(script => script.remove());
+                const contentWithoutScripts = tempDiv.innerHTML;
+
+                // 4. 스크립트가 제거된 HTML 내용을 #main-content div 안에 삽입하여 교체합니다.
+                mainContentDiv.innerHTML = contentWithoutScripts;
+
+                // 5. 추출해 둔 스크립트 요소를 순회하며 새로 생성하여 실행합니다.
+                scriptsToExecute.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+
+                    // 원본 스크립트의 속성(src, type 등)을 새 스크립트에 복사합니다.
+                    Array.from(oldScript.attributes).forEach(attr => {
+                        newScript.setAttribute(attr.name, attr.value);
+                    });
+
+                    // 인라인 스크립트 내용이 있다면 복사합니다.
+                    if (oldScript.textContent) {
+                        newScript.textContent = oldScript.textContent;
+                    }
+
+                    // 새 스크립트 요소를 DOM에 추가합니다. (mainContentDiv 안에 추가하는 것이 일반적입니다)
+                    // DOM에 추가되는 순간 스크립트가 실행됩니다.
+                    mainContentDiv.appendChild(newScript);
+                });
+
+                // --- 스크립트 추출 및 실행 로직 끝 ---
+
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                mainContentDiv.innerHTML = '<div>데이터를 가져오는 중 오류가 발생했습니다.</div>';
+                alert('콘텐츠 로드 중 오류가 발생했습니다.');
+            });
+    });
+});
+</script>
+
 <!-- <div> 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/mike-zuidgeest" title="Mike Zuidgeest"> Mike Zuidgeest </a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com'</a></div> -->
 </body>
 </html>
