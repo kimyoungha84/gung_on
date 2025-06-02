@@ -20,11 +20,11 @@
       <li class="header-nav-item">
         <a href="#" class="header-nav-link">궁 안내</a>
         <ul class="header-submenu">
-          <li><a href="#">경복궁</a></li>
-          <li><a href="#">경희궁</a></li>
-          <li><a href="#">창덕궁</a></li>
-          <li><a href="#">창경궁</a></li>
-          <li><a href="#">덕수궁</a></li>
+          <li><a href="/Gung_On/gung/gyungbukgung.jsp">경복궁</a></li>
+          <li><a href="/Gung_On/gung/gyeonghuigung.jsp">경희궁</a></li>
+          <li><a href="/Gung_On/gung/changdeokgung.jsp">창덕궁</a></li>
+          <li><a href="/Gung_On/gung/changgyeonggung.jsp">창경궁</a></li>
+          <li><a href="/Gung_On/gung/deoksugung.jsp">덕수궁</a></li>
         </ul>
       </li>
       <li class="header-nav-item">

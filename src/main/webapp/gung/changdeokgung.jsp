@@ -40,9 +40,9 @@
         if (gung != null) {
     %>
         <h2><%= gung.getGung_name() %></h2>
-        <% if (gung.getGung_img() != null && !gung.getGung_img().trim().equals("")) { %>
-            <img src="http://localhost/jsp_prj/test/image/changdeokgung.jpg" alt="경복궁 이미지" class="gung-img" />
-        <% } %>
+	<% if (gung.getImg_path() != null && !gung.getImg_path().trim().isEmpty()) { %>
+    <img src="<%= gung.getImg_path() %>" alt="<%= gung.getGung_name() %> 이미지" class="gung-img" />
+<% } %>
         <p> <%= gung.getGung_info() %></p>
         <p> <%= gung.getGung_history() %></p>
     <%

@@ -16,8 +16,9 @@ public class GungDTO {
     private String gung_name;
     private String gung_info;
     private String gung_history;
-    private String gung_img;
     private Date gung_reg_date;
+    
+ // 🔥 추가: 이미지 경로 필드
+    private String img_path;
 
-    // getters and setters
 }

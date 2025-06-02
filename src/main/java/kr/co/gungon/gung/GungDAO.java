@@ -10,6 +10,8 @@ import java.util.List;
 import kr.co.gungon.config.DbConnection;
 
 public class GungDAO {
+
+    // 🔥 이미지 경로까지 조인해서 가져오는 메서드
     public GungDTO getGungByName(String gungName) {
         GungDTO dto = null;
         Connection conn = null;
@@ -17,10 +19,23 @@ public class GungDAO {
         ResultSet rs = null;
 
         try {
-            // 여기 수정됨
             conn = DbConnection.getInstance().getDbConn();
 
-            String sql = "SELECT * FROM gung WHERE gung_name = ?";
+            String sql = """
+                SELECT 
+                    g.gung_id,
+                    g.gung_name,
+                    g.gung_info,
+                    g.gung_history,
+                    g.gung_reg_date,
+                    f.path AS img_path
+                FROM gung g
+                LEFT JOIN file_path f
+                    ON f.targer_type = 'gung'
+                    AND f.targer_number = TO_CHAR(g.gung_id)
+                WHERE g.gung_name = ?
+            """;
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, gungName);
             rs = pstmt.executeQuery();
@@ -31,8 +46,8 @@ public class GungDAO {
                 dto.setGung_name(rs.getString("gung_name"));
                 dto.setGung_info(rs.getString("gung_info"));
                 dto.setGung_history(rs.getString("gung_history"));
-                dto.setGung_img(rs.getString("gung_img"));
                 dto.setGung_reg_date(rs.getDate("gung_reg_date"));
+                dto.setImg_path(rs.getString("img_path")); // 🔥 이미지 경로 셋팅
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,8 +61,9 @@ public class GungDAO {
 
         return dto;
     }
+
     public List<GungDTO> selectAll() {
-        List<GungDTO> list = new ArrayList();
+        List<GungDTO> list = new ArrayList<>();
         try (Connection conn = DbConnection.getInstance().getDbConn();
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM gung ORDER BY gung_id");
              ResultSet rs = pstmt.executeQuery()) {
@@ -65,6 +81,7 @@ public class GungDAO {
         }
         return list;
     }
+
     public GungDTO selectById(int gungId) {
         GungDTO dto = null;
         Connection conn = null;
@@ -91,20 +108,17 @@ public class GungDAO {
             e.printStackTrace();
         } finally {
             try {
-				DbConnection.getInstance().dbClose(rs, pstmt, conn);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                DbConnection.getInstance().dbClose(rs, pstmt, conn);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return dto;
     }
-    
+
     /**
      * 궁 수정
-     * @param dto
-     * @return
      */
     public boolean modifyGung(GungDTO dto) {
         Connection conn = null;
@@ -113,14 +127,13 @@ public class GungDAO {
 
         try {
             conn = DbConnection.getInstance().getDbConn();
-            String sql = "UPDATE gung SET gung_name = ?, gung_info = ?, gung_history = ?, gung_img = ? WHERE gung_id = ?";
+            String sql = "UPDATE gung SET gung_name = ?, gung_info = ?, gung_history = ? WHERE gung_id = ?";
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, dto.getGung_name());
             pstmt.setString(2, dto.getGung_info());
             pstmt.setString(3, dto.getGung_history());
-            pstmt.setString(4, dto.getGung_img());
-            pstmt.setInt(5, dto.getGung_id());
+            pstmt.setInt(4, dto.getGung_id());
 
             int count = pstmt.executeUpdate();
             result = count > 0;
@@ -128,11 +141,10 @@ public class GungDAO {
             e.printStackTrace();
         } finally {
             try {
-				DbConnection.getInstance().dbClose(null, pstmt, conn);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                DbConnection.getInstance().dbClose(null, pstmt, conn);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return result;
@@ -140,8 +152,6 @@ public class GungDAO {
 
     /**
      * 궁 삭제
-     * @param gungId
-     * @return
      */
     public boolean deleteGung(int gungId) {
         Connection conn = null;
