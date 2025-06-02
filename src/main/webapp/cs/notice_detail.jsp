@@ -28,9 +28,9 @@ if (numStr != null && !numStr.isEmpty()) {
   <title>공지사항 미리보기</title>
   <link rel="stylesheet" href="mainCSS.css">
   <!-- <link rel="stylesheet" type="text/css" href="https://royal.khs.go.kr/resource/templete/royal/css/common.css" /> -->
-  <link rel="stylesheet" type="text/css" href="../common/royal_css/common.css" />
-  <link rel="stylesheet" type="text/css" href="../common/royal_css/reset.css" />
-  <link rel="stylesheet" type="text/css" href="../common/royal_css/layout.css" />
+  <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/common.css" />
+  <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/layout.css" />
   
 
   <style>
@@ -84,8 +84,8 @@ if (numStr != null && !numStr.isEmpty()) {
       <div class="txt_line1">${ nDTO.notice_title }</div>
     </div>
     <div class="detail_con board_detail_info info_wrap">
-      <span class="info">${ nDTO.notice_views }</span>
-      <span class="info"><fmt:formatDate value="${ nDTO.notice_regDate }" pattern="yyyy-MM-dd "/></span>
+      <span class="info">조회수 : ${ nDTO.notice_views }</span>
+      <span class="info">등록일 : <fmt:formatDate value="${ nDTO.notice_regDate }" pattern="yyyy-MM-dd "/></span>
     </div>
     <div class="detail_con board_detail_txt">
       ${ nDTO.notice_content }
