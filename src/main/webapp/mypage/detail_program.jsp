@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"
     info=""%>
 <%-- <%@ include file="../common/jsp/site_config.jsp" %> --%>
+<%@ include file="/common/jsp/login_chk.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
