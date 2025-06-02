@@ -11,6 +11,14 @@ public class PaginationBuilder {
     private int endPage;
 
     // HttpServletRequest 객체를 받아 currentPage 값을 처리하도록 변경
+    /**
+     * request : request 객체
+     * pageSize : 페이지에서 보여줄 데이터 수
+     * rowCounts : 조회한 총 데이터의 수
+     * @param request 
+     * @param pageSize 
+     * @param rowCounts
+     */
     public PaginationBuilder(HttpServletRequest request, int pageSize, int rowCounts) {
         this.pageSize = pageSize;
         this.rowCounts = rowCounts;
@@ -72,6 +80,46 @@ public class PaginationBuilder {
 
         return sb.toString();
     }
+    
+    
+    
+    public String build(String baseUrl, String extraParams) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(getPaginationCss());
+        sb.append("<div class='pagination-wrapper'>");
+        sb.append("<ul class='pagination'>");
+
+        // extraParams가 null 또는 빈 문자열이면 빈 문자열로 처리
+        String extra = (extraParams == null || extraParams.isEmpty()) ? "" : "&" + extraParams;
+
+        // 이전 페이지 링크
+        sb.append("<li class='page-item " + (currentPage == 1 ? "disabled" : "") + "'>");
+        sb.append("<a href='" + baseUrl + "?currentPage=" + (currentPage - 1) + extra + "' class='page-link' aria-label='Previous'>");
+        sb.append("<span aria-hidden='true'>&laquo;</span>");
+        sb.append("</a>");
+        sb.append("</li>");
+
+        // 페이지 번호들
+        for (int i = startPage; i <= endPage; i++) {
+            sb.append("<li class='page-item " + (i == currentPage ? "active" : "") + "'>");
+            sb.append("<a href='" + baseUrl + "?currentPage=" + i + extra + "' class='page-link'>" + i + "</a>");
+            sb.append("</li>");
+        }
+
+        // 다음 페이지 링크
+        sb.append("<li class='page-item " + (currentPage == totalPages ? "disabled" : "") + "'>");
+        sb.append("<a href='" + baseUrl + "?currentPage=" + (currentPage + 1) + extra + "' class='page-link' aria-label='Next'>");
+        sb.append("<span aria-hidden='true'>&raquo;</span>");
+        sb.append("</a>");
+        sb.append("</li>");
+
+        sb.append("</ul>");
+        sb.append("</div>");
+
+        return sb.toString();
+    }
+
 
     private String getPaginationCss() {
         return "<style>" +
