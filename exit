@@ -1,0 +1,186 @@
+[33mcommit 42e703f4fd87eac0bbfa562c3634c925e9ab5178[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Author: JunseongHONG <015jun@naver.com>
+Date:   Fri May 30 17:25:08 2025 +0900
+
+    1차 궁, 스토리 20% 완
+
+[33mcommit a92c81923e889bd53cb437f92107224d3639ece4[m
+Merge: d3f5a51 693da04
+Author: JunseongHONG <015jun@naver.com>
+Date:   Fri May 30 17:24:07 2025 +0900
+
+    Merge branch 'dev' of https://github.com/d2ckbum/Gung_On into dev
+
+[33mcommit 693da049340d28c282564c7caab10cba126ee656[m
+Author: jinwon052 <coco3924@naver.com>
+Date:   Fri May 30 17:23:12 2025 +0900
+
+    course commit(05.30)
+
+[33mcommit d3f5a516fbeb0f060cb4d9124be1fa2d906a2518[m
+Merge: b47435b 84b51e8
+Author: JunseongHONG <015jun@naver.com>
+Date:   Fri May 30 17:22:05 2025 +0900
+
+    Merge branch 'dev' of https://github.com/d2ckbum/Gung_On into dev
+
+[33mcommit b47435b04540a1580027fe2d35c63166354d1730[m
+Author: JunseongHONG <015jun@naver.com>
+Date:   Fri May 30 17:20:28 2025 +0900
+
+    1차 궁, 스토리 커밋
+
+[33mcommit 84b51e87d91cb2db655a942ae76220597bdad496[m
+Author: jinwon052 <coco3924@naver.com>
+Date:   Fri May 30 17:11:26 2025 +0900
+
+    course edit(05.30)
+
+[33mcommit 058cca71ff713607a260fe351bd2cdb71686a65d[m
+Author: d2ckbum <rlagmlqja96@gmail.com>
+Date:   Fri May 30 17:10:16 2025 +0900
+
+    관리자 페이지
+
+[33mcommit 3659a27c666b806c645129f37318d2486cbe7d3a[m
+Merge: 459318a 0558f31
+Author: kimyungha <cover994@naver.com>
+Date:   Fri May 30 16:35:24 2025 +0900
+
+    행사안내 사용자
+
+[33mcommit 459318a8f633745618d0b2d8e3c3b35d994235ba[m
+Merge: 8bb1c38 e7530dc
+Author: kimyungha <cover994@naver.com>
+Date:   Fri May 30 16:29:30 2025 +0900
+
+    행사안내 커밋
+
+[33mcommit 8bb1c38c9bac81fcad53232c0e620bab8fe5f643[m
+Author: kimyungha <cover994@naver.com>
+Date:   Fri May 30 16:24:55 2025 +0900
+
+    행사안내 사용자
+
+[33mcommit 0558f31c9e74ee8304f7a9ffde674032f0a22c76[m
+Author: jinwon052 <coco3924@naver.com>
+Date:   Fri May 30 16:16:49 2025 +0900
+
+    course edit(05.30)
+
+[33mcommit f40b897f7e5207043bf25c7cc6cfff8f7ee2ee8d[m
+Author: jinwon052 <coco3924@naver.com>
+Date:   Fri May 30 15:43:50 2025 +0900
+
+    course edit(05.30)
+
+[33mcommit 5e176b9ac1f06eed2c44b3f3012021152b0a5933[m
+Author: jinwon052 <coco3924@naver.com>
+Date:   Fri May 30 15:42:17 2025 +0900
+
+    course edit(05.30)
+
+[33mcommit 9226bca14be245b93821f256e5d9e9c13b74425b[m
+Author: kimyungha <cover994@naver.com>
+Date:   Fri May 30 15:24:15 2025 +0900
+
+    행사 첫커밋
+
+[33mcommit 1eff193ff8747d963992765c087569d0a6c48bd4[m
+Author: jinwon052 <coco3924@naver.com>
+Date:   Thu May 29 22:38:18 2025 +0900
+
+    course commit
+
+[33mcommit 1b267dded787507adb04565a88d240f316ec3da9[m
+Author: jaein2740 <dntjd2740@gmail.com>
+Date:   Thu May 29 16:43:42 2025 +0900
+
+    Gung_On upper
+
+[33mcommit ddd84f816202a32ec4e93776e9d4f4387f1035d3[m
+Author: jaein2740 <dntjd2740@gmail.com>
+Date:   Thu May 29 16:35:15 2025 +0900
+
+    cource plus
+
+[33mcommit 2708eec66922b15931e68e9f875fcd7e5b617378[m
+Author: jaein2740 <dntjd2740@gmail.com>
+Date:   Thu May 29 16:22:43 2025 +0900
+
+    commitjaein
+
+[33mcommit 675e2c807a568088bf154d5d9d2dc33aad747bfc[m
+Author: jinwon052 <coco3924@naver.com>
+Date:   Thu May 29 15:39:02 2025 +0900
+
+    2025.05.29 코스규칙,코스시간 완료 후 commit
+
+[33mcommit d86d04d6d32b788e6b828547bf13c4f0599400b6[m
+Author: jaein2740 <dntjd2740@gmail.com>
+Date:   Wed May 28 16:21:23 2025 +0900
+
+    재인 기능 구현
+
+[33mcommit 5a3121ec0fc853f975f4d63e7fbf79d4241d1a0d[m
+Author: jaein2740 <dntjd2740@gmail.com>
+Date:   Wed May 28 09:59:47 2025 +0900
+
+    재인
+
+[33mcommit f9cc8b67912b88bf2e38934602eb9974952d836b[m
+Author: jaein2740 <dntjd2740@gmail.com>
+Date:   Wed May 28 09:41:44 2025 +0900
+
+    커밋
+
+[33mcommit cd44558a28b738f9fcbd13b17f9f77756bd11423[m
+Author: jaein2740 <dntjd2740@gmail.com>
+Date:   Tue May 27 17:49:20 2025 +0900
+
+    commit
+
+[33mcommit ea375c63886cba8b584dd08403edbb813e15b40c[m
+Author: jaein2740 <dntjd2740@gmail.com>
+Date:   Tue May 27 17:47:55 2025 +0900
+
+    commit
+
+[33mcommit 5dbf157204b345b74d06d5a3e0453a3905a2d140[m
+Author: jaein2740 <dntjd2740@gmail.com>
+Date:   Tue May 27 17:35:46 2025 +0900
+
+    commit
+
+[33mcommit 19b799cd3e506058d1bfbee3bde3cc53e7decc1c[m
+Author: d2ckbum <rlagmlqja96@gmail.com>
+Date:   Mon May 26 15:39:51 2025 +0900
+
+    lib파일추가
+
+[33mcommit e7530dc103f1c6d1b851a14d02e4e4b56bfd75db[m
+Merge: 30f0e94 acd2f65
+Author: d2ckbum <136782394+d2ckbum@users.noreply.github.com>
+Date:   Mon May 26 15:18:33 2025 +0900
+
+    Merge pull request #1 from d2ckbum/dev
+    
+    Dev
+
+[33mcommit acd2f6585038bf6f684545991cf567d707c90733[m
+Author: SY-2-Park <lodi12209@gmail.com>
+Date:   Mon May 26 14:50:43 2025 +0900
+
+    열심히할게요ㅠㅠ
+
+[33mcommit 63509c41c83091f7c3d993278eee67fcd2b3e69b[m
+Author: JHyun12864 <hyeon12864@naver.com>
+Date:   Mon May 26 14:18:35 2025 +0900
+
+    현지영 작업
+
+[33mcommit 30f0e947bae2851f94d0b9bfaa70bd75a9f823ec[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: d2ckbum <rlagmlqja96@gmail.com>
+Date:   Mon May 26 12:11:01 2025 +0900
+
+    태초에커밋이있었다.

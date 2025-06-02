@@ -8,8 +8,9 @@
 <title><c:out value="${ site_name }"/></title>
   <c:import url="/common/jsp/external_file.jsp"/>
 <link rel="stylesheet" href="/Gung_On/common/css/common.css">
-<link rel="stylesheet" href="/Gung_On/hjs/mainGung.css">
+<link rel="stylesheet" href="/Gung_On/gung/mainGung.css">
 <link rel="stylesheet" href="/Gung_On/Story/Story.css">
+<link rel="stylesheet" href="/Gung_On/gung/sideTab.css">
 <style>
 
 </style>

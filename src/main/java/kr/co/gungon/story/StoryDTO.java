@@ -15,6 +15,7 @@ public class StoryDTO {
 	private String story_name,story_info,story_img;
 	private Date story_reg_date;
 	private int gung_id;	
+	 private String gung_name; // ✅ 궁 이름 추가
 	private List<String> imageList;
 
 }

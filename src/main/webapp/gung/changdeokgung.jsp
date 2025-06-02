@@ -9,9 +9,9 @@
 <title><c:out value="${ site_name }"/></title>
 
 <c:import url="${ url }/common/jsp/external_file.jsp"/>
-<link rel="stylesheet" href="mainCSS.css">
-<link rel="stylesheet" href="sideTab.css">
+<link rel="stylesheet" href="/Gung_On/common/css/common.css">
 <link rel="stylesheet" href="mainGung.css">
+<link rel="stylesheet" href="sideTab.css">
 
 <style>
 
