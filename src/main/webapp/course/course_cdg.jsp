@@ -929,3 +929,103 @@ document.addEventListener('DOMContentLoaded', function() {
     </div> <!-- .container 닫는 태그 -->
 
 
+<%-- 해당 JSP 파일의 콘텐츠 초기화 JavaScript --%>
+<script type="text/javascript">
+// Fetch 후 main-content에 HTML이 삽입된 뒤 이 스크립트가 실행됩니다.
+// 변수 선언 시 'var'를 사용하여 재선언 오류 방지
+console.log('--- Script block inside fetched course_gbg.jsp is running ---');
+
+// Fetch된 콘텐츠 내의 탭 기능 재초기화
+// 'var' 사용
+var fetchedTabLinks = document.querySelectorAll('#main-content .course_num_list .course_num_item'); // #main-content 내에서 찾기
+var fetchedTabContents = document.querySelectorAll('#main-content #photoDiv .tab_con'); // #main-content 내에서 찾기
+
+fetchedTabLinks.forEach(function(link) {
+     link.addEventListener('click', function(event) {
+          event.preventDefault();
+          var targetTab = this.getAttribute('data-tab'); // 'var' 사용
+
+          fetchedTabLinks.forEach(item => item.classList.remove('current'));
+          this.classList.add('current');
+
+          fetchedTabContents.forEach(content => content.classList.remove('current'));
+
+          var activeContent = document.querySelector('#main-content #photoDiv .tab_con.' + targetTab); // 'var' 사용
+          if (activeContent) {
+              activeContent.classList.add('current');
+              // 탭 전환 후 해당 탭 안에 있는 Swiper를 업데이트하거나 초기화
+               var swiperElInTab = activeContent.querySelector('.course_pop_slide'); // 'var' 사용
+               if (swiperElInTab) {
+                    if (typeof swipers !== 'undefined') { // 메인 스크립트의 swipers 객체가 전역에 있는지 확인
+                         if (swipers[swiperElInTab.id]) {
+                            swipers[swiperElInTab.id].update();
+                            swipers[swiperElInTab.id].slideTo(0, 0);
+                        } else if (!swiperElInTab.swiper) { // 인스턴스가 없다면 초기화
+                            console.log('Initializing Swiper in newly active tab (fetched JSP):', swiperElInTab.id);
+                            try {
+                                var newSwiper = new Swiper('#' + swiperElInTab.id, { // 'var' 사용
+                                   direction: 'horizontal', loop: false,
+                                   navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                                   slidesPerView: 'auto', spaceBetween: 15, observer: true, observeParents: true,
+                                 });
+                                 swipers[swiperElInTab.id] = newSwiper; // 메인 스크립트의 swipers 객체에 추가
+                                 newSwiper.update();
+                            } catch (e) { console.error('Error initializing Swiper (fetched JSP):', swiperElInTab.id, e); }
+                        } else if (swiperElInTab.swiper) { // 요소 자체에 인스턴스가 있다면
+                             swiperElInTab.swiper.update();
+                             swiperElInTab.swiper.slideTo(0, 0);
+                        }
+                    } else if (swiperElInTab.swiper) { // swipers 객체가 없다면 요소 자체의 인스턴스 사용
+                         swiperElInTab.swiper.update();
+                         swiperElInTab.swiper.slideTo(0, 0);
+                    } else {
+                         console.log('Swiper found but not initialized and swipers object not available:', swiperElInTab.id);
+                    }
+               }
+          }
+     });
+});
+
+// Fetch된 콘텐츠 내의 Swiper 슬라이드들을 찾아서 다시 초기화 또는 업데이트합니다.
+// 'var' 사용
+var newlyAddedSwipers = document.querySelectorAll('#main-content .swiper.course_pop_slide'); // #main-content 내에서 찾음
+newlyAddedSwipers.forEach(swiperEl => {
+     if (swiperEl) {
+         // 이미 초기화되었거나 swipers 객체에 있다면 건너뜁니다.
+         if (swiperEl.swiper || (typeof swipers !== 'undefined' && swipers[swiperEl.id])) {
+              console.log('Swiper already initialized or in swipers object, updating:', swiperEl.id);
+               var swiperInstance = (typeof swipers !== 'undefined' && swipers[swiperEl.id]) || swiperEl.swiper; // 'var' 사용
+               if (swiperInstance) swiperInstance.update();
+               return;
+         }
+
+         // 아직 초기화되지 않았다면 초기화
+         console.log('Initializing newly added Swiper (fetched JSP):', swiperEl.id);
+          try {
+            var newSwiper = new Swiper('#' + swiperEl.id, { // 'var' 사용
+                direction: 'horizontal', loop: false,
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                slidesPerView: 'auto', spaceBetween: 15, observer: true, observeParents: true,
+            });
+             // 초기화된 Swiper 인스턴스를 메인 스크립트의 swipers 객체에 저장 (전역 접근 가능 가정)
+            if (typeof swipers !== 'undefined') {
+               swipers[swiperEl.id] = newSwiper;
+               console.log('Swiper instance stored in global swipers object.');
+            }
+            console.log('Swiper initialized (fetched JSP), updating...');
+            newSwiper.update(); // 초기화 후 반드시 update() 호출
+         } catch (e) { console.error('Error initializing Swiper (fetched JSP):', swiperEl.id, e); }
+     }
+});
+
+// Panzoom 재초기화는 메인 스크립트의 Fetch 성공 핸들러에서 처리하도록 변경했으므로,
+// 이 Fetch된 JSP 스크립트에서는 해당 코드를 제거합니다.
+
+
+// 코스 링크 클릭 이벤트는 메인 페이지의 이벤트 위임으로 처리하므로 여기서 다시 연결하지 않습니다.
+// 팝업 열기/닫기, 팝업 내부 탭 전환도 메인 페이지의 전역 함수를 사용합니다.
+
+
+console.log('--- Script block inside fetched course_gbg.jsp finished ---');
+</script>
+
