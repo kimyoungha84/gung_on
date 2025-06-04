@@ -42,7 +42,7 @@ request.setAttribute("currentMenu", "faq");
 
     // 검색 버튼을 눌렀다면 (searchHid는 숨은 input)
     if (request.getParameter("searchHid") != null) {
-        String categoryValue = request.getParameter("category");
+        String categoryValue = request.getParameter("searchCategory");
         searchCategoryParam = "category_title".equals(categoryValue) ? "faq_title" : "faq_content";
         transParam = "category_title".equals(categoryValue) ? "title" : "content";
         searchTextParam = request.getParameter("searchText").trim();
@@ -187,7 +187,7 @@ function toggleAnswer(element, event) {
 			<input type="hidden" name="searchHid" value="true"/>
 			<div class="right">
 				<div class="sch_condition_wrap">
-					<select name="category" id="schFld" title="구분">
+					<select name="searchCategory" id="schFld" title="구분">
 						<option value="category_title" ${param.searchCategory == 'category_title' ? 'selected' : ''}>제목</option>
 						<option value="category_content" ${param.searchCategory == 'category_content' ? 'selected' : ''}>내용</option>
 		            </select>
