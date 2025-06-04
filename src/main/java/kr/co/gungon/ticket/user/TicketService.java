@@ -378,12 +378,9 @@ public class TicketService {
 					
 				}//end for
 				
-				
-				tDTO.setCompanies(list);
-				
 			}//end if
 			
-			
+			tDTO.setCompanies(list);
 			
 			
 		}catch(Exception e) {

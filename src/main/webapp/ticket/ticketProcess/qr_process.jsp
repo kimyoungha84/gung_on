@@ -10,20 +10,29 @@
 <%
 String img=request.getParameter("img");
 %>
-
+<!-- prompt 창을 띄워서 로그인 해야함. -->
 var str=prompt("관리자번호를 입력해주세요.");
-var param = str + " " + <%=img%>
+alert(str);
+
+var imgimg="${param.img}";
+var param = "adminNum="+str +"&img="+imgimg;
+
+
 $.ajax({
-	url : "qr_process.detail.jsp",
+	url : "/Gung_On/ticket/ticketProcess/qr_process_detail.jsp",
 	type : "post",
 	data : param,
 	
 	dataType : "html",
 	error:function(xhr){
-		alert("실패했습니다.\n링크에 다시 접속해주세요.");
+		alert(xhr.status+" / "+xhr.statusText);
 	},
 	success: function(htmldata){
-		alert("처리완료!");
+		if($.trim(htmldata) == "yes"){
+			alert("성공");
+		}else{
+			alert("실패");
+		}
 	}
 	
 });//ajax
@@ -32,7 +41,9 @@ $.ajax({
 
 </head>
  <body>
-<!-- prompt 창을 띄워서 로그인 해야함. -->
+
+
+
 
 </body>
  
