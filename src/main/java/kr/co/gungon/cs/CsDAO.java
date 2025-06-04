@@ -9,9 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import kr.co.gungon.config.DbConnection;
-
 
 
 public class CsDAO {
@@ -436,6 +434,39 @@ public class CsDAO {
 				}//end finally
 		
 	}//insertNotice
+	
+	public void updateNoticeView(int noticeNum) throws SQLException {
+	    DbConnection db = DbConnection.getInstance();
+	    PreparedStatement pstmt = null;
+	    Connection con = null;
+
+	    try {
+	        // 1.JNDI 사용객체 생성
+	        // 2.DBCP에서 연결객체 얻기( DataSource )
+	        // 3.Connection 얻기
+	        con = db.getDbConn();
+
+	        // 4.쿼리문 생성객체 얻기
+	        StringBuilder updateViewQuery = new StringBuilder();
+	        updateViewQuery
+	            .append("UPDATE NOTICE ")
+	            .append("SET notice_views = notice_views + 1 ")
+	            .append("WHERE notice_num = ?");
+
+	        pstmt = con.prepareStatement(updateViewQuery.toString());
+
+	        // 5. 바인드변수에 값 할당
+	        pstmt.setInt(1, noticeNum);
+
+	        // 6. 쿼리문 수행 후 결과 얻기
+	        pstmt.executeUpdate(); // executeUpdate()는 DML 쿼리 실행을 위해 사용
+	    } finally {
+	        // 7. 연결 끊기
+	        db.dbClose(null, pstmt, con);
+	    }
+	}
+
+	
 	
 	public int deleteNotices(List<Integer> noticeNums) throws SQLException{
 		int rowCnt = 0;
@@ -1092,16 +1123,97 @@ public class CsDAO {
 
         return rowCnt;
     }
+    
+    public List<InquiryDTO> selectUserInquiries(InquiryFilteringInfo ifi, String userId) throws SQLException {
+        List<InquiryDTO> list = new ArrayList<>();
+
+        DbConnection db = DbConnection.getInstance();
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        Connection con = null;
+
+        try {
+            con = db.getDbConn();
+            
+            StringBuilder sql = new StringBuilder();
+            sql.append("SELECT inquiry_num, member_id, inquiry_content, inquiry_answer, answer_status, inquiry_reg_date, inquiry_answer_date ")
+               .append("FROM ( ")
+               .append("  SELECT inquiry_num, member_id, inquiry_content, inquiry_answer, answer_status, inquiry_reg_date, inquiry_answer_date, ")
+               .append("  ROW_NUMBER() OVER (ORDER BY inquiry_reg_date DESC, inquiry_num DESC) rnum ")
+               .append("  FROM inquiry WHERE member_id = ? ");  // member_id로 조회
+
+            // 페이징 처리 부분
+            sql.append(") WHERE rnum BETWEEN ? AND ? ");
+
+            pstmt = con.prepareStatement(sql.toString());
+
+
+            // member_id 바인딩
+            pstmt.setString(1, userId);
+
+            // 페이징 번호 바인딩
+            pstmt.setInt(2, ifi.getStartNum());
+            pstmt.setInt(3, ifi.getEndNum());
+
+            // 쿼리 실행
+            rs = pstmt.executeQuery();
+
+            // 결과 처리
+            while (rs.next()) {
+                InquiryDTO iDTO = new InquiryDTO();
+                iDTO.setInquiry_num(rs.getInt("inquiry_num"));
+                iDTO.setMember_id(rs.getString("member_id"));
+                iDTO.setInquiry_content(rs.getString("inquiry_content"));
+                iDTO.setInquiry_answer(rs.getString("inquiry_answer"));
+                iDTO.setAnswer_status("Y".equalsIgnoreCase(rs.getString("answer_status")));
+                iDTO.setInquiry_regDate(rs.getTimestamp("inquiry_reg_date"));
+                iDTO.setInquiry_answerDate(rs.getTimestamp("inquiry_answer_date"));
+                list.add(iDTO);
+            }
+        } finally {
+            db.dbClose(rs, pstmt, con);
+        }
+
+        return list;
+    }
+    
+    
+    public int CountUserInquiries(String userId) throws SQLException {
+        int count = 0;
+
+        DbConnection db = DbConnection.getInstance();
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        Connection con = null;
+
+        try {
+            con = db.getDbConn();
+
+            StringBuilder sql = new StringBuilder();
+            sql.append("SELECT COUNT(*) AS total_count ")
+               .append("FROM inquiry ")
+               .append("WHERE member_id = ?");  // member_id로 조회
+
+            pstmt = con.prepareStatement(sql.toString());
+            
+            // member_id 바인딩
+            pstmt.setString(1, userId);
+
+            // 쿼리 실행
+            rs = pstmt.executeQuery();
+
+            // 결과 처리
+            if (rs.next()) {
+                count = rs.getInt("total_count");
+            }
+        } finally {
+            db.dbClose(rs, pstmt, con);
+        }
+
+        return count;
+    }
 
 
 	
 	
-	
-
-
-
-
-	
-	
-	
-}
+}//class

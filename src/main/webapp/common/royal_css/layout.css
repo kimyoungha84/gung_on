@@ -4130,17 +4130,17 @@
 .sch_condition_wrap select {
 	width: 130px;
 	height: 50px;
-	border-radius: 25px 0 0 25px;
+	border-radius: 25px 0 0 25px !important;
 	background-color: #EAEAEA;
-	padding: 0 25px
+	padding: 0 25px !important;
 }
 
 .sch_condition_wrap input {
 	width: 320px;
 	height: 50px;
-	border-radius: 0 25px 25px 0;
+	border-radius: 0 25px 25px 0 !important;
 	background-color: #EAEAEA;
-	padding: 0 25px
+	padding: 0 25px !important;
 }
 
 .sch_condition_wrap button {

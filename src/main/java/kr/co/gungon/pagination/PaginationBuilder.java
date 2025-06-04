@@ -12,8 +12,8 @@ public class PaginationBuilder {
 
     // HttpServletRequest 객체를 받아 currentPage 값을 처리하도록 변경
     /**
-     * request : request 객체
-     * pageSize : 페이지에서 보여줄 데이터 수
+     * request : request 객체<br>
+     * pageSize : 페이지에서 보여줄 데이터 수<br>
      * rowCounts : 조회한 총 데이터의 수
      * @param request 
      * @param pageSize 

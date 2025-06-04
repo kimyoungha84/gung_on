@@ -50,9 +50,9 @@
       <li class="header-nav-item">
         <a href="http://192.168.10.79/jsp_prj/project/previewNotice_Main.jsp" class="header-nav-link">고객센터</a>
         <ul class="header-submenu">
-          <li><a href="http://192.168.10.79/jsp_prj/project/previewNotice_Main.jsp">공지사항</a></li>
-          <li><a href="#">자주 묻는 질문</a></li>
-          <li><a href="#">1:1 문의</a></li>
+          <li><a href="/Gung_On/cs/notice_main.jsp">공지사항</a></li>
+          <li><a href="/Gung_On/cs/faq_main.jsp">자주 묻는 질문</a></li>
+          <li><a href="/Gung_On/cs/myinquiry.jsp">1:1 문의</a></li>
         </ul>
       </li>
     </ul>

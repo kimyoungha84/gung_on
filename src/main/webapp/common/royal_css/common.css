@@ -209,7 +209,7 @@ textarea,
 input[type="number"],
 input[type="password"],
 input[type="tel"],
-input[type="text"]{ border-radius: 0; border: none; max-width: 100%}
+input[type="text"]{ border-radius: 0 !important; border: none !important; max-width: 100% !important;}
 input.readonly{background: #eee; color: transparent; text-shadow: 1px 1px 1px #000; cursor: default}
 input[type="checkbox"]{ width: 17px; height: 17px}
 .ck_input_wrap{ display: inline-flex; align-items: center}
