@@ -1,8 +1,8 @@
-<%@page import="kr.co.sist.kyh.service.FilePathService"%>
+<%@page import="kr.co.gungon.file.FilePathService"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="java.net.URLEncoder"%>
-<%@ page import="kr.co.sist.kyh.dao.ProgramDAO" %>
-<%@ page import="kr.co.sist.kyh.dto.ProgramDTO" %>
+<%@ page import="kr.co.gungon.program.ProgramDAO" %>
+<%@ page import="kr.co.gungon.program.ProgramDTO" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.*" %>
 

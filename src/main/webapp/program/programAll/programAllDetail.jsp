@@ -1,4 +1,4 @@
-<%@page import="kr.co.gungon.program.FilePathService"%>
+<%@page import="kr.co.gungon.file.FilePathService"%>
 <%@ page import="java.net.URLDecoder" %>
 <%@ page import="kr.co.gungon.program.ProgramDAO" %>
 <%@ page import="kr.co.gungon.program.ProgramDTO" %>
