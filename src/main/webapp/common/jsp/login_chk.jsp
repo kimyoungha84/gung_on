@@ -1,6 +1,6 @@
 <%@page import="kr.co.gungon.member.MemberDTO"%>
 <%@page import="kr.co.gungon.member.login.LoginDTO"%>
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
 //세션에 존재하는 값을 얻기
