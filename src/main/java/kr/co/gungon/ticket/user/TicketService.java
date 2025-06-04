@@ -339,6 +339,7 @@ public class TicketService {
 					tdetailDTO.setQRHash(imgName);
 					tdetailDTO.setQRCount(1);
 					tdetailDTO.setImgPath(imgName);
+					tdetailDTO.setEntryStatus('X');
 					
 					//우선 tDTO에 추가해주고, DB에 넘겨야하는 코드가 피요해해해해해해
 					list.add(tdetailDTO);
