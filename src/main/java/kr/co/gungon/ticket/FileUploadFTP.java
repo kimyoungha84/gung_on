@@ -40,6 +40,9 @@ public class FileUploadFTP {
         	
         	this.ftp.storeFile(hostDir + fileName, input);
         	//storeFile() 메소드가 전송하는 메소드
+        	System.out.println("hostDir---------"+hostDir);
+        	System.out.println("fileName------"+fileName);
+        	System.out.println("uploadFile================"+hostDir+fileName);
         }
     }//uploadFile
  
