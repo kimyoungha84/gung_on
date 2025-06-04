@@ -56,10 +56,13 @@
 
 <body>
  
-
+<%
+//여기서 getprogramName 받아줘야한다.
+//reqeust.getParameter("programName");
+%>
 <div class="wrap">
     <form action="http://localhost/Gung_On/ticket/ticketProcess/ticket_process.jsp" name="viewDateFrm" method="post">
-  	   <div><input type="text" name="programName" class="title" value="경복궁 탐험"/></div>
+  	   <div><input type="text" name="programName" class="title" value="경복궁 야간관람"/></div>
     <!-- 오른쪽 -->
     <div class="right">
 		<div class="ticket_box">
