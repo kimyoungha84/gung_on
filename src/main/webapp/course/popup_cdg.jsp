@@ -132,5 +132,4 @@
                 <div class="swiper-scrollbar"></div>
          </div>
     </div>
-
 </div>

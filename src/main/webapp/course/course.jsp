@@ -629,7 +629,6 @@
     text-align: center;
 }
 
-
 #pop_course01 .top {
     display: flex;
      gap: 20px; 
@@ -648,7 +647,6 @@
     flex-direction: column;
     gap: 20px; 
 }
-
 
 #pop_course01 .course_pop_slide.swiper .swiper-scrollbar-drag {
     height: 100%;

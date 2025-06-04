@@ -3,7 +3,6 @@
     info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <div class="tab_menu">
     <ul>
         <li class="item current"><a href="#;" data-tab="cs0">40분 코스</a></li>

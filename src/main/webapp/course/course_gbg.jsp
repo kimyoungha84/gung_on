@@ -37,7 +37,6 @@
             		        <option value="cgg">창경궁</option>
             		        <option value="ghg">경희궁</option>
                          </select>
-
 					</div>
 					<div class="course_map_wrap" id="course_map_wrap">
 						<div class="course_map_fix">
