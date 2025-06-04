@@ -16,7 +16,7 @@
   	top: 140px; /* 상단에서 거리 조절 */
   	left: 40px;
   	width: 300px; /* 원하는 너비 */
-  	z-index: 1000; /* 다른 요소보다 위로 오도록 */
+  	z-index: 0; /* 다른 요소보다 위로 오도록 */
 	}
 	.lnb_tit{width: 100%;height: 85px;display: flex;flex-wrap: wrap;align-items: center;justify-content: center;text-align: center; font-size: 1.5rem;background: #131313; color: #fff;}
 .lnb_depth2_wrap{ border: 1px solid #ddd; margin-bottom: 40px; padding: 20px;}
