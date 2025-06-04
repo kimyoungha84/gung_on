@@ -69,9 +69,6 @@
       <div class="menu_item <%= request.getRequestURI().endsWith("programAll.jsp") ? "active" : "" %>">
         <a href="<%= request.getContextPath() %>/program/programAll/programAll.jsp">행사 모아보기</a>
       </div>
-      <div class="menu_item <%= request.getRequestURI().endsWith("programSelect.jsp") ? "active" : "" %>">
-        <a href="<%= request.getContextPath() %>/program/programSelect/programSelect.jsp">예약조회 / 취소</a>
-      </div>
     </div>
   </div>
 
@@ -101,9 +98,6 @@
     </div>
     <div class="swiper-slide 경희궁">
       <a href="#;" onclick="loadEventsByPlace('경희궁');" title="경희궁">경희궁</a>
-    </div>
-    <div class="swiper-slide 칠궁">
-      <a href="#;" onclick="loadEventsByPlace('칠궁');" title="칠궁">칠궁</a>
     </div>
   </div>
 </div>

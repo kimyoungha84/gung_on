@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -7,7 +7,16 @@
   <c:import url="/common/jsp/external_file.jsp"/>
   <link rel="stylesheet" href="/Gung_On/common/css/common.css">
   <title>회원가입</title>
-  
+  <style type="text/css">
+  #timer {
+  display: inline-block;
+  min-width: 60px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+}
+  </style>
   <script type="text/javascript">
 $(function(){
 	var passFlag = false;
@@ -54,6 +63,11 @@ $(function(){
 			return;
 		}
 		
+		// ✅ 인증번호가 아직 확인되지 않은 경우
+		if (!$("#certi").prop("readonly")) {
+			alert("인증번호를 확인해주세요.");
+			return;
+		}
 		$("#frm").submit();
 		
 	});//click
@@ -62,7 +76,58 @@ $(function(){
 		location.href = "/Gung_On/mainpage/mainpage.jsp";
 	});//click
 	
+	 $("#emailCon").click(function(){
+		var email = $("#email").val()+"@"+$("#domain").val();
+		if ($("#email").val().trim() === "" || $("#domain").val().trim() === "") {
+		    alert("이메일과 도메인을 모두 입력해주세요.");
+		    return;
+		}
+		$.ajax({
+			  url:"email_process.jsp",
+		  type:"GET",
+		  data: { email: email },
+		  dataType:"JSON",
+		  error: function(xhr){
+			  console.log(xhr.status);
+		  },
+		  success: function(jsonObj){
+			if(jsonObj.emailFlag){
+				$("#certiTr").css("display","table-row");
+				startTimer(); // 타이머 시작
+			}else{
+		  		alert("인증코드가 발송되지 않았습니다.")
+	  		}//end else
+		  }
+		  });//ajax
+	  
+	});//click
 	
+	
+	$("#certiCon").click(function() {
+		  const inputCode = $("#certi").val();
+
+		  $.ajax({
+		    url: "email_verify.jsp", // 인증번호 비교 처리용 JSP
+		    type: "POST",
+		    data: { inputCode: inputCode },
+		    dataType: "json",
+		    success: function(jsonObj) {
+		      if (jsonObj.result === "success") {
+		        alert("✅ 인증 성공!");
+		        clearInterval(timerInterval);
+		        $("#timer").text("");
+		        $("#certi").prop("readonly", true);
+		      } else if (jsonObj.result === "timeout") {
+		        alert("⏰ 인증 시간이 초과되었습니다.");
+		      } else {
+		        alert("❌ 인증번호가 일치하지 않습니다.");
+		      }
+		    },
+		    error: function(xhr) {
+		      console.log("오류: " + xhr.status);
+		    }
+		  });
+		});
 	
 	
 	$("#pass, #pass2").keyup(function (evt) {
@@ -147,7 +212,26 @@ function isStrongPassword(str) {
   const hasDigit = /\d/.test(str);
   const hasSpecial = /[!@#$%^&*()]/.test(str);
   return str.length >= 8 && hasAlphabet && hasDigit && hasSpecial;
-}
+}//isStrongPassword
+
+let timerInterval;
+let timerSeconds = 180; // ✅ 꼭 전역에!
+function startTimer() {
+	  clearInterval(timerInterval); // 중복 방지
+	  timerSeconds = 180;
+	  console.log("🔁 타이머 시작", timerSeconds);
+	  timerInterval = setInterval(function() {
+	    let min = Math.floor(timerSeconds / 60);
+	    let sec = timerSeconds % 60;
+	    $("#timer").html(min + ":" + sec.toString().padStart(2, '0'));
+
+	    if (timerSeconds-- <= 0) {
+	      clearInterval(timerInterval);
+	      $("#timer").html("시간초과");
+	    }
+	  }, 1000);
+	}//startTimer
+
 </script>
 </head>
 
@@ -237,7 +321,16 @@ function isStrongPassword(str) {
 			  <option value="daum.net">
 			  <option value="gmail.com">
 			</datalist>
+			<input type="button" id="emailCon" value="이메일 인증" class="btn btn-success"/>
         </td>
+      </tr>
+      <tr id="certiTr" style="display: none;">
+      <th>*인증번호</th>
+      <td><input type="text" id="certi" style="width: 48.3%" maxlength="6" >
+      <input type="button" value="인증번호 확인" id="certiCon" class="btn btn-success">
+       <span id="timer" style="margin-left: 10px; font-weight: bold;"></span> <!-- 타이머 표시 -->
+      </td>
+      
       </tr>
     </table>
 

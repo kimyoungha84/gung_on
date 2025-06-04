@@ -1,3 +1,4 @@
+<%@page import="kr.co.gungon.file.FilePathService"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="kr.co.gungon.program.ProgramDAO"%>
 <%@page import="kr.co.gungon.program.ProgramDTO"%>
@@ -22,21 +23,24 @@
     if (list.isEmpty()) {
         out.print("<li>현재 진행 중인 행사가 없습니다.</li>");
     } else {
+    	FilePathService fps = new FilePathService();
         StringBuilder sb = new StringBuilder();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd(E)", java.util.Locale.KOREAN);
 
         for (ProgramDTO dto : list) {
-            String imgName = dto.getProgImgName();
-            String imgPath = contextPath + "/test/images/" + imgName;
+        	String imgFullPath = fps.getImageFullPath("program", String.valueOf(dto.getProgramId()));
+            if (imgFullPath == null) {
+                imgFullPath = contextPath + "/images/no-image.png"; // 대체 이미지 경로
+            }
 
             sb.append("<div class='event-card' onclick=\"location.href='")
-            .append(contextPath).append("/program/programDetail/programAllDetail.jsp?programName=")
+            .append(contextPath).append("/program/programAll/programAllDetail.jsp?programName=")
             .append(URLEncoder.encode(dto.getProgramName(), "UTF-8"))
             .append("'\" style='cursor:pointer;'>");
 
-            if (imgName != null && !imgName.isEmpty()) {
+            if (imgFullPath != null && !imgFullPath.isEmpty()) {
                 sb.append("<div class='event-image'><img src='")
-                  .append(imgPath)
+                  .append(imgFullPath)
                   .append("' alt='행사 이미지' /></div>");
             }
 

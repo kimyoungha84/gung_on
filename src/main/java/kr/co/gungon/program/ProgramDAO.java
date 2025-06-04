@@ -6,7 +6,7 @@ import java.util.List;
 
 import kr.co.gungon.config.DbConnection;
 import kr.co.gungon.program.ProgramDTO;
-import kr.co.gungon.pagination.PageParam;
+import kr.co.gungon.program.PageParam;
 
 public class ProgramDAO {
 
@@ -50,8 +50,7 @@ public class ProgramDAO {
                     rs.getInt("price_adult"),
                     rs.getInt("price_child"),
                     rs.getString("language_korean"),
-                    rs.getString("contact_person"),
-                    rs.getString("prog_img_name")
+                    rs.getString("contact_person")
                 );
                 list.add(dto);
             }
@@ -91,8 +90,7 @@ public class ProgramDAO {
                     rs.getInt("price_adult"),
                     rs.getInt("price_child"),
                     rs.getString("language_korean"),
-                    rs.getString("contact_person"),
-                    rs.getString("prog_img_name")
+                    rs.getString("contact_person")
                 );
                 list.add(dto);
             }
@@ -108,7 +106,7 @@ public class ProgramDAO {
         ProgramDTO dto = null;
         String sql = "SELECT program_id, program_place, program_name, start_date, end_date, " +
                      "reservation_start_date, reservation_end_date, open_time, close_time, " +
-                     "price_adult, price_child, language_korean, contact_person, prog_img_name " +
+                     "price_adult, price_child, language_korean, contact_person " +
                      "FROM program WHERE program_name = ?";
 
         try (Connection conn = DbConnection.getInstance().getDbConn();
@@ -131,8 +129,7 @@ public class ProgramDAO {
                         rs.getInt("price_adult"),
                         rs.getInt("price_child"),
                         rs.getString("language_korean"),
-                        rs.getString("contact_person"),
-                        rs.getString("prog_img_name")
+                        rs.getString("contact_person")
                     );
                 }
             }
@@ -144,7 +141,7 @@ public class ProgramDAO {
     public ProgramDTO selectProgramByProgramName(String programName) throws SQLException {
         ProgramDTO dto = null;
         String sql = "SELECT program_id, program_name, program_place, open_time, close_time, " +
-                "price_adult, price_child, contact_person, language_korean, start_date, end_date, prog_img_name, " +
+                "price_adult, price_child, contact_person, language_korean, start_date, end_date, " +
                 "CAST(start_date - 7 + (12/24) AS TIMESTAMP) AS reservation_start_date, " +
                 "CAST(end_date - 1 + (18/24) AS TIMESTAMP) AS reservation_end_date " +
                 "FROM program WHERE program_name = ?";
@@ -169,7 +166,6 @@ public class ProgramDAO {
                     dto.setEndDate(rs.getDate("end_date"));
                     dto.setReservationStartDate(rs.getTimestamp("reservation_start_date"));
                     dto.setReservationEndDate(rs.getTimestamp("reservation_end_date"));
-                    dto.setProgImgName(rs.getString("prog_img_name"));
                 }
             }
         }
@@ -200,8 +196,7 @@ public class ProgramDAO {
                         rs.getInt("price_adult"),
                         rs.getInt("price_child"),
                         rs.getString("language_korean"),
-                        rs.getString("contact_person"),
-                        rs.getString("prog_img_name")
+                        rs.getString("contact_person")
                     );
                     list.add(dto);
                 }
@@ -215,9 +210,8 @@ public class ProgramDAO {
         String sql = "INSERT INTO program (" +
                 "program_place, program_name, " +
                 "start_date, end_date, open_time, close_time, " +
-                "price_adult, price_child, language_korean, contact_person, " +
-                "prog_img_name" +
-                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "price_adult, price_child, language_korean, contact_person " +
+                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -236,7 +230,6 @@ public class ProgramDAO {
             pstmt.setInt(8, dto.getPriceChild());
             pstmt.setString(9, dto.getLanguageKorean());
             pstmt.setString(10, dto.getContactPerson());
-            pstmt.setString(11, dto.getProgImgName());
 
             result = pstmt.executeUpdate();
         } finally {
@@ -252,7 +245,7 @@ public class ProgramDAO {
                 "program_place = ?, program_name = ?, " +
                 "start_date = ?, end_date = ?, open_time = ?, close_time = ?, " +
                 "price_adult = ?, price_child = ?, language_korean = ?, " +
-                "contact_person = ?, prog_img_name = ? " +
+                "contact_person = ? " +
                 "WHERE program_name = ?";
 
         Connection con = null;
@@ -272,8 +265,7 @@ public class ProgramDAO {
             pstmt.setInt(8, dto.getPriceChild());
             pstmt.setString(9, dto.getLanguageKorean());
             pstmt.setString(10, dto.getContactPerson());
-            pstmt.setString(11, dto.getProgImgName());
-            pstmt.setString(12, dto.getProgramName());
+            pstmt.setString(11, dto.getProgramName());
 
             result = pstmt.executeUpdate();
         } finally {

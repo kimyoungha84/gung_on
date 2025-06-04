@@ -1,6 +1,6 @@
 @charset "UTF-8";
     body {
-      background-color: #f9f6f1;
+      background-color: #f9f6f1 !important;
       font-family: 'Malgun Gothic', sans-serif;
     }
 
@@ -168,6 +168,37 @@
   	  max-height: 600px;
   	  overflow-y: auto;
   	}
+  	
+  	.program-item {
+  	  display: flex;
+  	  margin-bottom: 20px;
+  	  width: 400px;
+	}
+
+	.program-image {
+  	  width: 100px;
+  	  height: auto;
+  	  margin-right: 20px;
+  	  border-radius: 8px;
+	}
+
+	.program-info {
+  	  display: flex;
+  	  flex-direction: column;
+  	  
+  	  max-width: 100%;
+  	  white-space: nowrap;
+  	  overflow: hidden;
+  	  text-overflow: ellipsis;
+	}
+	
+	.program-info strong,
+	.program-info span {
+  	  max-width: 100%;
+  	  overflow: hidden;
+  	  white-space: nowrap;
+  	  text-overflow: ellipsis;
+	}
 
 	.detail-btn {
   	  background-color: #ff9800;

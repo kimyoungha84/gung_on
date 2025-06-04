@@ -1,5 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<%
+/* 추가된 코드 */
+String redirectUrl=request.getParameter("redirectUrl");
+/*  */
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -51,7 +58,16 @@
                 		alert("탈퇴한 회원입니다.");
                 		return;
                 	}
-                    location.href = "/Gung_On/mainpage/mainpage.jsp"; // 로그인 성공 시 이동할 페이지
+                	/* 추가한코드 */
+                	var redirectUrl = getQueryParameter('redirectUrl');
+                    
+                    if (redirectUrl) {
+                        window.location.href = decodeURIComponent(redirectUrl); // 리디렉션
+                    } else {
+                        window.location.href = "/Gung_On/mainpage/mainpage.jsp"; // 기본 페이지
+                    }
+                    /*          */
+                    /* location.href = "/Gung_On/mainpage/mainpage.jsp"; // 로그인 성공 시 이동할 페이지 */
                 } else {
                 	alert("아이디나 비밀번호를 확인해주세요.");
                 }//end else
@@ -62,6 +78,12 @@
             }
         });
     }
+    /* 추가된 코드 */
+    function getQueryParameter(name) {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+    /*          */
     </script>
 </head>
 <body class="login">

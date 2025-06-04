@@ -89,6 +89,16 @@ public class CsService {
 		return flag;
 	}
 	
+	public void addViews(int num) {
+		try {
+		CsDAO.getInstance().updateNoticeView(num);
+				
+		} catch (SQLException e) {
+				e.printStackTrace();
+		}
+	
+	}
+		
 	
 	//===========================================================================================================================================================================================
 		//===========================================================================================================================================================================================
@@ -231,12 +241,29 @@ public class CsService {
 	    }
 	    return flag;
 	}
-
-
-
-
+	
+	public List<InquiryDTO> searchUserInquiries(InquiryFilteringInfo ifi, String userId){
+		
+		List<InquiryDTO> list = null;
+		  try {
+		      list = CsDAO.getInstance().selectUserInquiries(ifi, userId);
+		  } catch (SQLException e) {
+		      e.printStackTrace();
+		  }
+		  return list;
+	}
+	
+	public int totalUserInquiries( String userId ) {
+		int cnt = 0;
+		try {
+			cnt = CsDAO.getInstance().CountUserInquiries(userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
 
 	
 	
-	
-}
+}//class

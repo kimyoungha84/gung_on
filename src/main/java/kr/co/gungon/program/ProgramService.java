@@ -6,7 +6,7 @@ import java.util.List;
 
 import kr.co.gungon.program.ProgramDAO;
 import kr.co.gungon.program.ProgramDTO;
-import kr.co.gungon.pagination.PageParam;
+import kr.co.gungon.program.PageParam;
 
 public class ProgramService {
 

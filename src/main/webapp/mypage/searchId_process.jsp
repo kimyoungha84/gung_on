@@ -1,7 +1,7 @@
 <%@page import="kr.co.gungon.member.login.LoginService"%>
 <%@page import="kr.co.gungon.member.MemberDTO"%>
 <%@page import="kr.co.gungon.member.MemberService"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
 pageContext.getAttribute("userData");

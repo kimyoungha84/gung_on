@@ -1,5 +1,5 @@
     body {
-      background-color: #f9f6f1;
+      background-color: #f9f6f1 !important;
       font-family: 'Malgun Gothic', sans-serif;
     }
 
@@ -189,19 +189,22 @@
 	.event-card h4 {
   	  font-weight: bold;
   	  color: #000;
-  	  margin-bottom: 10px;
+  	  margin-top: 4px;
+  	  margin-bottom: 1px;
   	  font-size: 1em;
   	  
+  	  max-width: 100%;
   	  white-space: nowrap;
   	  overflow: hidden;
   	  text-overflow: ellipsis;
 	}
 
 	.event-card p {
-  	  margin: 6px 0;
+  	  margin: 1px 0;
   	  font-size: 0.9em;
   	  color: #000;
   	  
+  	  max-width: 100%;
   	  white-space: nowrap;
   	  overflow: hidden;
   	  text-overflow: ellipsis;
@@ -210,6 +213,7 @@
 	.event-info {
   	  flex: 1;
   	  min-width: 0;
+  	  flex-direction: column;
 	}
 
 	.event-card img {
