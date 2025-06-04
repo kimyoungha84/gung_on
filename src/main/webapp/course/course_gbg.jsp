@@ -2,18 +2,6 @@
     pageEncoding="UTF-8"
     info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-
-  <link rel="stylesheet" type="text/css" href="/Gung_On/course/css/course_style.css" />
-  <c:import url="/common/jsp/external_file.jsp"/>
-
-<!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
 
 <script type="text/javascript">
   window.addEventListener('DOMContentLoaded', () => {
@@ -25,6 +13,7 @@
     });
 
     // 마우스 휠로 줌
+    
     /* elem.parentElement.addEventListener('wheel', panzoom.zoomWithWheel); */
 
     // 버튼 이벤트
@@ -37,7 +26,6 @@
 
 <script type="text/javascript">
 </script><!-- [S] sub_con_wrap -->
-<script type="text/javascript" src="course_js/panzoom.min.js"></script>
 <style type="text/css">
 .f-custom-controls {
 	position: absolute;
@@ -83,8 +71,239 @@
 }
 </style>
 
-</head>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabLinks = document.querySelectorAll('.course_num_list .course_num_item');
+    const tabContents = document.querySelectorAll('#photoDiv .tab_con'); 
+    tabLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
 
+            const targetTab = this.getAttribute('data-tab');
+
+            tabLinks.forEach(function(item) {
+                item.classList.remove('current');
+            });
+            this.classList.add('current');
+            tabContents.forEach(function(content) {
+                content.classList.remove('current');
+            });
+
+            const activeContent = document.querySelector('#photoDiv .tab_con.' + targetTab);
+            if (activeContent) {
+                activeContent.classList.add('current');
+            }
+        });
+    });
+
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	  const courseLinks = document.querySelectorAll('ul.list.course_info_list li.item a');
+	  const dim = document.querySelector('.dim');
+	  const popup = document.getElementById('pop_course01');
+	  const tabLinks = popup ? popup.querySelectorAll('.tab_menu .item') : [];
+	  const tabContents = popup ? popup.querySelectorAll('.tab_con') : [];
+
+	  const swipers = {};
+
+	  function initSwipers() {
+	    if (popup && tabContents.length > 0) {
+          tabContents.forEach(content => {
+            const swiperEl = content.querySelector('.course_pop_slide');
+            if (swiperEl && !swiperEl.swiper) {
+              swipers[swiperEl.id] = new Swiper('#' + swiperEl.id, {
+                direction: 'horizontal',
+                loop: false,
+                navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                },
+                slidesPerView: 'auto', // 'auto'로 변경 (컨텐츠 너비에 맞춤)
+                spaceBetween: 15, // 간격 조정
+                observer: true, // 부모 요소 변화 감지
+                observeParents: true, // 부모의 부모 요소 변화 감지
+              });
+            }
+          });
+	    }
+	  }
+
+	  function openPopup(tabId) {
+	    if (dim && popup) { // 팝업 요소가 존재할 때만 실행
+          dim.style.display = 'block';
+          popup.style.display = 'block';
+
+          tabLinks.forEach(link => {
+            const anchor = link.querySelector('a');
+            if (anchor) {
+              link.classList.toggle('current', anchor.getAttribute('data-tab') === tabId);
+            }
+          });
+
+          tabContents.forEach(content => {
+            content.classList.toggle('current', content.classList.contains(tabId));
+            if (content.classList.contains(tabId)) {
+              const swiperEl = content.querySelector('.course_pop_slide');
+              if (swiperEl && swipers[swiperEl.id]) {
+                swipers[swiperEl.id].update();
+                swipers[swiperEl.id].slideTo(0, 0); // 첫 슬라이드로 이동
+              }
+            }
+          });
+
+	    }
+	  }
+
+	  function closePopup() {
+	    if (dim && popup) { // 팝업 요소가 존재할 때만 실행
+          dim.style.display = 'none';
+          popup.style.display = 'none';
+          Object.values(swipers).forEach(swiper => swiper.slideTo(0, 0));
+	    }
+	  }
+	  courseLinks.forEach(link => {
+	    link.addEventListener('click', e => {
+	      e.preventDefault();
+	      const tabNum = link.parentElement.getAttribute('data-num');
+	      openPopup('cs' + tabNum); // 클릭된 data-num에 해당하는 tabId로 팝업 열기
+	    });
+	  });
+
+	  if (dim) { // dim 요소가 있을 때만 이벤트 연결
+          dim.addEventListener('click', e => {
+              if (e.target === dim) {
+                closePopup();
+              }
+          });
+	  }
+
+	  tabLinks.forEach(link => {
+	    link.addEventListener('click', e => {
+	      e.preventDefault();
+	      const tabId = link.querySelector('a').getAttribute('data-tab');
+	      openPopup(tabId); 
+	    });
+	  });
+
+	  const closeBtn = popup ? popup.querySelector('.popup_close') : null; 
+	  if (closeBtn) { 
+	    closeBtn.addEventListener('click', e => {
+	      e.preventDefault();
+	      closePopup();
+	    });
+	  }
+
+	  initSwipers();
+
+    if (popup) { 
+        const initialActiveContent = popup.querySelector('.tab_con.current');
+        if (initialActiveContent) {
+             const initialSwiperElement = initialActiveContent.querySelector('.course_pop_slide');
+             if (initialSwiperElement && swipers[initialSwiperElement.id]) {
+                  swipers[initialSwiperElement.id].update();
+             }
+        }
+    }
+});
+
+
+
+
+</script>
+
+<style type="text/css">
+.f-custom-controls {
+	position: absolute;
+	border-radius: 4px;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.f-custom-controls.top-right {
+	right: 16px;
+	top: 16px;
+}
+
+.f-custom-controls.bottom-right {
+	right: 16px;
+	bottom: 16px;
+}
+
+.f-custom-controls button {
+	width: 32px;
+	height: 32px;
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	background: #222;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.f-custom-controls svg {
+	pointer-events: none;
+	width: 18px;
+	height: 18px;
+	stroke: #fff;
+	stroke-width: 2;
+}
+
+.f-custom-controls button[disabled] svg {
+	opacity: 0.7;
+}
+</style>
+
+    
+    <!-- 사이드바와 콘텐츠를 감싸는 container div -->
+    <div class="container">
+        <div class="sidebar">
+            <h3>관람안내 메뉴</h3>
+            <nav class="sub-nav">
+                <ul>
+                    <li><a href="/Gung_On/course/course_rule.jsp" >관람규칙</a></li>
+                    <li><a href="/Gung_On/course/course_time.jsp">관람시간</a></li>
+                    <li><a href="/Gung_On/course/course.jsp" class="active">관람코스</a></li>
+                    <li><a href="/Gung_On/course/users_course.jsp">사용자 추천 코스</a></li>
+                </ul>
+            </nav>
+        </div>
+        	<article class="content">
+            <h1>관람코스</h1>
+        
+
+
+<!-- [S] sub_con_section -->
+<div class="sub_con_section">
+	<div class="tab_con_wrap">
+		<div class="tab_con current">
+			<!-- [S] course_tab_wrap -->
+					<div class="course_tab_wrap">
+						<!-- [S] 코스안내 -->
+						<div class="left course_pop_con">
+							<span class="course_tit"><img src="course_img/ic_loca.jpg" alt=""> 코스안내</span>
+								<ul class="list course_info_list">
+									<li class="item">
+											<a href="#;" data-num="0"><span class="inn">🚶시간 별  코스</span></a>
+										</li>
+									</ul>
+							</div>
+						<select class="sel_st">
+           			<option value="gbg" selected="selected">경복궁</option>
+            		<option value="cdg" >창덕궁</option>
+            		<option value="dsg">덕수궁</option>
+            		<option value="cgg">창경궁</option>
+            		<option value="ghg">경희궁</option>
+             </select>
+             
+             
+             
+					</div>
 					<div class="course_map_wrap" id="course_map_wrap">
 						<div class="course_map_fix">
 							<div class="amenities_wrap">
@@ -124,7 +343,7 @@
 											<img src="course_img/ic_refresh.png" width="20px">
 										</button>
 									</div>
-								<div class="course_map" style="overflow: hidden; user-select: none; touch-action: none;">
+								<div class="course_map" style="overflow: hidden; user-select: none; touch-action: none; width: 900px;">
 									<div class="zoomable" id="panzoom-container" style="cursor: move; user-select: none; touch-action: none; transform-origin: 50% 50%; transition: none; transform: scale(1) translate(0px, 0px);">
 										<img data-id="1" class="map_content" src="course_img/gbg_img/gbg_map_all.png" alt="전체 맵" draggable="true">
 									</div>
@@ -198,7 +417,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal swiper-backface-hidden course_slide0">
 					<div class="swiper-wrapper" id="swiper-wrapper-67eeb24bcfc6c0910" aria-live="polite">
 						<div class="swiper-slide swiper-slide-active swiper-slide-next" data-seq="8" role="group" aria-label="1 / 1" data-swiper-slide-index="0" style="width: 100%">
-								<img src="course_img/gbg_img/경복궁_근정전_근정전 전체 전경(궁능유적본부).jpg" data-key="4801" alt="근정전 전경">
+								<img src="course_img/gbg_img/Geunjeongjeon.jpg" data-key="4801" alt="근정전 전경">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -220,7 +439,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide1">
 					<div class="swiper-wrapper" id="swiper-wrapper-a6d6a2d54fb10ce80" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_사정전_사정전(궁능유적본부).jpg" data-key="4801" alt="사정전">
+								<img src="course_img/gbg_img/Sajeongjeon.jpg" data-key="4801" alt="사정전">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -242,7 +461,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide2">
 					<div class="swiper-wrapper" id="swiper-wrapper-ca5a3110917a17996" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_수정전_전경(궁능유적본부).jpg" data-key="4801" alt="수정전">
+								<img src="course_img/gbg_img/Sujeongjeon.jpg" data-key="4801" alt="수정전">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -263,7 +482,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide3">
 					<div class="swiper-wrapper" id="swiper-wrapper-f8f5d86da2107883e" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_경회루_야경(궁능유적본부).jpg" data-key="4801" alt="경희루">
+								<img src="course_img/gbg_img/Gyeonghoeru.jpg" data-key="4801" alt="경희루">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -285,7 +504,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide4">
 					<div class="swiper-wrapper" id="swiper-wrapper-d015deff431101621" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_강녕전_전경(궁능유적본부).jpg" data-key="4801" alt="강녕전">
+								<img src="course_img/gbg_img/Gangnyeongjeon.jpg" data-key="4801" alt="강녕전">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -307,7 +526,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide5">
 					<div class="swiper-wrapper" id="swiper-wrapper-c9d47e86ea7d11e4" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_교태전_교태전 측면(궁능유적본부)" data-key="4801" alt="교태전">
+								<img src="course_img/gbg_img/Gyotaejeon.jpg" data-key="4801" alt="교태전">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -329,7 +548,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide6">
 					<div class="swiper-wrapper" id="swiper-wrapper-a09e7151aff9e25a" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_동궁 영역_전체 전경(궁능유적본부).jpg" data-key="4801" alt="동궁">
+								<img src="course_img/gbg_img/Donggung.jpg" data-key="4801" alt="동궁">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -351,7 +570,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide7">
 					<div class="swiper-wrapper" id="swiper-wrapper-2468e9326aa5af72" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_소주방_전경(궁능유적본부).jpg" data-key="4801" alt="소주방">
+								<img src="course_img/gbg_img/Sojuroom.jpg" data-key="4801" alt="소주방">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -372,7 +591,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide8">
 					<div class="swiper-wrapper" id="swiper-wrapper-bf86705c767e302f" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_자경전_자경전 전체 전경(궁능유적본부).jpg" data-key="4801" alt="자경전">
+								<img src="course_img/gbg_img/Jagyeongjeon.jpg" data-key="4801" alt="자경전">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -394,7 +613,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide9">
 					<div class="swiper-wrapper" id="swiper-wrapper-10cc60da46684433" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_흥복전_정면(궁능유적본부).jpg" data-key="4801" alt="흥복전">
+								<img src="course_img/gbg_img/Hingbokjeon.jpg" data-key="4801" alt="흥복전">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -415,7 +634,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide10">
 					<div class="swiper-wrapper" id="swiper-wrapper-fee1d5bcba1836a4" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_향원정_전경 1(궁능유적본부).jpg" data-key="4801" alt="향원정">
+								<img src="course_img/gbg_img/Hyangwonjeong.jpg" data-key="4801" alt="향원정">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -437,7 +656,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide11">
 					<div class="swiper-wrapper" id="swiper-wrapper-d21421a9c092caff" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_건청궁_건청궁 전체 전경(궁능유적본부).jpg" data-key="4801" alt="건천궁">
+								<img src="course_img/gbg_img/Geoncheonggung.jpg" data-key="4801" alt="건천궁">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -458,7 +677,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide12">
 					<div class="swiper-wrapper" id="swiper-wrapper-210e8ccbff66caffc" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_집옥재_전경(궁능유적본부).jpg" data-key="4801" alt="집옥재">
+								<img src="course_img/gbg_img/Jibokjae.jpg" data-key="4801" alt="집옥재">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -479,7 +698,7 @@
 				<div class="course_slide swiper-initialized swiper-horizontal course_slide13">
 					<div class="swiper-wrapper" id="swiper-wrapper-9103267edc6b8618c" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 						<div class="swiper-slide" data-seq="8" data-swiper-slide-index="0" role="group" aria-label="1 / 1">
-								<img src="course_img/gbg_img/경복궁_태원전_전경(궁능유적본부).jpg" data-key="4801" alt="태원전">
+								<img src="course_img/gbg_img/Taewonjeon.jpg" data-key="4801" alt="태원전">
 							</div>
 						</div>
 					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -495,75 +714,12 @@
 		</div>
 	<!-- [E] course_num_con -->
 <script type="text/javascript">
-	$(function() {
-		var course_slide;
-		$(".course_slide").each(function(index) {
-			$(this).addClass("course_slide" + index);
-			courseSliderSet(".course_slide" + index);
-		})
-
-		function courseSliderSet($slidermain) {
-			course_slide = new Swiper($slidermain, {
-				slidesPerView : 1,
-				loop : true,
-				pagination : {
-					el : $slidermain + " .swiper-pagination",
-					type : "fraction",
-				},
-				observer : true,
-				observeParents : true,
-				initialSlide : 0,
-				navigation : {
-					nextEl : $slidermain + " .swiper-button-next",
-					prevEl : $slidermain + " .swiper-button-prev",
-				},
-			});
-		}
-	});
-
-	var swiper = new Swiper(".course_slide", {
-		initialSlide : 0,
-		centeredSlides : true,
-		observer : true,
-		observeParents : true,
-		loop : false,
-		navigation : {
-			nextEl : ".course_slide .swiper-button-next",
-			prevEl : ".course_slide .swiper-button-prev",
-		},
-		on: {
-            slideChange: function() {
-              const index_currentSlide = this.realIndex;
-              sw_realIndex = this.slides[index_currentSlide];
-            },
-		}
-	});
-
-
-	var  course_sw = 0;
-	$('.course_slide_wrap.course_slide .btn_pause').click(function() {
-		if (course_sw == 0) {
-			$('.course_slide .btn_pause').addClass('on');
-			swiper.autoplay.stop();
-			course_sw = 1;
-		} else {
-			$('.course_slide .btn_pause').removeClass('on');
-			swiper.autoplay.start();
-			course_sw = 0;
-		}
-	});
-
-	function fn_downloadImage(fileId){
-		var dataFileSeq = $(".course_slide .swiper-slide.swiper-slide-active").eq(0).attr("data-seq");
-		location.href = "/jfile/readDownloadFile.do?fileId="+fileId+"&fileSeq="+dataFileSeq;
-	}
 </script>
 					</div>
 				</div>
 	</div>
 </div>
 
-<!-- pop : 코스(경복궁) -->
 <div class="dim">
 	<div class="layer_popup pop_type02 pop_course" id="pop_course01">
 		<div class="popup_body">
@@ -760,37 +916,37 @@
 								<div class="swiper-wrapper" id="swiper-wrapper-cebdd16b24e348c2" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3401" alt="흥례문">
+												<img src="course_img/gbg_img/40min/Heungnyemun.png" alt="흥례문">
 											</div>
 											<div class="txt_wrap">흥례문</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3370" alt="영제교">
+												<img src="course_img/gbg_img/40min/Yeongjegyo.png" alt="영제교">
 											</div>
 											<div class="txt_wrap">영제교</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3371" alt="근정전">
+												<img src="course_img/gbg_img/40min/Geunjeongjeon.png" alt="근정전">
 											</div>
 											<div class="txt_wrap">근정전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3372" alt="사정전">
+												<img src="course_img/gbg_img/40min/Sajeongjeon.png" alt="사정전">
 											</div>
 											<div class="txt_wrap">사정전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3373" alt="수정전">
+												<img src="course_img/gbg_img/40min/Sujeongjeon.png" alt="수정전">
 											</div>
 											<div class="txt_wrap">수정전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3374" alt="경회루">
+												<img src="course_img/gbg_img/40min/Gyeonghoeru.png" alt="경회루">
 											</div>
 											<div class="txt_wrap">경회루</div>
 										</div>
@@ -802,55 +958,55 @@
 								<div class="swiper-wrapper" id="swiper-wrapper-9fb21bb2585d148a" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3402" alt="흥례문">
+												<img src="course_img/gbg_img/60min/Heungnyemun.png" alt="흥례문">
 											</div>
 											<div class="txt_wrap">흥례문</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3383" alt="영제교">
+												<img src="course_img/gbg_img/60min/Yeongjegyo.png" alt="영제교">
 											</div>
 											<div class="txt_wrap">영제교</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3384" alt="근정전">
+												<img src="course_img/gbg_img/60min/Geunjeongjeon.png" alt="근정전">
 											</div>
 											<div class="txt_wrap">근정전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3385" alt="수정전">
+												<img src="course_img/gbg_img/60min/Sujeongjeon.png" alt="수정전">
 											</div>
 											<div class="txt_wrap">수정전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3386" alt="교태전">
+												<img src="course_img/gbg_img/60min/Gyotaejeon.png" alt="교태전">
 											</div>
 											<div class="txt_wrap">교태전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3387" alt="강녕전">
+												<img src="course_img/gbg_img/60min/Gangnyeongjeon.png" alt="강녕전">
 											</div>
 											<div class="txt_wrap">강녕전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3388" alt="사정전">
+												<img src="course_img/gbg_img/60min/Sajeongjeon.png" alt="사정전">
 											</div>
 											<div class="txt_wrap">사정전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3389" alt="경회루">
+												<img src="course_img/gbg_img/60min/Gyeonghoeru.png" alt="경회루">
 											</div>
 											<div class="txt_wrap">경회루</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3390" alt="자경전">
+												<img src="course_img/gbg_img/60min/Jagyeongjeon.png" alt="자경전">
 											</div>
 											<div class="txt_wrap">자경전</div>
 										</div>
@@ -862,72 +1018,175 @@
 								<div class="swiper-wrapper" id="swiper-wrapper-79ca49fd16ebf06e" aria-live="polite" style="transition-duration: 0ms; transition-delay: 0ms;">
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3403" alt="흥례문">
+												<img src="course_img/gbg_img/90min/Heungnyemun.png" alt="흥례문">
 											</div>
 											<div class="txt_wrap">흥례문</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3404" alt="영제교">
+												<img src="course_img/gbg_img/90min/Yeongjegyo.png" alt="영제교">
 											</div>
 											<div class="txt_wrap">영제교</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3405" alt="근정전">
+												<img src="course_img/gbg_img/90min/Geunjeongjeon.png" alt="근정전">
 											</div>
 											<div class="txt_wrap">근정전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3406" alt="수정전">
+												<img src="course_img/gbg_img/90min/Sujeongjeon.png" alt="수정전">
 											</div>
 											<div class="txt_wrap">수정전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3407" alt="경회루">
+												<img src="course_img/gbg_img/90min/Gyeonghoeru.png" alt="경회루">
 											</div>
 											<div class="txt_wrap">경회루</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3408" alt="사정전">
+												<img src="course_img/gbg_img/90min/Sajeongjeon.png" alt="사정전">
 											</div>
 											<div class="txt_wrap">사정전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3409" alt="강녕전">
+												<img src="course_img/gbg_img/90min/Gangnyeongjeon.png" alt="강녕전">
 											</div>
 											<div class="txt_wrap">강녕전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3410" alt="교태전">
+												<img src="course_img/gbg_img/90min/Gyotaejeon.png" alt="교태전">
 											</div>
 											<div class="txt_wrap">교태전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3411" alt="자경전">
+												<img src="course_img/gbg_img/90min/Jagyeongjeon.png" alt="자경전">
 											</div>
 											<div class="txt_wrap">자경전</div>
 										</div>
 									<div class="swiper-slide">
 											<div class="img_wrap">
-												<img src="/afile/preview/3412" alt="향원정">
+												<img src="course_img/gbg_img/90min/Hyangwonjeong.png" alt="향원정">
 											</div>
 											<div class="txt_wrap">향원정</div>
 										</div>
 									</div>
 							<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
 						</div>
-					<a href="#" class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-79ca49fd16ebf06e" aria-disabled="false"><span class="sr_only">슬라이드 이전</span></a>
-				<a href="#" class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-79ca49fd16ebf06e" aria-disabled="false"><span class="sr_only">슬라이드 다음</span></a>
 			</div>
 		</div>
 	</div>
 </div>
 
-</html>
+
+</article>
+    </div> <!-- .container 닫는 태그 -->
+
+
+<%-- 해당 JSP 파일의 콘텐츠 초기화 JavaScript --%>
+<script type="text/javascript">
+// Fetch 후 main-content에 HTML이 삽입된 뒤 이 스크립트가 실행됩니다.
+// 변수 선언 시 'var'를 사용하여 재선언 오류 방지
+console.log('--- Script block inside fetched course_gbg.jsp is running ---');
+
+// Fetch된 콘텐츠 내의 탭 기능 재초기화
+// 'var' 사용
+var fetchedTabLinks = document.querySelectorAll('#main-content .course_num_list .course_num_item'); // #main-content 내에서 찾기
+var fetchedTabContents = document.querySelectorAll('#main-content #photoDiv .tab_con'); // #main-content 내에서 찾기
+
+fetchedTabLinks.forEach(function(link) {
+     link.addEventListener('click', function(event) {
+          event.preventDefault();
+          var targetTab = this.getAttribute('data-tab'); // 'var' 사용
+
+          fetchedTabLinks.forEach(item => item.classList.remove('current'));
+          this.classList.add('current');
+
+          fetchedTabContents.forEach(content => content.classList.remove('current'));
+
+          var activeContent = document.querySelector('#main-content #photoDiv .tab_con.' + targetTab); // 'var' 사용
+          if (activeContent) {
+              activeContent.classList.add('current');
+              // 탭 전환 후 해당 탭 안에 있는 Swiper를 업데이트하거나 초기화
+               var swiperElInTab = activeContent.querySelector('.course_pop_slide'); // 'var' 사용
+               if (swiperElInTab) {
+                    if (typeof swipers !== 'undefined') { // 메인 스크립트의 swipers 객체가 전역에 있는지 확인
+                         if (swipers[swiperElInTab.id]) {
+                            swipers[swiperElInTab.id].update();
+                            swipers[swiperElInTab.id].slideTo(0, 0);
+                        } else if (!swiperElInTab.swiper) { // 인스턴스가 없다면 초기화
+                            console.log('Initializing Swiper in newly active tab (fetched JSP):', swiperElInTab.id);
+                            try {
+                                var newSwiper = new Swiper('#' + swiperElInTab.id, { // 'var' 사용
+                                   direction: 'horizontal', loop: false,
+                                   navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                                   slidesPerView: 'auto', spaceBetween: 15, observer: true, observeParents: true,
+                                 });
+                                 swipers[swiperElInTab.id] = newSwiper; // 메인 스크립트의 swipers 객체에 추가
+                                 newSwiper.update();
+                            } catch (e) { console.error('Error initializing Swiper (fetched JSP):', swiperElInTab.id, e); }
+                        } else if (swiperElInTab.swiper) { // 요소 자체에 인스턴스가 있다면
+                             swiperElInTab.swiper.update();
+                             swiperElInTab.swiper.slideTo(0, 0);
+                        }
+                    } else if (swiperElInTab.swiper) { // swipers 객체가 없다면 요소 자체의 인스턴스 사용
+                         swiperElInTab.swiper.update();
+                         swiperElInTab.swiper.slideTo(0, 0);
+                    } else {
+                         console.log('Swiper found but not initialized and swipers object not available:', swiperElInTab.id);
+                    }
+               }
+          }
+     });
+});
+
+// Fetch된 콘텐츠 내의 Swiper 슬라이드들을 찾아서 다시 초기화 또는 업데이트합니다.
+// 'var' 사용
+var newlyAddedSwipers = document.querySelectorAll('#main-content .swiper.course_pop_slide'); // #main-content 내에서 찾음
+newlyAddedSwipers.forEach(swiperEl => {
+     if (swiperEl) {
+         // 이미 초기화되었거나 swipers 객체에 있다면 건너뜁니다.
+         if (swiperEl.swiper || (typeof swipers !== 'undefined' && swipers[swiperEl.id])) {
+              console.log('Swiper already initialized or in swipers object, updating:', swiperEl.id);
+               var swiperInstance = (typeof swipers !== 'undefined' && swipers[swiperEl.id]) || swiperEl.swiper; // 'var' 사용
+               if (swiperInstance) swiperInstance.update();
+               return;
+         }
+
+         // 아직 초기화되지 않았다면 초기화
+         console.log('Initializing newly added Swiper (fetched JSP):', swiperEl.id);
+          try {
+            var newSwiper = new Swiper('#' + swiperEl.id, { // 'var' 사용
+                direction: 'horizontal', loop: false,
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                slidesPerView: 'auto', spaceBetween: 15, observer: true, observeParents: true,
+            });
+             // 초기화된 Swiper 인스턴스를 메인 스크립트의 swipers 객체에 저장 (전역 접근 가능 가정)
+            if (typeof swipers !== 'undefined') {
+               swipers[swiperEl.id] = newSwiper;
+               console.log('Swiper instance stored in global swipers object.');
+            }
+            console.log('Swiper initialized (fetched JSP), updating...');
+            newSwiper.update(); // 초기화 후 반드시 update() 호출
+         } catch (e) { console.error('Error initializing Swiper (fetched JSP):', swiperEl.id, e); }
+     }
+});
+
+// Panzoom 재초기화는 메인 스크립트의 Fetch 성공 핸들러에서 처리하도록 변경했으므로,
+// 이 Fetch된 JSP 스크립트에서는 해당 코드를 제거합니다.
+
+
+// 코스 링크 클릭 이벤트는 메인 페이지의 이벤트 위임으로 처리하므로 여기서 다시 연결하지 않습니다.
+// 팝업 열기/닫기, 팝업 내부 탭 전환도 메인 페이지의 전역 함수를 사용합니다.
+
+
+console.log('--- Script block inside fetched course_gbg.jsp finished ---');
+</script>
+
+

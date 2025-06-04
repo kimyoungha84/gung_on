@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+
+h1{
+	margin-left: 70px;
+}
+
+ 
+.entireTable{
+	border:solid 1px #EBEBEB;
+	margin-left: auto;
+	margin-right: auto;
+	
+	font-size: 25px;
+	
+	border-spacing: 20px;
+	padding:20px;
+}
+.phoneNum{
+	
+	float: right;
+} 
+
+.entireWrap{
+	width:600px;
+	height:700px;
+
+	border: solid 1px #333;
+	
+
+}
+
+.explain{
+	font-size: 20px;
+	
+	
+	margin:20px;
+	margin-left: 150px;
+	
+}
+
+.btn-group{
+	display:flex;
+    justify-content: center;
+}
+
+.btn{
+	width : 150px;
+	height : 50px;
+	font-size: 20px;
+	text-align: center;
+	border:none;
+}
+
+.yesBtn{
+	background-color: #FF4D4D;
+	color:#FFFFFF;
+	
+}
+
+/* 대인 1,2,3 ... 전화번호 */
+.authenPhoneNum{
+    /* display: inline-block; */
+}
+
+.authenPhoneNum .phoneNumInput{
+    width:150px;
+    height: 25px;
+
+    margin-left: 10px;
+    margin-bottom: 7px;
+}
+
+.authenPhoneNum .classificationPerson{
+    margin-left:15px;
+    
+}
+
+
+/* 버튼 */
+.authenPhoneNum .authenBtn{
+    margin-left: 10px;
+    border-radius: 8px;
+    
+}

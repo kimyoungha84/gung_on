@@ -1,3 +1,4 @@
+<%@page import="kr.co.gungon.file.FilePathService"%>
 <%@ page import="java.net.URLDecoder" %>
 <%@ page import="kr.co.gungon.program.ProgramDAO" %>
 <%@ page import="kr.co.gungon.program.ProgramDTO" %>
@@ -65,9 +66,6 @@
       <div class="menu_item <%= request.getRequestURI().endsWith("programAll.jsp") ? "active" : "" %>">
         <a href="<%= request.getContextPath() %>/program/programAll/programAll.jsp">행사 모아보기</a>
       </div>
-      <div class="menu_item <%= request.getRequestURI().endsWith("programSelect.jsp") ? "active" : "" %>">
-        <a href="<%= request.getContextPath() %>/program/programSelect/programSelect.jsp">예약조회 / 취소</a>
-      </div>
     </div>
   </div>
 
@@ -86,13 +84,19 @@
     DecimalFormat formatter = new DecimalFormat("#,###");
     String openTimeStr = dto.getOpenTime().toLocalDateTime().toLocalTime().toString().substring(0, 5);
     String closeTimeStr = dto.getCloseTime().toLocalDateTime().toLocalTime().toString().substring(0, 5);
-    String imgPath = request.getContextPath() + "/program/images/" + dto.getProgImgName();
+    
+    FilePathService fps = new FilePathService();
+    
+    String imgFullPath = fps.getImageFullPath("program", String.valueOf(dto.getProgramId()));
+    if (imgFullPath == null) {
+        imgFullPath = request.getContextPath() + "/images/no-image.png";
+    }
 %>
 <div class="program-detail-box">
   <h4>[<%= dto.getProgramPlace() %>] <%= dto.getProgramName() %></h4>
 
   <div class="centered-container">
-    <img src="<%= imgPath %>" alt="<%= dto.getProgImgName() %> 행사 이미지" class="program-detail-img" />
+    <img src="<%= imgFullPath %>" alt="<%= dto.getProgramName() %> 행사 이미지" class="program-detail-img" />
   </div>
 
   <p>행사기간 : <%= sdf.format(dto.getStartDate()) %> ~ <%= sdf.format(dto.getEndDate()) %></p>
@@ -107,7 +111,7 @@
       한국어
     <% } else if ("en".equals(dto.getLanguageKorean())) { %>
       영어
-    <% } else if ("no".equals(dto.getLanguageKorean())) { %>
+    <% } else { %>
       없음
     <% } %>
   </p><br>
