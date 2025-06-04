@@ -27,7 +27,7 @@ public class SendMessage {
 			
 		}//end if~else
 		
-	
+	/*
 		try {
 		  // send 메소드로 ArrayList<Message> 객체를 넣어도 동작합니다!
 			//messageService.send(message);
@@ -40,7 +40,7 @@ public class SendMessage {
 		  System.out.println(ex.getMessage());
 		}//end try~catch
 		
-		
+		*/
 	}//makeMessage
 	
 }//class

@@ -12,12 +12,12 @@ $(function(){
 		var param="phoneNum="+$("#authenPhoneNum").val();
 		
 		$.ajax({
-			url:"http://localhost/GungRemake333/ticket/ticketProcess/authen_process.jsp",
+			url:"http://localhost/Gung_On/ticket/ticketProcess/authen_process.jsp",
 			type:"post",
 			data: param,
 			
 			dataType:"html",
-			error : function(){
+			error : function(xhr){
 				console.log(xhr.status+" / "+xhr.statusText);
 			},
 			success: function(data){
@@ -46,12 +46,12 @@ $(function(){
 		
 		
 		$.ajax({
-			url:"http://localhost/GungRemake333/ticket/ticketProcess/authenCheck_process.jsp",
+			url:"http://localhost/Gung_On/ticket/ticketProcess/authenCheck_process.jsp",
 			type:"post",
 			data: param,
 			
 			dataType:"html",
-			error : function(){
+			error : function(xhr){
 				console.log(xhr.status+" / "+xhr.statusText);
 			},
 			success: function(data){
@@ -103,7 +103,7 @@ $(function(){
 	
 	/*취소버튼 클릭*/
 	$("#cancleCalc").click(function(){
-		window.location.href="http://localhost/GungRemake333/ticket/ticket_frm.jsp";
+		window.location.href="http://localhost/Gung_On/ticket/ticket_frm.jsp";
 	});//click
 	
 });//ready
