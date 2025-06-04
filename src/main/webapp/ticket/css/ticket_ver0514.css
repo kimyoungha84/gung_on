@@ -1,0 +1,380 @@
+@charset "UTF-8";
+
+/* #floatMenu {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	left: 50px;
+	top: 250px;
+	background-color: #606060;
+	color: #fff;
+} */
+
+
+.wrap {
+	/* background-color: rgb(151, 151, 151); */ 
+	height: 5000px;
+	width: 1200px;
+
+ 	/* border:solid 3px #FF0000;  */
+	
+	margin-left: auto;
+	margin-right: auto;
+	/*  overflow:auto */
+	/* margin-top: 500px; */
+	}
+	
+.left {
+	float: left;
+	width: 810px;
+	top: 100px;
+	position:static;
+
+	 /*border:solid 1px #DDDDDD; */
+	/* background-color:yellowgreen; */
+	padding-left: 10px;
+}
+
+.slick-list .slick-track{
+	width : 500px;
+}
+
+.right {
+	float:right;
+	width: 380px;
+	/* height: 500px; */
+	margin-left:826px;
+	position: fixed;
+	top: 110px;
+	/*border:solid 1px #00FF00;*/
+	/* background-color: blueviolet; */
+	z-index:6;
+}
+
+
+.title{
+	font-size : 50px;
+	font-weight : bold;
+	margin-top:50px;
+	/* margin-left: 250px; */
+}
+
+.wrap .left .explain_ticket li{
+	/* background:url("http://localhost/gungProject/ticket/images/bg_bullet.png"); */
+	/* background:url("http://localhost/gungProject/ticket/images/bg_bullet.png") no-repeat left 6px;
+	padding-left:10px;
+	font-size:12px;
+	line-height:1.2;
+ */
+
+
+	font-size:15px;
+	color:#555;
+	font-family:NanumGothic;
+	line-height:1.4;
+	margin:0 0 10px 0;
+	background:url("http://localhost/gungProject/ticket/images/bg_bullet.png") no-repeat left 8px;
+	padding-left:10px;
+
+	
+	
+}
+.wrap .left .explain_ticket ul{
+	list-style:none;
+	-webkit-padding-start:0px;
+}
+
+.subTitle{
+	font-size: 30px;
+	font-weight: bold;
+	/* margin-left: 20px; */
+
+}
+.import_red{
+	color: #FF0000;
+	font-weight:bold;
+}
+
+
+table,th,td{
+	border:1px solid black;
+	border-collapse:collapse;
+}
+
+	
+.wrap .right .ticket_box{
+/* 	position:relative; */
+	border-style: solid;
+	border-width: 1px;
+	border-color: #DDDDDD;
+
+	/* border-radius: 5%; */
+	margin-top: 120px;
+	padding-top:20px;
+	
+	/* overflow : auto;  *//*자식 div 모두 감싸기  */
+
+/* 	
+	padding-left: 15px;
+	padding-top:15px;
+	padding-right: 15px; */
+}
+
+
+.wrap .right .ticket_box span{
+	margin-left: 10px;
+	font-size:18px;
+	font-weight: bold;
+}
+
+/* select 칸 이미지 */
+.selectDesign{
+	position:relative;
+	border-style: solid; 
+	border-width: 1px; 
+	border-color: black; 
+
+	width: 330px;
+	height:40px;
+
+	margin-left: 27px;
+	top:8px;
+	
+	cursor : pointer;
+}
+
+.personWrap{
+	position:relative;
+}
+
+.selectDesign .ex{
+	position: absolute;
+	margin-top: 7px;
+}
+
+.ex{
+	color:#757575;
+}
+
+.selectDesign .arrow{
+	position: absolute;
+	margin-left: 300px;
+	margin-top: 13px;
+}
+
+/* /* 관람일자, 인원, 해설관람 text 위치 */
+.selectedValue{
+	position:absolute;
+
+	margin-top: 10.5px;
+	margin-left:10px;
+} 
+
+/* 달력 이미지....어쩌구 */
+.viewTitle{
+	margin-left: 27px;
+	/* z-index:-1; */
+}
+
+
+.viewPersonNum{
+	z-index:5;	
+} 
+
+.priceView{
+	color:#FF4D4D;
+	font-weight: bold;
+	font-family: NanumGothic;
+	font-size:47px;
+	float:right;
+	margin-right: 23px;
+	margin-bottom: 40px;
+	text-align:right;
+	
+	
+	width:330px;
+	background-color: transparent;
+	
+	
+	
+}
+
+.reserveBtn{
+	/* position:absolute; */
+	display:block;
+	width:380px;
+	height:70px;
+
+	margin-top:80px;
+	border:none;
+	background-color: #FF4D4D;
+	color: whitesmoke;
+
+	
+	cursor:pointer;
+	
+	text-decoration: none;
+	
+	text-align: center;
+	align-content: center;
+}
+
+.reserveBtnFont{
+	font-size:30px;	
+}
+
+
+.classificationWrap{
+	/* position:fixed; */
+	position:absolute;
+    width:330px;
+    border: solid #333 1px;
+    background-color : #FFFFFF;
+    margin-left: 27px;
+    margin-top: 13px;
+    height:360px;
+    z-index:20;
+    
+}
+
+ .classificationWrap table{
+    width:330px;
+   
+    text-align: center;
+    width:100%;
+    
+}
+
+.classificationWrap td{
+    height:90px;
+}
+
+.classificationWrap table, .classificationWrap tr, .classificationWrap td{
+    margin-top:30px;
+    border : solid 1px #333;
+    border:none;
+} 
+
+.classifiationTable{
+    display:flex;
+    justify-content: center;
+    
+}
+
+/* 예매 인원수 */
+.person{
+    /* width:44px; */
+    height:10px;
+    border : solid 1.5px #333;
+    
+    font-size: 15px;
+    padding:2px;
+}
+
+.ticketCost{
+   	border:none;
+   
+    color:#FF4D4D;
+   
+   	
+    width:65px;
+    font-size: 18px;
+    padding:5px;
+   
+}
+.ticketCost:focus, .priceView:focus{
+	outline:none;
+}
+
+.langGroupWrap{
+	position : relative;
+}
+
+.langWrap{
+	position:absolute;
+	width:330px;
+	margin-left: 27px;
+	margin-top :  13px;
+	
+	border:1px #333 solid;
+}
+
+.langWrap .lang{
+	border : 1px solid #333;
+	font-size: 17px;
+	background-color: #ffffff;
+	padding:10px;
+	
+}
+
+.lang:hover{
+	background-color: #CCCCCC;
+}
+
+.minusImg:active, .plusImg:active{
+/* 	background-color: #f1f3f5; */
+	background-color: #CCCCCC;
+}
+
+.annoyWrap{
+	position:relative;
+}
+.chooseBtnWrap{
+	position:absolute;
+	margin-top: 68px;
+}
+.chooseBtn{
+	background-color:#FF4D4D; 
+	border: none; 
+	color:#FFFFFF; 
+	width: 120px; 
+	height:40px; 
+	/* margin-top: 30px;  */
+	margin-left: 100px; 
+	font-size: 25px; 
+	text-align: center;
+	/* margin-bottom: 30px; */
+	
+	/* position:fixed;  */
+	
+	
+}
+
+.chooseBtn:active, .reserveBtn:active{
+	background-color:#990000;
+}
+/* 
+.datepicker{
+	display:block; 
+	position:absolute; 
+	z-index:6;
+	margin-left: 27px;
+	padding : 10px;
+	margin-top:13px;
+	width:330px;
+}
+
+ */
+.calcValue{
+	position:relative;
+	/* float : right; */
+	
+	font-size:35px; 
+	float:right; 
+	margin-right: 30px; 
+	color:#FF4D4D; 
+	/* border:1px solid #333; */
+}
+
+#datepicker{
+	margin-left:-10px;
+	width:310px;
+	margin-top: -3px;
+	font-size: 20px;
+	border : none; 
+	background-color:transparent;
+	padding : 2px;
+	margin-left : 3px;
+	
+	
+}

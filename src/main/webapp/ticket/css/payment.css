@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+.entireWrap{
+    width:1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top : 13px;
+
+    /* border: 1px solid #333; */
+}
+
+.entireWrap .ticketInfoTable{
+    margin-left: auto;
+    margin-right: auto;
+    width:1100px;
+
+    
+}
+ 
+table{
+	margin-left: auto;
+	margin-right: auto;
+	
+	width:1100px;
+}
+
+.caution{
+    color:#FF0000;
+}
+
+
+
+.titleText{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 300px;
+}
+
+.money, .cancel{
+	width: 180px;
+	height : 50px;
+	
+	font-size:20px;
+	border: none;
+	
+}
+
+.money{
+	margin-left: 320px;
+	background-color: #FF4D4D;
+	color:#FFFFFF;
+}
+
+.money:active, .cancel:active {
+	background-color: #CCCCCC;	
+}
+
+.cancel{
+	margin-left: 200px;
+}
+
+
+.infoText{
+	margin-left: 288px;
+	margin-top:20px;
+	margin-bottom: 80px;
+}
+
+th, td{
+    vertical-align: middle;
+}
+
+
+
+.infoText ul li{
+    list-style-type: none;
+}
+
+
+.myTicketInfo{
+	position:relative;
+	font-size:60px;
+	font-weight: bold;
+	
+	margin-top:40px;
+	margin-bottom: 80px;
+}
+
+.authDesign{
+	float:left;
+}
+
+#completAuthen{
+	color:#ff0000;
+}
