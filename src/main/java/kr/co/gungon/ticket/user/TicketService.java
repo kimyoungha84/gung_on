@@ -26,6 +26,7 @@ public class TicketService {
 	/* 예약 추가 */
 	public void addReservationValue(TicketDTO tDTO) {
 		TicketDAO tDAO = TicketDAO.getInstance();
+		System.out.println("addReservationValue============="+tDTO.getCompanies().size());
 
 		try {
 			tDAO.insertReservationValue(tDTO);
@@ -381,6 +382,10 @@ public class TicketService {
 				tDTO.setCompanies(list);
 				
 			}//end if
+			
+			
+			
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

@@ -8,6 +8,23 @@ import java.sql.SQLException;
 import kr.co.gungon.config.DbConnection;
 
 public class AdminTicketDAO {
+	private static AdminTicketDAO atDAO;
+	
+	private AdminTicketDAO() {
+		
+	}//AdminTicketDAO
+	
+	
+	public static AdminTicketDAO getInstance() {
+		if(atDAO==null) {
+			atDAO=new AdminTicketDAO(); 
+		}//end if
+		
+		return atDAO;
+	}//getInstance
+	
+	
+	
 
 	 public void updateEntryStatus(String imgHash) throws SQLException {
 		  DbConnection db=DbConnection.getInstance();
@@ -36,7 +53,7 @@ public class AdminTicketDAO {
 		
 			  
 			  //6.쿼리문 수행 후 결과를 얻기 
-			  rs=pstmt.executeQuery();//아마 결과가 boolean으로 나올 텐테... 이걸받을까 말까
+			  rs=pstmt.executeQuery();
 		  
 		  }finally { 
 			  //7.연결 끊기 

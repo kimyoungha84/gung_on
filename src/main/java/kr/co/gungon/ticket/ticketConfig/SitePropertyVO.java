@@ -47,7 +47,7 @@ public class SitePropertyVO {
 		QRStorePath="http://192.168.10.71/Gung_On/ticket/ticketProcess/qr_process.jsp";
 		
 		//내부 컴퓨터의 저장 경로
-		uploadQRPathInCom="C:/GungRemake333/src/main/webapp/ticket/QR/";
+		uploadQRPathInCom="/Gung_On/common/images/upload/QR/";
 		
 		
 		
