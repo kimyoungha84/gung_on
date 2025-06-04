@@ -5,9 +5,9 @@
 
 <%
 
-    String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:orcl";
-    String dbUser = "scott";
-    String dbPass = "2222";
+    String jdbcUrl = "jdbc:oracle:thin:@192.168.10.72:1521:orcl";
+    String dbUser = "admin";
+    String dbPass = "tiger";
 
     int reqYear = request.getParameter("year") != null ? Integer.parseInt(request.getParameter("year")) : Calendar.getInstance().get(Calendar.YEAR);
     int reqMonth = request.getParameter("month") != null ? Integer.parseInt(request.getParameter("month")) : Calendar.getInstance().get(Calendar.MONTH) + 1;

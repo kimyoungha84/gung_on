@@ -15,7 +15,7 @@ public class FilePathService {
         try {
             FilePathDTO dto = fpDAO.selectImagePath(targerType, targerNumber);
             if (dto != null) {
-                return dto.getPath() + "/" + dto.getImgName(); // 전체 경로 리턴
+                return dto.getPath();
             }
         } catch (Exception e) {
             e.printStackTrace(); // 실제 서비스에서는 로깅 처리
