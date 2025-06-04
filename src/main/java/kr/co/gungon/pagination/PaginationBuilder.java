@@ -37,6 +37,7 @@ public class PaginationBuilder {
 
         // 페이지 관련 계산
         this.totalPages = (int) Math.ceil((double) rowCounts / pageSize);
+        
         if (this.currentPage < 1) this.currentPage = 1; // 최소 1페이지
         if (this.currentPage > totalPages) this.currentPage = totalPages; // 최대 totalPages 페이지
 
@@ -55,7 +56,7 @@ public class PaginationBuilder {
         sb.append("<ul class='pagination'>");
 
         // 이전 페이지 링크
-        sb.append("<li class='page-item " + (currentPage == 1 ? "disabled" : "") + "'>");
+        sb.append("<li class='page-item " + (currentPage == 1 || totalPages == 0 ? "disabled" : "") + "'>");
         sb.append("<a href='" + baseUrl + "?currentPage=" + (currentPage - 1) + "' class='page-link' aria-label='Previous'>");
         sb.append("<span aria-hidden='true'>&laquo;</span>");
         sb.append("</a>");
@@ -94,7 +95,7 @@ public class PaginationBuilder {
         String extra = (extraParams == null || extraParams.isEmpty()) ? "" : "&" + extraParams;
 
         // 이전 페이지 링크
-        sb.append("<li class='page-item " + (currentPage == 1 ? "disabled" : "") + "'>");
+        sb.append("<li class='page-item " + (currentPage == 1 || totalPages == 0? "disabled" : "") + "'>");
         sb.append("<a href='" + baseUrl + "?currentPage=" + (currentPage - 1) + extra + "' class='page-link' aria-label='Previous'>");
         sb.append("<span aria-hidden='true'>&laquo;</span>");
         sb.append("</a>");

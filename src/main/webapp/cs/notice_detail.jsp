@@ -33,7 +33,7 @@ if (numStr != null && !numStr.isEmpty()) {
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>공지사항 미리보기</title>
+  <title>궁온 - 고객센터 - 공지사항 - 상세</title>
   <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/common.css" />
   <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/reset.css" />
   <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/layout.css" />
@@ -89,7 +89,6 @@ if (numStr != null && !numStr.isEmpty()) {
     <%@ include file="/common/jsp/header.jsp" %>
   </header>
 
-  <h2>궁온 - 고객센터 - 공지사항 - 상세</h2>
 
   <!-- <div class="mb-4" style="width: 700px; margin: 0 auto;"> -->
   <div class="mb-4" style="width: 1000px; margin: 150px auto 0 auto;">

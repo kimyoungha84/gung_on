@@ -10,8 +10,8 @@ import lombok.Setter;
 @Setter
 @Getter
 public class TicketDetailDTO {
-	String ageClassification, entryTime, QRHash, QRData, imgPath;
-	char EntryStatus;
+	String ageClassification, entryTime, QRHash, QRData, imgPath,EntryStatus;
+
 	int authenCount, QRCount,numClassification;
 	
 }//class

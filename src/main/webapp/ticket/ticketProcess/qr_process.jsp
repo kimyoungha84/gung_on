@@ -22,7 +22,8 @@ String imgName = request.getParameter("img");
 
 %>
 안녕하십니까아아아.Hello
-${adminNum }
+imageName=================<%=imgName %>
+
 
 
 </body>

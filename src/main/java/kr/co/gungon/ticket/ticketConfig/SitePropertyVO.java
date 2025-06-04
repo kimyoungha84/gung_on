@@ -32,7 +32,7 @@ public class SitePropertyVO {
 		gungPicturePath="http://localhost/GungRemake333/ticket/images/";
 		
 		//외부 웹서버 경로
-		gabiaPath="http://gungon.gabia.io/ticket/";
+		gabiaPath="http://gungon.gabia.io/ticket/QR/";
 		gabiaIP="211.47.74.55";
 		gabiaId="gungon";
 		gabiaPass="gungon123*";
@@ -44,7 +44,7 @@ public class SitePropertyVO {
 		coolsmsAPI2="C7VEZUMZLWOQXDQGFKU7DWU80VPPTZJP";
 		
 		//QR코드에 넣어서 만들 링크, QR 코드를 찍으면 이 링크가 나온다.
-		QRStorePath="http://192.168.10.72/Gung_On/ticket/ticketProcess/qr_process.jsp";
+		QRStorePath="http://192.168.10.71/Gung_On/ticket/ticketProcess/qr_process.jsp";
 		
 		//내부 컴퓨터의 저장 경로
 		uploadQRPathInCom="C:/GungRemake333/src/main/webapp/ticket/QR/";
