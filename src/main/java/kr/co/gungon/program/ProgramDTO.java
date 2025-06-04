@@ -28,5 +28,4 @@ public class ProgramDTO {
     private int priceChild;        // 소인 요금
     private String languageKorean; // 언어 ('선택안함', '한국어', '영어')
     private String contactPerson;  // 담당자
-    private String progImgName;    // 이미지 파일명
 }

@@ -1,4 +1,4 @@
-package kr.co.gungon.pagination;
+package kr.co.gungon.file;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,12 +8,13 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @ToString
-public class PageParam {
-	
-	private int startRow;
-	private int endRow;
-
+public class FilePathDTO {
+	private int propertyId;
+	private String path;
+	private String targerType;
+	private String targerNumber;
+	private String imgName;
 }

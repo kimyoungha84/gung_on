@@ -42,9 +42,6 @@
       <div class="menu_item <%= request.getRequestURI().endsWith("programAll.jsp") ? "active" : "" %>">
         <a href="<%= request.getContextPath() %>/program/programAll/programAll.jsp">행사 모아보기</a>
       </div>
-      <div class="menu_item <%= request.getRequestURI().endsWith("programSelect.jsp") ? "active" : "" %>">
-        <a href="<%= request.getContextPath() %>/program/programSelect/programSelect.jsp">예약조회 / 취소</a>
-      </div>
     </div>
   </div>
 
