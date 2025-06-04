@@ -99,9 +99,6 @@
     <div class="swiper-slide 경희궁">
       <a href="#;" onclick="loadEventsByPlace('경희궁');" title="경희궁">경희궁</a>
     </div>
-    <div class="swiper-slide 칠궁">
-      <a href="#;" onclick="loadEventsByPlace('칠궁');" title="칠궁">칠궁</a>
-    </div>
   </div>
 </div>
       

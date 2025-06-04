@@ -145,8 +145,8 @@ public class TicketDAO {
 				  System.out.println("여기여기 list size=="+ticketDetailList.size() );
 				  System.out.println("i ---" + i);
 				  
-				  insertQuery.append("	insert into ticket_reservation_detail (IDENTIFICATION_NUM, BOOKING_NUM, AGE_CLASSIFICATION, NUM_CLASSIFICATION ,QR_HASH, QR_COUNT)	")
-				  			.append("	values(?,?,?,?,?,?)	") ;
+				  insertQuery.append("	insert into ticket_reservation_detail (IDENTIFICATION_NUM, BOOKING_NUM, AGE_CLASSIFICATION, NUM_CLASSIFICATION ,QR_HASH, QR_COUNT, ENTRY_STATUS)	")
+				  			.append("	values(?,?,?,?,?,?,?)	") ;
 				  
 				  
 				  pstmt=con.prepareStatement(insertQuery.toString()); 
@@ -159,6 +159,7 @@ public class TicketDAO {
 				  pstmt.setInt(4, ticketDetailDto.getNumClassification());//num_classification
 				  pstmt.setString(5, ticketDetailDto.getQRHash());//QR_Hash
 				  pstmt.setInt(6, ticketDetailDto.getQRCount());//QR_Count
+				  pstmt.setObject(7, ticketDetailDto.getEntryStatus(), java.sql.Types.CHAR);//Entry_Status
 				 
 				  
 				  //6.쿼리문 수행 후 결과를 얻기 

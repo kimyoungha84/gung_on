@@ -34,13 +34,13 @@
                 imgFullPath = contextPath + "/images/no-image.png"; // 대체 이미지 경로
             }
 
-            sb.append("<div style='display:flex; margin-bottom:20px; width:500px;'>");
+            sb.append("<div class='program-item'>");
 
             sb.append("<img src='").append(imgFullPath)
-            .append("' alt='").append(dto.getProgramName()).append(" 이미지")
-            .append("' style=\"width:100px; height:auto; margin-right:20px; border-radius:8px;\">");
+              .append("' alt='").append(dto.getProgramName()).append(" 이미지")
+              .append("' class='program-image'>");
 
-            sb.append("<div style='display:flex; flex-direction: column;'>");
+            sb.append("<div class='program-info'>");
             sb.append("<strong>")
               .append("[").append(dto.getProgramPlace()).append("] ")
               .append(dto.getProgramName()).append("</strong>");
@@ -49,9 +49,9 @@
               .append(sdf.format(dto.getEndDate())).append("</span>");
             sb.append("<span>행사장소 : ").append(dto.getProgramPlace()).append("</span>");
             sb.append("<button class='detail-btn' type='button' onclick=\"location.href='")
-            .append(contextPath).append("/test/programDetail/programDetail.jsp?programName=")
-            .append(URLEncoder.encode(dto.getProgramName(), "UTF-8"))
-            .append("'\">상세보기</button>");
+              .append(contextPath).append("/program/programDetail/programDetail.jsp?programName=")
+              .append(URLEncoder.encode(dto.getProgramName(), "UTF-8"))
+              .append("'\">상세보기</button>");
             sb.append("</div></div>");
         }
 

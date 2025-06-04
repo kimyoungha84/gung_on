@@ -34,7 +34,7 @@
             }
 
             sb.append("<div class='event-card' onclick=\"location.href='")
-            .append(contextPath).append("/test/programAll/programAllDetail.jsp?programName=")
+            .append(contextPath).append("/program/programAll/programAllDetail.jsp?programName=")
             .append(URLEncoder.encode(dto.getProgramName(), "UTF-8"))
             .append("'\" style='cursor:pointer;'>");
 
