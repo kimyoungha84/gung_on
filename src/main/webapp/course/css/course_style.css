@@ -344,7 +344,6 @@ nav, ul, li {
 }
 
 .course_pop .list .item a {
-    border-radius: 23px;
     color: #949494;
     font-weight: 500;
     height: 45px;
@@ -389,7 +388,6 @@ img {
     background: #00b8f1;
     padding: 0 6px;
     font-size: 0.9rem;
-    border-radius: 3px;
     margin-left: -30px;
     line-height: 24px;
     display: inline-block;
@@ -442,7 +440,6 @@ img {
 
 .popupzone .popupzoneLst_wrap{
 	position:relative;
-	border-radius: 20px;
 	overflow: hidden;
 }
 
@@ -484,7 +481,6 @@ img {
 	background: rgba(0, 0, 0, 0.2);
 	color: #fff;
 	padding: 0 10px;
-	border-radius: 15px;
 }
 
 .popupzone .control .counter span{
@@ -676,8 +672,6 @@ button{ cursor: pointer}
 .btn{ border: none; cursor: pointer; display: inline-flex; align-items: center; text-align: center; justify-content: center}
 .btn + .btn{ margin-left: 15px}
 
-.btn_more{ width: 45px; height: 45px; border-radius: 50%; background: #000 url("/resource/templete/royal/img/common/ic_arr_w.png") no-repeat center}
-
 .arr_btn_w{ height: 50px;  padding: 0 20px; justify-content: space-between; border: solid 1px #fff; color: #fff !important; font-weight: 500}
 .arr_btn_b{ height: 50px;  padding: 0 20px; justify-content: space-between; border: solid 1px #000; color: #000 !important; font-weight: 500}
 .arr_btn_b img,
@@ -703,7 +697,6 @@ button{ cursor: pointer}
 .total .bd:before{   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 18px;
   padding: 1px;
   background:linear-gradient(to right, #D44177 0%, #0C68BE 100%); -webkit-mask:  linear-gradient(#fff 0 0) content-box,  linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
 
@@ -743,7 +736,7 @@ button{ cursor: pointer}
 .popup_header{ font-size: 1.5rem; color: #fff; padding: 0 75px 0 50px; background: #131313; height: 80px; line-height: 80px}
 .popup_body{ padding: 50px; position: relative; max-height: calc(100vh - 200px); overflow-y: auto; font-size: 0.938rem;}
 .layer_popup .btn_wrap{ padding-bottom: 90px; margin-top: 40px !important}
-.layer_popup .ic_close{ width: 80px; height: 80px; position: absolute; right: 0; top: 0; background: url("/resource/templete/royal/img/common/icon_close_w.png") no-repeat center;}
+.layer_popup .ic_close{ width: 80px; height: 80px; position: absolute; right: 0; top: 0;}
 .layer_popup .table_item .con{ color: #131313 !important; justify-content: center}
 
 .layer_popup.layer_message{ width: 700px; max-width: calc(100% - 30px); text-align: center}
@@ -758,7 +751,6 @@ button{ cursor: pointer}
 .layer_popup.layer_message .pop_btn_wrap .btn + .btn{ margin-left: 0}
 .layer_popup.layer_message .ic_close{ filter: brightness(0)}
 
-.layer_popup.pop_type02{ border-radius: 16px}
 .layer_popup.pop_type02 .ic_close{ width: 50px; height: 50px; background-size: 32px; right: 0; top: -50px}
 
 .layer_popup.pop_course{ width: 1200px;}
@@ -779,7 +771,7 @@ button{ cursor: pointer}
 .pop_table th{ background: rgba(255,255,255,0.05)}
 .pop_table th,
 .pop_table td{ height: 60px; color: #eee; font-size: 1.125rem; text-align: center; vertical-align: middle; padding: 5px; font-weight: 400}
-.pop_table td .img_wrap{ width: 100px; height: 100px; border: solid 1px #aeaeae; display: inline-flex; align-items: center; justify-content: center; background: url("/resource/templete/royal/img/common/no_img.png") no-repeat center / cover; margin: auto}
+.pop_table td .img_wrap{ width: 100px; height: 100px; border: solid 1px #aeaeae; display: inline-flex; align-items: center; justify-content: center;  margin: auto}
 .pop_table td .img_wrap img{ max-width: 100%; max-height: 100%}
 .pop_table .m_num{ display: none}
 
@@ -840,7 +832,7 @@ select
 .table_item .con{ width: 100%; padding: 10px 20px; min-height: 100px; display: flex; flex-wrap: wrap; align-items: center; align-content: center; background: rgba(255,255,255,0.3); color: var(--color-tit); position: relative;}
 .table_item .con .numSignWrap{ width: 100%; position: relative;}
 .table_item .con .numSign{ width: 100%}
-.table_item .con .numSignBtn{ width: 25px; height: 25px; position: absolute; right: 0; top: 0; background: url("/resource/templete/manpa/img/common/icon_arr_r.png") no-repeat center; transform: rotate(90deg); transition: rotate 0.5s; display: none;}
+.table_item .con .numSignBtn{ width: 25px; height: 25px; position: absolute; right: 0; top: 0; transform: rotate(90deg); transition: rotate 0.5s; display: none;}
 .table_item .con .numSign + .numSignBtn{ display: block;}
 .table_item .con .numSign:not(#numSign0){ display: none;}
 .table_item .con.open .numSign:not(#numSign0){ display: block;}
@@ -898,7 +890,7 @@ select
 .paging:after{display: block;content: "";clear: both;}
 .paging a{display: block;vertical-align: top;margin-right: 5px;}
 .paging .btn_first, .paging .btn_prev, .paging .btn_next, .paging .btn_last{position: relative;width: 36px;height: 36px;border: 1px solid #a6a6a6; background: #fff}
-.paging .btn_first:after, .paging .btn_prev:after, .paging .btn_next:after, .paging .btn_last:after{display: block;content: "";position: absolute;left: 0;top: 0;width: 36px;height: 36px;background: url(/resource/templete/royal/img/common/arr_paging.png) no-repeat;}
+.paging .btn_first:after, .paging .btn_prev:after, .paging .btn_next:after, .paging .btn_last:after{display: block;content: "";position: absolute;left: 0;top: 0;width: 36px;height: 36px;}
 .paging .btn_last{margin-right: 0;}
 .paging .btn_first:after{background-position: 0 0;}
 .paging .btn_prev:after{background-position: -36px 0;}
@@ -915,14 +907,12 @@ select
 .trigger_wrap{ position: relative}
 .trigger_wrap .trigger_toggle{ display: none}
 .trigger_wrap.open .trigger_toggle{ display: block}
-/*.trigger_close{ position: absolute; right: 15px; top: 15px; width: 30px; height: 30px; background: #282629 url("/resource/templete/royal/img/common/icon_close_w.png") no-repeat center / 60% auto; z-index: 101; border-radius: 5px; opacity: 0.5}*/
 .trigger_close {
 	position: absolute;
 	right: -400px;
 	top: 105px;
 	width: 30px;
 	height: 30px;
-	background: #282629 url("/resource/templete/royal/img/common/icon_close_w.png") no-repeat center / 60% auto;
 	z-index: 101;
 	border-radius: 5px;
 	opacity: 0.5
@@ -945,12 +935,12 @@ select
 /* [S] search input wrap*/
 .search_input_wrap input::placeholder{ font-size: 1.125rem}
 .search_input_wrap{ position: relative; max-width: 800px; margin: 0 auto; display: flex; align-items: center; border: solid 1px #000 !important; background: #fff}
-.search_input_wrap select{ flex-shrink: 0; height: 60px; background: transparent url("/resource/templete/royal/img/common/arrow_down.png") no-repeat right 10px center / 12px auto; padding: 0 20px; min-width: 150px; color: #131313}
+.search_input_wrap select{ flex-shrink: 0; height: 60px;  padding: 0 20px; min-width: 150px; color: #131313}
 .search_input_wrap select option{ color: #131313}
 .search_input_wrap form{ width: 100%; position: relative}
 .search_input_wrap input[type="text"]{ width: 100%; height: 60px !important;display: block; font-size: 1.125rem;border: none !important; background: none; padding: 0 135px 0 15px}
-.search_input_wrap .lang_btn{ width: 60px; height: 60px; display: inline-block;position: absolute; right: 60px;top: 0;background: url("/resource/templete/royal/img/common/ic_lang.png") no-repeat center}
-.search_input_wrap .search_btn{ width: 60px; height: 60px; display: inline-block;position: absolute; right: 0;top: 0;background: #000 url("/resource/templete/royal/img/common/ic_search_w.png") no-repeat center / 50% auto;}
+.search_input_wrap .lang_btn{ width: 60px; height: 60px; display: inline-block;position: absolute; right: 60px;top: 0;}
+.search_input_wrap .search_btn{ width: 60px; height: 60px; display: inline-block;position: absolute; right: 0;top: 0;}
 .autocomplete_layer{ position: absolute; left: 0; top: 61px; width: calc(100% - 60px); border: solid 1px #DDDDDD; border-top: none}
 .autocomplete_layer .result_list{ padding: 20px 0; background: #fff}
 .autocomplete_layer .result_item{ height: 35px; line-height: 35px;}
@@ -1106,8 +1096,6 @@ html .ui-button.ui-state-disabled:active{ text-align: center; border: none; back
 .datepicker{ width: 100%; min-height: 345px;}
 .datepicker *{ font-family:'notosans', sans-serif !important;}
 .ui-datepicker .ui-datepicker-header{ background: transparent; border: none; margin-bottom: 20px; color: #131313}
-.ui-datepicker .ui-datepicker-prev{ background: url("/resource/templete/royal/img/common/arr_c_prev.png") no-repeat center; cursor: pointer}
-.ui-datepicker .ui-datepicker-next{ background: url("/resource/templete/royal/img/common/arr_c_next.png") no-repeat center; cursor: pointer}
 .ui-datepicker .ui-datepicker-prev span,
 .ui-datepicker .ui-datepicker-next span{background-image: none;}
 .ui-widget.ui-widget-content{ border: none; width: 100%}
@@ -1286,7 +1274,6 @@ a {
 .header_wrap .header_left .sitemap {
 	width: 100%;
 	height: 80px;
-	background: #131313 url("/resource/templete/royal/img/common/ic_sitemap_w.png") no-repeat center / 33.75% auto;
 	display: block;
 	border-bottom: solid 1px #f7f7f7
 }
@@ -1295,7 +1282,6 @@ a {
 .header_wrap .header_left .hd_search {
 	width: 100%;
 	height: 80px;
-	background: #131313 url("/resource/templete/royal/img/common/ic_search_w.png") no-repeat center / 33.75% auto;
 	display: block
 }
 
@@ -1474,13 +1460,6 @@ a {
 	font-weight: 600;
 }
 
-.header_wrap .gnb .menu-gnb-depth2__item.has_depth3 .depth2__a {
-	background: url("/resource/templete/royal/img/common/ic_down1.svg") no-repeat right 13px center / 12px;
-}
-
-.header_wrap .gnb .menu-gnb-depth2__item.open .depth2__a {
-	background-image: url("/resource/templete/royal/img/common/ic_up1.svg");
-}
 
 .header_wrap .gnb .menu-gnb-depth3 {
 	width: 100%;
@@ -1535,7 +1514,6 @@ a {
 	content: "";
 	width: 8px;
 	height: 4px;
-	background: url("/resource/templete/royal/img/common/arrow_down.png") no-repeat center / 100% auto;
 	opacity: 0.8
 }
 
@@ -1561,9 +1539,6 @@ a {
 	border-radius: 15px 15px 0 0
 }
 
-.header_wrap .hd_lang_wrap.open .hd_lang:after {
-	background: url("/resource/templete/royal/img/common/arrow_up.png") no-repeat center / 100% auto;
-}
 
 .header_wrap .hd_search_wrap.open:before {
 	content: "";
@@ -1611,17 +1586,6 @@ a {
 	background-color: #fff
 }
 
-.header_left .sns_list .sns_item .sns01 {
-	background-image: url("/resource/templete/royal/img/common/facebook.png")
-}
-
-.header_left .sns_list .sns_item .sns02 {
-	background-image: url("/resource/templete/royal/img/common/insta.png")
-}
-
-.header_left .sns_list .sns_item .sns03 {
-	background-image: url("/resource/templete/royal/img/common/twitter.png")
-}
 
 .header_left .sns_list .sns_item .trigger_toggle {
 	width: auto;
@@ -1652,10 +1616,6 @@ a {
 	border-radius: 10px
 }
 
-.header_left .sns_list .sns_item .trigger_toggle .trigger_close:hover,
-.header_left .sns_list .sns_item .trigger_toggle .trigger_close:focus {
-	background-image: url("/resource/templete/royal/img/common/ic_close_sns.png")
-}
 
 .header_left .sns_list .sns_item .trigger_toggle .sns_link_list {
 	display: inline-flex;
@@ -1802,12 +1762,8 @@ a {
 	display: block;
 	line-height: 70px;
 	padding-right: 30px;
-	background: url('/resource/templete/royal/img/common/arrow_down.png') no-repeat right 20px center / 15px;
 }
 
-.footer_wrap .footer_top .right .footer_select.active > a{
-	background: url('/resource/templete/royal/img/common/arrow_up.png') no-repeat right 20px center / 15px;
-}
 
 .footer_wrap .footer_top .right .footer_select ul{
 	display: none;
@@ -1868,7 +1824,6 @@ a {
 }
 
 .footer_wrap .footer_btm .inner .left .tel_open::after{
-	content: url('/resource/templete/royal/img/common/arr_c_next_w.png');
 	margin-left: 5px;
 	position: absolute;
 	transform: rotate(90deg);
@@ -2020,29 +1975,6 @@ a {
 	font-size: 1.125rem
 }
 
-.palace_item_mo.item1 a{
-	background: url('/resource/templete/royal/img/common/ic_submain1.png') no-repeat center / cover;
-}
-
-.palace_item_mo.item2 a{
-	background: url('/resource/templete/royal/img/common/ic_submain2.png') no-repeat center / cover;
-}
-
-.palace_item_mo.item3 a{
-	background: url('/resource/templete/royal/img/common/ic_submain3.png') no-repeat center / cover;
-}
-
-.palace_item_mo.item4 a{
-	background: url('/resource/templete/royal/img/common/ic_submain4.png') no-repeat center / cover;
-}
-
-.palace_item_mo.item5 a{
-	background: url('/resource/templete/royal/img/common/ic_submain5.png') no-repeat center / cover;
-}
-
-.palace_item_mo.item6 a{
-	background: url('/resource/templete/royal/img/common/ic_submain6.png') no-repeat center / cover;
-}
 
 .quick_list_mo {
 	position: relative;
@@ -3052,7 +2984,6 @@ a {
 	top: 0;
 	width: 20px;
 	height: 1.750rem;
-	background: url("/resource/templete/royal/img/common/ic_check_txt.png") no-repeat center / 100% auto
 }
 
 .sub_con_section .txt_section:last-child {
@@ -4276,14 +4207,8 @@ a {
 .artwork_list_wrap .btn_pause {
 	width: 22px;
 	height: 20px;
-	background: url("/resource/templete/royal/img/common/ic_pause.png") no-repeat center / 50% auto;
 	margin: 0 15px
 }
-
-.artwork_list_wrap .btn_pause.on {
-	background: url("/resource/templete/royal/img/common/ic_play.png") no-repeat center
-}
-
 
 .q_list .q_item .box_inn .txt {
 	font-size: 1.125rem;
@@ -4965,9 +4890,6 @@ a {
 	font-size: 1.125rem
 }
 
-.course_pop_slide .txt_wrap:after {
-	content: url("/resource/templete/royal/img/common/arr_c_next.png")
-}
 
 .course_pop_slide .swiper-slide-active .txt_wrap.remove_active::after{
 	filter: none;
@@ -5200,7 +5122,6 @@ a {
   width: 130px !important;
   margin-right: 18px;
   cursor: pointer;
-  border-radius: 12px;
   overflow: hidden;
   background-color: #fff;
   transition: transform 0.3s ease;
@@ -5374,7 +5295,6 @@ a {
   display: inline-flex;
   flex-direction: column;
   min-width: 180px; /* 카드 너비 */
-  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   cursor: pointer;
@@ -5408,5 +5328,251 @@ a {
   justify-content: center;
 }
 
+#pop_course01 {
+    position: fixed; /* 화면에 고정 */
+    top: 50%; /* 상단에서 50% 위치 */
+    left: 50%; /* 왼쪽에서 50% 위치 */
+    transform: translate(-50%, -50%); /* 요소 자체 크기의 절반만큼 이동하여 정중앙에 위치 */
+    z-index: 1001; /* .dim (z-index: 1000)보다 높게 설정 */
+    /* display: none; 초기 상태는 숨김 */
+    /* background-color 등을 추가하여 팝업 배경 설정 */
+}
+
+/* 또는 .popup 클래스에 적용할 수도 있습니다 */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    /* display: none; */
+    /* background-color 등을 추가 */
+}
+
+
+
+/* 팝업 배경 딤 스타일 (course.jsp 기존 스타일과 병합 또는 대체) */
+/* 이 스타일은 .dim Computed 스타일의 내용을 바탕으로 합니다. */
+.dim {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; /* height: 560px 대신 bottom: 0을 사용하여 화면 전체 높이로 설정 */
+    background-color: rgba(0, 0, 0, 0.5); /* 적절한 투명도 */
+    z-index: 9998; /* 다른 요소보다 높게 설정 */
+    display: none; /* 초기 상태는 숨김 (JS가 제어) */
+    backdrop-filter: blur(4px); /* 필요시 블러 효과 유지 */
+}
+
+/* 모달 팝업 본체 스타일 (#pop_course01 또는 .popup) */
+#pop_course01.popup { /* #pop_course01 대신 .popup만 사용하거나 둘 다 타겟팅할 수 있습니다 */
+    position: fixed; /* 화면에 고정 */
+    top: 50%; /* 화면 상단에서 50% 위치 */
+    left: 50%; /* 화면 왼쪽에서 50% 위치 */
+    transform: translate(-50%, -50%); /* 요소 자체 크기의 절반만큼 이동하여 화면 정중앙에 배치 */
+    z-index: 9999; /* 딤 (.dim) 보다 높게 설정하여 딤 위에 표시 */
+    background-color: #fff; /* 배경색 흰색으로 변경 */
+    border-radius: 8px; /* 부드러운 모서리 */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* 그림자 효과로 입체감 부여 */
+    max-width: 90%; /* 최대 너비를 화면의 90%로 제한 (반응형 고려) */
+    max-height: 90vh; /* 최대 높이를 화면 높이의 90%로 제한 */
+    overflow: hidden; /* 내용이 넘칠 경우 스크롤되도록 설정 */
+    display: none; /* 초기 상태는 숨김 (JS가 제어) */
+    /* 필요시 width와 height를 고정 값으로 지정할 수도 있습니다 (예: width: 600px; height: 80vh;) */
+}
+
+/* 팝업 래퍼 (내부 패딩 및 구조) */
+.popup_wrap {
+    width: 100%; /* 부모(.popup)의 너비에 맞춤 */
+    height: 100%; /* 부모(.popup)의 높이에 맞춤 */
+    display: flex; /* 자식 요소(header, body)를 세로로 배치 */
+    flex-direction: column;
+}
+
+/* 팝업 헤더 스타일 */
+.popup_header {
+    padding: 15px 20px; /* 상하좌우 패딩 */
+    border-bottom: 1px solid #eee; /* 하단 구분선 */
+    display: flex;
+    justify-content: space-between; /* 제목과 닫기 버튼 간격 (닫기 버튼 제거시 필요 없을 수 있음) */
+    align-items: center;
+    /* background-color: #f8f9fa; /* 헤더 배경색 (선택 사항) */
+}
+
+/* 팝업 헤더 제목 스타일 */
+.popup_header h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* 팝업 본문 스타일 */
+.popup_body {
+    padding: 20px; /* 상하좌우 패딩 */
+    overflow-y: auto; /* 내용이 넘칠 경우 세로 스크롤 */
+    flex-grow: 1; /* 헤더를 제외한 남은 공간을 모두 차지하도록 설정 */
+}
+
+/* 팝업 내부 탭 메뉴 스타일 */
+.popup_body .tab_menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0; /* 하단 여백 */
+    display: flex; /* 탭 항목을 가로로 배열 */
+    border-bottom: 2px solid #eee; /* 탭 하단 라인 */
+}
+
+.popup_body .tab_menu li.item {
+    margin-right: 15px; /* 탭 항목 간 간격 */
+    padding-bottom: 10px; /* 하단 라인과의 간격 */
+    cursor: pointer;
+}
+
+.popup_body .tab_menu li.item a {
+    text-decoration: none;
+    color: #555; /* 기본 탭 색상 */
+    font-weight: 500;
+    display: block; /* 클릭 영역 확장 */
+}
+
+.popup_body .tab_menu li.item.current {
+    border-bottom: 2px solid #007bff; /* 활성 탭 하단 라인 색상 */
+    margin-bottom: -2px; /* 하단 라인 두께만큼 마이너스 마진 */
+}
+
+.popup_body .tab_menu li.item.current a {
+    color: #007bff; /* 활성 탭 색상 */
+}
+
+.popup_body .tab_con {
+    display: none; /* 기본적으로 모든 탭 콘텐츠 숨김 */
+}
+
+.popup_body .tab_con.current {
+    display: block; /* 현재 활성 탭 콘텐츠만 표시 */
+}
+
+/* 팝업 내부 코스 목록 스타일 */
+.popup_body .course_list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0; /* 하단 여백 */
+    /* 필요에 따라 추가 스타일 */
+}
+
+.popup_body .course_list .course_item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px; /* 항목 간 간격 */
+}
+
+.popup_body .course_list .course_dot {
+    width: 10px;
+    height: 10px;
+    background-color: #007bff; /* 점 색상 */
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0; /* 점이 줄어들지 않게 */
+}
+
+.popup_body .course_list .course_txt {
+    font-size: 1em;
+    color: #333;
+}
+
+
+/* 팝업 내부 Swiper 스타일 (이미지/이름 가로 스크롤) */
+.popup_body .course_pop_slide.swiper {
+    width: 100%; /* 부모 요소 너비에 맞춤 */
+    overflow: hidden; /* Swiper 컨테이너에서 넘치는 부분 숨김 */
+    /* height: auto; /* 높이는 콘텐츠에 맞게 자동으로 */
+}
+
+.popup_body .course_pop_slide .swiper-wrapper {
+    display: flex; /* Swiper JS가 설정하지만 명시적으로 */
+    box-sizing: content-box; /* Swiper JS가 spaceBetween 계산 시 사용 */
+}
+
+.popup_body .course_pop_slide .swiper-slide {
+    width: auto; /* slidePerView: 'auto' 설정에 맞게 콘텐츠 너비로 */
+    margin-right: 15px; /* course.jsp의 Swiper 설정 spaceBetween 값과 일치 */
+    flex-shrink: 0; /* 슬라이드가 줄어들지 않게 */
+    display: flex; /* 이미지와 텍스트를 세로로 배열 */
+    flex-direction: column;
+    align-items: center; /* 가운데 정렬 */
+}
+
+.popup_body .course_pop_slide .img_wrap {
+    width: 180px; /* 이미지 래퍼 너비 고정 (조절 가능) */
+    height: 120px; /* 이미지 래퍼 높이 고정 (조절 가능) */
+    overflow: hidden; /* 이미지가 래퍼 크기를 넘으면 자름 */
+    border-radius: 4px; /* 이미지 모서리 */
+    margin-bottom: 8px; /* 이미지와 텍스트 간 간격 */
+    background-color: #eee; /* 이미지 로딩 중 배경색 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup_body .course_pop_slide .img_wrap img {
+    display: block;
+    width: 100%; /* 래퍼 너비에 맞춤 */
+    height: 100%; /* 래퍼 높이에 맞춤 */
+    object-fit: cover; /* 이미지가 래퍼를 채우도록 확대/축소 및 자르기 */
+}
+
+.popup_body .course_pop_slide .txt_wrap {
+    font-size: 0.9em;
+    color: #555;
+    text-align: center;
+}
+
+.popup_body .course_pop_slide .swiper-button-next,
+.popup_body .course_pop_slide .swiper-button-prev {
+    color: #007bff;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.popup_body .course_pop_slide .img_wrap {
+    width: 240px;
+    height: 160px; 
+    overflow: hidden; 
+    margin-bottom: 8px; 
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup_body .course_pop_slide .img_wrap img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.popup_body .course_pop_slide .swiper-slide {
+    width: auto; 
+    margin-right: 15px;
+    flex-shrink: 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.popup_body .course_pop_slide.swiper {
+    width: 100%; 
+    overflow: hidden; 
+}
+
+#main-content #photoDiv .tab_con {
+    display: none !important; 
+}
+
+#main-content #photoDiv .tab_con.current {
+    display: block !important; 
+}
 
 
