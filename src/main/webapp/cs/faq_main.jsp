@@ -138,8 +138,6 @@ request.setAttribute("currentMenu", "faq");
     <%@ include file="/common/jsp/header.jsp" %>
   </header>
 
-  <h2>FAQ 미리보기</h2>
-
   <div class="mb-4" style="width: 1000px; margin: 150px auto 0 auto;">
    <h2 style="font-size: 35px; font-weight: bold;">자주묻는 질문</h2><br>
 
