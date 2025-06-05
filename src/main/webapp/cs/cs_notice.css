@@ -9,8 +9,8 @@
 }  
 
 h2{
-font-size: 35px;
-font-weight: bold;
+font-size: 35px !important;
+font-weight: bold !important;
 
 }
 
@@ -396,6 +396,11 @@ a {
     background: transparent;
 }
 
+.table tr td.tit a:focus, .table tr td.tit a:hover {
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
 
 
 /* faq */
@@ -503,7 +508,6 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     vertical-align: baseline;
     background: transparent;
 }
-
 
 
   

@@ -120,8 +120,8 @@ request.setAttribute("currentMenu", "faq");
     <%@ include file="/common/jsp/header.jsp" %>
   </header>
 
-  <div class="main" style="width: 1000px; margin: 150px auto 0 auto;">
-   <h2 style="font-size: 35px; font-weight: bold;">자주묻는 질문</h2><br>
+  <div class="main">
+   <h2>자주묻는 질문</h2><br>
 
 <script type="text/javascript">
 </script><!-- [S] sub_con_wrap -->
