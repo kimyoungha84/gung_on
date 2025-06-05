@@ -33,7 +33,7 @@ public class MakeQR {
 	        
 	        
 	        String thisPath=dirPathFile.getCanonicalPath();
-	        //System.out.println(dirPathFile.getCanonicalPath());
+	        System.out.println("makeQR-----------path------------"+dirPathFile.getCanonicalPath());
 	        
 	        /*QRimage 디렉토리 없으면 만들기!*/
 	        if(!dirPathFile.exists()) {

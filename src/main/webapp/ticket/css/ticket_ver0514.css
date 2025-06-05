@@ -60,8 +60,8 @@
 }
 
 .wrap .left .explain_ticket li{
-	/* background:url("http://localhost/gungProject/ticket/images/bg_bullet.png"); */
-	/* background:url("http://localhost/gungProject/ticket/images/bg_bullet.png") no-repeat left 6px;
+	/* background:url("http://192.168.10.71/gungProject/ticket/images/bg_bullet.png"); */
+	/* background:url("http://192.168.10.71/gungProject/ticket/images/bg_bullet.png") no-repeat left 6px;
 	padding-left:10px;
 	font-size:12px;
 	line-height:1.2;
@@ -73,7 +73,7 @@
 	font-family:NanumGothic;
 	line-height:1.4;
 	margin:0 0 10px 0;
-	background:url("http://localhost/gungProject/ticket/images/bg_bullet.png") no-repeat left 8px;
+	background:url("http://192.168.10.71/gungProject/ticket/images/bg_bullet.png") no-repeat left 8px;
 	padding-left:10px;
 
 	

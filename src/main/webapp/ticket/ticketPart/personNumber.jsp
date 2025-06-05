@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="http://localhost/gungProject/ticket/css/personNum.css"/> 
+<link rel="stylesheet" type="text/css" href="http://192.168.10.71/gungProject/ticket/css/personNum.css"/> 
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 
@@ -26,9 +26,9 @@
         </td>
         <td style="width:43%;">
             <div class="classifiationTable">
-        	<div class="minusDiv"><img src="http://localhost/gungProject/ticket/images/minusImg.png"/></div>
+        	<div class="minusDiv"><img src="http://192.168.10.71/gungProject/ticket/images/minusImg.png"/></div>
         	<div class="personDiv">2</div>
-        	<div class="plusDiv"><img src="http://localhost/gungProject/ticket/images/plusImg.png"/></div>
+        	<div class="plusDiv"><img src="http://192.168.10.71/gungProject/ticket/images/plusImg.png"/></div>
             </div>
         </td>
     </tr>
@@ -42,9 +42,9 @@
         </td>
         <td>
            <div class="classifiationTable">
-        	<div class="minusDiv"><img src="http://localhost/gungProject/ticket/images/minusImg.png"/></div>
+        	<div class="minusDiv"><img src="http://192.168.10.71/gungProject/ticket/images/minusImg.png"/></div>
         	<div class="personDiv">3</div>
-        	<div class="plusDiv"><img src="http://localhost/gungProject/ticket/images/plusImg.png"/></div>
+        	<div class="plusDiv"><img src="http://192.168.10.71/gungProject/ticket/images/plusImg.png"/></div>
             </div>
         </td>
     </tr>

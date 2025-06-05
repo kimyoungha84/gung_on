@@ -9,11 +9,11 @@
 <head>
 <title>정보 확인</title>
 
-<link rel="stylesheet" type="text/css" href="http://localhost/gungProject/ticket/css/info_check.css"/> 
+<link rel="stylesheet" type="text/css" href="http://192.168.10.71/gungProject/ticket/css/info_check.css"/> 
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 <!-- favicon 설정 -->
-<link rel="shortcut icon" href="http://localhost/gungProject/common/images/gungOnFavicon.ico"/>
+<link rel="shortcut icon" href="http://192.168.10.71/gungProject/common/images/gungOnFavicon.ico"/>
 
 
 

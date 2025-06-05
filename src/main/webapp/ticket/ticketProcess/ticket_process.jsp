@@ -14,7 +14,7 @@
 예매정보(booking num), 결제일 (timestamp) - 이거는 내가 새로 생성해서 넘겨야함.
 -->
 <!--
-소인인원, 대인 인원, 소인 가격, 대인 가격, 총 금액 가격을  http://localhost/gungProject/ticket/ticketPayment.jsp 로 넘겨줘야 해
+소인인원, 대인 인원, 소인 가격, 대인 가격, 총 금액 가격을  http://192.168.10.71/gungProject/ticket/ticketPayment.jsp 로 넘겨줘야 해
 행사이름
 
 -->

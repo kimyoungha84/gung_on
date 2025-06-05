@@ -13,7 +13,7 @@ public class OverlayCompleteQR {
 			  String imagePath=path+qrimageName+".png";
 			  System.out.println("usedCompleteQRcode   -------"+imagePath);
 			   BufferedImage qrImg = ImageIO.read(new File(imagePath));
-			   BufferedImage usedCompleteImg = ImageIO.read(new File("D:/git project/Gung_On/src/main/webapp/ticket/images/usedComplete.png"));
+			   BufferedImage usedCompleteImg = ImageIO.read(new File("C:/Gung_On/common/images/upload/QR/usedComplete.png"));
 		
 			   int width = qrImg.getWidth();//200
 			   int height = qrImg.getHeight();//200

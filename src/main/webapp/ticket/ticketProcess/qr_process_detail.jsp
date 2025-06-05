@@ -12,8 +12,8 @@ String imgStr=request.getParameter("img");
 
 String password="12345";
 
-System.out.println(adminNumStr);
-System.out.println(imgStr);
+System.out.println("adminNumStr-----"+adminNumStr);
+System.out.println("imgStr======="+imgStr);
 
 
 if(adminNumStr.equals(password)){
@@ -24,6 +24,7 @@ if(adminNumStr.equals(password)){
 	OverlayCompleteQR overlay=new OverlayCompleteQR();
 	
 	//내부 저장소, 외부 저장소에 저장된 이미지 모두 사용할 수 없도록 변경해야함.
+	System.out.println("uploadpath-=-------wowsiteproperty"+SiteProperty.uploadQRPathInCom);
 	overlay.usedCompleteQRcode(SiteProperty.uploadQRPathInCom, imgStr);//내부 저장소
 	
 	//외부 저장소로 전송
