@@ -1,0 +1,144 @@
+@charset "UTF-8";
+        .border-secondary {
+            border-width: 3px !important;
+            background-color: #F8F9FA;
+            font-weight: bold;
+            margin-right: -2rem;
+        }
+
+        .card-hover:hover {
+            background-color: #A0A0A0;
+            border-color: #212511 !important;
+        }
+
+        .col-md-3 {
+            width: 120px;
+            height: 80px;
+        }
+        
+        .custom-breadcrumb {
+    	    justify-content: center;
+		}
+		
+		.custom-breadcrumb-text {
+  			font-weight: bold;
+  			font-size: 2rem;
+  			color: black !important;
+    		border-bottom: 3px solid #333;
+    		padding-bottom: 5px;
+		}
+		
+		table.table {
+    	  	width: 60%;
+    	  	margin: 1rem auto;
+    		border-collapse: collapse;
+    		border: 1px solid #dee2e6;
+    		border-radius: 0.5rem;
+    		overflow: hidden;
+    		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    		font-size: 0.95rem;
+    		text-align: center;
+    		margin-top: 1rem;
+   		}
+   		
+   		.table th, .table td {
+        	padding: 0.5rem 0.75rem;
+   		}
+
+    	table.table th {
+        	background-color: black;
+        	color: #ffffff;
+    	}
+		
+		.container-fluid.px-4 {
+    		padding: 2rem 1.5rem;
+    		background-color: #f9f9f9;
+		}
+
+		h2 {
+    		font-weight: 700;
+    		color: #343a40;
+    		margin-bottom: 1.5rem;
+		}
+		
+		.centered-container {
+    		display: flex;
+    		justify-content: center;
+    		margin-bottom: 1.5rem;
+		}
+		
+		.program-detail-img {
+    		max-width: 400px;
+    		height: auto;
+    		border-radius: 8px;
+    		box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+		}
+		
+		.updateBtn {
+  	  		background-color: #ff9800;
+  	  		color: white;
+  	  		border: none;
+  	  		border-radius: 6px;
+  	  		padding: 8px 18px;
+  	  		font-size: 0.8em;
+  	  		cursor: pointer;
+  	  		margin-top: 10px;
+  	  		font-weight: bold;
+  	  		box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+		}
+
+		.updateBtn:hover {
+  	  		background-color: #e67e22;
+		}
+		
+		.deleteBtn {
+  	  		background-color: #ff9800;
+  	  		color: white;
+  	  		border: none;
+  	  		border-radius: 6px;
+  	  		padding: 8px 18px;
+  	  		font-size: 0.8em;
+  	  		cursor: pointer;
+  	  		margin-top: 10px;
+  	  		font-weight: bold;
+  	  		box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+		}
+
+		.deleteBtn:hover {
+  	  		background-color: #e67e22;
+		}
+		
+		.listBtn {
+  	  		background-color: #333;
+  	  		color: white;
+  	  		border: none;
+  	  		border-radius: 6px;
+  	  		padding: 8px 18px;
+  	  		font-size: 1em;
+  	  		cursor: pointer;
+  	  		margin-top: 10px;
+  	  		font-weight: bold;
+  	  		box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+		}
+
+		.listBtn:hover {
+  	  		background-color: #333;
+		}
+		
+		.button-group-right {
+    		display: flex;
+    		justify-content: flex-end;
+    		gap: 10px;
+    		margin-top: 20px;
+		}
+
+		.button-group-center {
+    		display: flex;
+    		justify-content: center;
+    		margin-top: 20px;
+		}
+
+		.button-group-right form,
+		.button-group-center button {
+    		margin: 0;
+		}

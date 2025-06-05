@@ -90,13 +90,14 @@ public class ProgramService {
     }
     
     // 페이지네이션
-    public List<ProgramDTO> getProgramsByPage(int pageNo, int rowPerPage) {
+    public List<ProgramDTO> getProgramsByPage(int pageNo, int rowPerPage, String searchPlace) {
         int startRow = (pageNo - 1) * rowPerPage + 1;
         int endRow = startRow + rowPerPage - 1;
 
         PageParam pp = new PageParam();
         pp.setStartRow(startRow);
         pp.setEndRow(endRow);
+        pp.setSearchPlace(searchPlace); // 검색어 설정
 
         try {
             return pDAO.selectProgramsByPage(pp);
@@ -106,10 +107,10 @@ public class ProgramService {
         }
     }
 
-    // 총 프로그램 수 조회
-    public int getTotalCount() {
+    // 검색어 기준 총 개수 반환
+    public int getTotalCount(String searchPlace) {
         try {
-            return pDAO.selectTotalCount();
+            return pDAO.selectTotalCount(searchPlace);
         } catch (Exception e) {
             e.printStackTrace();
             return 0;

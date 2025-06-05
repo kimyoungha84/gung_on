@@ -13,7 +13,7 @@
  .lnb_wrap {
   	/* position: fixed; */
   	position: absolute;
-  	top: 140px; /* 상단에서 거리 조절 */
+  	top: 200px; /* 상단에서 거리 조절 */
   	left: 40px;
   	width: 300px; /* 원하는 너비 */
   	z-index: 0; /* 다른 요소보다 위로 오도록 */

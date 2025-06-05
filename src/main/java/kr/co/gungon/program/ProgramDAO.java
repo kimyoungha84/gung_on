@@ -6,6 +6,7 @@ import java.util.List;
 
 import kr.co.gungon.config.DbConnection;
 import kr.co.gungon.program.ProgramDTO;
+import kr.co.gungon.config.DbConnection;
 import kr.co.gungon.program.PageParam;
 
 public class ProgramDAO {
@@ -208,17 +209,20 @@ public class ProgramDAO {
     public int insertProgram(ProgramDTO dto) throws SQLException {
         int result = 0;
         String sql = "INSERT INTO program (" +
-                "program_place, program_name, " +
+                "program_id, program_place, program_name, " +
                 "start_date, end_date, open_time, close_time, " +
-                "price_adult, price_child, language_korean, contact_person " +
-                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "price_adult, price_child, language_korean, contact_person, " +
+                "reservation_start_date, reservation_end_date" +
+                ") VALUES (program_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection con = null;
         PreparedStatement pstmt = null;
+        ResultSet rs = null;
 
         try {
             con = DbConnection.getInstance().getDbConn();
-            pstmt = con.prepareStatement(sql);
+            // GENERATED_KEYS 설정
+            pstmt = con.prepareStatement(sql, new String[] {"program_id"});
 
             pstmt.setString(1, dto.getProgramPlace());
             pstmt.setString(2, dto.getProgramName());
@@ -230,10 +234,27 @@ public class ProgramDAO {
             pstmt.setInt(8, dto.getPriceChild());
             pstmt.setString(9, dto.getLanguageKorean());
             pstmt.setString(10, dto.getContactPerson());
+            
+            // 예약 시작일: 행사 시작일 7일 전 + 12시간
+            long startMillis = dto.getStartDate().getTime() - 7L * 24 * 60 * 60 * 1000 + 12L * 60 * 60 * 1000;
+            Timestamp reservationStart = new Timestamp(startMillis);
+
+            // 예약 종료일: 행사 종료일 1일 전 + 18시간
+            long endMillis = dto.getEndDate().getTime() - 1L * 24 * 60 * 60 * 1000 + 18L * 60 * 60 * 1000;
+            Timestamp reservationEnd = new Timestamp(endMillis);
+
+            pstmt.setTimestamp(11, reservationStart);
+            pstmt.setTimestamp(12, reservationEnd);
 
             result = pstmt.executeUpdate();
+            
+            rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                result = rs.getInt(1);
+                dto.setProgramId(result);
+            }
         } finally {
-            DbConnection.getInstance().dbClose(null, pstmt, con);
+            DbConnection.getInstance().dbClose(rs, pstmt, con);
         }
 
         return result;
@@ -245,7 +266,8 @@ public class ProgramDAO {
                 "program_place = ?, program_name = ?, " +
                 "start_date = ?, end_date = ?, open_time = ?, close_time = ?, " +
                 "price_adult = ?, price_child = ?, language_korean = ?, " +
-                "contact_person = ? " +
+                "contact_person = ?, " +
+                "reservation_start_date = ?, reservation_end_date = ? " +
                 "WHERE program_name = ?";
 
         Connection con = null;
@@ -265,7 +287,19 @@ public class ProgramDAO {
             pstmt.setInt(8, dto.getPriceChild());
             pstmt.setString(9, dto.getLanguageKorean());
             pstmt.setString(10, dto.getContactPerson());
-            pstmt.setString(11, dto.getProgramName());
+            
+            // 예약 시작일: 행사 시작일 7일 전 + 12시간
+            long startMillis = dto.getStartDate().getTime() - 7L * 24 * 60 * 60 * 1000 + 12L * 60 * 60 * 1000;
+            Timestamp reservationStart = new Timestamp(startMillis);
+
+            // 예약 종료일: 행사 종료일 1일 전 + 18시간
+            long endMillis = dto.getEndDate().getTime() - 1L * 24 * 60 * 60 * 1000 + 18L * 60 * 60 * 1000;
+            Timestamp reservationEnd = new Timestamp(endMillis);
+
+            pstmt.setTimestamp(11, reservationStart);
+            pstmt.setTimestamp(12, reservationEnd);
+            
+            pstmt.setString(13, dto.getProgramName()); // WHERE 조건
 
             result = pstmt.executeUpdate();
         } finally {
@@ -297,9 +331,16 @@ public class ProgramDAO {
     
     public List<ProgramDTO> selectProgramsByPage(PageParam pageParam) throws SQLException {
         List<ProgramDTO> list = new ArrayList<>();
+        
+        String baseSql = "SELECT * FROM program";
+        String condition = "";
+        if (pageParam.getSearchPlace() != null && !pageParam.getSearchPlace().isEmpty()) {
+            condition = " WHERE program_place LIKE ?";
+        }
+
         String sql = "SELECT * FROM ("
                    + " SELECT ROWNUM rnum, a.* FROM ("
-                   + "   SELECT * FROM program ORDER BY program_id DESC"
+                   + "   " + baseSql + condition + " ORDER BY program_id DESC"
                    + " ) a WHERE ROWNUM <= ?"
                    + ") WHERE rnum >= ?";
 
@@ -310,9 +351,16 @@ public class ProgramDAO {
         try {
             conn = DbConnection.getInstance().getDbConn();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, pageParam.getEndRow());
-            pstmt.setInt(2, pageParam.getStartRow());
+
+            int paramIndex = 1;
+            if (!condition.isEmpty()) {
+                pstmt.setString(paramIndex++, "%" + pageParam.getSearchPlace() + "%");
+            }
+            pstmt.setInt(paramIndex++, pageParam.getEndRow());
+            pstmt.setInt(paramIndex, pageParam.getStartRow());
+
             rs = pstmt.executeQuery();
+
             while (rs.next()) {
                 ProgramDTO dto = new ProgramDTO();
                 dto.setProgramId(rs.getInt("program_id"));
@@ -330,9 +378,16 @@ public class ProgramDAO {
         return list;
     }
     
-    public int selectTotalCount() throws SQLException {
+    public int selectTotalCount(String searchPlace) throws SQLException {
         int total = 0;
+
         String sql = "SELECT COUNT(*) FROM program";
+        boolean hasSearch = searchPlace != null && !searchPlace.isEmpty();
+
+        if (hasSearch) {
+            sql += " WHERE program_place LIKE ?";
+        }
+
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -340,6 +395,9 @@ public class ProgramDAO {
         try {
             conn = DbConnection.getInstance().getDbConn();
             pstmt = conn.prepareStatement(sql);
+            if (hasSearch) {
+                pstmt.setString(1, "%" + searchPlace + "%");
+            }
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 total = rs.getInt(1);

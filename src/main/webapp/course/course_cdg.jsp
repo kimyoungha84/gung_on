@@ -64,7 +64,7 @@
 							<div class="tab_con map_info current">
 								<div class="hidden gubunNm">전체</div>
 								<div class="f-custom-controls top-right">
-									<button id="zoomInButton" class="zoomIn" data-panzoom-action="zoomIn" title="확大">
+									<button id="zoomInButton" class="zoomIn" data-panzoom-action="zoomIn" title="확대">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 											<path d="M12 5v14M5 12h14"></path>
 										</svg>
