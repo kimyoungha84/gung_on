@@ -299,17 +299,17 @@ if (programName != null && !programName.trim().isEmpty()) {
                 <button type="button" class="cancelBtn" onclick="history.back()">취소</button>
             </div>
             
-                        <div class="col-12">
+            <div class="col-12">
                 <label for="progImgName" class="form-label">이미지 선택</label>
-			<select name="progImgName" id="progImgName" class="form-select">
-    		<option value="">-- 이미지 선택 --</option>
+				<select name="progImgName" id="progImgName" class="form-select">
+    				<option value="">-- 이미지 선택 --</option>
 			<%
 			String currentImgName = (String) request.getAttribute("imgName");
 			if (imageFiles != null) {
-    		for (File file : imageFiles) {
-        	if (file.isFile()) {
-            String fileName = file.getName();
-            String selected = fileName.equals(currentImgName) ? "selected" : "";
+    			for (File file : imageFiles) {
+        			if (file.isFile()) {
+            			String fileName = file.getName();
+            			String selected = fileName.equals(currentImgName) ? "selected" : "";
 			%>
 			<option value="<%=fileName%>" <%=selected%>><%=fileName%></option>
 			<%
@@ -317,9 +317,9 @@ if (programName != null && !programName.trim().isEmpty()) {
     }
 }
 %>
-			</select>
-
-            </div>
+			   </select>
+			   
+			</div>
         </div>
     </div>
 </form>
