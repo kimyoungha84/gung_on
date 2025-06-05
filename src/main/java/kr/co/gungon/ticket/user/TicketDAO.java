@@ -36,6 +36,7 @@ public class TicketDAO {
 	  */ 
 	  public void insertReservationValue(TicketDTO ticketDTO) throws SQLException {
 		  DbConnection db=DbConnection.getInstance();
+		  System.out.println("insertReservationValue==============="+ticketDTO.getCompanies().size());
 	  
 		  ResultSet rs=null; PreparedStatement pstmt=null; Connection con=null;
 		  

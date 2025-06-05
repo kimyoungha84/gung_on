@@ -1,30 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
-<html>
-<head>
+  
+ <!DOCTYPE html>
+ <html>
+ <head>
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
 <script type="text/javascript">
+<%
+String img=request.getParameter("img");
+%>
+<!-- prompt 창을 띄워서 로그인 해야함. -->
+var str=prompt("관리자번호를 입력해주세요.");
+alert(str);
+
+var imgimg="${param.img}";
+var param = "adminNum="+str +"&img="+imgimg;
 
 
+$.ajax({
+	url : "/Gung_On/ticket/ticketProcess/qr_process_detail.jsp",
+	type : "post",
+	data : param,
+	
+	dataType : "html",
+	error:function(xhr){
+		alert(xhr.status+" / "+xhr.statusText);
+	},
+	success: function(htmldata){
+		if($.trim(htmldata) == "yes"){
+			alert("성공");
+		}else{
+			alert("실패");
+		}
+	}
+	
+});//ajax
 
 </script>
+
 </head>
-<body>
-<%
-//qr을 찍었을 떄, 처리하는 부분
+ <body>
 
-String imgName = request.getParameter("img");
-
-
-%>
-안녕하십니까아아아.Hello
-imageName=================<%=imgName %>
 
 
 
 </body>
+ 
 </html>
+
+
+

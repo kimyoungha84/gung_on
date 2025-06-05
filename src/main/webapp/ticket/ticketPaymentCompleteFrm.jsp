@@ -15,8 +15,8 @@
 <!-- 부트스트랩  CDN -->    
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
 <!-- CSS 설정 -->
-<link rel="stylesheet" type="text/css" href="http://localhost/gungProject/ticket/css/payment.css"/>
-<link rel="stylesheet" type="text/css" href="http://localhost/gungProject/ticket/css/paymentComplete.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost/Gung_On/ticket/css/payment.css"/>
+<link rel="stylesheet" type="text/css" href="http://localhost/Gung_On/ticket/css/paymentComplete.css"/>
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 </head>
