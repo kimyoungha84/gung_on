@@ -26,7 +26,7 @@
 							<span class="course_tit"><img src="course_img/ic_loca.jpg" alt=""> 코스안내</span>
 								<ul class="list course_info_list">
 									<li class="item" data-num="0">
-											<a href="#;"><span class="inn">🚶전각/후원 코스</span></a>
+											<a href="#;"><span class="inn">🚶종류 별 코스</span></a>
 										</li>
 									</ul>
 							</div>
