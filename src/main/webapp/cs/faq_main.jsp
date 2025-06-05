@@ -97,34 +97,16 @@ request.setAttribute("currentMenu", "faq");
 <head>
   <meta charset="UTF-8">
   <title>궁온 - 고객센터 - FAQ</title>
-  <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/common.css" />
+  
+  <link rel="stylesheet" type="text/css" href="cs_notice.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/common.css" />
   <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/reset.css" />
   <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/layout.css" />
-  
+    -->
 
-  <style>
-    /* 이미지 정중앙 고정 및 반투명 처리 */
-    .background-image {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0.15;
-      z-index: -1;
-      width: 850px; /* 필요에 따라 조절 */
-      height: auto;
-    }
-   .lnb_wrap {
-  	/* position: fixed; */
-  	position: absolute;
-  	top: 300px; /* 상단에서 거리 조절 */
-  	left: 65px;
-  	width: 300px; /* 원하는 너비 */
-  	z-index: 1000; /* 다른 요소보다 위로 오도록 */
-	}
+<style>
 
-  </style>
-  
+</style>
   
   
   
@@ -138,7 +120,7 @@ request.setAttribute("currentMenu", "faq");
     <%@ include file="/common/jsp/header.jsp" %>
   </header>
 
-  <div class="mb-4" style="width: 1000px; margin: 150px auto 0 auto;">
+  <div class="main" style="width: 1000px; margin: 150px auto 0 auto;">
    <h2 style="font-size: 35px; font-weight: bold;">자주묻는 질문</h2><br>
 
 <script type="text/javascript">
