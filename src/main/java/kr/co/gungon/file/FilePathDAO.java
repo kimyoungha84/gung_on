@@ -48,4 +48,36 @@ public class FilePathDAO {
             return dto;
         }
     
+    public int insertImagePath(FilePathDTO dto) throws SQLException {
+        String sql = "INSERT INTO file_path (" +
+        		"property_id, path, targer_type, targer_number, img_name" +
+        		") VALUES (?, ?, ?, ?, ?)";
+        
+        try (Connection con = DbConnection.getInstance().getDbConn();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setInt(1, dto.getPropertyId());
+            pstmt.setString(2, dto.getPath());
+            pstmt.setString(3, dto.getTargerType());
+            pstmt.setString(4, dto.getTargerNumber());
+            pstmt.setString(5, dto.getImgName());
+
+            return pstmt.executeUpdate();
+        }
+    }
+    
+    public int updateImagePath(FilePathDTO dto) throws SQLException {
+        String sql = "UPDATE file_path SET path = ?, img_name = ? " +
+                     "WHERE property_id = ?";
+
+        try (Connection con = DbConnection.getInstance().getDbConn();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setString(1, dto.getPath());
+            pstmt.setString(2, dto.getImgName());
+            pstmt.setInt(3, dto.getPropertyId());
+
+            return pstmt.executeUpdate();
+        }
+    }
 }

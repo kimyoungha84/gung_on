@@ -1,0 +1,90 @@
+@charset "UTF-8";
+		.border-secondary {
+            border-width: 3px !important;
+            background-color: #F8F9FA;
+            font-weight: bold;
+            margin-right: -2rem;
+        }
+
+        .card-hover:hover {
+            background-color: #A0A0A0;
+            border-color: #212511 !important;
+        }
+
+        .col-md-3 {
+            width: 120px;
+            height: 80px;
+        }
+        
+        .custom-breadcrumb {
+    	    justify-content: center;
+		}
+		
+		.custom-breadcrumb-text {
+  			font-weight: bold;
+  			font-size: 2rem;
+  			color: black !important;
+    		border-bottom: 3px solid #333;
+    		padding-bottom: 5px;
+		}
+		
+		.button-container {
+    		text-align: center;
+		}
+		
+		.registerBtn {
+  	  		background-color: #ff9800;
+  	  		color: white;
+  	  		border: none;
+  	  		border-radius: 6px;
+  	  		padding: 8px 18px;
+  	  		font-size: 0.8em;
+  	  		cursor: pointer;
+  	  		margin-top: 10px;
+  	  		margin-right: 10px;
+  	  		font-weight: bold;
+  	  		box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+		}
+
+		.registerBtn:hover {
+  	  		background-color: #e67e22;
+		}
+		
+		.cancelBtn {
+  	  		background-color: #333;
+  	  		color: white;
+  	  		border: none;
+  	  		border-radius: 6px;
+  	  		padding: 8px 18px;
+  	  		font-size: 0.8em;
+  	  		cursor: pointer;
+  	  		margin-top: 10px;
+  	  		font-weight: bold;
+  	  		box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+		}
+
+		.cancelBtn:hover {
+  	  		background-color: #333;
+		}
+		
+		.col-md-8 input,
+		.col-md-8 select,
+		.col-md-8 textarea {
+    		background-color: #FFFDDF !important;
+		}
+		
+		form .card {
+    		max-width: 900px;
+    		margin: 0 auto;
+    		padding: 2rem;
+		}
+
+		form .form-label {
+    		font-size: 1.1rem;
+		}
+
+		#preview {
+    		margin-top: 10px;
+    		max-width: 250px;
+    		display: block;
+		}

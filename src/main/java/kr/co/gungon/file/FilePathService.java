@@ -18,9 +18,27 @@ public class FilePathService {
                 return dto.getPath();
             }
         } catch (Exception e) {
-            e.printStackTrace(); // 실제 서비스에서는 로깅 처리
+            e.printStackTrace();
         }
         return null;
+    }
+    
+    public int insertImagePath(FilePathDTO dto) {
+        try {
+            return fpDAO.insertImagePath(dto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    public int updateImagePath(FilePathDTO dto) {
+        try {
+            return fpDAO.updateImagePath(dto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
     
 }
