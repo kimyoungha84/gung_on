@@ -3,7 +3,7 @@
  */
 
 $(function(){
-
+	
 	$('.slider').slick({
 		dots: true,
 		infinite: true,
@@ -131,11 +131,11 @@ $(function(){
 
 function changeStatus(parentClassValue,classValue){
 	var displayValue=$(classValue).css("display");
-
+	
 	if(displayValue == "none"){
 		//열기
 		$(classValue).css("display","block");
-		$(parentClassValue).children('img').attr('src','http://192.168.10.71/gungProject/ticket/images/upArrow.png');
+		$(parentClassValue).children('img').attr('src','images/upArrow.png');
 	}else{
 		//닫기
 		
@@ -144,12 +144,14 @@ function changeStatus(parentClassValue,classValue){
 			if(confirm("선택한 내용이 저장되지 않았습니다.")){	
 				initCal();
 				$(classValue).css("display","none");
-				$(parentClassValue).children('img').attr('src','http://192.168.10.71/gungProject/ticket/images/downArrow.png');
+				$(parentClassValue).children('img').attr('src','images/downArrow.png');
+				
+				//http://localhost/Gung_On/ticket/images/downArrow.png
 			}//end if
 		
 		}else{//값이 같을 경우에는 그냥 닫히면 되지
 			$(classValue).css("display","none");
-			$(parentClassValue).children('img').attr('src','http://192.168.10.71/gungProject/ticket/images/downArrow.png');
+			$(parentClassValue).children('img').attr('src','images/downArrow.png');
 		}//end if~else
 		
 

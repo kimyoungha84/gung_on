@@ -1,27 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     info="My 예매정보 페이지"%>
-
+<%@ include file="config/site_config.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="ticketProcess/payment_process.jsp" %>
-<%-- <%@include file="js/payment.jsp"%> --%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>내 예매정보</title>
-<c:import url="http://192.168.10.71/Gung_On/common/jsp/header.jsp"/>	
-
 <!-- favicon 설정 -->
-<link rel="shortcut icon" href="http://192.168.10.71/Gung_On/common/images/gungOnFavicon.ico"/>
+<link rel="icon shortcut"  href="http://${defaultIP}/Gung_On/common/images/cs/gungOnFavicon.ico"/>
+
+<title>내 예매정보</title>
+<c:import url="http://${defaultIP}/Gung_On/common/jsp/header.jsp"/>	
+
 
 <!-- 부트스트랩  CDN -->    
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
 <!-- CSS 설정 -->
-<link rel="stylesheet" type="text/css" href="http://192.168.10.71/Gung_On/ticket/css/payment.css"/>
+<link rel="stylesheet" type="text/css" href="http://${defaultIP}/Gung_On/ticket/css/payment.css"/>
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-<script src="http://192.168.10.71/Gung_On/ticket/js/payment.js" type="text/javascript"></script>
+<script src="http://${defaultIP}/Gung_On/ticket/js/payment.js" type="text/javascript"></script>
 
 
 </head>
@@ -66,7 +67,7 @@
 	</form>
 	<br><br><br>
 
-	<form id="calcFrm" action="http://192.168.10.71/Gung_On/ticket/ticketProcess/ticket_calc_procss.jsp" method="post">
+	<form id="calcFrm" action="http://${defaultIP}/Gung_On/ticket/ticketProcess/ticket_calc_procss.jsp" method="post">
 	    <div class="btnGroup">
 	        <input type="button" id="moneyCalc" value="결제하기" class="money">
 	        <input type="hidden" id="hidPhoneNum" name="hidPhoneNum" value=""/>
@@ -84,6 +85,6 @@
     </div>
 
     </div><!--entireWrap-->
-    <c:import url="http://192.168.10.71/Gung_On/common/jsp/footer.jsp"/>
+    <c:import url="http://${defaultIP}/Gung_On/common/jsp/footer.jsp"/>
 </body>
 </html>

@@ -17,6 +17,7 @@ public class SiteProperty {
 	public static String gabiaIP=sVO.getGabiaIP();
 	public static String gabiaId=sVO.getGabiaId();
 	public static String gabiaPass=sVO.getGabiaPass();
+	public static String gabiaUsedCompleteImg=sVO.getGabiaUsedComplete();
 	
 	
 	public static String authenPhoneNum=sVO.getAuthenPhoneNum();
@@ -25,5 +26,7 @@ public class SiteProperty {
 	
 	public static String qrStorePath=sVO.getQRStorePath();
 	public static String uploadQRPathInCom=sVO.getUploadQRPathInCom();
+	
+	public static String defaultIP=sVO.getDefaultIP();
 	
 }//class
