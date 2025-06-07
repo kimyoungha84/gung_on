@@ -2,15 +2,12 @@
  * 
  */
 
-
-
 $(function(){
 
-	/*달력*/
-	$("#datepicker").datepicker({
-		language: 'ko',
-	});
-	
+$(".row").click(function(){
+	var id=$(this).attr("id");
+	alert(id);
+});	
 	
 		
 });//ready

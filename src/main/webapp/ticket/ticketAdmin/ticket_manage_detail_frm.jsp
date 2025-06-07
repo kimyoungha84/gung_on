@@ -1,10 +1,10 @@
+<%@page import="java.util.List"%>
 <%@page import="kr.co.gungon.cs.NoticeDTO"%>
 <%@page import="kr.co.gungon.pagination.PaginationBuilder"%>
 <%@page import="kr.co.gungon.cs.CsService"%>
 <%@page import="kr.co.gungon.cs.FilteringInfo"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Date"%>
-<%@page import="java.util.List"%>
 <%@ include file="../config/site_config.jsp"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -278,35 +278,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-<script>
 
-function openNoticePopup(noticeNum) {
-    const url = "notice_preview_popup.jsp?num=" + encodeURIComponent(noticeNum);
-    const options = "width=1200,height=800,scrollbars=yes,resizable=yes";
-    window.open(url, "noticePopup", options);
-  }
 
-</script>
-
-<script>
-$(document).ready(function() {
-	  // 초기 설정
-	  var startDateValue = $('#startDate').val();
-	  $('#endDate').attr('min', startDateValue);
-
-	  // startDate 값 변경 시 min 갱신
-	  $('#startDate').on('input change', function() {
-	    var newStartDate = $(this).val();
-	    $('#endDate').attr('min', newStartDate);
-
-	    // 이미 선택된 endDate가 min보다 이전이면 초기화
-	    var currentEndDate = $('#endDate').val();
-	    if (currentEndDate && currentEndDate < newStartDate) {
-	      $('#endDate').val('');
-	    }
-	  });
-	});
-</script>
 
 		
     </head>
