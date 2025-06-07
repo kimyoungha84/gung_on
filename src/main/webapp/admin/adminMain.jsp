@@ -68,7 +68,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="#" onclick="loadPage('${pageContext.request.contextPath}/admin/admin_gung/gung_list.jsp'); return false;">궁 목록</a>
-                                    <a class="nav-link" href="#">세부메뉴 2</a>
+                                    <a class="nav-link" href="#" onclick="loadPage('${pageContext.request.contextPath}/admin/admin_gung/story_list.jsp'); return false;">궁 이야기</a>
                                 </nav>
                             </div>
 
