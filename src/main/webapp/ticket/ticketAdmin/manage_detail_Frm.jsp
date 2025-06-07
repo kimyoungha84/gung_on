@@ -30,8 +30,8 @@
 
 <div>
     <br><br>
-    	<table  class="table table-striped datatable-table datatable-container">
-    	<thead class="">
+    	<table  class="table-bordered" style="width:1566px; font-size: 20px; text-align: center; border: 1px solid #9398A2; padding:20px;">
+    	<thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
     		<tr>
 	    		<th>행사 이름</th>
 	    		<th>행사 시간</th>
@@ -40,7 +40,7 @@
 	    		<th>결제 금액</th>
     		</tr>
     	</thead>
-    	<tbody>
+    	<tbody class="border-start border-end" style="height:90px">
     	<tr >
 	    	<td>${programName }</td>
 	    	<td>${adminDTO.getReserve_date()} ${startTime}</td>
@@ -53,15 +53,15 @@
     	
     	</table>
     	
-        <table id="datatablesSimple" class="table table-striped">
-	    <thead>
+        <table class="table-bordered" style="width:1566px; font-size: 20px; text-align: center; border: 1px solid #9398A2; padding:20px;">
+	    <thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
         <tr>
             <th  style="height:80px;">연령구분</th>
             <th style="height:80px;">입장시간</th>
             <th style="height:80px;">입장 여부</th>
         </tr>
    	 	</thead>
-    	<tbody>
+    	<tbody class="border-start border-end" style="height:90px">
 	    	<c:forEach var="tDetailDTO" items="${adminDTO.getCompanies()}" varStatus="i">
 				<tr>
 				<td><c:out value="${ tDetailDTO.getAgeClassification()}  ${ tDetailDTO.getNumClassification()}"/></td>
