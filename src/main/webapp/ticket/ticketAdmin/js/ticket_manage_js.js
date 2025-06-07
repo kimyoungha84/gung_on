@@ -6,7 +6,7 @@ $(function(){
 
 $(".row").click(function(){
 	var id=$(this).attr("id");
-	alert(id);
+	window.location.href="manage_detail_Frm.jsp?bookingNum="+id;
 });	
 	
 		

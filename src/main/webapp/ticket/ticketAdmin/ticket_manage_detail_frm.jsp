@@ -23,7 +23,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>상세 예매 관리</title>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/np m/bootstrap@5.3.5/dist/css/bootstrap.min.css">
 <link href="css/styles.css" rel="stylesheet">
 <%
     request.setCharacterEncoding("UTF-8");

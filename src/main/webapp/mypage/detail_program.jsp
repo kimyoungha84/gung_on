@@ -1,9 +1,34 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="kr.co.gungon.ticket.admin.TicketAdminDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     info=""%>
 <%-- <%@ include file="../common/jsp/site_config.jsp" %> --%>
-<%@ include file="/common/jsp/login_chk.jsp" %>
+<%-- <%@ include file="/common/jsp/login_chk.jsp" %> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+List<TicketAdminDTO> list=new ArrayList<TicketAdminDTO>();
+Object mylist=session.getAttribute("myList");
+list=(List<TicketAdminDTO>)mylist;
+
+
+String bookingNum=request.getParameter("booking_num");
+
+TicketAdminDTO adminDTO=new TicketAdminDTO();
+for(int i=0; i<list.size();i++){
+	
+	if(list.get(i).getBooking_num().equals(bookingNum)){
+		adminDTO=list.get(i);
+	}//end if
+}//end for
+
+String str=adminDTO.getPaymentTimeStamp();
+String[] strlist=str.split(" ");
+String paymentDate=strlist[0];
+
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -33,15 +58,15 @@
 
   <!-- 행사 정보 -->
   <div class="section">
-    <div class="section-title">경복궁 행사</div>
+    <div class="section-title"><%=adminDTO.getProgram_name()%></div>
     <div class="event-info">
       <img src="/Gung_On/common/images/program/GyeongbokgungStarlightNight.jpg" alt="경복궁 이미지" style="height: 100%">
       <div class="event-details" style="width: 80%">
         <table>
-          <tr><th style="width: 20%">예약자</th><td>홍길동</td></tr>
-          <tr><th>예매번호</th><td>20250501133211</td></tr>
-          <tr><th>일시</th><td>2025-05-05 11:00</td></tr>
-          <tr><th>언어</th><td>한국어</td></tr>
+          <tr><th style="width: 20%">예약자</th><td><%=adminDTO.getMember_id() %></td></tr>
+          <tr><th>예매번호</th><td><%=adminDTO.getBooking_num()%></td></tr>
+          <tr><th>일시</th><td><%=adminDTO.getReserve_date()%><%= adminDTO.getStartTime()%></td></tr>
+          <tr><th>언어</th><td><%=adminDTO.getComment_flag()%></td></tr>
         </table>
       </div>
     </div>
@@ -60,9 +85,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>2025-05-01</td>
+          <td><%=paymentDate %></td>
           <td>카카오페이</td>
-          <td>15,000원</td>
+          <td><%=adminDTO.getPaymentStr()%>원</td>
         </tr>
       </tbody>
     </table>
@@ -82,12 +107,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>20250501133211</td>
-          <td>경복궁 공식 해설</td>
-          <td>2025-05-05 11:00</td>
-          <td>한국어</td>
-          <td>대인 3명</td>
-          <td>15,000원</td>
+          <td><%=adminDTO.getBooking_num()%></td>
+          <td><%=adminDTO.getProgram_name()%></td>
+          <td><%=adminDTO.getReserve_date()%><%= adminDTO.getStartTime()%></td>
+          <td><%=adminDTO.getComment_flag()%></td>
+          <td><%=adminDTO.getPerson()%></td>
+          <td><%=adminDTO.getPaymentStr()%>원</td>
         </tr>
       </tbody>
     </table>

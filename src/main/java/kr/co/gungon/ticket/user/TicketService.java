@@ -105,10 +105,13 @@ public class TicketService {
 
 		if (reservePersonCount(adultCount)) {
 			personString.append("대인 ").append(adultCount).append("명");
+			if(reservePersonCount(kidCount) == true) {
+				personString.append("<br>");
+			}//end if
 		} // end if
 
 		if (reservePersonCount(kidCount)) {
-			personString.append(System.lineSeparator()).append("소인 ").append(kidCount).append("명");
+			personString.append("소인 ").append(kidCount).append("명");
 		}
 
 		return personString.toString();

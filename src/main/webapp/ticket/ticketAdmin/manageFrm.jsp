@@ -59,13 +59,13 @@
     <tbody>
     	<c:forEach var="adminTicketDTO" items="${ ticketAdminList }" varStatus="i">
 			<tr class="row" id="${ adminTicketDTO.booking_num }">
-			<td>${i.count }</td>
-			<td><c:out value="${ adminTicketDTO.booking_num }"/></td>
-			<td><c:out value="${ adminTicketDTO.member_name }"/></td>
-			<td><c:out value="${ adminTicketDTO.member_id }"/></td>
-			<td><c:out value="${ adminTicketDTO.total_person }"/></td>
-			<td><c:out value="${ adminTicketDTO.phone_number}"/></td>
-			<td><c:out value="${ adminTicketDTO.comment_flag }"/></td>
+				<td>${i.count }</td>
+				<td><c:out value="${ adminTicketDTO.booking_num }"/></td>
+				<td><c:out value="${ adminTicketDTO.member_name }"/></td>
+				<td><c:out value="${ adminTicketDTO.member_id }"/></td>
+				<td><c:out value="${ adminTicketDTO.total_person }"/></td>
+				<td><c:out value="${ adminTicketDTO.phone_number}"/></td>
+				<td><c:out value="${ adminTicketDTO.comment_flag }"/></td>
 			</tr>
 		</c:forEach>
 		<%//페이지네이션 HTML 생성

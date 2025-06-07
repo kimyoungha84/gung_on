@@ -1,3 +1,7 @@
+<%@page import="kr.co.gungon.ticket.admin.AdminTicketService"%>
+<%@page import="kr.co.gungon.ticket.admin.TicketAdminDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="kr.co.gungon.member.MemberService"%>
 <%@page import="kr.co.gungon.member.MemberDAO"%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,6 +25,11 @@ if (user != null) {
 
     session.setAttribute("changePass", true);
     // session.setAttribute("id", id); // 필요 없으면 제거
+    
+    MemberService ms=new MemberService();
+    List<TicketAdminDTO> myList= ms.showMyTicketData(id);
+    
+    session.setAttribute("myList", myList);
 }
 %>
  <!DOCTYPE html>
@@ -37,9 +46,9 @@ if (user != null) {
  <script type="text/javascript">
 $(function(){
 	
-	$("#detailProgram").click(function(){
-		location.href="/Gung_On/mypage/detail_program.jsp";
-		
+	$(".detailProgram").click(function(){
+		var booking_num=$(this).attr('id');
+		location.href="/Gung_On/mypage/detail_program.jsp?booking_num="+booking_num;
 	});
 	
 	$("#btnConfirm").click(function(){
@@ -276,15 +285,18 @@ $(function(){
           <th style="border: 1px solid #ccc; padding: 8px;">결제 금액</th>
         </tr>
       </thead>
+      
       <tbody>
-        <tr id="detailProgram" style="cursor: pointer;">
-          <td style="border: 1px solid #ccc; padding: 8px;">20250501133211</td>
-          <td style="border: 1px solid #ccc; padding: 8px;">경복궁 공식 해설</td>
-          <td style="border: 1px solid #ccc; padding: 8px;">2025-05-05 11:00</td>
-          <td style="border: 1px solid #ccc; padding: 8px;">한국어</td>
-          <td style="border: 1px solid #ccc; padding: 8px;">대인 3명</td>
-          <td style="border: 1px solid #ccc; padding: 8px;">15,000원</td>
+      <c:forEach var="adminTicketDTO" items="${myList}" varStatus="i">
+        <tr id="${adminTicketDTO.booking_num}" style="cursor: pointer;" class="detailProgram">
+          <td style="border: 1px solid #ccc; padding: 8px;"><c:out value="${adminTicketDTO.booking_num }"/></td>
+          <td style="border: 1px solid #ccc; padding: 8px;"><c:out value="${adminTicketDTO.program_name }"/></td>
+          <td style="border: 1px solid #ccc; padding: 8px;"><c:out value="${adminTicketDTO.reserve_date} ${adminTicketDTO.startTime}"/></td>
+          <td style="border: 1px solid #ccc; padding: 8px;"><c:out value="${adminTicketDTO.comment_flag}"/></td>
+          <td style="border: 1px solid #ccc; padding: 8px;">${adminTicketDTO.person }</td>
+          <td style="border: 1px solid #ccc; padding: 8px;"><c:out value="${adminTicketDTO.paymentStr}원"/></td>
         </tr>
+        </c:forEach>
       </tbody>
     </table>
   </form>
