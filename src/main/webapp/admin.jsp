@@ -8,7 +8,7 @@
 </head>
 <body>
 <script>
-		location.href = '/GungOn/admin/adminMain.jsp';
+		location.href = '/Gung_On/admin/adminMain.jsp';
 </script>
 </body>
 </html>

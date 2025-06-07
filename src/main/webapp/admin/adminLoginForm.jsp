@@ -20,7 +20,7 @@
                     $('#admin_pass').focus();
                     return false;
                 }
-                return true; // 꼭 명시적으로 true 반환
+                return true; 
             });
         });
     </script>

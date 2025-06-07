@@ -67,7 +67,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">세부메뉴 1</a>
+                                    <a class="nav-link" href="#" onclick="loadPage('${pageContext.request.contextPath}/admin/admin_gung/gung_list.jsp'); return false;">궁 목록</a>
                                     <a class="nav-link" href="#">세부메뉴 2</a>
                                 </nav>
                             </div>
@@ -84,12 +84,12 @@
                             </div>
 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts3">
-                                예약 관리
+                                예매 관리
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">세부메뉴 1</a>
+                                    <a class="nav-link" href="#" onclick="loadPage('${pageContext.request.contextPath}/ticket/ticketAdmin/ticket_manage_frm.jsp'); return false;">예매 목록</a>
                                     <a class="nav-link" href="#">세부메뉴 2</a>
                                 </nav>
                             </div>
@@ -111,7 +111,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts5" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="memberList.jsp"onclick="loadPage('${pageContext.request.contextPath}/admin/memberList.jsp')">회원 목록</a>
+                                    <a class="nav-link" href="#" onclick="loadPage('${pageContext.request.contextPath}/member/memberList.jsp'); return false;">회원 목록</a>
                                     <a class="nav-link" href="#">세부메뉴 2</a>
                                 </nav>
                             </div>
