@@ -89,7 +89,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#" onclick="loadPage('${pageContext.request.contextPath}/ticket/ticketAdmin/ticket_manage_frm.jsp'); return false;">예매 목록</a>
+                                    <a class="nav-link" href="#" onclick="loadPage('${pageContext.request.contextPath}/ticket/ticketAdmin/manageFrm.jsp'); return false;">예매 목록</a>
                                     <a class="nav-link" href="#">세부메뉴 2</a>
                                 </nav>
                             </div>
