@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class TicketDTO {
-	String bookingNum, programName, member_id, phoneNum, reserveDate, reserveTime,commentLang,commentFlag, paymentTimeStamp;
+	String bookingNum, programName,member_id, phoneNum, reserveDate, reserveTime,commentLang,commentFlag, paymentTimeStamp;
 	int adultCount, kidCount ,authenCnt,payment;
 	
 	List<TicketDetailDTO> companies;

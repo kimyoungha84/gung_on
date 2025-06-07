@@ -4223,6 +4223,7 @@ textarea.form-control-lg {
   flex: 1 1 auto;
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
   color: var(--bs-card-color);
+  width:1598px;
 }
 
 .card-title {
@@ -11081,6 +11082,7 @@ body {
 
 .datatable-container{
 	float:left;
+	width:1566px;
 }
 
 .datatable-wrapper .datatable-container {
@@ -11097,12 +11099,13 @@ body {
 
 .datatable-top {
   padding: 0 0 1rem;
-  float:left;
+  /* float:left; */
 }
 
 .datatable-bottom {
   padding: 0;
-  	float:left;
+  /* 	float:left; */
+ 
 }
 
 .datatable-top > nav:first-child,
@@ -11163,6 +11166,7 @@ body {
 /* TABLE */
 .datatable-table {
   border-collapse: collapse;
+  width:80%;
 }
 
 .datatable-table > tbody > tr > td,
