@@ -333,4 +333,71 @@ public class MemberDAO {
 		} // end finally
 		
 	}// updateMember
+	
+	//관리자 id로 개별정보 조회
+		public MemberDTO selectMemberById(String id) throws SQLException {
+			
+			DbConnection db = DbConnection.getInstance();
+			
+		    MemberDTO dto = null;
+		    Connection conn = null;
+		    PreparedStatement pstmt = null;
+		    ResultSet rs = null;
+
+		    try {
+		        // 커넥션 얻기
+		        conn = db.getDbConn();
+
+		        String sql = "SELECT * FROM member WHERE member_id = ?";
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setString(1, id);
+		        rs = pstmt.executeQuery();
+
+		        if (rs.next()) {
+		            dto = new MemberDTO();
+		            dto.setId(rs.getString("member_id"));
+		            dto.setPass(rs.getString("member_pass"));
+		            dto.setName(rs.getString("member_name"));
+		            dto.setTel(rs.getString("member_tel"));
+		            dto.setEmail(rs.getString("member_email"));
+		            dto.setIp(rs.getString("member_ip"));
+		            dto.setFlag(rs.getString("member_flag"));
+		            dto.setInput_date(rs.getDate("member_reg_date"));
+		        }
+		    } finally {
+		        db.dbClose(rs, pstmt, conn);
+		    }
+
+		    return dto;
+		}
+		
+		//관리자 회원정보 수정
+		public void updateMemberInfo(MemberDTO mDTO) throws SQLException {
+
+		    DbConnection db = DbConnection.getInstance();
+		    PreparedStatement pstmt = null;
+		    Connection con = null;
+
+		    try {
+		        con = db.getDbConn();
+
+		        StringBuilder updateQuery = new StringBuilder();
+		        updateQuery
+		            .append(" UPDATE member ")
+		            .append(" SET member_name = ?, member_tel = ?, member_email = ? ")
+		            .append(" WHERE member_id = ? ");
+
+		        pstmt = con.prepareStatement(updateQuery.toString());
+		        pstmt.setString(1, mDTO.getName());
+		        pstmt.setString(2, mDTO.getTel());
+		        pstmt.setString(3, mDTO.getUseEmail());
+		        pstmt.setString(4, mDTO.getId());
+
+		        pstmt.executeUpdate();
+		    } finally {
+		        db.dbClose(null, pstmt, con);
+		    }
+		}
+	
+	
 }// class

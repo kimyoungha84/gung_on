@@ -2,11 +2,16 @@
 	pageEncoding="UTF-8"%>
 
 <%
+    response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+    
     String adminId = (String)session.getAttribute("admin_id");
     if (adminId == null) {
         response.sendRedirect("adminLoginForm.jsp");
         return;
     }
+
 %>
 
 <!DOCTYPE html>
@@ -112,7 +117,6 @@
                             <div class="collapse" id="collapseLayouts5" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="#" onclick="loadPage('${pageContext.request.contextPath}/member/memberList.jsp'); return false;">회원 목록</a>
-                                    <a class="nav-link" href="#">세부메뉴 2</a>
                                 </nav>
                             </div>
 
@@ -129,11 +133,12 @@
 
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
-                    관리자
-                        <div class="small">Logged in as:</div>
-
-                    </div>
+                    <div class="sb-sidenav-footer text-center">
+    					<div class="mb-2">관리자</div>
+    						<form action="adminLogout.jsp" method="post">
+        						<button type="submit" class="logout-btn">로그아웃</button>
+   							</form>
+						</div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">

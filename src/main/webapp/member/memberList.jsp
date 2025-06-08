@@ -14,47 +14,56 @@
     List<MemberDTO> memberList = mDAO.selectAllMember();
 %>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".clickable-row").click(function() {
+            var memberId = $(this).data("id");
+            // 상세 페이지를 content 영역에 로드
+            $("#content").load("<%= request.getContextPath() %>/member/memberDetail.jsp?id=" + encodeURIComponent(memberId));
+        });
+    });
+    
+    $(".clickable-row").click(function() {
+        if ($(this).hasClass("disabled")) {
+            alert("탈퇴된 회원입니다.");
+            return;
+        }
+        var memberId = $(this).data("id");
+        $("#content").load("<%= request.getContextPath() %>/member/memberDetail.jsp?id=" + encodeURIComponent(memberId));
+    });
+    
+</script>
+
+<div class="container mt-4">
 <h2>회원 목록</h2>
-<table border="1" cellpadding="10" cellspacing="0" width="100%">
-    <thead>
-        <tr>
-            <th>아이디</th>
-            <th>이름</th>
-            <th>전화번호</th>
-            <th>이메일</th>
-            <th>IP</th>
-            <th>가입일</th>
-            <th>상태</th>
-            <th>관리</th>
-        </tr>
-    </thead>
-    <tbody>
-        <%
-            for(MemberDTO dto : memberList){
-        %>
-        <tr>
-            <td><%= dto.getId() %></td>
-            <td><%= dto.getName() %></td>
-            <td><%= dto.getTel() %></td>
-            <td><%= dto.getUseEmail() %></td>
-            <td><%= dto.getIp() %></td>
-            <td><%= dto.getInput_date() %></td>
-            <td>
-                <%= "Y".equals(dto.getFlag()) ? "탈퇴" : "정상" %>
-            </td>
-            <td>
-                <form action="memberDetail.jsp" method="get" style="display:inline;">
-                    <input type="hidden" name="id" value="<%= dto.getId() %>">
-                    <input type="submit" value="상세">
-                </form>
-                <form action="memberDelete.jsp" method="post" style="display:inline;" onsubmit="return confirm('정말 탈퇴 처리하시겠습니까?');">
-                    <input type="hidden" name="id" value="<%= dto.getId() %>">
-                    <input type="submit" value="삭제">
-                </form>
-            </td>
-        </tr>
-        <%
-            }
-        %>
-    </tbody>
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+    <tr>
+        <th>이름</th>
+        <th>아이디</th>
+        <th>전화번호</th>
+        <th>이메일</th>
+        <th>가입일</th>
+        <th>탈퇴여부</th>
+    </tr>
+</thead>
+<tbody>
+<%
+    for(MemberDTO dto : memberList){
+        boolean isDeleted = "Y".equals(dto.getFlag());
+%>
+    <tr class="clickable-row <%= isDeleted ? "disabled" : "" %>" data-id="<%= dto.getId() %>" style="<%= isDeleted ? "color:gray; cursor:default;" : "" %>">
+        <td><%= dto.getName() %></td>
+        <td><%= dto.getId() %></td>
+        <td><%= dto.getTel() %></td>
+        <td><%= dto.getUseEmail() %></td>
+        <td><%= dto.getInput_date() %></td>
+        <td><%= isDeleted ? "탈퇴" : "정상" %></td>
+    </tr>
+<%
+    }
+%>
+</tbody>
 </table>
+</div>
