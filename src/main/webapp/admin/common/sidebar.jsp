@@ -7,7 +7,7 @@
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">관리자 메뉴</div>
 
-                    <a class="nav-link" href="${pageContext.request.contextPath}/dashboard/dashboard.jsp">대시보드</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminMain.jsp">대시보드</a>
 
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseGung">
                         궁 관리
