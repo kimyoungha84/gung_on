@@ -7,7 +7,7 @@
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">관리자 메뉴</div>
 
-                    <a class="nav-link" href="${pageContext.request.contextPath}/adminMain.jsp">대시보드</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/dashboard/dashboard.jsp">대시보드</a>
 
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseGung">
                         궁 관리
@@ -38,7 +38,6 @@
                     <div class="collapse" id="collapseTicket">
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="${pageContext.request.contextPath}/ticket/ticketAdmin/manageFrm.jsp">예매 목록</a>
-                            <a class="nav-link" href="#">세부메뉴 2</a>
                         </nav>
                     </div>
 
@@ -77,7 +76,7 @@
             </div>
             <div class="sb-sidenav-footer text-center">
                 <div class="mb-2">관리자</div>
-                <form action="${pageContext.request.contextPath}/adminLogout.jsp" method="post">
+                <form action="${pageContext.request.contextPath}/admin/adminLogout.jsp" method="post">
                     <button type="submit" class="logout-btn">로그아웃</button>
                 </form>
             </div>

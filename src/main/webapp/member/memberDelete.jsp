@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="kr.co.gungon.member.MemberDTO" %>
 <%@ page import="kr.co.gungon.member.MemberDAO" %>
 <%
@@ -11,10 +11,15 @@
 
     MemberDAO dao = MemberDAO.getInstance();
     try {
-        dao.deleteMember(dto);  // 내부적으로 member_flag = 'Y' 처리
-        out.print("success");
+        dao.deleteMember(dto); 
+        response.sendRedirect("memberList.jsp?deleted=1");
     } catch (Exception e) {
         e.printStackTrace();
-        out.print("fail");
+%>
+        <script>
+            alert("회원 탈퇴 처리에 실패했습니다.");
+            history.back();
+        </script>
+<%
     }
 %>

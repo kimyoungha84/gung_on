@@ -2,7 +2,7 @@
 <%
     String adminId = (String) session.getAttribute("admin_id");
     if (adminId == null) {
-        response.sendRedirect(request.getContextPath() + "/admin/adminLoginForm.jsp"); // ✅ 고친 부분
+        response.sendRedirect(request.getContextPath() + "/admin/adminLoginForm.jsp");
         return;
     }
 %>
@@ -19,7 +19,7 @@
 <body class="sb-nav-fixed">
     <!-- 상단 네비게이션 -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand ps-3" href="${pageContext.request.contextPath}/adminMain.jsp">
-            <img src="${pageContext.request.contextPath}/img/logo.png" class="logo">
+        <a class="navbar-brand ps-3" href="${pageContext.request.contextPath}/admin/adminMain.jsp">
+            <img src="${pageContext.request.contextPath}/img/logo.png" alt="로고" style="height: 55px;" />
         </a>
     </nav>

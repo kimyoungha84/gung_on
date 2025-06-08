@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="kr.co.gungon.member.MemberDTO" %>
 <%@ page import="kr.co.gungon.member.MemberDAO" %>
@@ -15,14 +16,19 @@
     dto.setId(id);
     dto.setName(name);
     dto.setTel(tel);
-    dto.setUseEmail(fullEmail); // DTO의 useEmail 필드에 전체 이메일 세팅
+    dto.setUseEmail(fullEmail);
 
     MemberDAO dao = MemberDAO.getInstance();
     try {
-        dao.updateMemberInfo(dto); // 이름, 전화번호, 이메일을 모두 업데이트하는 DAO 메서드
-        out.print("success");
+        dao.updateMemberInfo(dto);
+        response.sendRedirect("memberDetail.jsp?id=" + URLEncoder.encode(id, "UTF-8") + "&success=1");
     } catch (Exception e) {
         e.printStackTrace();
-        out.print("fail");
+%>
+        <script>
+            alert("회원 정보 수정에 실패했습니다.");
+            history.back();
+        </script>
+<%
     }
 %>
