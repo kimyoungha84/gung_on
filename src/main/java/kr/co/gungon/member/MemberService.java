@@ -2,10 +2,13 @@ package kr.co.gungon.member;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import kr.co.gungon.ticket.admin.AdminTicketService;
+import kr.co.gungon.ticket.admin.TicketAdminDTO;
 import kr.co.sist.cipher.DataEncryption;
 
 
@@ -147,5 +150,25 @@ public class MemberService {
 		return flag;
 	}//modifyMember
 	
+	
+	public List<TicketAdminDTO> showMyTicketData(String id){
+		AdminTicketService ats=new AdminTicketService();
+		List<TicketAdminDTO> tlist = ats.showDefaultAdminPageData();
+		List<TicketAdminDTO> myList=new ArrayList<TicketAdminDTO>();
+		String programName=null, startTime=null, person=null;
+		
+		for(int i=0; i<tlist.size();i++) {
+			if(tlist.get(i).getMember_id().equals(id)) {
+				programName=ats.getProgramNameByprogramId(tlist.get(i).getProgramId());
+				tlist.get(i).setProgram_name(programName); 
+				tlist.get(i).setStartTime(ats.getProgramStartTimeByProgramId(tlist.get(i).getProgramId()));
+				tlist.get(i).setPaymentStr(ats.changeCosttoStr(tlist.get(i).getPayment()));
+				tlist.get(i).setPerson(ats.outputPersonalCount(tlist.get(i).getAdult_person(), tlist.get(i).getKid_person()));
+				myList.add(tlist.get(i));
+			}//end if
+		}//end for
+		
+		return myList;
+	}//end showMyTicketData
 	
 }//class

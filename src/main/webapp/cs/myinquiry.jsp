@@ -94,8 +94,8 @@ function redirectToLoginPage() {
   </header>
 
   <!-- <div class="mb-4" style="width: 700px; margin: 0 auto;"> -->
-  <div class="main" style="width: 1000px; margin: 150px auto 0 auto;">
-   <h2 style="font-size: 35px; font-weight: bold;">나의 1:1문의</h2><br>
+  <div class="main">
+   <h2>나의 1:1문의</h2><br>
    
    
    <div class="sub_con_wrap pt0" id="sub_con_wrap">
@@ -177,7 +177,7 @@ function redirectToLoginPage() {
 			                    <fmt:formatDate value="${iDTO.inquiry_regDate}" pattern="yyyy-MM-dd " />
 			                </td>
 			                <td class="tit">
-			                    <a href="notice_detail.jsp?num=${iDTO.inquiry_num}" class="ellipsis txt_line1" title="${iDTO.inquiry_content}">
+			                    <a href="inquiry_detail.jsp?num=${iDTO.inquiry_num}" class="ellipsis txt_line1" title="${iDTO.inquiry_content}">
 			                        ${iDTO.inquiry_content}
 			                    </a>
 			                </td>

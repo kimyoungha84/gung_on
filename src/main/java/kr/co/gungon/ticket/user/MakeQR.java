@@ -8,7 +8,6 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 
-import kr.co.gungon.ticket.TicketDTO;
 import kr.co.gungon.ticket.ticketConfig.SiteProperty;
 
 
@@ -28,12 +27,12 @@ public class MakeQR {
 	        // 200, 200은 가로, 세로 크기
 	        BitMatrix matrix = writer.encode( content.toString(), BarcodeFormat.QR_CODE, 200, 200 );
 
-	        String dirpath=SiteProperty.uploadQRPathInCom;
+	        String dirpath=SiteProperty.uploadQRPathInCom;// /Gung_On/common/images/upload/QR
 	        File dirPathFile=new File(dirpath);
 	        
+	        //String thisPath=dirPathFile.getCanonicalPath();
+	        String thisPath=dirPathFile.getPath();
 	        
-	        String thisPath=dirPathFile.getCanonicalPath();
-	        //System.out.println(dirPathFile.getCanonicalPath());
 	        
 	        /*QRimage 디렉토리 없으면 만들기!*/
 	        if(!dirPathFile.exists()) {

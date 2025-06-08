@@ -26,7 +26,7 @@
 							<span class="course_tit"><img src="course_img/ic_loca.jpg" alt=""> 코스안내</span>
 								<ul class="list course_info_list">
 									<li class="item" data-num="0">
-											<a href="#;"><span class="inn">🚶전각/후원 코스</span></a>
+											<a href="#;"><span class="inn">🚶종류 별 코스</span></a>
 										</li>
 									</ul>
 							</div>
@@ -73,31 +73,197 @@
 
 						<ul class="course_num_list tab_menu">
 							<li class="child_tab_menu course_num_item tab_link current cm1" data-num="1" data-tab="cm1">
-									<a href="#;"><span class="num">1</span>경교장</a>
+									<a href="#;"><span class="num">1</span>흥화문</a>
 								</li>
 							<li class="child_tab_menu course_num_item tab_link  cm2" data-num="2" data-tab="cm2">
-									<a href="#;"><span class="num">2</span>서울성곽</a>
+									<a href="#;"><span class="num">2</span>금천교</a>
 								</li>
 							<li class="child_tab_menu course_num_item tab_link  cm3" data-num="3" data-tab="cm3">
-									<a href="#;"><span class="num">3</span>홍난파 가옥</a>
+									<a href="#;"><span class="num">3</span>숭정전</a>
 								</li>
 							<li class="child_tab_menu course_num_item tab_link  cm4" data-num="4" data-tab="cm4">
-									<a href="#;"><span class="num">4</span>권율장군집터</a>
+									<a href="#;"><span class="num">4</span>자정전</a>
 								</li>
 							<li class="child_tab_menu course_num_item tab_link  cm5" data-num="5" data-tab="cm5">
-									<a href="#;"><span class="num">5</span>독립문</a>
+									<a href="#;"><span class="num">5</span>태령전</a>
 								</li>
 							<li class="child_tab_menu course_num_item tab_link  cm6" data-num="6" data-tab="cm6">
-									<a href="#;"><span class="num">6</span>서대문 독립공원</a>
+									<a href="#;"><span class="num">6</span>서암</a>
+								</li>
+							<li class="child_tab_menu course_num_item tab_link cm7" data-num="7" data-tab="cm7">
+									<a href="#;"><span class="num">7</span>경교장</a>
+								</li>
+							<li class="child_tab_menu course_num_item tab_link  cm8" data-num="8" data-tab="cm8">
+									<a href="#;"><span class="num">8</span>서울성곽</a>
+								</li>
+							<li class="child_tab_menu course_num_item tab_link  cm9" data-num="9" data-tab="cm9">
+									<a href="#;"><span class="num">9</span>홍난파 가옥</a>
+								</li>
+							<li class="child_tab_menu course_num_item tab_link  cm10" data-num="10" data-tab="cm10">
+									<a href="#;"><span class="num">10</span>권율장군집터</a>
+								</li>
+							<li class="child_tab_menu course_num_item tab_link  cm11" data-num="11" data-tab="cm11">
+									<a href="#;"><span class="num">11</span>독립문</a>
+								</li>
+							<li class="child_tab_menu course_num_item tab_link  cm12" data-num="12" data-tab="cm12">
+									<a href="#;"><span class="num">12</span>서대문 독립공원</a>
 								</li>
 							</ul>
 
 					<div id="photoDiv">
                         <div class="tab_con_wrap course_slide_wrap">
                             <div class="tab_con cm1 current" data-tab="cm1">
+                                <h3 class="txt_section_tit vcPartTitle">흥화문</h3>
+                                <div class="hidden">흥화문</div>
+                                <div class="course_slide swiper" id="course_slide0">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide" data-seq="8">
+                                            <div class="img_wrap">
+                                                <img src="course_img/ghg_img/Heunghwamun.jpg" data-key="4801" alt="흥화문">
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="swiper-button-next"></div>
+                                     <div class="swiper-button-prev"></div>
+                                </div>
+                                <div class="course_txt_wrap">
+                                    <div class="txt">
+                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">경희궁의 정문인 흥화문은 서울특별시 유형문화유산으로 지정되어 있습니다. 원래는 금천교 동쪽, 즉 현재의 구세군 빌딩자리에서 동쪽을 바라보고 있었습니다. 그러나 일제가 1932년 이토 히로부미를 위한 사당인 박문사의 정문으로 사용하기 위하여 흥화문을 떼어갔었습니다. 광복 이후 박문사가 폐지되고 그 자리에는 영빈관에 이어 신라호텔이 들어서면서 그 정문으로 남아있었습니다. 1988년 경희궁 복원사업의 일환으로 흥화문을 경희궁터로 옮겨 왔는데 원래의 자리에는 이미 구세군빌딩이 세워져 있어서, 현재의 위치에 이전하여 복원하였습니다.</span></p>
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
+                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
+                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
+                                </div>
+                            </div>
+                            <div class="tab_con cm2" data-tab="cm2">
+                                <h3 class="txt_section_tit vcPartTitle">금천교</h3>
+                                <div class="hidden">금천교</div>
+                                <div class="course_slide swiper" id="course_slide1">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide" data-seq="8">
+                                            <div class="img_wrap">
+                                                <img src="course_img/ghg_img/Geumcheongyo.jpg" data-key="4801" alt="금천교">
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="swiper-button-next"></div>
+                                     <div class="swiper-button-prev"></div>
+                                </div>
+                                <div class="course_txt_wrap">
+                                    <div class="txt">
+                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">경희궁의 정문인 흥화문을 들어서면 궁내의 전각에 들어서기 전에 흐르던 금천에 놓여진 돌다리입니다. 난간의 돌짐승들이나 홍예 사이에 새겨진 도깨비 얼굴은 대궐 바깥의 나쁜 기운이 궐내에 들어오지 못하게 하려는 상징성을 띠는 것입니다. 1619년(광해군 11)에 건립되었던 것을 일제가 매몰시켰지만, 서울시에서는 2001년 발굴을 통하여 발견된 옛 석조물을 바탕으로 현재와 같이 복원하였습니다.</span></p>
+                                        <div style="text-align: justify;"></div>
+                                    </div>
+                                </div>
+                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
+                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
+                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
+                                </div>
+                            </div>
+                            <div class="tab_con cm3" data-tab="cm3">
+                                <h3 class="txt_section_tit vcPartTitle">숭정전</h3>
+                                <div class="hidden">숭정전</div>
+                                <div class="course_slide swiper" id="course_slide2">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide" data-seq="8">
+                                            <div class="img_wrap">
+                                                <img src="course_img/ghg_img/Sungjeongjeon.jpg" data-key="4801" alt="숭정전">
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="swiper-button-next"></div>
+                                     <div class="swiper-button-prev"></div>
+                                </div>
+                                <div class="course_txt_wrap">
+                                    <div class="txt">
+                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">숭정전은 경희궁의 정전으로 국왕이 신하들과 조회를 하거나, 궁중 연회, 사신 접대 등 공식 행사가 행해진 곳입니다. 특히 경종, 정조, 헌종 등 세 임금은 이곳에서 즉위식을 거행하였습니다. 숭정전은 경희궁 창건공사 초기인 1618년(광해군 10)경에 정면 5칸, 측면 4칸의 규모로 건립되었습니다. 그러나 일제가 경희궁을 훼손하면서 1926년 건물을 일본인 사찰에 팔았는데, 현재는 동국대학교 정각원으로 사용하고 있습니다. 현 위치의 숭정전은 경희궁지 발굴을 통하여 확인된 위치에 발굴된 기단석 등을 이용하여 복원한 것입니다. 숭정전 내부 당가에 용상을 설치하였는데, 그 뒤로 곡병과 일월오봉병을 두었다. 우물천정에는 마주보고 있는 두 마리의 용을 새겨두었습니다.</span></p>
+                                    </div>
+                                </div>
+                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
+                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
+                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
+                                </div>
+                            </div>
+                            <div class="tab_con cm4" data-tab="cm4">
+                                <h3 class="txt_section_tit vcPartTitle">자정전</h3>
+                                <div class="hidden">자정전</div>
+                                <div class="course_slide swiper" id="course_slide3">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide" data-seq="8">
+                                            <div class="img_wrap">
+                                                <img src="course_img/ghg_img/Jajeongjeon.jpg" data-key="4801" alt="자정전">
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="swiper-button-next"></div>
+                                     <div class="swiper-button-prev"></div>
+                                </div>
+                                <div class="course_txt_wrap">
+                                    <div class="txt">
+                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">자정전은 경희궁의 편전으로서 국왕이 신하들과 회의를 하거나 경연을 여는 등 공무를 수행하던 곳입니다. 숙종이 승하한 후에는 빈전으로 사용되기도 하였으며, 선왕들의 어진이나 위패를 임시로 보관하기도 하였습니다. 1617~20년(광해군 9~12) 사이에 건립되었으나, 일제가 훼손하였습니다. 서울시에서는 발굴을 통하여 확인된 자리에 <서궐도안>에 현재의 건물을 복원하였습니다. 자정전 서쪽에는 발굴을 통하여 행랑의 바닥으로 사용된 것으로 추정되는 전돌이 발견되었기에 발굴 당시의 모습을 보존하여 복원하였습니다.</span></p>
+                                    </div>
+                                </div>
+                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
+                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
+                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
+                                </div>
+                            </div>
+                            <div class="tab_con cm5" data-tab="cm5">
+                                <h3 class="txt_section_tit vcPartTitle">태령전</h3>
+                                <div class="hidden">태령전</div>
+                                <div class="course_slide swiper" id="course_slide4">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide" data-seq="8">
+                                            <div class="img_wrap">
+                                                <img src="course_img/ghg_img/Taeryeongjeon.jpg" data-key="4801" alt="태령전">
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="swiper-button-next"></div>
+                                     <div class="swiper-button-prev"></div>
+                                </div>
+                                <div class="course_txt_wrap">
+                                    <div class="txt">
+                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">태령전은 영조의 어진을 보관하던 곳입니다. 본래는 특별한 용도가 지정되지는 않았던 건물이었습니다. 그러나 영조의 어진이 새로 그려지자 1744년(영조 20)에 이 곳을 중수하여 어진을 봉안하였고, 영조가 승하한 후에는 혼전으로 사용되기도 하였습니다. 흔적조차 거의 남아있지 않던 태령전을 서울시에서는 <서궐도안>에 따라 정면 5칸, 측면 2칸의 건물로 복원하였습니다.</span></p>
+                                        <div style="text-align: justify;"></div>
+                                    </div>
+                                </div>
+                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
+                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
+                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
+                                </div>
+                            </div>
+                            <div class="tab_con cm6" data-tab="cm6">
+                                <h3 class="txt_section_tit vcPartTitle">서암</h3>
+                                <div class="hidden">서암</div>
+                                <div class="course_slide swiper" id="course_slide5">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide" data-seq="8">
+                                            <div class="img_wrap">
+                                                <img src="course_img/ghg_img/Seoam.jpg" data-key="4801" alt="서암">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                </div>
+                                <div class="course_txt_wrap">
+                                    <div class="txt">
+                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">태령전 뒤에 있는 기이한 모양의 바위, 암천(巖泉)으로 불리는 바위 속의 샘이 있어 예로부터 경희궁의 명물이었습니다. 본래는 왕암(王巖)으로 불리었는데 그 이름으로 인하여 광해군이 이 지역에 경희궁을 지었다는 속설도 있습니다.  1708년(숙종34)에 이름을 서암으로 고치고 숙종이 직접 '瑞巖' 두 글자를 크게 써서 새겨 두게 하였습니다.  현재 서암을 새겨 두었던 사방석은 국립고궁박물관에 소장되어 있습니다.</span></p>
+                                        <div style="text-align: justify;"></div>
+                                    </div>
+                                </div>
+                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
+                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
+                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
+                                </div>
+                            </div>
+                            <div class="tab_con cm7" data-tab="cm7">
                                 <h3 class="txt_section_tit vcPartTitle">경교장</h3>
                                 <div class="hidden">경교장</div>
-                                <div class="course_slide swiper" id="course_slide0">
+                                <div class="course_slide swiper" id="course_slide6">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide" data-seq="8">
                                             <div class="img_wrap">
@@ -119,10 +285,10 @@
                                     <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
                                 </div>
                             </div>
-                            <div class="tab_con cm2" data-tab="cm2">
+                            <div class="tab_con cm8" data-tab="cm8">
                                 <h3 class="txt_section_tit vcPartTitle">서울성곽</h3>
                                 <div class="hidden">서울성곽</div>
-                                <div class="course_slide swiper" id="course_slide1">
+                                <div class="course_slide swiper" id="course_slide7">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide" data-seq="8">
                                             <div class="img_wrap">
@@ -144,10 +310,10 @@
                                     <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
                                 </div>
                             </div>
-                            <div class="tab_con cm3" data-tab="cm3">
+                            <div class="tab_con cm9" data-tab="cm9">
                                 <h3 class="txt_section_tit vcPartTitle">홍난파 가옥</h3>
                                 <div class="hidden">홍난파 가옥</div>
-                                <div class="course_slide swiper" id="course_slide2">
+                                <div class="course_slide swiper" id="course_slide8">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide" data-seq="8">
                                             <div class="img_wrap">
@@ -168,10 +334,10 @@
                                     <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
                                 </div>
                             </div>
-                            <div class="tab_con cm4" data-tab="cm4">
+                            <div class="tab_con cm10" data-tab="cm10">
                                 <h3 class="txt_section_tit vcPartTitle">권율장군집터</h3>
                                 <div class="hidden">권율장군집터</div>
-                                <div class="course_slide swiper" id="course_slide3">
+                                <div class="course_slide swiper" id="course_slide9">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide" data-seq="8">
                                             <div class="img_wrap">
@@ -192,10 +358,10 @@
                                     <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
                                 </div>
                             </div>
-                            <div class="tab_con cm5" data-tab="cm5">
+                            <div class="tab_con cm11" data-tab="cm11">
                                 <h3 class="txt_section_tit vcPartTitle">독립문</h3>
                                 <div class="hidden">독립문</div>
-                                <div class="course_slide swiper" id="course_slide4">
+                                <div class="course_slide swiper" id="course_slide10">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide" data-seq="8">
                                             <div class="img_wrap">
@@ -217,162 +383,14 @@
                                     <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
                                 </div>
                             </div>
-                            <div class="tab_con cm6" data-tab="cm6">
-                                <h3 class="txt_section_tit vcPartTitle">석어당</h3>
-                                <div class="hidden">석어당</div>
-                                <div class="course_slide swiper" id="course_slide5">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide" data-seq="8">
-                                            <div class="img_wrap">
-                                                <img src="course_img/dsg_img/Seokgeodang.jpg" data-key="4801" alt="석어당">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
-                                <div class="course_txt_wrap">
-                                    <div class="txt">
-                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">석어당(昔御堂)은 즉조당과 함께 덕수궁의 모태가 되는 건물로 임진왜란 때 선조가 임시로 거처했던 곳이다. 인조는 경운궁의 전각 대부분을 원래 주인에게 돌려주었으나 석어당과 즉조당은 보존하였다. 석어당은 덕수궁에 있는 건물 중 유일하게 남아 있는 2층 건물이자 단청을 하지 않은 건물이다.</span></p>
-                                        <div style="text-align: justify;"></div>
-                                    </div>
-                                </div>
-                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
-                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
-                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
-                                </div>
-                            </div>
-                            <div class="tab_con cm7" data-tab="cm7">
-                                <h3 class="txt_section_tit vcPartTitle">덕홍전</h3>
-                                <div class="hidden">덕홍전</div>
-                                <div class="course_slide swiper" id="course_slide6">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide" data-seq="8">
-                                            <div class="img_wrap">
-                                                <img src="course_img/dsg_img/Deokhongjeon.jpg" data-key="4801" alt="덕홍전">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
-                                <div class="course_txt_wrap">
-                                    <div class="txt">
-                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">덕홍전(德弘殿)은 원래 고종의 황후인 명성황후의 혼전(왕과 왕비의 신주를 종묘로 모시기 전까지 임시로 신주를 모시는 건물)인 경효전이 있었던 곳이었다. 이후 고종은 고위 관료와 외교 사절 등 빈객을 접대하기 위한 접견실로 사용하였다. 내부는 천장의 샹들리에와 봉황문양의 단청, 오얏문양 등으로 화려하게 꾸몄다.</span></p>
-                                        <div style="text-align: justify;"></div>
-                                    </div>
-                                </div>
-                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
-                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
-                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
-                                </div>
-                            </div>
-                             <div class="tab_con cm8" data-tab="cm8">
-                                <h3 class="txt_section_tit vcPartTitle">함녕전</h3>
-                                <div class="hidden">함녕전</div>
-                                <div class="course_slide swiper" id="course_slide7">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide" data-seq="8">
-                                            <div class="img_wrap">
-                                                <img src="course_img/dsg_img/Hamnyeongjeon.jpg" data-key="4801" alt="함녕전">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
-                                <div class="course_txt_wrap">
-                                    <div class="txt">
-                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">함녕전(咸寧殿)은 1897년 고종의 환궁과 함께 지어진 황제의 침전이다. 1904년(광무 8) 함녕전 온돌 수리공사 중 일어난 화재로 소실되어 이듬해 다시 지었다. 고종은 이곳에서 생활하다가 1919년에 세상을 떠났다. 함녕전 뒤편에는 계단식 정원으로 꾸며 아름다운 장식을 한 굴뚝들을 설치하였다. 함녕전의 정문인 광명문은 2018년 현재의 자리로 다시 옮겼다.</span></p>
-                                    </div>
-                                </div>
-                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
-                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
-                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
-                                </div>
-                            </div>
-                             <div class="tab_con cm9" data-tab="cm9">
-                                <h3 class="txt_section_tit vcPartTitle">정관헌</h3>
-                                <div class="hidden">정관헌</div>
-                                <div class="course_slide swiper" id="course_slide8">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide" data-seq="8">
-                                            <div class="img_wrap">
-                                                <img src="course_img/dsg_img/Jeonggwanheon.jpg" data-key="4801" alt="정관헌">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
-                                <div class="course_txt_wrap">
-                                    <div class="txt">
-                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">정관헌(靜觀軒)은『고종실록』에 의하면 조선 역대 왕의 초상화인 어진을 임시로 봉안했던 장소로 사용하였다. 정관헌은 동서양의 양식을 모두 갖춘 건물인데 기단 위에 로마네스크 양식의 인조석 기둥을 둘러서 내부 공간을 만들었고, 바깥에는 동·남·서 세 방향에 기둥을 세운 포치가 있다. 난간에는 사슴, 소나무, 당초, 박쥐 등의 전통 문양이 조각되어 있다.</span></p>
-                                        <div></div>
-                                    </div>
-                                </div>
-                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
-                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
-                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
-                                </div>
-                            </div>
-                            <div class="tab_con cm10" data-tab="cm10">
-                                <h3 class="txt_section_tit vcPartTitle">석조전</h3>
-                                <div class="hidden">석조전</div>
-                                <div class="course_slide swiper" id="course_slide9">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide" data-seq="8">
-                                            <div class="img_wrap">
-                                                <img src="course_img/dsg_img/Seokjojeon.jpg" data-key="4801" alt="석조전">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
-                                <div class="course_txt_wrap">
-                                    <div class="txt">
-                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">석조전(石造殿)은 고종이 침전 겸 편전으로 사용하기 위해 지은 서양식 석조건물이다. 석조전은 서양의 신고전주의 건축양식으로 지어졌으며, 건물의 앞과 동서 양면에 발코니가 설치된 것이 특징이다. 1910년에 준공된 후 고종은 고관대신과 외국 사절을 만나기 위한 접견실로 사용하였다. 현재는 대한제국역사관으로 개관하였다.</span></p>
-                                    </div>
-                                </div>
-                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
-                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
-                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
-                                </div>
-                            </div>
-                            <div class="tab_con cm11" data-tab="cm11">
-                                <h3 class="txt_section_tit vcPartTitle">석조전 서관</h3>
-                                <div class="hidden">석조전 서관</div>
-                                <div class="course_slide swiper" id="course_slide10">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide" data-seq="8">
-                                            <div class="img_wrap">
-                                                <img src="course_img/dsg_img/Seogjojeon seogwan.jpg" data-key="4801" alt="석조전 서관">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
-                                <div class="course_txt_wrap">
-                                    <div class="txt">
-                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">석조전 서관(石造殿 西館, 국립현대미술관 덕수궁관)은 1936년 8월 기공하여 1938년 6월에 준공하였으며, 이왕가 미술관으로 사용되었다. 현재는 국립현대미술관 덕수궁관으로 사용하고 있다.</span></p>
-                                        <div style="text-align: justify;"></div>
-                                    </div>
-                                </div>
-                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
-                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
-                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
-                                </div>
-                            </div>
                             <div class="tab_con cm12" data-tab="cm12">
-                                <h3 class="txt_section_tit vcPartTitle">돈덕전</h3>
-                                <div class="hidden">돈덕전</div>
+                                <h3 class="txt_section_tit vcPartTitle">서대문 독립공원</h3>
+                                <div class="hidden">서대문 독립공원</div>
                                 <div class="course_slide swiper" id="course_slide11">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide" data-seq="8">
                                             <div class="img_wrap">
-                                                <img src="course_img/dsg_img/Dondeokjeon.jpg" data-key="4801" alt="돈덕전">
+                                                <img src="course_img/ghg_img/Seodaemun doglibgongwon.jpg" data-key="4801" alt="서대문 독립공원">
                                             </div>
                                         </div>
                                     </div>
@@ -381,31 +399,8 @@
                                 </div>
                                 <div class="course_txt_wrap">
                                     <div class="txt">
-                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">돈덕전(惇德殿)은 1902년(광무 6) 고종 즉위 40주년 기념 칭경 예식을 위해 지은 건물로, 돈덕은 덕이 도탑다는 뜻이다. 벽돌로 지었고 화려한 유럽풍 외관을 지녔다. 1층은 황제를 뵙는 폐현실, 2층은 황제의 침실이 있었으며, 각국 외교사절의 폐현 및 연회장, 국빈급 외국인의 숙소로 사용하였다. 1907년 순종은 이곳에서 황제 즉위식을 가졌다. 1919년 고종이 세상을 떠난 후 방치되었다가 1930년대에 없어진 것으로 보이며, 궁능유적본부가 2023년에 재건하였다.</span></p>
-                                    </div>
-                                </div>
-                                <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">
-                                    <img src="course_img/nuri.svg" alt="공공누리 제1유형 : 공공누리 공공저작물 자유이용허락 출처표시" class="flex_shrink">
-                                    <div>궁능유적본부가 보유한 본 저작물은 "공공누리“ 제1유형(출처표시+상업적 이용가능) 조건에 따라 이용 할 수 있습니다.</div>
-                                </div>
-                            </div>
-                             <div class="tab_con cm13" data-tab="cm13">
-                                <h3 class="txt_section_tit vcPartTitle">중명전</h3>
-                                <div class="hidden">중명전</div>
-                                <div class="course_slide swiper" id="course_slide12">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide" data-seq="8">
-                                            <div class="img_wrap">
-                                                <img src="course_img/dsg_img/Jungmyeongjeon.jpg" data-key="4801" alt="중명전">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
-                                <div class="course_txt_wrap">
-                                    <div class="txt">
-                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">중명전(重眀殿)은 처음 1897년 황실 도서관으로 지어진 후 수옥헌(漱玉軒)이라고 불렸다. 수옥헌이 중명전으로 불리게 된 것은 1906년 이후로 보여진다. 1905년(광무 9) 을사늑약이 체결된 비운의 장소이기도 하며, 일제강점기 이후 민간에서 활용하다가, 2009년에 복원공사하여 2010년에 전시관으로 개관하였다.</span></p>
+                                        <p style="text-align: justify;"><span style="color: rgb(19, 19, 19); text-align: justify;">1897년 독립협회에서 건립한 독립문과 독립관, 3.1독립 선언 기념탑이 있는 공원이다. 조선 시대 중국 사신들을 영접하던 독립관은 1996년 복원해 순국선열 위패 2327위를 봉안했다. 독립문 바로 앞에는 영은문 주초가 자리한다. 그 외 순국선열 추념탑, 서재필 박사 동상 등이 있다. 2009년 8월 노후한 공간과 시설들을 개선해 역사 공원으로 재탄생했다.</span></p>
+                                        <div style="text-align: justify;"></div>
                                     </div>
                                 </div>
                                 <div class="course_info box_wrap flex_center_align mb0 koglCodeInfo">

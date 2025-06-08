@@ -2,13 +2,6 @@
     pageEncoding="UTF-8"
     info=""%>
     
-    
-<%
-
-
-%>    
-    
-    
 <style>
  .lnb_wrap {
   	/* position: fixed; */
@@ -24,6 +17,20 @@
 .lnb_depth2_item > a{width: 100%; font-size: 1.125rem; font-weight: 400; padding: 15px 0; position: relative;}
 .lnb_depth2_item > a::before{width: 100%; height: 1px; background: #ddd; position: absolute; bottom: 0; left: 0;
 content: '';}
+
+.lnb_depth2_item.active > a, .lnb_depth2_item.current > a, .lnb_depth2_item > a:hover {
+    font-weight: 600;
+}
+
+.lnb_depth2_item > a {
+    width: 100%;
+    font-size: 1.125rem;
+    font-weight: 400;
+    padding: 15px 0;
+    position: relative;
+}
+
+
 	
 
 

@@ -4,16 +4,25 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
+
+import kr.co.gungon.ticket.ticketConfig.SiteProperty;
 public class OverlayCompleteQR {
 
 	public void usedCompleteQRcode(String path,String qrimageName) {
 		  try {
 			  String imagePath=path+qrimageName+".png";
-			  System.out.println("usedCompleteQRcode   -------"+imagePath);
+			  
+			  
+			  System.out.println("OverlayCompleteQR   usedCompleteQRcode   -------"+imagePath);
+			  
 			   BufferedImage qrImg = ImageIO.read(new File(imagePath));
-			   BufferedImage usedCompleteImg = ImageIO.read(new File("D:/git project/Gung_On/src/main/webapp/ticket/images/usedComplete.png"));
+			   URL url=new URL(SiteProperty.gabiaUsedCompleteImg);
+			   
+			   //외부 서버에 있는 "사용완료" 이미지 가져오기
+			   BufferedImage usedCompleteImg = ImageIO.read(url);
 		
 			   int width = qrImg.getWidth();//200
 			   int height = qrImg.getHeight();//200

@@ -113,14 +113,14 @@ $(function(){
 		    dataType: "json",
 		    success: function(jsonObj) {
 		      if (jsonObj.result === "success") {
-		        alert("✅ 인증 성공!");
+		        alert(" 인증 성공!");
 		        clearInterval(timerInterval);
 		        $("#timer").text("");
 		        $("#certi").prop("readonly", true);
 		      } else if (jsonObj.result === "timeout") {
-		        alert("⏰ 인증 시간이 초과되었습니다.");
+		        alert(" 인증 시간이 초과되었습니다.");
 		      } else {
-		        alert("❌ 인증번호가 일치하지 않습니다.");
+		        alert(" 인증번호가 일치하지 않습니다.");
 		      }
 		    },
 		    error: function(xhr) {

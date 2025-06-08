@@ -124,7 +124,13 @@
 %>
         
         <style>
+        form{
+        display: inline;
         
+        }
+        div{
+        display: inline;
+        }
         
          #datatablesSimple {
             width: 100%;
@@ -514,20 +520,19 @@ $(document).ready(function() {
 <input type="date" id="startDate" name="startDate" value="${param.startDate != null ? param.startDate : ''}"/><span style="font-weight: bold;"> - </span>
 <input type="date" id="endDate" name="endDate" value="${param.endDate != null ? param.endDate : ''}"/>
 <input type="hidden" name="searchHid" value="true"/>
-<div class="datatable-search" style="width: 300px; height : 69px; display: flex; align-items: center;  gap: 8px;" >
-	<div class="dataTable-category-filter ms-2">
-						        <select id="category" class="form-select form-select-sm w-auto" name="searchCategory">
+<!-- <div class="datatable-search" style="width: 300px; height : 69px; display: flex; align-items: center;  gap: 8px;" > -->
+	<!-- <div class="dataTable-category-filter ms-2"> -->
+						        <select id="category" class="form-select form-select-sm w-auto" name="searchCategory" style="display: inline;">
 						            <option value="title" ${'title' == param.searchCategory ? 'selected' : ''}>제목</option>
 									<option value="content" ${'content' == param.searchCategory ? 'selected' : ''}>내용</option>
 						        </select>
-						    </div>
-						    
+						 <!--    </div> -->
 						    
 						    
 						    
 	<input class="datatable-input" placeholder="입력해주세요" type="search" title="Search within table" aria-controls="datatablesSimple" name="searchText" value="${param.searchText != null ? param.searchText : ''}">
     <input type="button" id="searchBtn" value="검색" class="btn btn-success"/>
-        </div>
+        <!-- </div> -->
 </form>
         
 </div>

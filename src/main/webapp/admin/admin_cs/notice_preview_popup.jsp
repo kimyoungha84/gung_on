@@ -47,7 +47,7 @@ if (numStr != null && !numStr.isEmpty()) {
 </script>
 
   <style>
-    .background-image {
+    /* .background-image {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -56,7 +56,7 @@ if (numStr != null && !numStr.isEmpty()) {
       z-index: -1;
       width: 850px;
       height: auto;
-    }
+    } */
 
     body {
       padding: 40px;
@@ -68,7 +68,7 @@ if (numStr != null && !numStr.isEmpty()) {
       margin: 0 auto;
     }
 
-    .txt_line1 {
+   /*  .txt_line1 {
       font-size: 24px;
       font-weight: bold;
     }
@@ -84,6 +84,7 @@ if (numStr != null && !numStr.isEmpty()) {
       font-size: 16px;
       line-height: 1.6;
     }
+    */
 
     .btn-close {
       margin-top: 40px;
@@ -93,7 +94,7 @@ if (numStr != null && !numStr.isEmpty()) {
       color: white;
       border: none;
       cursor: pointer;
-    }
+    } 
   </style>
 </head>
 
