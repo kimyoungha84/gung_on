@@ -22,19 +22,32 @@
 <link rel="stylesheet" type="text/css" href="http://${defaultIP}/Gung_On/ticket/css/paymentComplete.css"/>
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+<script type="text/javascript">
+$(function(){
+	history.replaceState({ page: 2 }, "예매 상세상세", "http://localhost/Gung_On/ticket/ticketPaymentCompleteFrm.jsp");
+ 	window.history.pushState(null, "",null, location.href);
+	window.onpopstate=function(event){
+	history.go(1);
+	};
+});
+</script>
+
 </head>
 
 <body>
+<br>
     <div class="entireWrap">
-    	<h1>결제완료</h1>
+   	
+    	<div><span style="font-weight:bold;font-size:35px;margin-left:150px; margin-top:100px;">결제완료</span></div>
+    	<br>
         <div class="identifier">
-        <span class="titleText">예매정보</span> <span class="titleVal"><%=ticketDTO.getBookingNum() %></span> <span class="titleText">결제일</span> <span  class="titleVal"><%=ticketDTO.getPaymentTimeStamp() %></span>
+        <span class="titleText" style="margin-left:170px;">예매정보</span> <span class="titleVal"><%=ticketDTO.getBookingNum() %></span> <span class="titleText">결제일</span> <span  class="titleVal"><%=ticketDTO.getPaymentTimeStamp() %></span>
         </div>
-        <br><br>
+        <br>
         <div class="ticketInfoTable">
             <table class="table-bordered" style="width:850px; font-size: 20px; text-align: center; border: 1px solid #9398A2;">
                 <thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
-                    <tr>
+                    <tr style="background:#ECECEC">
                         <th scope="col">관람</th>
                         <th scope="col">관람 시간</th>
                         <th scope="col">해설 언어</th>
@@ -48,7 +61,7 @@
                         <td><%= date %></td> 
                         <td><%=ticketDTO.getCommentLang() %></td>
                         <td><%=totalPersonStr %><br></td>    
-                        <td><%=ticketDTO.getPayment() %>원</td>
+                        <td><%=paymentStr %>원</td>
                     </tr>
 
                 </tbody>
@@ -56,9 +69,10 @@
             </table>
         </div><!--ticketInfoTable-->
        
+<br><br>
 
     <div class="btnGroup">
-        <input type="button"  value="확인" class="check">
+        <input type="button" style="margin-left:550px;" value="확인" class="check">
         
     </div>
 	<br>

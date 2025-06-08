@@ -3,6 +3,9 @@
  */
 
 $(function(){
+	history.pushState(null, document.title, location.href);
+	
+	
 	var authenNumFlag=false;
 
 	/*"인증" 버튼 눌림*/

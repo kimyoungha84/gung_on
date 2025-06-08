@@ -424,14 +424,11 @@ public class TicketService {
 	
 	//행사 이름으로 시작일 받아오기
 	public String getStartDate(String programName) {
-		String startDate=null;
 		TicketDAO tDAO=TicketDAO.getInstance();
-		String date=null;
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		String startDate=null;
 		
 		try {
-			date=tDAO.selectProgramDate(programName).split(",")[0];
-			startDate=sdf.format(date);
+			startDate=tDAO.selectProgramDate(programName).split(",")[0].split(" ")[0];
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 		}//end try~catch
@@ -442,14 +439,10 @@ public class TicketService {
 	//행사 이름으로 마지막일 받아오기
 	public String getEndDate(String programName) {
 		String endDate=null;
-		
 		TicketDAO tDAO=TicketDAO.getInstance();
-		String date=null;
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		
 		try {
-			date=tDAO.selectProgramDate(programName).split(",")[1];
-			endDate=sdf.format(date);
+			endDate=tDAO.selectProgramDate(programName).split(",")[1].split(" ")[0];
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 		}//end try~catch

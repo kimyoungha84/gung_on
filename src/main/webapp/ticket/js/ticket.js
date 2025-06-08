@@ -16,8 +16,6 @@ $(function(){
 		autoplay:true,
 		autoplaySpeed:3000,
 		
-		
-		
 	});//slider
 	
 	var startDay=$(".start-day").val();
@@ -25,10 +23,30 @@ $(function(){
 	
 	//debugger;
 	$("#datepicker").datepicker({
+		autoClose : true,
 		language: 'ko',
 		minDate: new Date(startDay),
-		maxDate: new Date(endDay)
+		maxDate: new Date(endDay),
+
 	});//datepicker
+	
+	/* 클릭되었을 때, 화살표 표시 변경 */
+	$("#datepicker").click(function(){
+		var arrowStatus=$(".datepickerStatus").val();
+		
+		if(arrowStatus == "click"){
+			$(".datepickerStatus").val("non-click");
+			$("#arrowDatepicker").attr('src','images/upArrow.png');
+		}//end if
+		var values=$("#datepicker").is(':visible');
+		//debugger;
+		//alert(values);
+		if(arrowStatus == "non-click"){
+			$(".datepickerStatus").val("click");
+			$("#arrowDatepicker").attr('src','images/downArrow.png');
+		}//end if
+		
+	});//click
 	
 	
 	/*어른*/
@@ -126,6 +144,9 @@ $(function(){
 	}//onClick
 	window.addEventListener('click',onClick);
 
+	
+	$(".popup_box").hide();
+	
 });//ready
 
 
@@ -159,16 +180,18 @@ function changeStatus(parentClassValue,classValue){
 		
 
 	
-	}//end if~else
-	
-
-	
-	
+	}//end if~else	
 }//changeStaus
+
+/********************************************************************************************/
+function changeArrowStatus(){
+	
+}
+
+
 
 
 /********************************************************************************************/
-
 /*입장료 계산*/
 //어차피 버튼은 1번 눌리니까 눌릴 때마다 계산한다고 하면....
 /*사람 종류, 계산(plus인지 -인지)*/

@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -166,10 +167,7 @@ public class AdminTicketService {
 		}//end try~catch
 		
 		startTimeStr=sdf.format(programStartTime);
-		
-		
-		
-		
+	
 		return startTimeStr;
 	}//end getProgramStartTimeByProgramId
 	
@@ -224,4 +222,45 @@ public class AdminTicketService {
 		
 		return resultStr;
 	}// chageStrToInt
+	
+	
+	//총 list 개수 주면, ,내가 원하는 갯수만큼 잘라서 list 전송(startNum, endNum)을 받아서 전송하면 되겠지
+	public List<TicketAdminDTO> cutList(int startNum, int endNum, List<TicketAdminDTO> totalList){
+		//1.totalList한테 numbering을 해줘야해		
+		List<TicketAdminDTO> list=new LinkedList<TicketAdminDTO>();
+		startNum-=1;
+		endNum-=1;
+		
+		
+		if(endNum > totalList.size()) {
+			endNum=(totalList.size());
+		}//end if
+		
+		for(int i=startNum; i<endNum;i++) {
+			list.add(totalList.get(i));
+		}//end for
+		
+		return list;
+	}//end cutList
+	
+	
+	//총 list 개수 주면, ,내가 원하는 갯수만큼 잘라서 list 전송(startNum, endNum)을 받아서 전송하면 되겠지
+	public List<TicketDetailDTO> cutListDetail(int startNum, int endNum, List<TicketDetailDTO> totalList){
+		//1.totalList한테 numbering을 해줘야해		
+		List<TicketDetailDTO> list=new LinkedList<TicketDetailDTO>();
+		startNum-=1;
+		endNum-=1;
+		
+		
+		if(endNum > totalList.size()) {
+			endNum=(totalList.size());
+		}//end if
+		
+		for(int i=startNum; i<endNum;i++) {
+			list.add(totalList.get(i));
+		}//end for
+		
+		return list;
+	}//end cutList
+	
 }//class

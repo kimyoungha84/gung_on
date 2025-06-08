@@ -30,7 +30,7 @@ TicketService ticketService=new TicketService();
 
 
 String programName=request.getParameter("programName");//행사 이름
-String imgFullPath=request.getParameter("imgFullPath");
+
 
 String date=request.getParameter("datepicker");//관람일자
 String reserveTime=ticketService.startTimeProgram(programName);
@@ -59,9 +59,7 @@ tDTO.setPayment(payment);//payment
 request.setAttribute("ticketDto", tDTO);
 //System.out.println("ticket_process.jsp --------"+tDTO);
 
-//program 시작, 끝 날짜 가져오기
-String startday=ticketService.getStartDate(programName);
-String endday=ticketService.getEndDate(programName);
+
 
 
 %>

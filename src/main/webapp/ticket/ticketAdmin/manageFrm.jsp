@@ -13,6 +13,9 @@
 <meta charset="UTF-8">
 <title>예매 관리</title>
 
+<%@ include file="/admin/common/header.jsp" %>
+<%@ include file="/admin/common/sidebar.jsp" %>
+
 <!-- 스타일 설정 -->
 <link href="http://${defaultIP}/Gung_On/ticket/ticketAdmin/css/ticket_manage_css.css" rel="stylesheet">
 <!-- CSS 설정 -->
@@ -39,17 +42,23 @@ $(function(){
 			
 			dataType: "html",
 			error : function(xhr){
-				alert("실패");
+				
 				alert(xhr.status);
 			},//error
 			success:function(data){
-				alert("성공");
+				
 				$(".entireWrap").html(data);
 			}//success
 			
 		});//ajax
 	
 	});//click	
+	
+	$(".datatable-bottom").click(function(){
+		
+	});
+	
+	
 });//ready
 
 
@@ -57,12 +66,12 @@ $(function(){
 
 </head>
 <body>
-<div class="entireWrap">
+<div class="entireWrap" style="margin-left:300px; margin-top:100px">
 <div class="title">
  <img src="/Gung_On/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">  
- <span class="titlep">예매 관리</span>
+ <span class="titlep" style="font-weight:bold; font-size:35px">예매 관리</span>
 </div>
-
+<br><br>
 <div class="">
 <form method="POST" id="">
 <input type="date" id="date" style="margin-left:10px;" name="date" value=""/><span style="font-weight: bold;"></span>
@@ -76,9 +85,9 @@ $(function(){
 
 
 <div class="">
-<table class="table-bordered table-hover" style="font-size: 20px; text-align: center; border: 1px solid #9398A2; padding:20px;">
+<table class="table-bordered table-hover" style="font-size: 20px; text-align: center; border: 1px solid #9398A2; padding:20px; width:1200px">
     <thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
-        <tr>
+        <tr style="background:#ECECEC;">
             <th>번호</th>
             <th>예매번호</th>
             <th>이름</th>
@@ -89,9 +98,10 @@ $(function(){
         </tr>
     </thead>
     <tbody class="border-start border-end" style="height:90px">
-    	<c:forEach var="adminTicketDTO" items="${ ticketAdminList }" varStatus="i">
+    	<%int cnt=startNum; %>
+    	<c:forEach var="adminTicketDTO" items="${ pageList }" varStatus="i">
 			<tr class="wrapTableBody" id="${ adminTicketDTO.booking_num }">
-				<td>${i.count }</td>
+				<td><c:out value="<%=cnt%>"/></td>
 				<td><c:out value="${ adminTicketDTO.booking_num }"/></td>
 				<td><c:out value="${ adminTicketDTO.member_name }"/></td>
 				<td><c:out value="${ adminTicketDTO.member_id }"/></td>
@@ -99,7 +109,11 @@ $(function(){
 				<td><c:out value="${ adminTicketDTO.phone_number}"/></td>
 				<td><c:out value="${ adminTicketDTO.comment_flag }"/></td>
 			</tr>
+			<% cnt++;%>
+			
 		</c:forEach>
+		
+		
     </tbody>
 </table>
 		<%//페이지네이션 HTML 생성
@@ -111,10 +125,11 @@ $(function(){
 	</div>
 </div><!-- includeTable -->
 
-
+<br><br><br><br><br><br><br><br><br>
+<%@ include file="/admin/common/footer.jsp" %>
 </div><!-- entireWrap -->
 
 
-
 </body>
+
 </html>
