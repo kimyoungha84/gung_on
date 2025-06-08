@@ -174,5 +174,44 @@ public class TicketDAO {
 	}//end insertReservationDetail
 	
 	
+	//행사 이름으로, 시작날짜, 끝날짜 받기
+	public String selectProgramDate(String programName) throws SQLException {
+		String programDate=null;
+		StringBuilder sb=new StringBuilder();
+		
+		DbConnection db = DbConnection.getInstance();
 
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Connection con = null;
+
+		try {
+			// 1.JNDI 사용객체 생성
+			// 2.DBCP에서 연결객체 얻기(DataSource)
+			// 3.Connection 얻기
+			con = db.getDbConn();
+			// 4.쿼리문 생성객체 얻기
+			StringBuilder selectQuery = new StringBuilder();
+			selectQuery.append("	select start_Date, end_date from program where program_name=?");
+
+			pstmt = con.prepareStatement(selectQuery.toString());
+			// 5.바인드 변수에 값 할당
+//				pstmt.setString(1, ticketDTO.getProgramName());
+			pstmt.setString(1, programName);
+
+			// 6.쿼리문 수행 후 결과를 얻기
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+			sb.append(rs.getString("start_date")).append(",").append(rs.getString("end_date"));
+			} // end if
+		} finally {
+			// 7.연결 끊기
+			db.dbClose(rs, pstmt, con);
+		} // try~finally
+		
+		programDate=sb.toString();
+		
+		return programDate;
+	}//selectProgramDate
+	
 }// class

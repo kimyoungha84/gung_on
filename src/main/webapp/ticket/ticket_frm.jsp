@@ -65,7 +65,7 @@
  
 <%
 //여기서 getprogramName 받아줘야한다.
-//reqeust.getParameter("programName");
+//String programName=reqeust.getParameter("programName");
 %>
 <div class="wrap">
     <form action="http://${defaultIP}/Gung_On/ticket/ticketProcess/ticket_process.jsp" name="viewDateFrm" method="post">
@@ -80,6 +80,7 @@
 			<!-- <form action="" name="viewDateFrm" method="post"> -->
 				<div class="viewDateParent" style="position:relative"><!-- 부모 -->
 				<div class="selectDesign viewDate" id="viewDate" >
+					<input type="hidden" class="start-day" value="${startday}"/><input type="hidden" class="end-day" value="${endday}"/>
 					<span class="ex"><input id="datepicker" name="datepicker" type="text" readonly placeholder="날짜를 선택해주세요."/></span>
 					<img src="http://${defaultIP}/Gung_On/ticket/images/downArrow.png" width="16px" id="arrow" class="arrow"/>	
 				</div><!--selectionDesign-->
@@ -198,14 +199,17 @@
 
 	<!-- 왼쪽 -->
     <div class="left">
- 
+ <%-- 
 		<div data-slick='{}' class='slider' style=" margin-left: 35px;">
 		  <img src="http://${defaultIP}/Gung_On/ticket/images/Gyeongbokgung.jpg"/>
 		  <img src="http://${defaultIP}/Gung_On/ticket/images/Gyeongbokgung2.jpg"/>
 		  <img src="http://${defaultIP}/Gung_On/ticket/images/Gyeongbokgung3.jpg"/> 
 
 		</div><!-- data-slick -->
-	
+ --%>	
+		<div style="margin-left:20px;">
+			<img src="${imgFullPath}"/>
+		</div>
 
 
 	<div class="explain_ticket">
