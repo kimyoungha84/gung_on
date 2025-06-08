@@ -27,7 +27,6 @@
   const swipers = {}; 
 
   function openPopup(tabId) {
-    console.log('openPopup called with tabId:', tabId);
     if (!dim || !popup) {
         console.error('Popup or Dim element is null when trying to open popup.');
         return;
@@ -35,7 +34,6 @@
     if (!tabId || !tabId.startsWith('cs')) {
          console.error('Invalid tabId provided to openPopup:', tabId);
          if (tabId === 'csundefined' || tabId === 'csnull') {
-             console.log('Attempting to open default tab cs0 for invalid tabId.');
              tabId = 'cs0';
          } else {
             return; 
@@ -57,13 +55,11 @@
     const targetTabLink = popup.querySelector('.tab_menu .item a[data-tab="' + tabId + '"]');
     if (targetTabLink) {
         targetTabLink.closest('.item').classList.add('current'); 
-         console.log(`Tab link for ${tabId} activated.`);
     } else {
          console.warn(`Tab link for ${tabId} not found in popup.`);
          const defaultTabLink = popup.querySelector('.tab_menu .item a[data-tab="cs0"]');
          if (defaultTabLink) {
              defaultTabLink.closest('.item').classList.add('current');
-             console.log('Default tab cs0 activated as target tab not found.');
              tabId = 'cs0'; 
          } else {
              console.error('Default tab cs0 not found either. No tab could be activated.');
@@ -83,19 +79,15 @@
 
     const targetTabContents = popup.querySelectorAll('.tab_con.' + tabId);
     if (targetTabContents.length > 0) {
-        console.log(`Found ${targetTabContents.length} tab contents for ${tabId}.`);
          targetTabContents.forEach(content => {
             content.classList.add('current'); 
-             console.log(`Tab content with classes ${content.classList} activated.`);
 
              const swiperEl = content.querySelector('.course_pop_slide');
              if (swiperEl) {
                  if (swipers[swiperEl.id]) {
-                     console.log('Updating existing Swiper in popup tab:', swiperEl.id);
                      swipers[swiperEl.id].update();
                      swipers[swiperEl.id].slideTo(0, 0);
                  } else if (!swiperEl.swiper) {
-                     console.log('Initializing Swiper inside popup:', swiperEl.id);
                      try {
                         swipers[swiperEl.id] = new Swiper('#' + swiperEl.id, {
                            direction: 'horizontal',
@@ -107,12 +99,10 @@
                            observeParents: true,
                         });
                         swipers[swiperEl.id].update();
-                         console.log('Initialized and updated Swiper in popup tab:', swiperEl.id);
                      } catch (e) {
                         console.error('Error initializing Swiper inside popup:', swiperEl.id, e);
                      }
                  } else if (swiperEl.swiper) {
-                      console.log('Updating Swiper instance on element in popup tab:', swiperEl.id);
                       swiperEl.swiper.update();
                       swiperEl.swiper.slideTo(0, 0);
                  } else {
@@ -129,7 +119,6 @@
   }
 
   function closePopup() {
-    console.log('closePopup called');
     if (!dim || !popup) {
         console.error('Popup or Dim element is null when trying to close popup.');
         return;
@@ -137,51 +126,40 @@
     dim.style.display = 'none';
     popup.style.display = 'none';
 
-     console.log('Popup closed.');
   }
 
    function handlePopupTabChange(tabId) {
-       console.log('handlePopupTabChange called with tabId:', tabId);
        openPopup(tabId);
    }
   function initializeContentElements(containerElement) {
-      console.log('initializeContentElements called for container:', containerElement.id);
-
       const panzoomElem = containerElement.querySelector('#panzoom-container');
        if (panzoomElem) {
-         console.log('Initializing Panzoom...');
          const panzoom = Panzoom(panzoomElem, { maxScale: 5, minScale: 0.5, step: 0.2 });
          const zoomInButton = containerElement.querySelector('#zoomInButton');
          const zoomOutButton = containerElement.querySelector('#zoomOutButton');
          const resetButton = containerElement.querySelector('#resetButton');
-         if(zoomInButton) { zoomInButton.addEventListener('click', () => panzoom.zoomIn()); console.log('Panzoom zoomIn listener attached.'); }
-         if(zoomOutButton) { zoomOutButton.addEventListener('click', () => panzoom.zoomOut()); console.log('Panzoom zoomOut listener attached.'); }
-         if(resetButton) { resetButton.addEventListener('click', () => panzoom.reset()); console.log('Panzoom reset listener attached.'); }
-         console.log('Panzoom initialized and listeners attached.');
+         if(zoomInButton) { zoomInButton.addEventListener('click', () => panzoom.zoomIn()); }
+         if(zoomOutButton) { zoomOutButton.addEventListener('click', () => panzoom.zoomOut()); }
+         if(resetButton) { resetButton.addEventListener('click', () => panzoom.reset()); }
        } else {
          console.log('Panzoom container (#panzoom-container) not found in loaded main content.');
        }
 
-      console.log('Setting up building info tabs...');
        const buildingTabLinks = containerElement.querySelectorAll('.course_num_list .course_num_item');
        const photoDiv = containerElement.querySelector('#photoDiv');
        const buildingTabContents = photoDiv ? photoDiv.querySelectorAll('.tab_con') : [];
 
-
        if (buildingTabLinks.length > 0 && buildingTabContents.length > 0) {
-           console.log(`Found ${buildingTabLinks.length} building tab links.`);
            buildingTabLinks.forEach(function(link) {
                link.addEventListener('click', function(event) {
                    event.preventDefault();
                    const targetTab = this.getAttribute('data-tab');
-                   console.log('Building tab clicked:', targetTab);
                    buildingTabLinks.forEach(item => item.classList.remove('current'));
                    this.classList.add('current');
                    buildingTabContents.forEach(content => content.classList.remove('current'));
                    const activeContent = containerElement.querySelector('#photoDiv .tab_con.' + targetTab);
                    if (activeContent) {
                        activeContent.classList.add('current');
-                       console.log('Building tab content activated:', targetTab);
                        const swiperEl = activeContent.querySelector('.course_slide');
                         if (swiperEl) {
                             if (swipers[swiperEl.id]) { console.log('Updating existing building Swiper:', swiperEl.id); swipers[swiperEl.id].update(); swipers[swiperEl.id].slideTo(0, 0); }
@@ -192,10 +170,8 @@
                    } else { console.error('Active building tab content element not found:', '#photoDiv .tab_con.' + targetTab); }
                });
            });
-           console.log('Building info tabs setup complete.');
             const initialActiveBuildingTabContent = photoDiv ? photoDiv.querySelector('.tab_con.current') : null;
             if (initialActiveBuildingTabContent) {
-                console.log('Initializing Swiper for initial active building tab...');
                 const initialBuildingSwiperElement = initialActiveBuildingTabContent.querySelector('.course_slide');
                  if (initialBuildingSwiperElement) {
                        if (swipers[initialBuildingSwiperElement.id]) { console.log('Updating initial building Swiper (exists).'); swipers[initialBuildingSwiperElement.id].update(); swipers[initialBuildingSwiperElement.id].slideTo(0, 0); }
@@ -206,12 +182,10 @@
        } else {
            console.log('Building info tab elements (.course_num_list, #photoDiv .tab_con) not found in loaded main content.');
        }
-        console.log('Popup Swiper initialization handled by openPopup.');
   }
 
   
   function loadContent(selectedValue) {
-      console.log('loadContent called with value:', selectedValue);
 
       if (!mainContentDiv || !popup) {
            console.error('mainContentDiv or popup element not found! Cannot load content.');
@@ -219,14 +193,12 @@
       }
 
       if (!selectedValue) {
-           console.log('No value selected, clearing main content.');
            mainContentDiv.innerHTML = '';
            selectElement = null;
 
             const popupBody = popup.querySelector('.popup_body');
             if (popupBody) {
                  popupBody.innerHTML = '';
-                 console.log('Popup content cleared.');
             } else {
                  console.error('Popup body element (.popup_body) not found inside popup!');
             }
@@ -234,11 +206,9 @@
       }
 
       const targetJspPath = '/Gung_On/course/' +'course_'+ selectedValue + '.jsp';
-      console.log('Fetching main content:', targetJspPath);
 
       fetch(targetJspPath)
           .then(response => {
-              console.log('Fetch main content response received', response.status);
               if (!response.ok) {
                   console.error('Network response for main content was not ok ' + response.statusText);
                   mainContentDiv.innerHTML = '<div>페이지 로드 실패: ' + response.statusText + ' (' + response.status + ')</div>';
@@ -246,49 +216,40 @@
                   if (selectElement) {
                        selectElement.removeEventListener('change', handleSelectChange);
                        selectElement.addEventListener('change', handleSelectChange);
-                       console.log('Select change listener re-attached after main content fetch error.');
                   }
                   return Promise.reject('메인 콘텐츠 로드 실패');
               }
               return response.text();
           })
           .then(html => {
-              console.log('Fetch main content successful, processing HTML');
               const tempDiv = document.createElement('div');
               tempDiv.innerHTML = html;
               const scriptsToExecute = Array.from(tempDiv.querySelectorAll('script'));
               scriptsToExecute.forEach(script => script.remove());
               const contentWithoutScripts = tempDiv.innerHTML;
               mainContentDiv.innerHTML = contentWithoutScripts;
-              console.log('Main content (without scripts) inserted into main-content');
 
                selectElement = mainContentDiv.querySelector('.sel_st');
                if (selectElement) {
                     selectElement.removeEventListener('change', handleSelectChange);
                     selectElement.addEventListener('change', handleSelectChange);
-                    console.log('Select change listener re-attached for new main content.');
                } else {
                     console.warn('New select element (.sel_st) not found after main content replacement! Cannot set up listener.');
                }
 
               initializeContentElements(mainContentDiv);
 
-              console.log('Main content processing completed.');
-
               const popupContentJspPath = '/Gung_On/course/popup_' + selectedValue + '.jsp';
-              console.log('Fetching popup content:', popupContentJspPath);
 
                return fetch(popupContentJspPath);
           })
            .then(response => {
-                console.log('Fetch popup content response received', response.status);
                 if (!response.ok) {
                     console.error('Network response for popup content was not ok ' + response.statusText);
                     if (popup) {
                         const popupBody = popup.querySelector('.popup_body');
                         if (popupBody) {
                             popupBody.innerHTML = '<div>팝업 콘텐츠 로드 실패.</div>';
-                             console.log('Popup content cleared due to fetch error.');
                         }
                     }
                     return Promise.resolve(null);
@@ -297,17 +258,14 @@
            })
            .then(popupHtml => {
                if (popupHtml !== null && popup) {
-                   console.log('Fetch popup content successful, processing HTML');
                    const popupBody = popup.querySelector('.popup_body');
                     if (popupBody) {
                        popupBody.innerHTML = popupHtml;
-                       console.log('Popup content inserted into popup body.');
 
                     } else {
                         console.error('Popup body element (.popup_body) not found inside popup during content replacement!');
                     }
                }
-               console.log('Popup content loading and processing finished.');
            })
           .catch(error => {
               console.error('Overall fetch or processing error:', error);
@@ -320,7 +278,6 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('--- Main DOMContentLoaded listener started ---');
     mainContentDiv = document.getElementById('main-content');
     dim = document.querySelector('.dim');
     popup = document.getElementById('pop_course01');
@@ -328,62 +285,46 @@
     if (!dim) console.warn('Dim element (.dim) not found. Popup dimming will not work.');
     if (!popup) console.warn('Popup element (#pop_course01) not found. Popup functionality will be limited.');
 
-    console.log('Setting up popup close listeners...');
-    if (dim) { dim.addEventListener('click', function(e) { if (e.target === dim) { closePopup(); } }); console.log('Dim click listener attached.'); }
+    if (dim) { dim.addEventListener('click', function(e) { if (e.target === dim) { closePopup(); } }); }
     if (popup) {
         const closeBtn = popup.querySelector('.popup_close');
-        if (closeBtn) { closeBtn.addEventListener('click', function(e) { e.preventDefault(); closePopup(); }); console.log('Popup close button listener attached.'); } else { console.log('Popup close button (.popup_close) not found in popup HTML.'); }
+        if (closeBtn) { closeBtn.addEventListener('click', function(e) { e.preventDefault(); closePopup(); }); } 
 
         const popupTabMenu = popup.querySelector('.tab_menu ul'); 
          popup.addEventListener('click', function(e) { 
              const targetLink = e.target.closest('.tab_menu .item a');
              if(targetLink) {
                  e.preventDefault();
-                 console.log('Popup tab link clicked:', targetLink.getAttribute('data-tab'));
                  const tabId = targetLink.getAttribute('data-tab');
                  handlePopupTabChange(tabId);
              }
          });
-         console.log('Popup internal tab listeners attached via delegation on popup element.');
 
-         console.log('Initial popup Swiper initialization deferred to openPopup.');
-    } else { console.log('Popup or Dim element not found. Popup close listeners skipped.'); }
+    } 
 
-    console.log('Setting up event delegation listener on main-content...');
      if (mainContentDiv) {
         mainContentDiv.addEventListener('click', function(event) {
             const clickedCourseLink = event.target.closest('ul.list.course_info_list li.item a');
             if (clickedCourseLink) {
                  event.preventDefault();
-                 console.log('Course link clicked (via event delegation)!');
                  const listItem = clickedCourseLink.closest('li.item');
                  const tabNum = listItem ? listItem.getAttribute('data-num') : null;
-                 console.log('Fetched data-num:', tabNum);
                  openPopup('cs' + tabNum);
             }
              const clickedDynamicButton = event.target.closest('.dynamic-button');
-             if (clickedDynamicButton && clickedDynamicButton !== clickedCourseLink) {
-                 console.log('Dynamic button clicked!');
-             }
         });
-         console.log('Event delegation listener on main-content attached.');
      }
 
     selectElement = mainContentDiv.querySelector('.sel_st');
     if (selectElement) {
-         console.log('Initial select element found.');
          selectElement.addEventListener('change', handleSelectChange);
-         console.log('Initial select change listener attached.');
-         console.log('Performing initial content load using default select value:', selectElement.value);
          loadContent(selectElement.value);
     } else {
          console.error('Initial select element (.sel_st) not found in main-content! Cannot set up initial listener or load initial content.');
           if (mainContentDiv && mainContentDiv.innerHTML.trim() !== '') {
-              console.log('Attempting to initialize elements in initial main content even without select element.');
               initializeContentElements(mainContentDiv);
           }
     }
-    console.log('--- Main DOMContentLoaded listener finished ---');
   });
   
   
