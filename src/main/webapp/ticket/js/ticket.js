@@ -20,12 +20,15 @@ $(function(){
 		
 	});//slider
 	
-	
+	var startDay=$(".start-day").val();
+	var endDay=$(".end-day").val();
 	
 	//debugger;
 	$("#datepicker").datepicker({
 		language: 'ko',
-	});
+		minDate: new Date(startDay),
+		maxDate: new Date(endDay)
+	});//datepicker
 	
 	
 	/*어른*/

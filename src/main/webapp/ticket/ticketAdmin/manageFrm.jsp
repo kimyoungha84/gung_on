@@ -14,7 +14,7 @@
 <title>예매 관리</title>
 
 <!-- 스타일 설정 -->
-<link href="css/ticket_manage_css.css" rel="stylesheet">
+<link href="http://${defaultIP}/Gung_On/ticket/ticketAdmin/css/ticket_manage_css.css" rel="stylesheet">
 <!-- CSS 설정 -->
 <link rel="stylesheet" type="text/css" href="http://${defaultIP}/Gung_On/ticket/css/payment.css"/>
 <link rel="stylesheet" type="text/css" href="http://${defaultIP}/Gung_On/ticket/css/paymentComplete.css"/>
@@ -26,17 +26,30 @@
 <script type="text/javascript">
 $(function(){
 
-	$(".wrap").click(function(){
-		alert("들어오나?");
+	$(".wrapTableBody").click(function(){
 		var id=$(this).attr("id");
-		window.location.href="http://localhost/Gung_On/ticket/ticketAdmin/manage_detail_Frm.jsp?bookingNum="+id;
-	});	
+		var param="bookingNum="+id;
+		//debugger;
+		//window.location.href="http://localhost/Gung_On/ticket/ticketAdmin/manage_detail_Frm.jsp?bookingNum="+id;
+		$.ajax({
+			
+			url:"http://localhost/Gung_On/ticket/ticketAdmin/manage_detail_Frm.jsp",
+			type:"GET",
+			data : param,
+			
+			dataType: "html",
+			error : function(xhr){
+				alert("실패");
+				alert(xhr.status);
+			},//error
+			success:function(data){
+				alert("성공");
+				$(".entireWrap").html(data);
+			}//success
+			
+		});//ajax
 	
-	$("#btn").click(function(){
-		alert("되긴하는건가");
-	});
-		
-		
+	});//click	
 });//ready
 
 
@@ -44,7 +57,7 @@ $(function(){
 
 </head>
 <body>
-
+<div class="entireWrap">
 <div class="title">
  <img src="/Gung_On/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">  
  <span class="titlep">예매 관리</span>
@@ -63,7 +76,7 @@ $(function(){
 
 
 <div class="">
-<table class="table-bordered" style="width:1566px; font-size: 20px; text-align: center; border: 1px solid #9398A2; padding:20px;">
+<table class="table-bordered table-hover" style="font-size: 20px; text-align: center; border: 1px solid #9398A2; padding:20px;">
     <thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
         <tr>
             <th>번호</th>
@@ -77,7 +90,7 @@ $(function(){
     </thead>
     <tbody class="border-start border-end" style="height:90px">
     	<c:forEach var="adminTicketDTO" items="${ ticketAdminList }" varStatus="i">
-			<tr class="wrap" id="${ adminTicketDTO.booking_num }">
+			<tr class="wrapTableBody" id="${ adminTicketDTO.booking_num }">
 				<td>${i.count }</td>
 				<td><c:out value="${ adminTicketDTO.booking_num }"/></td>
 				<td><c:out value="${ adminTicketDTO.member_name }"/></td>
@@ -99,7 +112,7 @@ $(function(){
 </div><!-- includeTable -->
 
 
-
+</div><!-- entireWrap -->
 
 
 

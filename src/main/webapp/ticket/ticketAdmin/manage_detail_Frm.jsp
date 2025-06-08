@@ -16,6 +16,15 @@
 <title>상세 예매 관리</title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- 부트스트랩  CDN -->    
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
+<script type="text/javascript">
+
+$(function(){
+	
+});//ready
+</script>
+
 </head>
 <body>
 
@@ -30,7 +39,7 @@
 
 <div>
     <br><br>
-    	<table  class="table-bordered" style="width:1566px; font-size: 20px; text-align: center; border: 1px solid #9398A2; padding:20px;">
+    	<table  class="table-bordered" style="font-size: 20px; text-align: center; border: 1px solid #9398A2;">
     	<thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
     		<tr>
 	    		<th>행사 이름</th>
@@ -53,7 +62,9 @@
     	
     	</table>
     	
-        <table class="table-bordered" style="width:1566px; font-size: 20px; text-align: center; border: 1px solid #9398A2; padding:20px;">
+    	<br><br><br><br><br>
+    	
+        <table class="table-bordered" style=" font-size: 20px; text-align: center; border: 1px solid #9398A2; ">
 	    <thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
         <tr>
             <th  style="height:80px;">연령구분</th>
