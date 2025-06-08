@@ -22,15 +22,6 @@
 <link rel="stylesheet" type="text/css" href="http://${defaultIP}/Gung_On/ticket/css/paymentComplete.css"/>
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
-<script type="text/javascript">
-$(function(){
-	history.replaceState({ page: 2 }, "예매 상세상세", "http://localhost/Gung_On/ticket/ticketPaymentCompleteFrm.jsp");
- 	window.history.pushState(null, "",null, location.href);
-	window.onpopstate=function(event){
-	history.go(1);
-	};
-});
-</script>
 
 </head>
 

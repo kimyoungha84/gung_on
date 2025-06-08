@@ -34,5 +34,5 @@ ts.addReservationValue(ticketDTO);
 ts.sendURL(ticketDTO);
 
 
-
+//session.removeAttribute("ticketDTO");
 %>

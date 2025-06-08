@@ -3,7 +3,6 @@
  */
 
 $(function(){
-	history.pushState(null, document.title, location.href);
 	
 	
 	var authenNumFlag=false;
