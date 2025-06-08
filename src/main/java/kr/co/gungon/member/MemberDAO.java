@@ -398,6 +398,51 @@ public class MemberDAO {
 		        db.dbClose(null, pstmt, con);
 		    }
 		}
-	
+		
+		public List<MemberDTO> selectAllMemberAdmin() throws SQLException {
+
+			List<MemberDTO> list = new ArrayList<MemberDTO>();
+			DbConnection db = DbConnection.getInstance();
+
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			Connection con = null;
+
+			try {
+				// 1.JNDI 사용객체 생성
+				// 2.DBCP에서 연결객체 얻기(DataSource)
+				// 3.Connection 얻기
+				con = db.getDbConn();
+				// 4.쿼리문 생성객체 얻기
+				StringBuilder selectIdQuery = new StringBuilder();
+				selectIdQuery
+				.append("	select member_id, member_name, member_tel, member_email, member_ip,member_reg_date,member_flag	")
+				.append("	from member	");
+
+				pstmt = con.prepareStatement(selectIdQuery.toString());
+				// 5.바인드변수에 값 할당
+				// 6.쿼리문 수행 후 결과 얻기
+				rs = pstmt.executeQuery();
+				
+				MemberDTO mDTO =null;
+				while(rs.next()) {
+					mDTO=new MemberDTO();
+					mDTO.setId(rs.getString("member_id"));
+					mDTO.setName(rs.getString("member_name"));
+					mDTO.setTel(rs.getString("member_tel"));
+					mDTO.setUseEmail(rs.getString("member_email"));
+					mDTO.setIp(rs.getString("member_ip"));
+					mDTO.setInput_date(rs.getDate("member_reg_date"));
+					mDTO.setFlag(rs.getString("member_flag"));
+					
+					list.add(mDTO);
+				}//end while
+			} finally {
+				// 7.연결 끊기
+				db.dbClose(rs, pstmt, con);
+			} // end finally
+			return list;
+
+		}// selectAllMember
 	
 }// class

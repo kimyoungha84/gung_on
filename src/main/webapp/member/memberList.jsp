@@ -11,28 +11,22 @@
     }
 
     MemberDAO mDAO = MemberDAO.getInstance();
-    List<MemberDTO> memberList = mDAO.selectAllMember();
+    List<MemberDTO> memberList = mDAO.selectAllMemberAdmin();
 %>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         $(".clickable-row").click(function() {
+            if ($(this).hasClass("disabled")) {
+                alert("탈퇴한 회원은 조회가 불가능합니다.");
+                return;
+            }
+
             var memberId = $(this).data("id");
-            // 상세 페이지를 content 영역에 로드
             $("#content").load("<%= request.getContextPath() %>/member/memberDetail.jsp?id=" + encodeURIComponent(memberId));
         });
     });
-    
-    $(".clickable-row").click(function() {
-        if ($(this).hasClass("disabled")) {
-            alert("탈퇴된 회원입니다.");
-            return;
-        }
-        var memberId = $(this).data("id");
-        $("#content").load("<%= request.getContextPath() %>/member/memberDetail.jsp?id=" + encodeURIComponent(memberId));
-    });
-    
 </script>
 
 <div class="container mt-4">
