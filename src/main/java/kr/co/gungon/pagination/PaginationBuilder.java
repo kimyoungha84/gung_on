@@ -35,14 +35,16 @@ public class PaginationBuilder {
         StringBuilder sb = new StringBuilder();
         String extra = (extraParams == null || extraParams.isEmpty()) ? "" : "&" + extraParams;
 
+        boolean noData = (rowCounts == 0); // 데이터가 없는지 확인
+
         sb.append(getPaginationCss());
         sb.append("<div class='pagination-wrapper'><ul class='pagination'>");
 
         // 맨 처음 페이지
-        sb.append(buildPageItem("≪", 1, currentPage == 1, baseUrl, extra));
+        sb.append(buildPageItem("≪", 1, currentPage == 1 || noData, baseUrl, extra));
 
         // 이전 페이지
-        sb.append(buildPageItem("‹", currentPage - 1, currentPage == 1, baseUrl, extra));
+        sb.append(buildPageItem("‹", currentPage - 1, currentPage == 1 || noData, baseUrl, extra));
 
         // 중간 페이지들
         for (int i = startPage; i <= endPage; i++) {
@@ -51,14 +53,15 @@ public class PaginationBuilder {
         }
 
         // 다음 페이지
-        sb.append(buildPageItem("›", currentPage + 1, currentPage == totalPages, baseUrl, extra));
+        sb.append(buildPageItem("›", currentPage + 1, currentPage == totalPages || noData, baseUrl, extra));
 
         // 맨 끝 페이지
-        sb.append(buildPageItem("≫", totalPages, currentPage == totalPages, baseUrl, extra));
+        sb.append(buildPageItem("≫", totalPages, currentPage == totalPages || noData, baseUrl, extra));
 
         sb.append("</ul></div>");
         return sb.toString();
     }
+
 
     private String buildPageItem(String label, int page, boolean disabled, String baseUrl, String extra) {
         return "<li class='page-item " + (disabled ? "disabled" : "") + "'>" +
