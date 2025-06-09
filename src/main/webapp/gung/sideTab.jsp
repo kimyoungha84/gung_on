@@ -1,76 +1,88 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String currentPath = request.getRequestURI();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/hjs/sideTab.css">
+<link rel="stylesheet" href="/common/css/common.css">
+<link rel="stylesheet" href="/sideTab.css">
 <style type="text/css">
 
 </style>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$(document).ready(function(){
-	  $(".toggle").click(function(){
-	    $(this).toggleClass("active");
-	    $(this).next(".submenu").slideToggle();
-	    $(".toggle").not(this).removeClass("active").next(".submenu").slideUp(); // 하나만 열리도록
-	  });
-	});
-});//ready
+  $(".toggle").click(function(){
+    $(this).toggleClass("active");
+    $(this).next(".submenu").slideToggle();
+    $(".toggle").not(this).removeClass("active").next(".submenu").slideUp(); // 하나만 열리도록
+  });
+});
 </script>
 </head>
 <body>
 
 <main>
-
-
 <div class="side-menu">
-    <h2>궁능소개</h2>
-    <ul class="accordion">
-      <li>
-        <button class="toggle">경복궁</button>
-        <ul class="submenu">
-          <li><a href="http://localhost${pageContext.request.contextPath}/gung/gyungbukgung.jsp">경복궁 소개·역사</a></li>
-          <li><a href="http://localhost${pageContext.request.contextPath}/Story/gung_story.jsp">경복궁 이야기</a></li>
-        </ul>
-      </li>
-      <li>
-        <button class="toggle">창덕궁</button>
-        <ul class="submenu">
-          <li><a href="http://localhost${pageContext.request.contextPath}/gung/changdeokgung.jsp">창덕궁 소개</a></li>
-          <li><a href="http://localhost${pageContext.request.contextPath}/Story/changdeokgung_story.jsp">창덕궁 이야기</a></li>
-        </ul>
-      </li>
-      <li>
-        <button class="toggle">창경궁</button>
-        <ul class="submenu">
-          <li><a href="http://localhost${pageContext.request.contextPath}/gung/changgyeonggung.jsp">창경궁 소개</a></li>
-          <li><a href="http://localhost${pageContext.request.contextPath}/Story/changgyeonggung_story.jsp">창경궁 이야기</a></li>
-        </ul>
-      </li>
-      <li>
-        <button class="toggle">덕수궁</button>
-        <ul class="submenu">
-          <li><a href="http://localhost${pageContext.request.contextPath}/gung/deoksugung.jsp">덕수궁 소개</a></li>
-          <li><a href="http://localhost${pageContext.request.contextPath}/Story/deoksugung_story.jsp">덕수궁 이야기</a></li>
-        </ul>
-      </li>
-      <li>
-        <button class="toggle">경희궁</button>
-        <ul class="submenu">
-          <li><a href="http://localhost${pageContext.request.contextPath}/gung/gyeonghuigung.jsp">경희궁 소개·역사</a></li>
-          <li><a href="http://localhost${pageContext.request.contextPath}/Story/gyeonghuigung_story.jsp">경희궁 이야기</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+  <h2>궁능소개</h2>
+  <ul class="accordion">
 
+    <li>
+      <button class="toggle">경복궁</button>
+      <ul class="submenu">
+        <li><a href="http://localhost/Gung_On/gung/gyungbukgung.jsp"
+               class="<%= currentPath.contains("/gung/gyungbukgung.jsp") ? "active" : "" %>">경복궁 소개·역사</a></li>
+        <li><a href="http://localhost/Gung_On/Story/gung_story.jsp"
+               class="<%= currentPath.contains("/Story/gung_story.jsp") ? "active" : "" %>">경복궁 이야기</a></li>
+      </ul>
+    </li>
 
+    <li>
+      <button class="toggle">창덕궁</button>
+      <ul class="submenu">
+        <li><a href="http://localhost/Gung_On/gung/changdeokgung.jsp"
+               class="<%= currentPath.contains("/gung/changdeokgung.jsp") ? "active" : "" %>">창덕궁 소개</a></li>
+        <li><a href="http://localhost/Gung_On/Story/changdeokgung_story.jsp"
+               class="<%= currentPath.contains("/Story/changdeokgung_story.jsp") ? "active" : "" %>">창덕궁 이야기</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <button class="toggle">창경궁</button>
+      <ul class="submenu">
+        <li><a href="http://localhost/Gung_On/gung/changgyeonggung.jsp"
+               class="<%= currentPath.contains("/gung/changgyeonggung.jsp") ? "active" : "" %>">창경궁 소개</a></li>
+        <li><a href="http://localhost/Gung_On/Story/changgyeonggung_story.jsp"
+               class="<%= currentPath.contains("/Story/changgyeonggung_story.jsp") ? "active" : "" %>">창경궁 이야기</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <button class="toggle">덕수궁</button>
+      <ul class="submenu">
+        <li><a href="http://localhost/Gung_On/gung/deoksugung.jsp"
+               class="<%= currentPath.contains("/gung/deoksugung.jsp") ? "active" : "" %>">덕수궁 소개</a></li>
+        <li><a href="http://localhost/Gung_On/Story/deoksugung_story.jsp"
+               class="<%= currentPath.contains("/Story/deoksugung_story.jsp") ? "active" : "" %>">덕수궁 이야기</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <button class="toggle">경희궁</button>
+      <ul class="submenu">
+        <li><a href="http://localhost/Gung_On/gung/gyeonghuigung.jsp"
+               class="<%= currentPath.contains("/gung/gyeonghuigung.jsp") ? "active" : "" %>">경희궁 소개·역사</a></li>
+        <li><a href="http://localhost/Gung_On/Story/gyeonghuigung_story.jsp"
+               class="<%= currentPath.contains("/Story/gyeonghuigung_story.jsp") ? "active" : "" %>">경희궁 이야기</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</div>
 </main>
 
 </body>

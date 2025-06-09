@@ -17,8 +17,15 @@
 <div id="layoutSidenav_content">
 <main>
 
-  <div class="container-fluid px-4 mt-4">
+  <div class="container-fluid px-4">
   <h1>궁 관리</h1>
+  <hr/>
+  
+  <div class="card m-3">
+  <div class="card-body">
+  <h2>궁 목록</h2>
+  
+  
   <table class="table table-bordered table-hover">
     <thead class="table-light">
       <tr>
@@ -56,11 +63,13 @@
       %>
     </tbody>
   </table>
-
   <button class="register-btn"onclick="location.href='${pageContext.request.contextPath}/admin/admin_gung/gung_insert.jsp'">등록</button>
+</div>
 <!-- 페이지네이션 표시 -->
    <div>
+   
    </div>
+</div>
 </div>
 </main>
 <%@ include file="/admin/common/footer.jsp" %>

@@ -8,8 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.gungon.config.DbConnection;
+import kr.co.gungon.member.MemberDTO;
 
 public class StoryDAO {
+    // ✅ 인스턴스 생성 (static으로 미리 만들어 둠)
+    private static final StoryDAO instance = new StoryDAO();
+
+    // ✅ 생성자는 private으로 막음 (외부에서 new 못 하게)
+    private StoryDAO() {}
+
+    // ✅ 외부에서 접근하는 유일한 경로
+    public static StoryDAO getInstance() {
+        return instance;
+    }
 
 	public StoryDTO getStoryById(int storyId) {
 	    StoryDTO dto = null;
@@ -264,6 +275,92 @@ public class StoryDAO {
             pstmt.executeUpdate();
         }
     }
+    public int getStoryCount() {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM story";
+        try (
+            Connection conn = DbConnection.getInstance().getDbConn();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery()
+        ) {
+            if (rs.next()) count = rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+    
+public List<StoryDTO> getStoryList(int start, int end) throws SQLException {
+    	
+    	DbConnection db = DbConnection.getInstance();
+		
+	    StoryDTO sDTO = null;
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    List<StoryDTO> list = new ArrayList<>();
+    	
+	    try {
+	    	conn = db.getDbConn();
+	    	
+	    	String sql = """
+	    		    SELECT * FROM (
+	    	        SELECT ROWNUM rnum, B.*
+	    	        FROM (
+	    	            SELECT s.story_id, s.story_name, s.story_info, s.story_reg_date,
+	    	                   g.gung_name
+	    	            FROM story s
+	    	            JOIN gung g ON s.gung_id = g.gung_id
+	    	            ORDER BY s.story_reg_date DESC
+	    	        ) B
+	    	    )
+	    	    WHERE rnum BETWEEN ? AND ?
+	    	""";;
+	    	
+	    	pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, end);
+            pstmt.executeQuery();
+            
+            rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+            	sDTO = new StoryDTO();
+            	sDTO.setStory_id(rs.getInt("story_id"));
+            	sDTO.setStory_name(rs.getString("story_name"));
+            	sDTO.setStory_info(rs.getString("story_info"));
+            	sDTO.setStory_reg_date(rs.getDate("story_reg_date"));
+            	sDTO.setGung_name(rs.getString("gung_name"));
+                list.add(sDTO);
+            }
+        } finally {
+            db.dbClose(rs, pstmt, conn);
+        }
+        return list;
+    }
 
+public List<StoryDTO> selectStoriesByGungId(int gungId) {
+    List<StoryDTO> list = new ArrayList<>();
+    String sql = "SELECT story_id, story_name FROM story WHERE gung_id = ? ORDER BY story_name";
+
+    try (
+        Connection conn = DbConnection.getInstance().getDbConn();
+        PreparedStatement pstmt = conn.prepareStatement(sql)
+    ) {
+        pstmt.setInt(1, gungId);
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                StoryDTO dto = new StoryDTO();
+                dto.setStory_id(rs.getInt("story_id"));
+                dto.setStory_name(rs.getString("story_name"));
+                list.add(dto);
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace(); // 필요시 로깅
+    }
+
+    return list;
+}
 
 } // end class

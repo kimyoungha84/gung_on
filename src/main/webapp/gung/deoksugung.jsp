@@ -13,9 +13,19 @@
 <link rel="stylesheet" href="mainGung.css">
 <link rel="stylesheet" href="sideTab.css">
 <style>
-    
-
-
+  .history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .history-table th, .history-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  .history-table th {
+    background-color: #f2f2f2;
+  }
 </style>
 </head>
 <body>
@@ -39,13 +49,44 @@
         GungDTO gung = service.getGungDetail("덕수궁");
 
         if (gung != null) {
+            String[] historyRows = gung.getGung_history().split("\\s*/\\s*");  // ✅ 여기를 수정
     %>
         <h2><%= gung.getGung_name() %></h2>
-        	<% if (gung.getImg_path() != null && !gung.getImg_path().trim().isEmpty()) { %>
-    <img src="<%= gung.getImg_path() %>" alt="<%= gung.getGung_name() %> 이미지" class="gung-img" />
+
+      <% if (gung.getImg_path() != null && !gung.getImg_path().trim().isEmpty()) { %>
+    <img src="<%= request.getContextPath() + gung.getImg_path() %>" alt="<%= gung.getGung_name() %> 이미지" class="gung-img" />
 <% } %>
-        <p> <%= gung.getGung_info() %></p>
-        <p2> <%= gung.getGung_history() %></p2>
+
+
+
+        <div class="txt_wrap">
+        <img src="https://royal.khs.go.kr/imgs/images/2023/12/22/20231222151102361_6YOCUH0E.png" style="display: block; margin: 0 auto; max-width: 100%;" alt="">
+        <p><Strong style="text-align: center; font-size: 25px;">
+        덕수궁은 1897년에 선포된 황제국, 대한제국의 황궁으로 옛 이름은 경운궁입니다.</Strong></p>
+           <p><%= gung.getGung_info().replaceAll("\n", "<br>") %></p>
+        </div>
+
+        <h3 class="txt_section_tit">역사</h3>
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>연도</th>
+                    <th>내용</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (String row : historyRows) {
+                    String[] parts = row.trim().split(":", 2);
+                    if (parts.length == 2) {
+                %>
+                    <tr>
+                        <td><%= parts[0].trim() %></td>
+                        <td><%= parts[1].trim() %></td>
+                    </tr>
+                <%  }} %>
+            </tbody>
+        </table>
+
     <%
         } else {
     %>

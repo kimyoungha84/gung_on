@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title><c:out value="${ site_name }"/></title>
 <c:import url="${ url }/common/jsp/external_file.jsp"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
+<link rel="stylesheet" href="/Gung_On/common/css/common.css">
 <link rel="stylesheet" href="mainGung.css">
 <link rel="stylesheet" href="sideTab.css">
 <style>
@@ -30,14 +30,14 @@
 <body>
 
 <header data-bs-theme="dark">
- <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
+ <jsp:include page="/common/jsp/header.jsp" />
 </header>
 
 <main>
   <div id="container">
 
     <div id="side-tab">
-      <jsp:include page="${pageContext.request.contextPath}sideTab.jsp" />
+      <jsp:include page="sideTab.jsp" />
     </div>
 
     <div id="gung-content">
@@ -50,14 +50,18 @@
     %>
         <h2><%= gung.getGung_name() %></h2>
 
-        	<% if (gung.getImg_path() != null && !gung.getImg_path().trim().isEmpty()) { %>
-    <img src="<%= gung.getImg_path() %>" alt="<%= gung.getGung_name() %> 이미지" class="gung-img" />
+      <% if (gung.getImg_path() != null && !gung.getImg_path().trim().isEmpty()) { %>
+    <img src="<%= request.getContextPath() + gung.getImg_path() %>" alt="<%= gung.getGung_name() %> 이미지" class="gung-img" />
 <% } %>
 
 
+
         <div class="txt_wrap">
-        <img src="https://royal.khs.go.kr/imgs/images/2023/12/22/20231222151102361_6YOCUH0E.png" title="" alt="" >
-            <p><%= gung.getGung_info().replaceAll("\n", "<br>") %></p>
+        <img src="https://royal.khs.go.kr/imgs/images/2023/12/22/20231222151102361_6YOCUH0E.png" style="display: block; margin: 0 auto; max-width: 100%;" alt="" >
+        <p><Strong style="text-align: center; font-size: 25px;">
+        경복궁(景福宮)은 1392년 조선 건국 후
+		1395년(태조 4)에 창건한 조선왕조 제일의 법궁(法宮)이다.</Strong></p>
+           <p><%= gung.getGung_info().replaceAll("\n", "<br>") %></p>
         </div>
 
         <h3 class="txt_section_tit">역사</h3>
@@ -97,7 +101,7 @@
 </main>
 
 <footer class="text-body-secondary py-5">
- <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
+ <jsp:include page="/common/jsp/footer.jsp" />
 </footer>
 
 </body>

@@ -1,3 +1,5 @@
+<%@page import="kr.co.gungon.pagination.PaginationBuilder"%>
+<%@page import="kr.co.gungon.story.StoryDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="kr.co.gungon.story.StoryDTO"%>
 <%@page import="kr.co.gungon.story.StoryService"%>
@@ -18,10 +20,33 @@
   }
 %>
 
+<%
+    
+
+    StoryDAO dao = StoryDAO.getInstance();
+    int rowCount = dao.getStoryCount(); // 전체 전각 수
+    int pageSize = 5; // 페이지 당 전각 수
+
+    kr.co.gungon.pagination.PaginationBuilder pagination =
+        new PaginationBuilder(request, pageSize, rowCount);
+
+    int start = (pagination.getCurrentPage() - 1) * pageSize + 1;
+    int end = pagination.getCurrentPage() * pageSize;
+
+    List<StoryDTO> StoryList = dao.getStoryList(start, end);
+%>
+
 
 <div id="layoutSidenav_content">
 <main>
-<div class="container-fluid px-4 mt-4">
+<div class="container-fluid px-4">
+<h1>궁 관리</h1>
+<hr/>
+
+  <div class="card m-3">
+  <div class="card-body">
+  <h2>이야기 목록</h2>
+  </div>
 
   <!-- ✅ 검색 폼 -->
   <form method="get" action="story_list.jsp" class="row mb-3">
@@ -69,8 +94,13 @@
       %>
     </tbody>
   </table>
+        <!-- 페이지네이션 표시 -->
+            <div>
+            	<%= pagination.build("story_list.jsp") %>
+            </div>
+        </div>
+        </div><!-- card m-3 end -->
 
-</div>
 </main>
 <%@ include file="/admin/common/footer.jsp" %>
 </div>

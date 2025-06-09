@@ -5,7 +5,7 @@
 	border-bottom: 1px solid #ccc;
 	font-family: 'Noto Sans KR', sans-serif;
 	padding: 0;
-	margin-left: 150px; /* ✅ 오른쪽 여백 제거하여 container 왼쪽에 밀착 */
+	margin-left: 150px;
 	margin-top: 50px;
 }
 
@@ -17,7 +17,31 @@
 	margin: 0;
 }
 
-/* 리스트 스타일 초기화 */
+.side-menu a {
+  display: block;
+  padding: 5px 10px;
+  color: #333;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 14px;
+  transition: font-size 0.2s ease, font-weight 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.side-menu a:hover {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+  background-color: #eee; /* ✅ 호버 시 배경 추가 */
+}
+
+.side-menu a.active {
+  font-weight: bold;
+  color: #007bff;
+  font-size: 15px;
+  background-color: #eaf3ff; /* ✅ active 강조 배경 */
+}
+
+/* 리스트 초기화 */
 .accordion,
 .accordion li,
 .submenu {
@@ -26,11 +50,12 @@
 	padding: 0;
 }
 
-/* 항목마다 위쪽 선 */
+/* 각 대분류 위쪽 선 */
 .accordion > li {
 	border-top: 1px solid #ccc;
 }
 
+/* 버튼 토글 */
 .accordion .toggle {
 	background: none;
 	border: none;
@@ -41,6 +66,11 @@
 	font-weight: bold;
 	cursor: pointer;
 	position: relative;
+	transition: background-color 0.2s;
+}
+
+.accordion .toggle:hover {
+	background-color: #f0f0f0; /* ✅ 토글 hover 효과 */
 }
 
 .accordion .toggle::after {
@@ -56,12 +86,11 @@
 	transform: rotate(180deg);
 }
 
+/* 서브메뉴 */
 .submenu {
 	display: none;
 	background: #f9f9f9;
-	padding-left: 15px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding: 10px 0 10px 15px;
 }
 
 .submenu li {
@@ -70,7 +99,5 @@
 }
 
 .submenu li a {
-	text-decoration: none;
 	color: #333;
-	display: block;
 }

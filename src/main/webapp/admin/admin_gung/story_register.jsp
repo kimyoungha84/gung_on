@@ -2,7 +2,8 @@
 <%@page import="kr.co.gungon.gung.GungDTO"%>
 <%@page import="kr.co.gungon.gung.GungService"%>
 <%@ page import="java.util.List" %>
-<%@ page pageEncoding="UTF-8" %>
+<%@ include file="/admin/common/header.jsp" %>
+<%@ include file="/admin/common/sidebar.jsp" %>
 
 <%
   GungService gungService = new GungService();
@@ -12,8 +13,14 @@
 
 <div id="layoutSidenav_content">
 <main>
-  <div class="container-fluid px-4 mt-4">
-  <h2 class="mb-4">궁 이야기 등록</h2>
+  <div class="container-fluid px-4">
+  <h2 class="mb-4">궁 관리</h2>
+  <hr/>
+  
+  <div class="card m-3">
+  <div class="card-body">
+  <h2>이야기 등록</h2>
+  </div>
 
 <form action="story_register_action.jsp" method="post">
     <!-- 제목 입력 -->
@@ -55,6 +62,8 @@
   </form>
   
   </div>
+  </div>
+  
 </main>
 <%@ include file="/admin/common/footer.jsp" %>
 </div>

@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 public class StoryDTO {
 	private int story_id;
-	private String story_name,story_info,story_img;
+	private String story_name,story_info;
 	private Date story_reg_date;
 	private int gung_id;	
 	
