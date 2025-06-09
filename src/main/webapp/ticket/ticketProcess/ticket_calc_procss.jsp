@@ -7,6 +7,8 @@
 
 
 <jsp:useBean id="ticketDTO" class="kr.co.gungon.ticket.TicketDTO" scope="page"/>
+
+
 <%
 /*한국어 변환*/
 request.setCharacterEncoding("UTF-8");
@@ -21,6 +23,7 @@ TicketService tservice=new TicketService();
 
 //1.예매번호 생성
 String bookingNum=tservice.makeBookingNum();
+pageContext.setAttribute("bookingNum", bookingNum);
 
 //2.결제일 생성
 String paymentTimeStamp=tservice.makePaymentTimeStamp();
@@ -33,13 +36,6 @@ tDTO.setPhoneNum(phoneNum);
 tDTO.setPaymentTimeStamp(paymentTimeStamp);
 
 request.setAttribute("ticketDTO", tDTO);
+
 %>
-<script type="text/javascript">
-$(function(){
-	window.addEventListener("popstate", function(event) {
-	    alert("뒤로가기 버튼이 클릭되었습니다!");
-	    // 뒤로가기 버튼이 클릭되었을 때 수행할 추가 작업
-	});
-});
-</script>
 <jsp:forward page="../ticketPaymentCompleteFrm.jsp"/>

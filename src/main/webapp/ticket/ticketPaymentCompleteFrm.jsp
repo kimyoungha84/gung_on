@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"
     info="결제완료 페이지"%>
 <%@ include file="config/site_config.jsp"%>
+
 <%@include file="ticketProcess/paymentComplete_process.jsp" %>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -22,18 +24,22 @@
 <link rel="stylesheet" type="text/css" href="http://${defaultIP}/Gung_On/ticket/css/paymentComplete.css"/>
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+
+
 <script type="text/javascript">
 
 $(function(){
-	debugger;
-	var status=history.back();
-
-	alert(status);
-
+	history.pushState({ page: 'ticketPaymentCompleteFrm' }, '', '/Gung_On/ticket/ticketPaymentCompleteFrm.jsp');
+	
+	window.addEventListener('popstate',function(event){
+		alert("ticketPaymentCompleteFrm들어오나?");
+		history.back();
+	});
 });//ready
 
 
 </script>
+
 </head>
 
 <body>

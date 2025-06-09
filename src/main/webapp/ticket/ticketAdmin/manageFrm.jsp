@@ -28,8 +28,10 @@
 
 <script type="text/javascript">
 $(function(){
+	history.pushState({ page: 'manageFrm' }, '', 'http://localhost/Gung_On/ticket/ticketAdmin/manageFrm.jsp');
 
 	$(".wrapTableBody").click(function(){
+		
 		var id=$(this).attr("id");
 		var param="bookingNum="+id;
 		//debugger;

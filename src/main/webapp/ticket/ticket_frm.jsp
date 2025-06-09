@@ -66,12 +66,10 @@
 <body>
 
 <%
-
-
 //여기서 getprogramName 받아줘야한다.
-//String programName=reqeust.getParameter("programName");
-//이거 ticket_process.jsp에서 처리 완료 그냥 value 부분에 ${programName} 변경해주면 된다.
-String programName="경복궁 야간관람";
+String programName=request.getParameter("programName");
+//value 부분에 ${programName} 변경 필요
+
 
 TicketService ticketService=new TicketService();
 //program 시작, 끝 날짜 가져오기
@@ -85,7 +83,7 @@ System.out.println(endday);
 <main>
 <div class="wrap">
     <form action="http://${defaultIP}/Gung_On/ticket/ticketProcess/ticket_process.jsp" name="viewDateFrm" method="post">
-  	   <div><input type="text" name="programName" class="title" value="경복궁 야간관람"/></div>
+  	   <div><input type="text" name="programName" class="title" value="<%=programName%>"/></div>
     <!-- 오른쪽 -->
     <div class="right">
 		<div class="ticket_box">
@@ -226,8 +224,8 @@ System.out.println(endday);
  --%>	
  		<%String imgFullPath=request.getParameter("imgFullPath"); %>
  		
-		<div style="margin-left:20px;">
-			<img src="<%=imgFullPath %>"/>
+		<div style="">
+			<img src="<%=imgFullPath %>" style="width:679px;height:900px"/>
 		</div>
 
 

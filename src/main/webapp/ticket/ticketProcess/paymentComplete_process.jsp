@@ -7,9 +7,14 @@
 
 <jsp:useBean id="ticketDTO" class="kr.co.gungon.ticket.TicketDTO" scope="page"/>
 
+
+
 <%
+
+
 TicketService ts=new TicketService();
-ticketDTO=(TicketDTO)request.getAttribute("ticketDTO");
+ticketDTO=(TicketDTO)session.getAttribute("ticketDTO");
+
 
 String date=ticketDTO.getReserveDate()+" "+ticketDTO.getReserveTime();
 
@@ -32,6 +37,9 @@ ticketDTO=ts.createQR(ticketDTO);
 ts.addReservationValue(ticketDTO);
 //3. QR 코드 서버로 전송, URL 사용자에게 보내기
 ts.sendURL(ticketDTO);
+
+
+request.setAttribute("ticketDTO", ticketDTO);
 
 
 //session.removeAttribute("ticketDTO");

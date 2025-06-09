@@ -21,11 +21,28 @@
 <!-- 부트스트랩  CDN -->    
 <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/> -->
 
+<script type="text/javascript">
+
+
+$(function(){
+	history.pushState({ page: 'manage_detail_Frm' }, '', 'http://localhost/Gung_On/ticket/ticketAdmin/manage_detail_Frm.jsp');
+	
+	window.addEventListener('popstate',function(event){
+		//alert("여기여기");
+		history.back();
+	});
+});//ready
+
+
+</script>
 
 </head>
 <body>
 <div class="entireWrap" >
+
+
 <div class="" id="tab1" role="tabpanel">
+
 <img src="/Gung_On/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">
 <span class="titlep" style="font-weight:bold; font-size:35px">예매 정보 상세</span>
 </div>
@@ -52,8 +69,8 @@
 	    	<td>${programName }</td>
 	    	<td>${adminDTO.getReserve_date()} ${startTime}</td>
 	    	<td>${adminDTO.getComment_flag() }</td>
-	    	<td>${person }</td>
-	    	<td>${adminDTO.getPayment()}원</td>
+	    	<td>${person}</td>
+	    	<td><%=paymentStr %>원</td>
     	</tr>
     	</tbody>
     	

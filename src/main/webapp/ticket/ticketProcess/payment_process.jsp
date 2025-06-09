@@ -5,7 +5,8 @@
 <%@page import="kr.co.gungon.ticket.TicketDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     
+ 
+    
 <%
 //현재 tDTO에 들어있는 값
 //programName, reserveDate, payment

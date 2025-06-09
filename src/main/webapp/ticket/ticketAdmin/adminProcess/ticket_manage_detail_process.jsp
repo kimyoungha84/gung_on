@@ -24,5 +24,7 @@ pageContext.setAttribute("startTime", startTime);
 String person=ats.outputPersonalCount(adminDTO.getAdult_person(), adminDTO.getKid_person());
 pageContext.setAttribute("person", person);
 
+String paymentStr= ats.changeCosttoStr(adminDTO.getPayment());
+pageContext.setAttribute("paymentStr", paymentStr);
 
 %>
