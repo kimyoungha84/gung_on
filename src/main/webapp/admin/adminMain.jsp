@@ -17,7 +17,6 @@
 
             <!-- 여기부터 콘텐츠 영역 -->
             <jsp:include page="/dashboard/dashboard.jsp" />
-            <!-- 또는 직접 작성해도 됨 -->
         </div>
     </main>
 <%@ include file="/admin/common/footer.jsp" %>
