@@ -1,5 +1,3 @@
-<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="kr.co.gungon.file.FilePathDTO"%>
@@ -9,6 +7,8 @@
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.io.File"%>
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
