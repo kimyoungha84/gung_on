@@ -14,7 +14,7 @@
     if (mDTO == null) {
         script.println("<script>");
         script.println("alert('로그인이 필요합니다.');");
-        script.println("window.location.href = '/Gung_On/member/login.jsp';"); 
+        script.println("window.location.href = '${pageContext.request.contextPath}/member/login.jsp';"); 
         script.println("</script>");
         script.close();
         return; 

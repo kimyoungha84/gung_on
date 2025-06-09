@@ -9,7 +9,7 @@ Merge: d3f5a51 693da04
 Author: JunseongHONG <015jun@naver.com>
 Date:   Fri May 30 17:24:07 2025 +0900
 
-    Merge branch 'dev' of https://github.com/d2ckbum/Gung_On into dev
+    Merge branch 'dev' of https://github.com/d2ckbum${pageContext.request.contextPath} into dev
 
 [33mcommit 693da049340d28c282564c7caab10cba126ee656[m
 Author: jinwon052 <coco3924@naver.com>
@@ -22,7 +22,7 @@ Merge: b47435b 84b51e8
 Author: JunseongHONG <015jun@naver.com>
 Date:   Fri May 30 17:22:05 2025 +0900
 
-    Merge branch 'dev' of https://github.com/d2ckbum/Gung_On into dev
+    Merge branch 'dev' of https://github.com/d2ckbum${pageContext.request.contextPath} into dev
 
 [33mcommit b47435b04540a1580027fe2d35c63166354d1730[m
 Author: JunseongHONG <015jun@naver.com>

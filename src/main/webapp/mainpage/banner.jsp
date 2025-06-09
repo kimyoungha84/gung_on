@@ -6,12 +6,12 @@
   <div class="swiper-wrapper">
 <div class="custom-banner-controls">
   <div class="page-info"><span id="page-now">1</span>/<span id="page-total">5</span></div>
-  <img src="/Gung_On/common/images/mainpage/left-button.png" style="cursor: pointer;" class="custom-prev"/>
-  <img src="/Gung_On/common/images/mainpage/right-button.png" style="cursor: pointer;" class="custom-next"/>
+  <img src="${pageContext.request.contextPath}/common/images/mainpage/left-button.png" style="cursor: pointer;" class="custom-prev"/>
+  <img src="${pageContext.request.contextPath}/common/images/mainpage/right-button.png" style="cursor: pointer;" class="custom-next"/>
 </div>
     <div class="swiper-slide">
-      <a href="/Gung_On/gung/gyungbukgung.jsp" class="slide-link">
-      	<img class="banner-slide" src="/Gung_On/common/images/gung/gyeongbokgung/gyeongbokgung.jpg"/>
+      <a href="${pageContext.request.contextPath}/gung/gyungbukgung.jsp" class="slide-link">
+      	<img class="banner-slide" src="${pageContext.request.contextPath}/common/images/gung/gyeongbokgung/gyeongbokgung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
             <p class="sub-title">Gyeongbokgung</p>
@@ -19,8 +19,8 @@
           </div>
     </div>
     <div class="swiper-slide">
-      <a href="/Gung_On/gung/gyeonghuigung.jsp" class="slide-link">
-      	<img class="banner-slide" src="/Gung_On/common/images/gung/gyeonghuigung/gyeonghuigung.jpg"/>
+      <a href="${pageContext.request.contextPath}/gung/gyeonghuigung.jsp" class="slide-link">
+      	<img class="banner-slide" src="${pageContext.request.contextPath}/common/images/gung/gyeonghuigung/gyeonghuigung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
             <p class="sub-title">Gyeonghuigung</p>
@@ -28,8 +28,8 @@
           </div>
     </div>
     <div class="swiper-slide">
-      <a href="/Gung_On/gung/changdeokgung.jsp" class="slide-link">
-      	<img class="banner-slide" src="/Gung_On/common/images/gung/changdeokgung/changdeokgung.jpg"/>
+      <a href="${pageContext.request.contextPath}/gung/changdeokgung.jsp" class="slide-link">
+      	<img class="banner-slide" src="${pageContext.request.contextPath}/common/images/gung/changdeokgung/changdeokgung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
             <p class="sub-title">Changdeokgung</p>
@@ -37,8 +37,8 @@
         </div>
     </div>
     <div class="swiper-slide">
-      <a href="/Gung_On/gung/changgyeonggung.jsp" class="slide-link">
-      	<img class="banner-slide" src="/Gung_On/common/images/gung/changgyeonggung/changgyeonggung.jpg"/>
+      <a href="${pageContext.request.contextPath}/gung/changgyeonggung.jsp" class="slide-link">
+      	<img class="banner-slide" src="${pageContext.request.contextPath}/common/images/gung/changgyeonggung/changgyeonggung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
             <p class="sub-title">Changgyeonggung</p>
@@ -46,8 +46,8 @@
           </div>
     </div>
     <div class="swiper-slide">
-      <a href="/Gung_On/gung/deoksugung.jsp" class="slide-link">
-      	<img class="banner-slide" src="/Gung_On/common/images/gung/deoksugung/deoksugung.jpg"/>
+      <a href="${pageContext.request.contextPath}/gung/deoksugung.jsp" class="slide-link">
+      	<img class="banner-slide" src="${pageContext.request.contextPath}/common/images/gung/deoksugung/deoksugung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
             <p class="sub-title">Deoksugung</p>

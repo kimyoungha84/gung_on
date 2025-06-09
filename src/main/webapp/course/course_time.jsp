@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <title>관람시간</title>
 
-  <link rel="stylesheet" type="text/css" href="/Gung_On/course/css/course_time_style.css" />
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/course/css/course_time_style.css" />
   <c:import url="/common/jsp/external_file.jsp"/>
 
 <!-- Swiper JS -->
@@ -19,7 +19,7 @@
 <body class="main">
 
   <!-- 상단 메뉴 등 -->
-  <jsp:include page="/common/jsp/header.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
 
   <main>
 
@@ -28,10 +28,10 @@
             <h3>관람안내 메뉴</h3>
             <nav class="sub-nav">
                 <ul>
-                    <li><a href="/Gung_On/course/course_rule.jsp" >관람규칙</a></li>
-                    <li><a href="/Gung_On/course/course_time.jsp" class="active">관람시간</a></li>
-                    <li><a href="/Gung_On/course/course.jsp">관람코스</a></li>
-                    <li><a href="/Gung_On/course/users_course.jsp"  >사용자 추천 코스</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/course_rule.jsp" >관람규칙</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/course_time.jsp" class="active">관람시간</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/course.jsp">관람코스</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/users_course.jsp"  >사용자 추천 코스</a></li>
                 </ul>
             </nav>
         </div>
@@ -43,12 +43,12 @@
                 <h2>정기휴일</h2>
                 <div class="holiday-section">
                     <div class="holiday-card">
-                        <img src="/Gung_On/course/course_time_img/mon.png" alt="월요일" class="img_wrap">
+                        <img src="${pageContext.request.contextPath}/course/course_time_img/mon.png" alt="월요일" class="img_wrap">
                         <strong>월요일</strong>
                         <p>창덕궁, 덕수궁, 창경궁, 경희궁</p>
                     </div>
                     <div class="holiday-card">
-                        <img src="/Gung_On/course/course_time_img/tue.png" alt="화요일" class="img_wrap">
+                        <img src="${pageContext.request.contextPath}/course/course_time_img/tue.png" alt="화요일" class="img_wrap">
                         <strong>화요일</strong>
                         <p>경복궁</p>
                     </div>
@@ -236,7 +236,7 @@
   </main>
 
   <!-- 푸터 -->
-  <jsp:include page="/common/jsp/footer.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
 <!-- <div> 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/mike-zuidgeest" title="Mike Zuidgeest"> Mike Zuidgeest </a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com'</a></div> -->
 </body>
 </html>

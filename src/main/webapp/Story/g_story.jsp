@@ -92,9 +92,9 @@
   <div class="slider-container">
     <div class="slider-images" id="imageSlider">
 <% for (FilePathDTO img : imageList) {
-     String rawPath = img.getPath();  // "/Gung_On/common/images/..."
+     String rawPath = img.getPath();  // "${pageContext.request.contextPath}/common/images/..."
      // "Gung_On" 중복 제거
-     String path = rawPath.replaceFirst("^/Gung_On", ""); // 앞의 Gung_On 제거
+     String path = rawPath.replaceFirst("^${pageContext.request.contextPath}", ""); // 앞의 Gung_On 제거
      String fullPath = request.getContextPath() + path;
 %>
   <img src="<%= fullPath %>" alt="스토리 이미지">

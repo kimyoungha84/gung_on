@@ -44,7 +44,7 @@
 
 
   <!-- 사용자 스타일 -->
-	<link rel="stylesheet" type="text/css" href="/Gung_On/course/css/users_course_style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/course/css/users_course_style.css" />
 	<c:import url="/common/jsp/external_file.jsp"/>
 
 
@@ -166,7 +166,7 @@
 <body class="main">
 
   
-  <jsp:include page="/common/jsp/header.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
 
   
   <main>
@@ -212,7 +212,7 @@
                
                MemberDTO mDTO = (MemberDTO)session.getAttribute("userData");
                if (mDTO == null) {
-                   out.println("<script>alert('로그인이 필요합니다.'); window.location.href = '/Gung_On/member/login.jsp';</script>");
+                   out.println("<script>alert('로그인이 필요합니다.'); window.location.href = '${pageContext.request.contextPath}/member/login.jsp';</script>");
                    return; 
                }
                String loggedInMemberId = mDTO.getId();
@@ -350,7 +350,7 @@
   </main>
 
   
-  <jsp:include page="/common/jsp/footer.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
 
 
   <script>

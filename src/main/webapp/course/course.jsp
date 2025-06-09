@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <title>관람코스</title>
 
-  <link rel="stylesheet" type="text/css" href="/Gung_On/course/css/course_style.css" />
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/course/css/course_style.css" />
   <c:import url="/common/jsp/external_file.jsp"/>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -205,7 +205,7 @@
            return;
       }
 
-      const targetJspPath = '/Gung_On/course/' +'course_'+ selectedValue + '.jsp';
+      const targetJspPath = '${pageContext.request.contextPath}/course/' +'course_'+ selectedValue + '.jsp';
 
       fetch(targetJspPath)
           .then(response => {
@@ -239,7 +239,7 @@
 
               initializeContentElements(mainContentDiv);
 
-              const popupContentJspPath = '/Gung_On/course/popup_' + selectedValue + '.jsp';
+              const popupContentJspPath = '${pageContext.request.contextPath}/course/popup_' + selectedValue + '.jsp';
 
                return fetch(popupContentJspPath);
           })
@@ -612,15 +612,15 @@
 <body class="main">
 
   <!-- 상단 메뉴 등 -->
-  <jsp:include page="/common/jsp/header.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
 
   <!-- 본문: 콘텐츠가 동적으로 로드될 영역 -->
   <div id="main-content">
-      <jsp:include page="/course/course_gbg.jsp" />
+      <jsp:include page="${pageContext.request.contextPath}/course/course_gbg.jsp" />
   </div>
 
   <!-- 푸터 -->
-  <jsp:include page="/common/jsp/footer.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
 
   <div class="dim" style="display: none;"></div>
   <div id="pop_course01" class="popup" style="display: none;">

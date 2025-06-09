@@ -16,9 +16,9 @@
   <meta charset="UTF-8">
   <title>궁온 - 고객센터 - 1:1문의 - 나의문의</title>
   <link rel="stylesheet" type="text/css" href="cs_notice.css" />
-  <!-- <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/common.css" />
-  <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/reset.css" />
-  <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/layout.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/common/royal_css/common.css" />
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/common/royal_css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/common/royal_css/layout.css" /> -->
   
 
   <style>
@@ -71,7 +71,7 @@
 
 <body>
   <!-- 실제 보이는 이미지 태그로 변경 -->
-  <img class="background-image" src="/Gung_On/common/images/cs/궁온.png" alt="배경 이미지">
+  <img class="background-image" src="${pageContext.request.contextPath}/common/images/cs/궁온.png" alt="배경 이미지">
 
   <header class="customHeader">
     <%@ include file="/common/jsp/header.jsp" %>

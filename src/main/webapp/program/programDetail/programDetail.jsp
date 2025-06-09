@@ -31,7 +31,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>행사 상세 정보</title>
-  <link rel="stylesheet" href="/Gung_On/common/css/common.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
   <link rel="stylesheet" href="../programDetail/programDetail.css" />
   
   <style>
@@ -41,7 +41,7 @@
 </head>
 <body>
 <header>
-  <jsp:include page="/common/jsp/header.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
 </header>
 
 <div class="sub_visual">
@@ -123,7 +123,7 @@
 
   <% if (canReserve) { %>
     <button class="detail-btn black" type="button"
-          onclick="location.href='/Gung_On/ticket/ticket_frm.jsp?programName=<%= java.net.URLEncoder.encode(dto.getProgramName(), "UTF-8") %>&imgFullPath=<%=imgFullPath%>'">
+          onclick="location.href='${pageContext.request.contextPath}/ticket/ticket_frm.jsp?programName=<%= java.net.URLEncoder.encode(dto.getProgramName(), "UTF-8") %>&imgFullPath=<%=imgFullPath%>'">
       예약하기
     </button>
   <% } else { %>
@@ -147,7 +147,7 @@
 </div>
 
 <footer>
-  <jsp:include page="/common/jsp/footer.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

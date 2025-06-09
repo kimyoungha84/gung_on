@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/Gung_On/common/css/common.css">
-<link rel="stylesheet" href="/Gung_On/hjs/sideTab.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/hjs/sideTab.css">
 <style type="text/css">
 
 </style>
@@ -35,36 +35,36 @@ $(function(){
       <li>
         <button class="toggle">경복궁</button>
         <ul class="submenu">
-          <li><a href="http://localhost/Gung_On/gung/gyungbukgung.jsp">경복궁 소개·역사</a></li>
-          <li><a href="http://localhost/Gung_On/Story/gung_story.jsp">경복궁 이야기</a></li>
+          <li><a href="http://localhost${pageContext.request.contextPath}/gung/gyungbukgung.jsp">경복궁 소개·역사</a></li>
+          <li><a href="http://localhost${pageContext.request.contextPath}/Story/gung_story.jsp">경복궁 이야기</a></li>
         </ul>
       </li>
       <li>
         <button class="toggle">창덕궁</button>
         <ul class="submenu">
-          <li><a href="http://localhost/Gung_On/gung/changdeokgung.jsp">창덕궁 소개</a></li>
-          <li><a href="http://localhost/Gung_On/Story/changdeokgung_story.jsp">창덕궁 이야기</a></li>
+          <li><a href="http://localhost${pageContext.request.contextPath}/gung/changdeokgung.jsp">창덕궁 소개</a></li>
+          <li><a href="http://localhost${pageContext.request.contextPath}/Story/changdeokgung_story.jsp">창덕궁 이야기</a></li>
         </ul>
       </li>
       <li>
         <button class="toggle">창경궁</button>
         <ul class="submenu">
-          <li><a href="http://localhost/Gung_On/gung/changgyeonggung.jsp">창경궁 소개</a></li>
-          <li><a href="http://localhost/Gung_On/Story/changgyeonggung_story.jsp">창경궁 이야기</a></li>
+          <li><a href="http://localhost${pageContext.request.contextPath}/gung/changgyeonggung.jsp">창경궁 소개</a></li>
+          <li><a href="http://localhost${pageContext.request.contextPath}/Story/changgyeonggung_story.jsp">창경궁 이야기</a></li>
         </ul>
       </li>
       <li>
         <button class="toggle">덕수궁</button>
         <ul class="submenu">
-          <li><a href="http://localhost/Gung_On/gung/deoksugung.jsp">덕수궁 소개</a></li>
-          <li><a href="http://localhost/Gung_On/Story/deoksugung_story.jsp">덕수궁 이야기</a></li>
+          <li><a href="http://localhost${pageContext.request.contextPath}/gung/deoksugung.jsp">덕수궁 소개</a></li>
+          <li><a href="http://localhost${pageContext.request.contextPath}/Story/deoksugung_story.jsp">덕수궁 이야기</a></li>
         </ul>
       </li>
       <li>
         <button class="toggle">경희궁</button>
         <ul class="submenu">
-          <li><a href="http://localhost/Gung_On/gung/gyeonghuigung.jsp">경희궁 소개·역사</a></li>
-          <li><a href="http://localhost/Gung_On/Story/gyeonghuigung_story.jsp">경희궁 이야기</a></li>
+          <li><a href="http://localhost${pageContext.request.contextPath}/gung/gyeonghuigung.jsp">경희궁 소개·역사</a></li>
+          <li><a href="http://localhost${pageContext.request.contextPath}/Story/gyeonghuigung_story.jsp">경희궁 이야기</a></li>
         </ul>
       </li>
     </ul>

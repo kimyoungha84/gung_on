@@ -35,7 +35,7 @@
 <link href="../adminProgInfo/adminProgInfo.css" rel="stylesheet" />
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <jsp:include page="/admin/common/sidebar.jsp" />
+            <jsp:include page="${pageContext.request.contextPath}/admin/common/sidebar.jsp" />
         </div>
         
         <div id="layoutSidenav_content">

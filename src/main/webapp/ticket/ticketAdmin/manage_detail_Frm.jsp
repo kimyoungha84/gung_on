@@ -10,7 +10,7 @@
 <html>
 <head>
 <!-- favicon 설정 -->
-<link rel="icon shortcut"  href="http://${defaultIP}/Gung_On/common/images/cs/gungOnFavicon.ico"/>
+<link rel="icon shortcut"  href="http://${defaultIP}${pageContext.request.contextPath}/common/images/cs/gungOnFavicon.ico"/>
 <link href="css/ticket_manage_detail_css.css" rel="stylesheet">
 
 
@@ -25,7 +25,7 @@
 
 
 $(function(){
-	history.pushState({ page: 'manage_detail_Frm' }, '', 'http://localhost/Gung_On/ticket/ticketAdmin/manage_detail_Frm.jsp');
+	history.pushState({ page: 'manage_detail_Frm' }, '', 'http://localhost${pageContext.request.contextPath}/ticket/ticketAdmin/manage_detail_Frm.jsp');
 	
 	window.addEventListener('popstate',function(event){
 		//alert("여기여기");
@@ -43,7 +43,7 @@ $(function(){
 
 <div class="" id="tab1" role="tabpanel">
 
-<img src="/Gung_On/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">
+<img src="${pageContext.request.contextPath}/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">
 <span class="titlep" style="font-weight:bold; font-size:35px">예매 정보 상세</span>
 </div>
 

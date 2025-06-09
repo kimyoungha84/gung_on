@@ -7,10 +7,10 @@
 <meta charset="UTF-8">
 <title><c:out value="${ site_name }"/></title>
 <c:import url="${ url }/common/jsp/external_file.jsp"/>
-<link rel="stylesheet" href="/Gung_On/common/css/common.css">
-<link rel="stylesheet" href="/Gung_On/gung/mainGung.css">
-<link rel="stylesheet" href="/Gung_On/Story/Story.css">
-<link rel="stylesheet" href="/Gung_On/gung/sideTab.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/gung/mainGung.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Story/Story.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/gung/sideTab.css">
 <style>
 
 </style>
@@ -40,7 +40,7 @@ $(function(){
 <body>
 
 <header data-bs-theme="dark">
- <jsp:include page="/common/jsp/header.jsp" />
+ <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
 </header>
 
 <main>
@@ -48,7 +48,7 @@ $(function(){
 
     <!-- ✅ 사이드탭 -->
     <div id="side-tab">
-        <jsp:include page="/gung/sideTab.jsp" />
+        <jsp:include page="${pageContext.request.contextPath}/gung/sideTab.jsp" />
     </div>
 
 <div class="gung-wrap">
@@ -77,7 +77,7 @@ $(function(){
 </main>
 
 <footer class="text-body-secondary py-5">
- <jsp:include page="/common/jsp/footer.jsp" />
+ <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
 </footer>
 
 </body>

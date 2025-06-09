@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <title>궁온 헤더 탭</title>
-  <link rel="stylesheet" href="/Gung_On/common/css/common.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
   <link rel="stylesheet" href="../programAll/programAll.css" />
   
   <style>
@@ -44,7 +44,7 @@
 </head>
 <body>
 <header>
-  <jsp:include page="/common/jsp/header.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
 </header>
 
 <div class="sub_visual">
@@ -111,7 +111,7 @@
 </div>
 
 <footer>
-  <jsp:include page="/common/jsp/footer.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
 </footer>
 
 </body>

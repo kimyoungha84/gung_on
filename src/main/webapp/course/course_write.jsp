@@ -39,8 +39,14 @@
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script> 
 
   <!-- 사용자 스타일 -->
+<<<<<<< HEAD
   <link rel="stylesheet" type="text/css" href="/course/css/users_course_style.css" />
   <c:import url="/common/jsp/external_file.jsp"/>
+=======
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/course/css/users_course_style.css" />
+	<c:import url="/common/jsp/external_file.jsp"/>
+
+>>>>>>> 380e24bde21b4a74612c37e073be0c77486fb31e
 
   <style type="text/css">
     .container {
@@ -147,7 +153,12 @@
 
 <body class="main">
   
+<<<<<<< HEAD
   <jsp:include page="/common/jsp/header.jsp" />
+=======
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
+
+>>>>>>> 380e24bde21b4a74612c37e073be0c77486fb31e
   
   <main>
     <div class="container">
@@ -228,7 +239,7 @@
   </main>
 
   
-  <jsp:include page="/common/jsp/footer.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
 
   <script>
     var $j = jq;

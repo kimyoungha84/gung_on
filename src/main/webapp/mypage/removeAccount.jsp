@@ -8,7 +8,7 @@ pageContext.getAttribute("userData");
 <html>
 <head>
     <title>회원탈퇴</title>
-    <link rel="stylesheet" href="/Gung_On/common/css/common.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
     <c:import url="/common/jsp/external_file.jsp"/>
     
 <script type="text/javascript">
@@ -24,7 +24,7 @@ $(function(){
 		console.log("입력한 비밀번호:", $("#pass").val());
 		 var param = {id:"${userData.id}",pass:$("#pass").val()};
 		$.ajax({
-			  url:"removeAccount_process.jsp",
+			  url:"${pageContext.request.contextPath}removeAccount_process.jsp",
 		  type:"POST",
 		  data:param,
 		  dataType:"JSON",
@@ -34,7 +34,7 @@ $(function(){
 		  success: function(jsonObj){
 			  if (jsonObj.removeFlag) {
 			        alert("탈퇴 완료");
-			        location.href="/Gung_On/login/logout.jsp";
+			        location.href="${pageContext.request.contextPath}/login/logout.jsp";
 			      } else {
 			        alert("탈퇴 실패");
 			      }
@@ -47,7 +47,7 @@ $(function(){
 </head>
 <body class="login">
 <!-- 상단 메뉴 등 -->
-<jsp:include page="/common/jsp/header.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp"/>
 <div class="login-container" style="width: 450px; height: 290px;">
     <h2>회원탈퇴</h2>
     
@@ -62,6 +62,6 @@ $(function(){
 
 </div>
 <!-- 푸터 -->
-<jsp:include page="/common/jsp/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
 </body>
 </html>

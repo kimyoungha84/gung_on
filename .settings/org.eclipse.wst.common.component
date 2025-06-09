@@ -7,7 +7,7 @@
                 
         <property name="context-root" value="Gung_On"/>
                 
-        <property name="java-output-path" value="/Gung_On/build/classes"/>
+        <property name="java-output-path" value="${pageContext.request.contextPath}/build/classes"/>
             
     </wb-module>
     

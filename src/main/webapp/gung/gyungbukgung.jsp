@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title><c:out value="${ site_name }"/></title>
 <c:import url="${ url }/common/jsp/external_file.jsp"/>
-<link rel="stylesheet" href="/Gung_On/common/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
 <link rel="stylesheet" href="mainGung.css">
 <link rel="stylesheet" href="sideTab.css">
 <style>
@@ -30,14 +30,14 @@
 <body>
 
 <header data-bs-theme="dark">
- <jsp:include page="/common/jsp/header.jsp" />
+ <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
 </header>
 
 <main>
   <div id="container">
 
     <div id="side-tab">
-      <jsp:include page="sideTab.jsp" />
+      <jsp:include page="${pageContext.request.contextPath}sideTab.jsp" />
     </div>
 
     <div id="gung-content">
@@ -97,7 +97,7 @@
 </main>
 
 <footer class="text-body-secondary py-5">
- <jsp:include page="/common/jsp/footer.jsp" />
+ <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
 </footer>
 
 </body>

@@ -10,6 +10,12 @@
 
     int maxSize = 10 * 1024 * 1024; // 10MB
     String encoding = "UTF-8";
+<<<<<<< HEAD
+=======
+    
+    String baseUploadPathRelative = "${pageContext.request.contextPath}/common/images/course"; 
+    String baseUploadPathAbsolute = application.getRealPath(baseUploadPathRelative);
+>>>>>>> 380e24bde21b4a74612c37e073be0c77486fb31e
 
     String baseUploadPathRelative = "/common/images/course";
     String tmpUploadRelative = baseUploadPathRelative + "/tmp";

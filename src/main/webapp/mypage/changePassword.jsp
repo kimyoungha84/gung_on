@@ -3,7 +3,7 @@
 <% if (session.getAttribute("id") != null && session.getAttribute("changePass") != null ) { 
 	  String id =(String) session.getAttribute("id");
 }else{
-	response.sendRedirect("/Gung_On/login/login.jsp");
+	response.sendRedirect("${pageContext.request.contextPath}/login/login.jsp");
 }
    %>
    
@@ -11,8 +11,8 @@
 <html>
 <head>
     <title>비밀번호 변경</title>
-     <link rel="stylesheet" href="/Gung_On/common/css/common.css">
-     <c:import url="/common/jsp/external_file.jsp"/>
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
+     <c:import url="${pageContext.request.contextPath}/common/jsp/external_file.jsp"/>
      
      <script>
      $(function(){
@@ -22,7 +22,7 @@
     			 
     		 var param = {id:"${id}",pass:$("#pass").val()}
     			$.ajax({
-    				  url:"changePassword_process.jsp",
+    				  url:"${pageContext.request.contextPath}${pageContext.request.contextPath}/changePassword_process.jsp",
     			  type:"POST",
     			  data:param,
     			  dataType:"JSON",
@@ -88,7 +88,7 @@
 </head>
 <body class="login">
 <!-- 상단 메뉴 등 -->
-  <jsp:include page="/common/jsp/header.jsp"/>
+  <jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/common/jsp/header.jsp"/>
 <div class="login-container" style="width: 450px; height: 350px;">
     <h2>비밀번호 변경</h2>
     <form action="login.do" method="post">
@@ -101,6 +101,6 @@
 
 </div>
 <!-- 푸터 -->
-  <jsp:include page="/common/jsp/footer.jsp"/>
+  <jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
 </body>
 </html>

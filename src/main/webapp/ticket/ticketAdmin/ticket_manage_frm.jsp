@@ -11,7 +11,7 @@
 <head>
 
 <!-- favicon 설정 -->
-<link rel="icon shortcut"  href="http://${defaultIP}/Gung_On/common/images/cs/gungOnFavicon.ico"/>
+<link rel="icon shortcut"  href="http://${defaultIP}${pageContext.request.contextPath}/common/images/cs/gungOnFavicon.ico"/>
 
  <meta charset="utf-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="card-body">
     <div class="tab-content">
       <div class="tab-pane fade show active" id="tab1" role="tabpanel">
-      <img src="/Gung_On/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">  
+      <img src="${pageContext.request.contextPath}/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">  
       <span class="titlep">예매 관리</span>
     	
       </div>
