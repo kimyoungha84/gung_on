@@ -19,7 +19,7 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
   <!-- 사용자 스타일 -->
-  <link rel="stylesheet" href="/Gung_On/course/css/users_course_style.css" />
+  <link rel="stylesheet" href="/course/css/users_course_style.css" />
 
   <style>
     .container {
@@ -57,7 +57,6 @@
       border: 1px solid #ddd;
       padding: 5px;
       box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-      display: block; /* 블록 요소로 만들어 텍스트와 분리 */
       margin-left: auto; /* 중앙 정렬 */
       margin-right: auto; /* 중앙 정렬 */
     }
@@ -147,13 +146,13 @@
         display: block;
         position: relative;
         left: 0;
-        background-image: url('/Gung_On/course/course_img/ico-star-empty.svg'); /* 빈 별 이미지 경로 */
+        background-image: url('/course/course_img/ico-star-empty.svg'); /* 빈 별 이미지 경로 */
         background-repeat: no-repeat;
         background-size: 40px;
       
     }
     .rating__label .star-icon.filled {
-        background-image: url('/Gung_On/course/course_img/ico-star-full.svg'); /* 꽉 찬 별 이미지 경로 */
+        background-image: url('/course/course_img/ico-star-full.svg'); /* 꽉 찬 별 이미지 경로 */
     }
 
 
