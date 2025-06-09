@@ -46,7 +46,7 @@ String langFlag=ticketService.makeCommentFlag(langChoose);//해설관람 Flag
 
 int payment=(adultCost*adult)+(kidCost*kid);
 
-tDTO.setMember_id("wowo12");//memeberID를 넣어 주어야 한다. session으로 받아와서...
+tDTO.setMember_id("testest");//memeberID를 넣어 주어야 한다. session으로 받아와서...
 tDTO.setProgramName(programName);//programName
 tDTO.setReserveDate(date);//reserveDate
 tDTO.setReserveTime(reserveTime);//reserveTime
@@ -59,8 +59,7 @@ tDTO.setPayment(payment);//payment
 request.setAttribute("ticketDto", tDTO);
 //System.out.println("ticket_process.jsp --------"+tDTO);
 
-
-
-
 %>
-<jsp:forward page="${pageContext.request.contextPath}../ticketPayment.jsp"/>
+
+
+<jsp:forward page="../ticketPayment.jsp"/>
