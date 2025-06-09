@@ -42,13 +42,12 @@
                     </div>
 
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseView">
-                        관람 관리
+                        코스 관리
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     <div class="collapse" id="collapseView">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="#">세부메뉴 1</a>
-                            <a class="nav-link" href="#">세부메뉴 2</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/admin_course/course_main.jsp">사용자 추천코스 관리</a>
                         </nav>
                     </div>
 
@@ -68,8 +67,9 @@
                     </a>
                     <div class="collapse" id="collapseCS">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="#">세부메뉴 1</a>
-                            <a class="nav-link" href="#">세부메뉴 2</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/admin_cs/cs_notice_main.jsp">공지사항</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/admin_cs/cs_faq_main.jsp">FAQ</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/admin_cs/cs_inquiry_main.jsp">1:1 문의</a>
                         </nav>
                     </div>
                 </div>

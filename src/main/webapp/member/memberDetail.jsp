@@ -47,7 +47,8 @@
 <div id="layoutSidenav_content">
 <main>
     <div class="container-fluid mt-4">
-        <h2>회원 상세정보 수정</h2>
+        <h2>회원 상세정보</h2>
+        <hr/>
         <form id="updateForm" method="post" action="<%= request.getContextPath() %>/member/memberUpdate.jsp">
             <input type="hidden" name="id" value="<%= dto.getId() %>">
 

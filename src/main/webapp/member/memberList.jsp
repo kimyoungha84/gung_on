@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="kr.co.gungon.util.PageUtil" %>
+<%@ page import="kr.co.gungon.admin.AdminDAO" %>
 <%@ page import="kr.co.gungon.member.MemberDTO" %>
 <%@ page import="kr.co.gungon.member.MemberDAO" %>
 <%@ page import="java.util.List" %>
@@ -12,8 +14,22 @@
 <script>alert("회원이 탈퇴 처리되었습니다.");</script>
 <%
     }
-    MemberDAO mDAO = MemberDAO.getInstance();
-    List<MemberDTO> memberList = mDAO.selectAllMemberAdmin();
+    /* MemberDAO mDAO = MemberDAO.getInstance();
+    List<MemberDTO> memberList = mDAO.selectAllMemberAdmin(); */
+    
+    // 페이지 처리
+    String pageNumStr = request.getParameter("pageNum");
+    int currentPage = (pageNumStr != null) ? Integer.parseInt(pageNumStr) : 1;
+    int rowCount = 5;
+    int pageCount = 5;
+
+    AdminDAO dao = AdminDAO.getInstance();
+    int totalCount = dao.getMemberCount();
+
+    PageUtil pu = new PageUtil(currentPage, totalCount, rowCount, pageCount, "memberList.jsp");
+
+    List<MemberDTO> memberList = dao.getMemberList(pu.getStartRow(), pu.getEndRow());
+    
 %>
 
 <div id="layoutSidenav_content">
@@ -55,6 +71,12 @@
                 %>
                 </tbody>
             </table>
+            
+            <!-- 페이지네이션 출력 -->
+			<div class="text-center mt-3">
+    			<%= pu.getPage() %>
+			</div>
+            
         </div>
     </main>
 <%@ include file="/admin/common/footer.jsp" %>
