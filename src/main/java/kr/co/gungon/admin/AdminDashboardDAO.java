@@ -72,13 +72,13 @@ public class AdminDashboardDAO {
 
     // 미답변 문의 수
     public int getUnansweredInquiryCount() throws SQLException {
-        String sql = "SELECT COUNT(*) FROM inquiry WHERE inquiry_status = 'N'";
+        String sql = "SELECT COUNT(*) FROM inquiry WHERE answer_status = 'N'";
         return getCount(sql);
     }
 
     // 답변 완료 문의 수
     public int getAnsweredInquiryCount() throws SQLException {
-        String sql = "SELECT COUNT(*) FROM inquiry WHERE inquiry_status = 'Y'";
+        String sql = "SELECT COUNT(*) FROM inquiry WHERE answer_status = 'Y'";
         return getCount(sql);
     }
 }

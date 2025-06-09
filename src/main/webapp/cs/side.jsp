@@ -6,7 +6,7 @@
  .lnb_wrap {
   	/* position: fixed; */
   	position: absolute;
-  	top: 200px; /* 상단에서 거리 조절 */
+  	top: 140px; /* 상단에서 거리 조절 */
   	left: 40px;
   	width: 300px; /* 원하는 너비 */
   	z-index: 0; /* 다른 요소보다 위로 오도록 */
@@ -58,22 +58,5 @@ content: '';}
 
 <!-- //Empty Layout --></div>
 
-						<!-- [E] 관람안내 -->
-						<!--
-						<div class="left_info_wrap sub_reservation_info">
-							<div class="left_info_tit">관람안내</div>
-							<div class="left_info_time">
-								<div class="left_info_sub_tit">관람시간</div>
-								<div class="time">09:00~18:30</div>
-								<div class="small">*입장마감 17:30</div>
-							</div>
-							<div class="left_info_closed_day">
-								<div class="left_info_sub_tit">휴관일</div>
-								<div class="closed_day">매주 화요일</div>
-								<div class="small">* 단, 정기휴일이 공휴일 및 대체공휴 일과 겹칠경우에는 개방하며, 그 다음날 정기휴일 (영월 장릉은 정기휴일 없음)</div>
-							</div>
-						</div>
-						-->
-						<!--  -->
 					</div>
     

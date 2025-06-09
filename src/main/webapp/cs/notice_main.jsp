@@ -113,7 +113,7 @@ window.onpageshow = function(event) {
   
 </head>
 
-<body class="p-4">
+<body>
   <!-- 실제 보이는 이미지 태그로 변경 -->
   <img class="background-image" src="/Gung_On/common/images/cs/궁온.png" alt="배경 이미지">
 
@@ -175,31 +175,8 @@ window.onpageshow = function(event) {
 				</tr>
 			</thead>
 			<tbody>
-				<!-- <tr class="notice_tr">
-      				<td class="m_none"><span class="notice">공지</span></td>
-      				<td class="tit">
-        			<a href="#;" id="noticeItem" class="ellipsis txt_line1" onclick="fn_goView('20250509162600580200')" title="창경궁 문정전 일부 관람 제한 공지(5.9.일)">
-         			 창경궁 문정전 일부 관람 제한 공지(5.9.일)
-        			</a>
-      				</td>
-				    <td class="info first">2025-05-09</td>
-				    <td class="m_none">227</td>
-    				</tr> -->
-				
-				
-				<!-- <tr>
-					<td class="m_none">3021</td>
-					<td class="tit">
-					<a href="#;" class="ellipsis txt_line1" onclick="fn_goView('20250428143807067874')" title="창경궁 전화 불통 안내(4.28.월) ">
-					창경궁 전화 불통 안내(4.28.월) </a>
-					</td>
-					<td class="info first">2025-04-28</td>
-					<td class="m_none">125</td>
-				</tr> -->
-				
 				<c:forEach var="nDTO" items="${ noticeList }" varStatus="i">
 					<tr>
-					<%-- <td><c:out value="${ totalCount - (fi.currentPage -1) * pageScale - i.index }"/></td> --%>
 					<td class="m_none">${ rowCounts - (currentPage - 1) * pageSize - i.index }</td>
 					<td class="tit">
 					<a href="notice_detail.jsp?num=${ nDTO.notice_num }" class="ellipsis txt_line1" title="${nDTO.notice_title} ">

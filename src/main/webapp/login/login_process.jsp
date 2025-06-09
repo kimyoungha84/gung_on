@@ -20,7 +20,11 @@ if("POST".equals(request.getMethod().toUpperCase()) ){
 	LoginService ls = new LoginService();
 	boolean flag = ls.loginProcess(lDTO, session);
 	boolean loginFlag = false;
-	loginFlag = "Y".equals(((MemberDTO) session.getAttribute("userData")).getFlag());
+    MemberDTO userData = (MemberDTO) session.getAttribute("userData");
+
+    if (userData != null) {
+        loginFlag = "Y".equals(userData.getFlag()); // 탈퇴회원 여부 확인
+    }
 %>
 {"loginResult":<%= flag %>,"loginFlag": <%=loginFlag%> }
 <%

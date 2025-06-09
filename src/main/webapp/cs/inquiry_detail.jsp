@@ -43,7 +43,49 @@
   
 
   <style>
+  
+.qa-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 30px;
+    font-family: '맑은 고딕', sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
 
+.qa-title {
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.qa-section {
+    margin-bottom: 30px;
+}
+
+.qa-date {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.qa-label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.qa-content {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+    line-height: 1.6;
+    border: 1px solid #d8d8d8;
+}
+	
   </style>
   
   
@@ -90,7 +132,7 @@
   
 </head>
 
-<body class="p-4">
+<body>
   <!-- 실제 보이는 이미지 태그로 변경 -->
   <img class="background-image" src="/Gung_On/common/images/cs/궁온.png" alt="배경 이미지">
 
@@ -99,7 +141,7 @@
   </header>
 
   <!-- <div class="mb-4" style="width: 700px; margin: 0 auto;"> -->
-  <div class="main" style="width: 1000px; margin: 150px auto 0 auto;">
+  <div class="main">
    <h2 style="font-size: 35px; font-weight: bold;">나의 1:1문의</h2><br>
    
    
@@ -111,40 +153,31 @@
 	<div class="swiper-button-next noti_next"></div>
 	<div class="swiper-button-prev noti_prev"></div></div><!-- [E] reservation_tab -->
  <div class="sub_con_section">
-	<!-- [S] condition_wrap -->
-	<div class="condition_wrap">
-		<%-- <div class="left">
-			<div class="count_wrap">전체: <fmt:formatNumber value="${rowCounts}" pattern="#.###"/>건</div>
-		</div> --%>
-	<!-- 문의 내용 출력 영역 -->
-<div style="border-top: 1px solid #333; padding: 20px 0;">
-    <p style="font-weight: bold;">문의 내용</p>
-    <p>${ iDTO.inquiry_content }</p>
-</div>
+ <div class="qa-card">
+    <div class="qa-title">1:1 문의</div>
 
-<!-- 구분선 -->
-<hr />
+    <div class="qa-section">
+        <div class="qa-date"><fmt:formatDate value="${iDTO.inquiry_regDate}" pattern="yyyy-MM-dd" /></div>
+        <div class="qa-label">문의 내용</div>
+        <div class="qa-content">${iDTO.inquiry_content}</div>
+    </div>
 
-<!-- 답변 영역 -->
-<div style="margin-top: 40px;">
-    <c:choose>
-        <c:when test="${ empty iDTO.inquiry_answer }">
-            <div style="background-color: #f9f9f9; text-align: center; padding: 30px 0; font-size: 20px; font-weight: bold;">
-                답변 준비중입니다
-            </div>
-        </c:when>
-        <c:otherwise>
-            <div style="background-color: #f9f9f9; padding: 20px; font-size: 16px; line-height: 1.6;">
-                ${ iDTO.inquiry_answer }
-            </div>
-        </c:otherwise>
-    </c:choose>
+    <div class="qa-section">
+        <div class="qa-date"><fmt:formatDate value="${iDTO.inquiry_answerDate}" pattern="yyyy-MM-dd" /></div>
+        <div class="qa-label">문의 답변</div>
+        <div class="qa-content">
+            <c:choose>
+                <c:when test="${empty iDTO.inquiry_answer}">
+                    <span style="font-size: 30px; font-weight: bold;">답변 준비중입니다.</span>
+                </c:when>
+                <c:otherwise>
+                    ${iDTO.inquiry_answer}
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
 </div>
-		
-	</div>
-	<!-- [E] condition_wrap -->
-	<div class="wrap">
-		</div>
+ 
 </div>
 
 </div>

@@ -18,13 +18,18 @@ CsService css = new CsService();
 boolean flag = css.addInquiry(iDTO);
 
 if (flag) {
-    // 작성 성공 시 리다이렉트
-    response.sendRedirect("myinquiry.jsp");
+%>
+<script>
+    alert('문의 등록에 성공했습니다.');
+    window.location.href = 'cs_faq_main.jsp';
+</script>
+<%
 } else {
-    // 작성 실패 시 팝업 띄우고 리다이렉트
-    out.println("<script type='text/javascript'>");
-    out.println("alert('1:1문의 작성에 실패했습니다. 다시 시도해주세요.');");
-    out.println("window.location.href = 'myinquiry.jsp';");
-    out.println("</script>");
+%>
+<script>
+    alert('문의 등록에 실패했습니다. 다시 시도해주세요.');
+    window.location.href = 'cs_faq_main.jsp';
+</script>
+<%
 }
 %>
