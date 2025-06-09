@@ -1,23 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="kr.co.gungon.gung.GungService"%>
 <%@page import="kr.co.gungon.gung.GungDTO"%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/admin/common/header.jsp" %>
+<%@ include file="/admin/common/sidebar.jsp" %>
 <%@ page language="java" %>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>궁 상세보기</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    .gung-img {
-      max-width: 400px;
-      height: auto;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-    }
-  </style>
-</head>
-<body class="p-4">
+
 
 <%
   request.setCharacterEncoding("UTF-8");
@@ -36,14 +23,19 @@
       }
   }
 %>
+<div id="layoutSidenav_content">
 
-<div class="container">
+
+<main>
+
+<div class="container-fluid px-4 mt-4">
   <h2 class="mb-4">궁 상세보기</h2>
 
   <%
     if (dto != null) {
   %>
-  <table class="table table-bordered">
+  <table class="table table-bordered table-hover">
+      <thead class="table-light">
     <tr>
       <th style="width: 20%;">궁 이름</th>
       <td><%= dto.getGung_name() %></td>
@@ -60,6 +52,7 @@
       <th>등록일</th>
       <td><%= dto.getGung_reg_date() %></td>
     </tr>
+        </thead>
   </table>
 
   <!-- ✅ 버튼 영역 -->
@@ -77,7 +70,7 @@
   <%
     }
   %>
+  </div>
+  </main>
 </div>
-
-</body>
-</html>
+<%@ include file="/admin/common/footer.jsp" %>

@@ -40,7 +40,7 @@
         if (gung != null) {
     %>
         <h2><%= gung.getGung_name() %></h2>
-	<% if (gung.getImg_path() != null && !gung.getImg_path().trim().isEmpty()) { %>
+        	<% if (gung.getImg_path() != null && !gung.getImg_path().trim().isEmpty()) { %>
     <img src="<%= gung.getImg_path() %>" alt="<%= gung.getGung_name() %> 이미지" class="gung-img" />
 <% } %>
         <p> <%= gung.getGung_info() %></p>

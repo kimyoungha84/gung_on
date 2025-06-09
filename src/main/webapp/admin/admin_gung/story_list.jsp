@@ -1,7 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="kr.co.gungon.story.StoryDTO"%>
 <%@page import="kr.co.gungon.story.StoryService"%>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/admin/common/header.jsp" %>
+<%@ include file="/admin/common/sidebar.jsp" %>
 
 <%
   request.setCharacterEncoding("UTF-8");
@@ -17,7 +19,9 @@
 %>
 
 
-<div class="container mt-4">
+<div id="layoutSidenav_content">
+<main>
+<div class="container-fluid px-4 mt-4">
 
   <!-- ✅ 검색 폼 -->
   <form method="get" action="story_list.jsp" class="row mb-3">
@@ -66,4 +70,7 @@
     </tbody>
   </table>
 
+</div>
+</main>
+<%@ include file="/admin/common/footer.jsp" %>
 </div>

@@ -1,89 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="kr.co.gungon.gung.GungDTO"%>
 <%@page import="kr.co.gungon.gung.GungService"%>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
-
+<%@ include file="/admin/common/header.jsp" %>
+<%@ include file="/admin/common/sidebar.jsp" %>
 <%
   GungService service = new GungService();
   List<GungDTO> gungList = service.selectAllGung();
+  
+  
 %>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>궁 관리</title>
-  <style>
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background-color: #f9f9f9;
-      margin: 40px;
-    }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
 
-    .content {
-      max-width: 900px;
-      margin: 0 auto;
-    }
 
-    .gung-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
+<div id="layoutSidenav_content">
+<main>
 
-    .gung-table th, .gung-table td {
-      padding: 14px 16px;
-      border: 1px solid #e0e0e0;
-      text-align: left;
-    }
-
-    .gung-table th {
-      background-color: #f1f1f1;
-      font-weight: 600;
-      color: #333;
-    }
-
-    .gung-table tr:hover {
-      background-color: #f5faff;
-    }
-
-    .gung-table tr {
-      transition: background-color 0.2s ease-in-out;
-      cursor: pointer;
-    }
-
-    .register-btn {
-      margin-top: 20px;
-      display: block;
-      margin-left: auto;
-      background-color: #007bff;
-      color: #fff;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .register-btn:hover {
-      background-color: #0056b3;
-    }
-  </style>
-</head>
-<body>
-
-<main class="content">
-
+  <div class="container-fluid px-4 mt-4">
   <h1>궁 관리</h1>
-  <table class="gung-table">
-    <thead>
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
       <tr>
         <th>No.</th>
         <th>궁 이름</th>
@@ -121,7 +58,12 @@
   </table>
 
   <button class="register-btn"onclick="location.href='/Gung_On/admin/admin_gung/gung_insert.jsp'">등록</button>
+<!-- 페이지네이션 표시 -->
+   <div>
+   </div>
+</div>
 </main>
+<%@ include file="/admin/common/footer.jsp" %>
+</div>
 
-</body>
-</html>
+

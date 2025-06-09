@@ -252,7 +252,18 @@ public class StoryDAO {
         return list;
     }
 
+    public void updateStory(StoryDTO dto) throws SQLException {
+        String sql = "UPDATE story SET story_name = ?, story_info = ? WHERE story_id = ?";
+        try (Connection conn = DbConnection.getInstance().getDbConn();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+            pstmt.setString(1, dto.getStory_name());
+            pstmt.setString(2, dto.getStory_info());
+            pstmt.setInt(3, dto.getStory_id());
+
+            pstmt.executeUpdate();
+        }
+    }
 
 
 } // end class

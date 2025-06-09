@@ -48,6 +48,7 @@ public class GungDAO {
                 dto.setGung_info(rs.getString("gung_info"));
                 dto.setGung_history(rs.getString("gung_history"));
                 dto.setGung_reg_date(rs.getDate("gung_reg_date"));
+                dto.setImg_path(rs.getString("img_path"));  // ✅ 이 줄 꼭 추가
             }
         } catch (Exception e) {
             e.printStackTrace();

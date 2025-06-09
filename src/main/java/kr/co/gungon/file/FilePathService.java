@@ -60,5 +60,12 @@ public class FilePathService {
             return null;
         }
     }
+    public void insertFilePath(FilePathDTO dto) throws SQLException {
+        fpDAO.insertFilePath(dto);
+    }
+    // ✅ 삭제 기능 추가
+    public void deleteFilePath(FilePathDTO dto) throws SQLException {
+        fpDAO.deleteFilePath(dto);
+    }
 
 }

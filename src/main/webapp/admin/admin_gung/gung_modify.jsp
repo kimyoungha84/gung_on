@@ -1,7 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.co.gungon.gung.GungDTO"%>
 <%@page import="kr.co.gungon.gung.GungService"%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/admin/common/header.jsp" %>
+<%@ include file="/admin/common/sidebar.jsp" %>
+
 <%
     request.setCharacterEncoding("UTF-8");
     GungService service = new GungService();
@@ -51,29 +54,11 @@
     }
 %>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>궁 정보 수정</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    .form-container {
-      max-width: 600px;
-      margin: 40px auto;
-      background: #f8f9fa;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .form-container h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-  </style>
-</head>
-<body>
-  <div class="form-container">
+<div id="layoutSidenav_content">
+
+<main >
+
+  <div class="container-fluid px-4 mt-4">
     <h2>궁 정보 수정</h2>
 
     <form method="post" action="gung_modify_action.jsp">
@@ -100,5 +85,6 @@
       </div>
     </form>
   </div>
-</body>
-</html>
+    </main>
+    </div>
+<%@ include file="/admin/common/footer.jsp" %>  

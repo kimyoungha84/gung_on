@@ -1,5 +1,6 @@
 package kr.co.gungon.story;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -32,6 +33,11 @@ public class StoryService {
     public List<StoryDTO> searchStoryByKeyword(String keyword) {
         return sdao.searchStoryByKeyword(keyword);
     }
+
+
+        public void updateStory(StoryDTO dto) throws SQLException {
+            sdao.updateStory(dto);
+        }
 
 
 

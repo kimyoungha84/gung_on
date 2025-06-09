@@ -1,6 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="kr.co.gungon.gung.GungService" %>
 <%@ page import="kr.co.gungon.gung.GungDTO" %>
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/admin/common/header.jsp" %>
+<%@ include file="/admin/common/sidebar.jsp" %>
+
 <%
   request.setCharacterEncoding("UTF-8");
 

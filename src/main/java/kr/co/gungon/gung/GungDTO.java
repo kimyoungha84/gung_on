@@ -18,6 +18,9 @@ public class GungDTO {
     private String gung_history;
     private Date gung_reg_date;
     
-    private String img_path; // 변수 선언
+
+ // GungDTO.java
+    private String img_path;
+
 
 }

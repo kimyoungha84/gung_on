@@ -1,7 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="kr.co.gungon.gung.GungDTO"%>
 <%@page import="kr.co.gungon.gung.GungService"%>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <%
@@ -9,14 +9,10 @@
   List<GungDTO> gungList = gungService.selectAllGung(); // 궁 목록 가져오기
 %>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>이야기 등록</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body class="container mt-5">
+
+<div id="layoutSidenav_content">
+<main>
+  <div class="container-fluid px-4 mt-4">
   <h2 class="mb-4">궁 이야기 등록</h2>
 
 <form action="story_register_action.jsp" method="post">
@@ -57,5 +53,8 @@
     <button type="submit" class="btn btn-primary">등록</button>
     <a href="story_list.jsp" class="btn btn-secondary">취소</a>
   </form>
-</body>
-</html>
+  
+  </div>
+</main>
+<%@ include file="/admin/common/footer.jsp" %>
+</div>

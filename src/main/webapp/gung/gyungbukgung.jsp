@@ -50,9 +50,10 @@
     %>
         <h2><%= gung.getGung_name() %></h2>
 
-        <% if (gung.getImg_path() != null && !gung.getImg_path().trim().isEmpty()) { %>
-            <img src="<%= gung.getImg_path() %>" alt="<%= gung.getGung_name() %> 이미지" class="gung-img" />
-        <% } %>
+        	<% if (gung.getImg_path() != null && !gung.getImg_path().trim().isEmpty()) { %>
+    <img src="<%= gung.getImg_path() %>" alt="<%= gung.getGung_name() %> 이미지" class="gung-img" />
+<% } %>
+
 
         <div class="txt_wrap">
         <img src="https://royal.khs.go.kr/imgs/images/2023/12/22/20231222151102361_6YOCUH0E.png" title="" alt="" >
