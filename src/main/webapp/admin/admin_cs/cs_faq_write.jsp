@@ -1,32 +1,7 @@
-<%@page import="kr.co.gungon.cs.NoticeDTO"%>
-<%@page import="kr.co.gungon.cs.CsService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%
-String numStr = request.getParameter("num");
-int num = 0;
-if (numStr != null && !numStr.isEmpty()) {
-    try {
-        num = Integer.parseInt(numStr);
-    } catch (NumberFormatException e) {
-        out.println("숫자로 변환할 수 없습니다: " + numStr);
-    }
-    
-    
-}
-    CsService css = new CsService();
-    
-    NoticeDTO nDTO = css.searchOneNotice(num);
-    pageContext.setAttribute("nDTO", nDTO);
-    
- // notice_title에서 "를 &quot;로 치환
-    
-	  String safeTitle = nDTO.getNotice_title().replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "");
-	  String safeContent = nDTO.getNotice_content().replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "");
-%>
 <!DOCTYPE html>
 <html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head>
         <meta charset="utf-8">
@@ -65,19 +40,20 @@ if (numStr != null && !numStr.isEmpty()) {
         <script type="text/javascript">
         // 메인 페이지로 이동
         function moveToMain() {
-            window.location.href = "cs_notice_main.jsp";  
+            window.location.href = "cs_faq_main.jsp";  // 이 부분은 jQuery로 대체할 필요 없음
         }
 
         // 특정 조건에 따라 action을 변경하는 함수
-        function modifyProcess() {
+        function writeProcess() {
 		    var $form = $("#summerNoteFrm"); // jQuery로 폼 선택
 		
 		    if ($form.length > 0) {
-		        if (confirm("수정하시겠습니까?")) {
-		            $form.attr("action", "noticemodify_process.jsp");
-		            $form.submit();  // 사용자가 '예'를 누른 경우에만 제출
+		        // 사용자 확인 다이얼로그
+		        if (confirm("작성하시겠습니까?")) {
+		            $("#summerNoteFrm").attr("action", "faqwrite_process.jsp");
+		            $form.submit(); // 확인을 누른 경우에만 제출
 		        } else {
-		            // 사용자가 취소를 누른 경우 아무 것도 하지 않음
+		            // 사용자가 취소를 누른 경우 아무 일도 하지 않음
 		            return;
 		        }
 		    } else {
@@ -86,45 +62,6 @@ if (numStr != null && !numStr.isEmpty()) {
 		}
         	
         </script>
-        
-        
-		
-		
-		<script>
-		  const noticeData = {
-		    title: "<%= safeTitle %>",
-		    content: "<%= safeContent %>"
-		  };
-		</script>
-
-        
-        <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        	  const titleInput = document.getElementById("title");
-        	  if (titleInput) titleInput.value = noticeData.title || "";
-
-        	  let tryCount = 0;
-        	  const maxTries = 20;
-
-        	  const checkSummernoteReady = setInterval(() => {
-        	    if ($('#summernote').summernote && $('#summernote').next().hasClass('note-editor')) {
-        	      $('#summernote').summernote('code', noticeData.content || '');
-        	      clearInterval(checkSummernoteReady);
-        	    }
-
-        	    tryCount++;
-        	    if (tryCount >= maxTries) clearInterval(checkSummernoteReady);
-        	  }, 100);
-        	});
-
-		</script> 
-		
-		
-
-        
-        
-        
-        
     </head>
     <body class="sb-nav-fixed">
     
@@ -253,7 +190,7 @@ if (numStr != null && !numStr.isEmpty()) {
                 <main>
                     <div class="container-fluid px-4">
                     	<div style="display: flex; align-items: center;">
-   						 	<img src="http://192.168.10.72/jsp_prj/common/images/icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">
+   						 	<img src="/Gung_On/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">
     						<h1 class="mt-4">고객센터 관리</h1>
 						</div>
                         <!-- 카드 패널 시작 -->
@@ -275,16 +212,12 @@ if (numStr != null && !numStr.isEmpty()) {
   </div>
   <div class="card-body">
     <div class="tab-content">
-    <h2>공지사항 수정</h2>
+    <h2>FAQ 작성</h2>
     </div>
     
-    
-   
-    
      <%@ include file="summernoteExample.jsp" %>
-     
-    <button type="button" id="writeBtn" class="btn btn-primary mt-3" onclick="modifyProcess()">수정</button>
-    <button type="button" class="btn btn-info mt-3" onclick="previewNotice()">미리보기</button>
+    <button type="button" id="writeBtn" class="btn btn-primary mt-3" onclick="writeProcess()">작성</button>
+    <button type="button" class="btn btn-info mt-3" onclick="previewFaq()">미리보기</button>
     <button type="button" class="btn btn-secondary mt-3" onclick="viewSource()">소스보기(테스트용)</button>
     <button type="button" class="btn btn-secondary mt-3" onclick="moveToMain()">뒤로가기</button>
     
@@ -301,7 +234,6 @@ if (numStr != null && !numStr.isEmpty()) {
                </main>
                </div>
              </div>
-                
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="cs_common/simple-datatables.js"></script>

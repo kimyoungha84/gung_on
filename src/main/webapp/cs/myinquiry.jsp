@@ -13,8 +13,13 @@
 
 <% request.setCharacterEncoding("UTF-8"); 
    request.setAttribute("currentMenu", "inquiry");
+   MemberDTO mDTO = new MemberDTO();
    
-	   
+   
+   // 테스트용 지워야함
+   //mDTO.setId("유저1");
+   //session.setAttribute("userData", mDTO);
+   ///////////////////////////////////////////////
 %>
 
 
@@ -85,7 +90,7 @@ function redirectToLoginPage() {
   
 </head>
 
-<body class="p-4">
+<body>
   <!-- 실제 보이는 이미지 태그로 변경 -->
   <img class="background-image" src="/Gung_On/common/images/cs/궁온.png" alt="배경 이미지">
 
@@ -93,7 +98,6 @@ function redirectToLoginPage() {
     <%@ include file="/common/jsp/header.jsp" %>
   </header>
 
-  <!-- <div class="mb-4" style="width: 700px; margin: 0 auto;"> -->
   <div class="main">
    <h2>나의 1:1문의</h2><br>
    
@@ -112,19 +116,6 @@ function redirectToLoginPage() {
 		<div class="left">
 			<div class="count_wrap">전체: <fmt:formatNumber value="${rowCounts}" pattern="#.###"/>건</div>
 		</div>
-		<%-- <form id="searchInfoFrm" method="GET" action="${pageContext.request.requestURI}">
-			<input type="hidden" name="searchHid" value="true"/>
-			<div class="right">
-				<div class="sch_condition_wrap">
-					<select name="searchCategory" id="schFld" title="구분">
-						<option value="category_title">제목</option>
-						<option value="category_content">내용</option>
-		            </select>
-					<input type="text" name="searchText" id="searchText" value="" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요.">
-					<button type="submit" id="searchBtn" class="">검색</button>
-				</div>
-			</div>
-		</form> --%>
 	</div>
 	</c:if>
 	<!-- [E] condition_wrap -->
@@ -147,27 +138,6 @@ function redirectToLoginPage() {
 				</tr>
 			</thead>
 			<tbody>
-				<!-- <tr class="notice_tr">
-      				<td class="m_none"><span class="notice">공지</span></td>
-      				<td class="tit">
-        			<a href="#;" id="noticeItem" class="ellipsis txt_line1" onclick="fn_goView('20250509162600580200')" title="창경궁 문정전 일부 관람 제한 공지(5.9.일)">
-         			 창경궁 문정전 일부 관람 제한 공지(5.9.일)
-        			</a>
-      				</td>
-				    <td class="info first">2025-05-09</td>
-				    <td class="m_none">227</td>
-    				</tr> -->
-				
-				
-				<!-- <tr>
-					<td class="m_none">3021</td>
-					<td class="tit">
-					<a href="#;" class="ellipsis txt_line1" onclick="fn_goView('20250428143807067874')" title="창경궁 전화 불통 안내(4.28.월) ">
-					창경궁 전화 불통 안내(4.28.월) </a>
-					</td>
-					<td class="info first">2025-04-28</td>
-					<td class="m_none">125</td>
-				</tr> -->
     <!-- 데이터가 있을 경우 -->
 			<c:choose>
 			    <c:when test="${not empty inquiryList}">
@@ -207,7 +177,6 @@ function redirectToLoginPage() {
 <div class="sub_con_wrap pt0" style="display: flex; justify-content: center; align-items: flex-start; height: 100vh; padding-top: 50px;">
     <div class="warning" style="width: 800px; height: 500px; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; text-align: center;">
         <h2 style="font-size: 30px; margin: 0; color: #191D1F">해당 서비스는 로그인이 필요합니다.</h2>
-        <!-- 로그인버튼 클릭 시 로그인페이지로 이동 (미구현) -->
         <input type="button" onclick="redirectToLoginPage()" value="로그인하러가기" id="loginBtn" style="width: 200px; height: 70px; color:white; background-color: #323247; font-size: 20px; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease; margin-top: 40px;" />
     </div>  
 </div>
@@ -216,18 +185,6 @@ function redirectToLoginPage() {
 
     </c:otherwise>
 </c:choose>
-			
-			
-			
-			
-			 
-			 
-			
-			
-
-				
-				
-				
 				
 		</div>
 </div>

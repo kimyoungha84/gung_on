@@ -7,8 +7,10 @@
 
   <!-- Bootstrap + jQuery -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+  
 
   <!-- Summernote -->
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
@@ -52,7 +54,7 @@
 
     내용:
     <textarea id="summernote" name="content"></textarea><br>
-    <input type="hidden" name="num" value=${ param.num }>
+    <input type="hidden" name="num" value="${ param.num }">
 
    <!--  <button type="submit" id="writeBtn" class="btn btn-primary mt-3">작성</button>
     <button type="button" class="btn btn-info mt-3" onclick="previewNotice()">미리보기</button>
@@ -66,48 +68,111 @@
   </div>
 
   <script>
-    $('#summernote').summernote({
-      placeholder: '내용을 입력하세요...',
-      height: 500,
-      toolbar: [
-        ['style', ['style']],
-        ['font', ['bold', 'underline', 'clear']],
-        ['fontsize', ['fontsize']],  // 폰트 크기 선택 기능 추가
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['insert', ['link', 'picture']]
-        /* ['view', ['fullscreen', 'codeview', 'help']] */
-      ],
-      fontsize: ['8', '10', '12', '14', '18', '24', '36'], // 폰트 크기 옵션 설정
-      callbacks: {
-        onImageUpload: function(files) {
-          for (let i = 0; i < files.length; i++) {
-            sendImage(files[i]);
-          }
-        }
-      } 
-    });
+  $(document).ready(function () {
+	    let previousImages = [];
 
-   function sendImage(file) {
-	//이미지 파일을 업로드하고 이미지테이블 갱신
-		alert("이미지업로드");
-      const formData = new FormData();
-      formData.append('upload', file);
+	    function getCurrentImages() {
+	        const images = [];
+	        $('.note-editable img').each(function () {
+	            const src = $(this).attr('src');
+	            if (src) images.push(src);
+	        });
+	        return images;
+	    }
 
-      $.ajax({
-        url: 'uploadImage.jsp',
-        type: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(url) {
-          $('#summernote').summernote('insertImage', url);
-        },
-        error: function() {
-          alert('이미지 업로드 실패');
-        }
-      });
-    } 
+	    function deleteImage(imageUrl) {
+	        if (!imageUrl.includes('/upload/')) return; // 보안 안전장치
+	        const filePath = '/upload/' + imageUrl.split('/upload/')[1];
+
+	        $.ajax({
+	            url: 'deleteImage.jsp',
+	            type: 'POST',
+	            data: { filePath: filePath },
+	            success: function (response) {
+	                console.log("✅ 삭제 성공:", response);
+	            },
+	            error: function () {
+	                alert('이미지 삭제 실패');
+	            }
+	        });
+	    }
+
+	    // MutationObserver 콜백 함수
+	    function onDomMutation(mutationsList, observer) {
+	        const currentImages = getCurrentImages();
+	        const deletedImages = previousImages.filter(url => !currentImages.includes(url));
+
+	        deletedImages.forEach(url => {
+	            console.log("🗑️ 이미지 삭제 감지:", url);
+	            deleteImage(url);
+	        });
+
+	        previousImages = currentImages;
+	    }
+
+	    $('#summernote').summernote({
+	        height: 500,
+	        toolbar: [
+	            ['style', ['style']],
+	            ['font', ['bold', 'underline', 'clear']],
+	            ['fontsize', ['fontsize']],  // 폰트 크기 선택 기능 추가
+	            ['color', ['color']],
+	            ['para', ['ul', 'ol', 'paragraph']],
+	            ['insert', ['link', 'picture']]
+	            /* ['view', ['fullscreen', 'codeview', 'help']] */
+	          ],
+	          fontsize: ['8', '10', '12', '14', '18', '24', '36'], // 폰트 크기 옵션 설정
+	        placeholder: '내용을 입력하세요...',
+	        callbacks: {
+	            onImageUpload: function (files) {
+	                for (let i = 0; i < files.length; i++) {
+	                    sendImage(files[i]);
+	                }
+	            },
+	            onMediaDelete: function (target) {
+	                const url = $(target[0]).attr('src');
+	                deleteImage(url);
+	            },
+	            onInit: function () {
+	                previousImages = getCurrentImages();
+
+	                // MutationObserver 생성 및 설정
+	                const targetNode = document.querySelector('.note-editable');
+	                const config = { childList: true, subtree: true };
+
+	                const observer = new MutationObserver(onDomMutation);
+	                observer.observe(targetNode, config);
+
+	                // 기존 setInterval은 필요 없을 수 있음 (선택사항)
+	                // setInterval(checkImageDeletion, 1000);
+	            }
+	        }
+	    });
+
+	    function sendImage(file) {
+	        const formData = new FormData();
+	        formData.append('upload', file);
+
+	        $.ajax({
+	            url: 'uploadImage.jsp',
+	            type: 'POST',
+	            data: formData,
+	            contentType: false,
+	            processData: false,
+	            success: function (url) {
+	                $('#summernote').summernote('insertImage', url);
+	            },
+	            error: function () {
+	                alert('이미지 업로드 실패');
+	            }
+	        });
+	    }
+	});
+
+
+
+
+
 
     // 미리보기 버튼 클릭 시 POST 요청으로 공지사항 미리보기 페이지로 이동
     function previewNotice() {

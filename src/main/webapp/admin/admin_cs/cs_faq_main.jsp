@@ -1,4 +1,4 @@
-<%@page import="kr.co.gungon.cs.NoticeDTO"%>
+<%@page import="kr.co.gungon.cs.FaqDTO"%>
 <%@page import="kr.co.gungon.pagination.PaginationBuilder"%>
 <%@page import="kr.co.gungon.cs.CsService"%>
 <%@page import="kr.co.gungon.cs.FilteringInfo"%>
@@ -18,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>관리자 - 고객센터 - 공지</title>
+        <title>관리자 - 고객센터 - FAQ</title>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
         <link href="cs_common/styles.css" rel="stylesheet">
 <%
@@ -36,11 +36,11 @@
     	switch(tempParam){
     	case "title" : 
     			transParam = "title";
-    			searchCategoryParam = "notice_title";
+    			searchCategoryParam = "faq_title";
     			break;
     	case "content" :
     			transParam = "content";
-				searchCategoryParam = "notice_content";
+				searchCategoryParam = "faq_content";
 				break;
     	}
     	
@@ -52,7 +52,7 @@
     // 검색 버튼을 눌렀다면 (searchHid는 숨은 input)
     if (request.getParameter("searchHid") != null) {
         String categoryValue = request.getParameter("searchCategory");
-        searchCategoryParam = "title".equals(categoryValue) ? "notice_title" : "notice_content";
+        searchCategoryParam = "title".equals(categoryValue) ? "faq_title" : "faq_content";
         transParam = categoryValue;
         searchTextParam = request.getParameter("searchText").trim();
     }
@@ -79,7 +79,7 @@
 
     // --- 페이지네이션 처리 ---
     int pageSize = 10;
-    int rowCounts = css.totalNoticeCount(fi);
+    int rowCounts = css.totalFaqCount(fi);
 
     PaginationBuilder paginationBuilder = new PaginationBuilder(request, pageSize, rowCounts);
 
@@ -112,10 +112,10 @@
     fi.setStartNum(startNum);
     fi.setEndNum(endNum);
 
-    List<NoticeDTO> noticeList = css.searchNotice(fi);
+    List<FaqDTO> faqList = css.searchFaq(fi);
 
     // 페이지에 데이터 바인딩
-    pageContext.setAttribute("noticeList", noticeList);
+    pageContext.setAttribute("faqList", faqList);
     pageContext.setAttribute("paginationHtml", paginationHtml);
     pageContext.setAttribute("fi", fi);
     pageContext.setAttribute("rowCounts", rowCounts);
@@ -124,13 +124,7 @@
 %>
         
         <style>
-        form{
-        display: inline;
         
-        }
-        div{
-        display: inline;
-        }
         
          #datatablesSimple {
             width: 100%;
@@ -215,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // 개별 체크박스 클릭 시 삭제용 하이라이트 적용
- if (tableBody) {
+  if (tableBody) {
   tableBody.addEventListener("change", function (e) {
     if (!e.target.classList.contains("rowCheck")) return;
 
@@ -226,52 +220,55 @@ document.addEventListener("DOMContentLoaded", function () {
     const all = tableBody.querySelectorAll(".rowCheck").length;
     const checked = tableBody.querySelectorAll(".rowCheck:checked").length;
     selectAll.checked = all === checked;
-  });
-}
+  	});
+	}
 
   // 삭제 버튼 클릭 시 체크된 번호 수집
   document.getElementById("deleteBtn").addEventListener("click", function () {
-  const checkedBoxes = tableBody.querySelectorAll(".rowCheck:checked");
+    const checkedBoxes = tableBody.querySelectorAll(".rowCheck:checked");
 
-  if (checkedBoxes.length === 0) {
-    alert("삭제할 공지사항을 선택하세요.");
-    return;
-  }
-
-  const noticeNumList = Array.from(checkedBoxes).map(cb => {
-    return cb.closest("tr").children[1].textContent.trim(); // 두 번째 칸이 번호
-  });
-
-  const confirmDelete = confirm(`선택한 공지사항을 삭제하시겠습니까?`);
-  if (!confirmDelete) return;
-
-  console.log("삭제할 notice_num 목록:", noticeNumList);
-
-  $.ajax({
-    url: "noticedelete_process.jsp",
-    type: "POST",
-    data: {
-      noticeNumList: JSON.stringify(noticeNumList)
-    },
-    success: function (response) {
-      console.log("서버 응답:", response);
-
-      if (response.status === "success") {
-        alert("삭제가 완료되었습니다.");
-        location.reload();
-      } else {
-        alert("삭제 실패: " + response.message);
-      }
-    },
-    error: function (xhr, status, error) {
-      console.error("삭제 요청 중 오류 발생:", error);
-      alert("삭제 중 오류가 발생했습니다.");
+    if (checkedBoxes.length === 0) {
+      alert("삭제할 FAQ를 선택하세요.");
+      return;
     }
+
+    const faqNumList = Array.from(checkedBoxes).map(cb => {
+      return cb.closest("tr").children[1].textContent.trim(); // 두 번째 칸이 번호
+    });
+    
+    const confirmDelete = confirm(`선택한 FAQ를 삭제하시겠습니까?`);
+    if (!confirmDelete) return;
+
+    console.log("삭제할 faq_num 목록:", faqNumList);
+    
+    // Ajax 요청
+    $.ajax({
+      url: "faqdelete_process.jsp",  // 서버로 데이터를 전송할 URL
+      type: "POST",               // 요청 방식 (POST)
+      data: {                     // 서버로 전송할 데이터
+        faqNumList: JSON.stringify(faqNumList) // 배열을 JSON 문자열로 변환하여 전송
+      },
+      success: function(response) {
+        // 성공 시 처리 (서버에서 반환한 응답을 사용할 수 있습니다)
+        console.log("서버 응답:", response);
+
+        if (response.status === "success") {
+          alert("삭제가 완료되었습니다.");
+          // 삭제 후 처리 (예: 테이블에서 삭제된 항목 제거)
+          location.reload();
+          
+        } else {
+          alert("삭제 실패: " + response.message);
+        }
+      },
+      error: function(xhr, status, error) {
+        // 실패 시 처리
+        console.error("삭제 요청 중 오류 발생:", error);
+        alert("삭제 중 오류가 발생했습니다.");
+      }
+    
+    });
   });
-});
-
-
-  
   
   document.getElementById("searchBtn").addEventListener("click", function(e) {
 	    const form = document.getElementById("searchInfoFrm");
@@ -310,16 +307,15 @@ document.addEventListener("DOMContentLoaded", function () {
 	    form.setAttribute("action", actionBase + queryString);
 	    form.submit();
 	}); 
-
 });
 </script>
 
 <script>
 
-function openNoticePopup(noticeNum) {
-    const url = "notice_preview_popup.jsp?num=" + encodeURIComponent(noticeNum);
+function openFaqPopup(faqNum) {
+    const url = "faq_preview_popup.jsp?num=" + encodeURIComponent(faqNum);
     const options = "width=1200,height=800,scrollbars=yes,resizable=yes";
-    window.open(url, "noticePopup", options);
+    window.open(url, "faqPopup", options);
   }
 
 </script>
@@ -343,6 +339,10 @@ $(document).ready(function() {
 	  });
 	});
 </script>
+
+
+
+
 
 		
     </head>
@@ -476,6 +476,7 @@ $(document).ready(function() {
    						 	<img src="/Gung_On/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">
     						<h1 class="mt-4">고객센터 관리</h1>
 						</div>
+
                         <!-- 카드 패널 시작 -->
 <!-- 카드 패널 끝 -->
                         
@@ -483,10 +484,10 @@ $(document).ready(function() {
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link active" data-bs-toggle="tab" href="cs_notice_main.jsp" role="tab" aria-selected="true">공지사항</a>
+        <a class="nav-link" data-bs-toggle="tab" href="#tab1" role="tab" aria-selected="false">공지사항</a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" data-bs-toggle="tab" href="cs_faq_main.jsp" role="tab" aria-selected="false" tabindex="-1">FAQ</a>
+        <a class="nav-link active" data-bs-toggle="tab" href="#tab2" role="tab" aria-selected="true" tabindex="-1">FAQ</a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link" data-bs-toggle="tab" href="#tab3" role="tab" aria-selected="false" tabindex="-1">1:1문의</a>
@@ -495,10 +496,10 @@ $(document).ready(function() {
   </div>
   <div class="card-body">
     <div class="tab-content">
-      <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+      <div class="tab-pane fade" id="tab1" role="tabpanel">
         <p>공지사항</p>
       </div>
-      <div class="tab-pane fade" id="tab2" role="tabpanel">
+      <div class="tab-pane fade show active" id="tab2" role="tabpanel">
         <p>FAQ</p>
       </div>
       <div class="tab-pane fade" id="tab3" role="tabpanel">
@@ -513,19 +514,20 @@ $(document).ready(function() {
 <input type="date" id="startDate" name="startDate" value="${param.startDate != null ? param.startDate : ''}"/><span style="font-weight: bold;"> - </span>
 <input type="date" id="endDate" name="endDate" value="${param.endDate != null ? param.endDate : ''}"/>
 <input type="hidden" name="searchHid" value="true"/>
-<!-- <div class="datatable-search" style="width: 300px; height : 69px; display: flex; align-items: center;  gap: 8px;" > -->
-	<!-- <div class="dataTable-category-filter ms-2"> -->
-						        <select id="category" class="form-select form-select-sm w-auto" name="searchCategory" style="display: inline;">
+<div class="datatable-search" style="width: 300px; height : 69px; display: flex; align-items: center;  gap: 8px;" >
+	<div class="dataTable-category-filter ms-2">
+						        <select id="category" class="form-select form-select-sm w-auto" name="searchCategory">
 						            <option value="title" ${'title' == param.searchCategory ? 'selected' : ''}>제목</option>
 									<option value="content" ${'content' == param.searchCategory ? 'selected' : ''}>내용</option>
 						        </select>
-						 <!--    </div> -->
+						    </div>
+						    
 						    
 						    
 						    
 	<input class="datatable-input" placeholder="입력해주세요" type="search" title="Search within table" aria-controls="datatablesSimple" name="searchText" value="${param.searchText != null ? param.searchText : ''}">
     <input type="button" id="searchBtn" value="검색" class="btn btn-success"/>
-        <!-- </div> -->
+        </div>
 </form>
         
 </div>
@@ -549,17 +551,17 @@ $(document).ready(function() {
 									        </tr>
 									    </tfoot>
 									    <tbody>
-									    	<c:forEach var="nDTO" items="${ noticeList }" varStatus="i">
+									    	<c:forEach var="fDTO" items="${ faqList }" varStatus="i">
 											<tr>
 											<td><input type="checkbox" name="rowCheck" class="rowCheck"></td> <!-- 개별 체크박스 -->
 											<%-- <td><c:out value="${ totalCount - (fi.currentPage -1) * pageScale - i.index }"/></td> --%>
-											<td><c:out value="${ nDTO.notice_num }"/></td>
+											<td><c:out value="${ fDTO.faq_num }"/></td>
 											<td>
-											  <a href="#" onclick="openNoticePopup(${nDTO.notice_num}); return false;">
-											    <span><c:out value="${ nDTO.notice_title }"/></span>
+											  <a href="#" onclick="openFaqPopup(${fDTO.faq_num}); return false;">
+											    <span><c:out value="${ fDTO.faq_title }"/></span>
 											  </a>
 											</td>
-											<td><fmt:formatDate value="${ nDTO.notice_regDate }" pattern="yyyy-MM-dd a HH:mm:ss"/></td>
+											<td><fmt:formatDate value="${ fDTO.faq_regDate }" pattern="yyyy-MM-dd a HH:mm:ss"/></td>
 											</tr>
 											</c:forEach>
 									        <!-- <tr>
@@ -577,7 +579,7 @@ $(document).ready(function() {
 <div class="datatable-bottom" style="display: flex; align-items: center;">
  <%= paginationHtml %>
     <div style= "margin-left: auto;">
-    <input type="button" style="width:80px; height: 40px;" class="btn btn-success" value="작성" id="writeBtn" onclick="location.href='cs_notice_write.jsp';"/>
+    <input type="button" style="width:80px; height: 40px;" class="btn btn-success" value="작성" id="writeBtn" onclick="location.href='cs_faq_write.jsp';"/>
     <input type="button" style="width:80px; height: 40px;" class="btn btn-info" value="삭제" id="deleteBtn"/>
     </div>
     <nav class="datatable-pagination"><ul class="datatable-pagination-list"></ul></nav>
@@ -593,8 +595,14 @@ $(document).ready(function() {
     
   </div>
 </div>      
+                            
+                               
                 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script> -->
+      <!--   <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script> -->
     
 
 </body>

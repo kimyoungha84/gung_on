@@ -99,10 +99,6 @@ request.setAttribute("currentMenu", "faq");
   <title>궁온 - 고객센터 - FAQ</title>
   
   <link rel="stylesheet" type="text/css" href="cs_notice.css" />
-  <!-- <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/common.css" />
-  <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/reset.css" />
-  <link rel="stylesheet" type="text/css" href="/Gung_On/common/royal_css/layout.css" />
-    -->
 
 <style>
 

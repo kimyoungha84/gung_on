@@ -45,16 +45,21 @@
 
         // 특정 조건에 따라 action을 변경하는 함수
         function writeProcess() {
-            var $form = $("#summerNoteFrm"); // jQuery로 폼 선택
-            if ($form.length > 0) {
-
-                $("#summerNoteFrm").attr("action", "noticewrite_process.jsp");
-
-                $form.submit();  // jQuery로 폼 제출
-            } else {
-                alert("폼을 찾을 수 없습니다!");
-            }
-        }
+		    var $form = $("#summerNoteFrm"); // jQuery로 폼 선택
+		
+		    if ($form.length > 0) {
+		        // 사용자 확인 다이얼로그
+		        if (confirm("작성하시겠습니까?")) {
+		            $("#summerNoteFrm").attr("action", "noticewrite_process.jsp");
+		            $form.submit(); // 확인을 누른 경우에만 제출
+		        } else {
+		            // 사용자가 취소를 누른 경우 아무 일도 하지 않음
+		            return;
+		        }
+		    } else {
+		        alert("폼을 찾을 수 없습니다!");
+		    }
+		}
         	
         </script>
     </head>
@@ -188,10 +193,6 @@
    						 	<img src="http://192.168.10.72/jsp_prj/common/images/icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">
     						<h1 class="mt-4">고객센터 관리</h1>
 						</div>
-
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">궁온 관리자페이지</li>
-                        </ol>
                         <!-- 카드 패널 시작 -->
 <!-- 카드 패널 끝 -->
                         
@@ -234,18 +235,6 @@
                </div>
              </div>
                 
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright © Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                ·
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <!-- <script src="js/scripts.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

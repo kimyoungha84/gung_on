@@ -69,7 +69,7 @@
   
 </head>
 
-<body class="p-4">
+<body>
   <!-- 실제 보이는 이미지 태그로 변경 -->
   <img class="background-image" src="/Gung_On/common/images/cs/궁온.png" alt="배경 이미지">
 
