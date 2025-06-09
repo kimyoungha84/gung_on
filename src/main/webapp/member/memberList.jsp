@@ -27,11 +27,13 @@
     List<MemberDTO> memberList = dao.getMemberList(start, end);
 %>
 
+
 <div id="layoutSidenav_content">
     <main>
-        <div class="container-fluid px-4 mt-4">
-            <h2>회원 목록</h2>
+        <div class="container-fluid px-4">
+            <h2 class="mt-4">회원 관리</h2>
             <hr/>
+        
             <table class="table table-bordered table-hover">
                 <thead class="table-light">
                 <tr>
@@ -73,7 +75,6 @@
             </div>
         </div>
     </main>
-</div>
 
 <%@ include file="/admin/common/footer.jsp" %>
 

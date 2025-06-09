@@ -12,7 +12,7 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h2 class="mt-4">관리자 대시보드</h2>
+            <h2 class="mt-4">대시보드</h2>
             <hr/>
 
             <!-- 여기부터 콘텐츠 영역 -->

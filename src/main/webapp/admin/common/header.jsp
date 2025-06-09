@@ -23,3 +23,4 @@
             <img src="${pageContext.request.contextPath}/img/logo.png" alt="로고" style="height: 55px;" />
         </a>
     </nav>
+    
