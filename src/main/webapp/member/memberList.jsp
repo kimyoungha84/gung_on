@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="kr.co.gungon.util.PageUtil" %>
+<%@ page import="kr.co.gungon.pagination.PaginationBuilder" %>
 <%@ page import="kr.co.gungon.admin.AdminDAO" %>
 <%@ page import="kr.co.gungon.member.MemberDTO" %>
-<%@ page import="kr.co.gungon.member.MemberDAO" %>
 <%@ page import="java.util.List" %>
 <%@ include file="/admin/common/header.jsp" %>
 <%@ include file="/admin/common/sidebar.jsp" %>
@@ -14,22 +13,18 @@
 <script>alert("회원이 탈퇴 처리되었습니다.");</script>
 <%
     }
-    /* MemberDAO mDAO = MemberDAO.getInstance();
-    List<MemberDTO> memberList = mDAO.selectAllMemberAdmin(); */
-    
-    // 페이지 처리
-    String pageNumStr = request.getParameter("pageNum");
-    int currentPage = (pageNumStr != null) ? Integer.parseInt(pageNumStr) : 1;
-    int rowCount = 5;
-    int pageCount = 5;
 
     AdminDAO dao = AdminDAO.getInstance();
-    int totalCount = dao.getMemberCount();
+    int rowCount = dao.getMemberCount(); // 전체 회원 수
+    int pageSize = 5; // 페이지 당 회원 수
 
-    PageUtil pu = new PageUtil(currentPage, totalCount, rowCount, pageCount, "memberList.jsp");
+    kr.co.gungon.pagination.PaginationBuilder pagination =
+        new PaginationBuilder(request, pageSize, rowCount);
 
-    List<MemberDTO> memberList = dao.getMemberList(pu.getStartRow(), pu.getEndRow());
-    
+    int start = (pagination.getCurrentPage() - 1) * pageSize + 1;
+    int end = pagination.getCurrentPage() * pageSize;
+
+    List<MemberDTO> memberList = dao.getMemberList(start, end);
 %>
 
 <div id="layoutSidenav_content">
@@ -56,9 +51,9 @@
                         String link = request.getContextPath() + "/member/memberDetail.jsp?id=" + dto.getId();
                 %>
                     <tr
-  						 class="<%= isDeleted ? "disabled" : "" %>"
-   						 style="<%= rowStyle %>"
-    					<%= !isDeleted ? "onclick=\"location.href='" + link + "'\"" : "" %>>
+                        class="<%= isDeleted ? "disabled" : "" %>"
+                        style="<%= rowStyle %>"
+                        <%= !isDeleted ? "onclick=\"location.href='" + link + "'\"" : "" %>>
                         <td><%= dto.getName() %></td>
                         <td><%= dto.getId() %></td>
                         <td><%= dto.getTel() %></td>
@@ -71,14 +66,15 @@
                 %>
                 </tbody>
             </table>
-            
-            <!-- 페이지네이션 출력 -->
-			<div class="text-center mt-3">
-    			<%= pu.getPage() %>
-			</div>
-            
+
+            <!-- 페이지네이션 표시 -->
+            <div>
+                <%= pagination.build("memberList.jsp") %>
+            </div>
         </div>
     </main>
+</div>
+
 <%@ include file="/admin/common/footer.jsp" %>
 
 <script>

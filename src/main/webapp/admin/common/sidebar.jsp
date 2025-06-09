@@ -26,8 +26,7 @@
                     </a>
                     <div class="collapse" id="collapseEvent">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="#">세부메뉴 1</a>
-                            <a class="nav-link" href="#">세부메뉴 2</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/program/adminProgInfo/adminProgInfo.jsp">행사 목록</a>
                         </nav>
                     </div>
 
