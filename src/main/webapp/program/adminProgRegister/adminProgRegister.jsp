@@ -1,3 +1,5 @@
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="kr.co.gungon.file.FilePathDTO"%>
@@ -13,7 +15,18 @@
 
     if ("POST".equalsIgnoreCase(request.getMethod())) {
     	
-        String programPlace = request.getParameter("programPlace");
+    	String uploadPath = "C:/Users/user/git/Gung_On/src/main/webapp/program/images";
+    	int maxSize = 10 * 1024 * 1024; // 최대 10MB
+
+    	MultipartRequest multi = new MultipartRequest(
+    	    request,
+    	    uploadPath,
+    	    maxSize,
+    	    "UTF-8",
+    	    new DefaultFileRenamePolicy()
+    	);
+    	
+/*         String programPlace = request.getParameter("programPlace");
         String programName = request.getParameter("programName");
         String startDateStr = request.getParameter("startDate");
         String endDateStr = request.getParameter("endDate");
@@ -21,9 +34,31 @@
         String closeTimeStr = request.getParameter("closeTime");
         String priceAdultStr = request.getParameter("priceAdult");
         String priceChildStr = request.getParameter("priceChild");
-        String language = request.getParameter("languageKorean");
-        String contactPerson = request.getParameter("contactPerson");
-        String progImgName = request.getParameter("progImgName");
+        String language = request.getParameter("languageKorean"); */
+        
+        String programPlace = multi.getParameter("programPlace");
+        String programName = multi.getParameter("programName");
+        String startDateStr = multi.getParameter("startDate");
+        String endDateStr = multi.getParameter("endDate");
+        String openTimeStr = multi.getParameter("openTime");
+        String closeTimeStr = multi.getParameter("closeTime");
+        String priceAdultStr = multi.getParameter("priceAdult");
+        String priceChildStr = multi.getParameter("priceChild");
+        String language = multi.getParameter("languageKorean");
+        
+        if (language == null || language.trim().isEmpty()) {
+            language = "no";
+        }
+        
+/*         String contactPerson = request.getParameter("contactPerson");
+        String progImgName = request.getParameter("progImgName"); */
+        String contactPerson = multi.getParameter("contactPerson");
+        String progImgName = null;
+        
+        File file = multi.getFile("progImgFile");
+        if (file != null) {
+            progImgName = file.getName();
+        }
 
         // 숫자 타입 파싱
         int priceAdult = 0;
@@ -119,9 +154,17 @@
         }
     }
 
-    String imagesPath = application.getRealPath("/program/images");
+/*     String imagesPath = application.getRealPath("/program/images");
+    System.out.println("이미지 경로 확인: " + imagesPath);
+
     File folder = new File(imagesPath);
     File[] imageFiles = folder.listFiles();
+
+    if(imageFiles != null){
+        for(File file : imageFiles){
+            System.out.println("파일: " + file.getName());
+        }
+    } */
 %>
 
 <!DOCTYPE html>
@@ -232,7 +275,7 @@
                         <li class="breadcrumb-item active custom-breadcrumb-text">행사등록</li>
                     </ol>
 
-<form action="adminProgRegister.jsp" method="post">
+<form action="adminProgRegister.jsp" method="post" enctype="multipart/form-data">
     <div class="card p-4">
         <div class="row g-2">
             <div class="col-md-6">
@@ -288,7 +331,7 @@
                 <input type="text" class="form-control" id="contactPerson" name="contactPerson" required>
             </div>
 
-            <div class="col-12">
+<%--            <div class="col-12">
                 <label for="progImgName" class="form-label">이미지 선택</label>
                 <select name="progImgName" id="progImgName" class="form-select">
                     <option value="">-- 이미지 선택 --</option>
@@ -305,7 +348,12 @@
                         }
                     %>
                 </select>
-            </div>
+            </div> --%>
+            
+            <div class="col-12">
+    			<label for="progImgFile" class="form-label">이미지 업로드</label>
+    			<input type="file" class="form-control" name="progImgFile" id="progImgFile" accept="image/*">
+			</div>
 
             <div class="col-12 d-flex justify-content-end">
                 <button type="submit" class="registerBtn" onclick="return confirm('정말 등록하시겠습니까?')">확인</button>
@@ -353,5 +401,6 @@ function toggleRadio(radio) {
     }
 }
 </script>
+
 </body>
 </html>
