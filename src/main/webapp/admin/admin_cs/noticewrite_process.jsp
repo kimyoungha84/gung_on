@@ -18,13 +18,18 @@ CsService css = new CsService();
 boolean flag = css.addNotice(nDTO);
 
 if (flag) {
-    // 작성 성공 시 리다이렉트
-    response.sendRedirect("cs_notice_main.jsp");
+%>
+<script>
+    alert('공지사항 등록에 성공했습니다.');
+    window.location.href = 'cs_notice_main.jsp';
+</script>
+<%
 } else {
-    // 작성 실패 시 팝업 띄우고 리다이렉트
-    out.println("<script type='text/javascript'>");
-    out.println("alert('공지사항 작성에 실패했습니다. 다시 시도해주세요.');");
-    out.println("window.location.href = 'cs_notice_main.jsp';");
-    out.println("</script>");
+%>
+<script>
+    alert('공지사항 등록에 실패했습니다. 다시 시도해주세요.');
+    window.location.href = 'cs_notice_main.jsp';
+</script>
+<%
 }
 %>

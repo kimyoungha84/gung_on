@@ -1,4 +1,4 @@
-<%@page import="kr.co.gungon.cs.NoticeDTO"%>
+<%@page import="kr.co.gungon.cs.InquiryDTO"%>
 <%@page import="kr.co.gungon.cs.CsService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -19,13 +19,13 @@ if (numStr != null && !numStr.isEmpty()) {
 }
     CsService css = new CsService();
     
-    NoticeDTO nDTO = css.searchOneNotice(num);
-    pageContext.setAttribute("nDTO", nDTO);
+    InquiryDTO iDTO = css.searchOneInquiry(num);
     
+    pageContext.setAttribute("iDTO", iDTO);
+    
+    System.out.println(iDTO);
  // notice_title에서 "를 &quot;로 치환
     
-	  String safeTitle = nDTO.getNotice_title().replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "");
-	  String safeContent = nDTO.getNotice_content().replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "");
 %>
 <!DOCTYPE html>
 <html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head>
@@ -40,6 +40,30 @@ if (numStr != null && !numStr.isEmpty()) {
         <link href="cs_common/styles.css" rel="stylesheet">
         
         <style>
+        
+        .form-select, .datatable-selector {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e);
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+        
+        
         .border-secondary{
   			border-width: 3px !important;
         	background-color: #F8F9FA;
@@ -59,80 +83,102 @@ if (numStr != null && !numStr.isEmpty()) {
 		
 
 		</style>
+    <style>
+  .inquiry-box {
+    width: 1500px;
+    margin: 20px auto;
+    height: 600px;
+    border: 3px solid #353535;
+    border-radius: 12px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .inquiry-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .inquiry-content {
+    background-color: #bcbcbc;
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+  }
+
+  .answer-area textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: 10px;
+    resize: vertical;
+    border-radius: 8px;
+    border: 2px solid #606060;
+    font-size: 14px;
+  }
+
+  .answer-area button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .answer-area button:hover {
+    background-color: #0056b3;
+  }
+</style>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         
         <script type="text/javascript">
         // 메인 페이지로 이동
         function moveToMain() {
-            window.location.href = "cs_notice_main.jsp";  
+            window.location.href = "cs_inquiry_main.jsp";  
         }
+        
+        
+        
+        $(document).ready(function() {
+            // checkAnswerValidation 함수 정의
+            function checkAnswerValidation() {
+              // 텍스트 영역의 값 가져오기
+              var answerContent = $('#answerText').val().trim();
+              
+              // 텍스트 영역이 비어있는지 체크
+              if (answerContent === "") {
+                // 비어있으면 경고창 띄우기
+                alert("답변을 입력해 주세요.");
+              } else {
+                // 비어 있지 않으면 폼 제출 (이 부분은 필요에 따라 수정 가능)
+                $('#answerFrm').submit(); // 폼을 전송하려면 주석을 제거하고 사용
+              }
+            }
 
-        // 특정 조건에 따라 action을 변경하는 함수
-        function modifyProcess() {
-		    var $form = $("#summerNoteFrm"); // jQuery로 폼 선택
-		
-		    if ($form.length > 0) {
-		        if (confirm("수정하시겠습니까?")) {
-		            $form.attr("action", "noticemodify_process.jsp");
-		            $form.submit();  // 사용자가 '예'를 누른 경우에만 제출
-		        } else {
-		            // 사용자가 취소를 누른 경우 아무 것도 하지 않음
-		            return;
-		        }
-		    } else {
-		        alert("폼을 찾을 수 없습니다!");
-		    }
-		}
-        	
+            // 버튼 클릭 이벤트에 checkAnswerValidation 함수 연결
+            $('#saveBtn').click(function() {
+              checkAnswerValidation();
+            });
+          });
+      
+        
+
         </script>
-        
-        
 		
-		
-		<script>
-		  const noticeData = {
-		    title: "<%= safeTitle %>",
-		    content: "<%= safeContent %>"
-		  };
-		</script>
-
-        
-        <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        	  const titleInput = document.getElementById("title");
-        	  if (titleInput) titleInput.value = noticeData.title || "";
-
-        	  let tryCount = 0;
-        	  const maxTries = 20;
-
-        	  const checkSummernoteReady = setInterval(() => {
-        	    if ($('#summernote').summernote && $('#summernote').next().hasClass('note-editor')) {
-        	      $('#summernote').summernote('code', noticeData.content || '');
-        	      clearInterval(checkSummernoteReady);
-        	    }
-
-        	    tryCount++;
-        	    if (tryCount >= maxTries) clearInterval(checkSummernoteReady);
-        	  }, 100);
-        	});
-
-		</script> 
-		
-		
-
-        
-        
         
         
     </head>
     <body class="sb-nav-fixed">
-    
-    
-    
-    
-    
-    
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Bootstrap 5 JS 필요 -->
@@ -253,7 +299,7 @@ if (numStr != null && !numStr.isEmpty()) {
                 <main>
                     <div class="container-fluid px-4">
                     	<div style="display: flex; align-items: center;">
-   						 	<img src="http://192.168.10.72/jsp_prj/common/images/icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">
+   						 	<img src="/Gung_On/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">
     						<h1 class="mt-4">고객센터 관리</h1>
 						</div>
                         <!-- 카드 패널 시작 -->
@@ -275,28 +321,38 @@ if (numStr != null && !numStr.isEmpty()) {
   </div>
   <div class="card-body">
     <div class="tab-content">
-    <h2>공지사항 수정</h2>
+    <h2>문의관리</h2>
     </div>
     
     
    
-    
-     <%@ include file="summernoteExample.jsp" %>
-     
-    <button type="button" id="writeBtn" class="btn btn-primary mt-3" onclick="modifyProcess()">수정</button>
-    <button type="button" class="btn btn-info mt-3" onclick="previewNotice()">미리보기</button>
-    <button type="button" class="btn btn-secondary mt-3" onclick="viewSource()">소스보기(테스트용)</button>
-    <button type="button" class="btn btn-secondary mt-3" onclick="moveToMain()">뒤로가기</button>
-    
-     
-    
+
+<div class="inquiry-box">
+  <div class="inquiry-header">
+    <div>작성자: <span id="writerId">${ iDTO.member_id }</span></div>
+    <div>처리상태: <span id="status">${ iDTO.answer_status == true ? '답변완료' : '답변대기' }</span></div>
+  </div>
+
+  <label for="answerText"><strong>문의내용</strong></label>
+  <div class="inquiry-content" id="inquiryContent">
+    ${ iDTO.inquiry_content }
+  </div>
+
+  <div class="answer-area">
+  <form action="inquirymodify_process.jsp" method="post" id="answerFrm">
+    <label for="answerText"><strong>답변</strong></label>
+    <textarea id="answerText" placeholder="답변을 입력하세요..." name="answer_content">${ iDTO.inquiry_answer }</textarea>
+    <input type="hidden" name="num" value="${param.num}"/>
+    <button type="button" id="saveBtn">답변 저장</button>
+  </form>
+  </div>
+</div>
+
     
     
   </div>
 </div>              
                             
-                            
-                               
                 </div>
                </main>
                </div>
