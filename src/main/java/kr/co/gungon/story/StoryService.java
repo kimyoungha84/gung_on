@@ -25,6 +25,16 @@ public class StoryService {
     public StoryDTO getStoryById(int id) {
         return sdao.getStoryById(id);
     }
+    public boolean deleteStory(int StoryId) {
+        return sdao.deleteStory(StoryId);
+    }
+    
+    public List<StoryDTO> searchStoryByKeyword(String keyword) {
+        return sdao.searchStoryByKeyword(keyword);
+    }
+
+
+
 
 
     

@@ -18,7 +18,6 @@ public class GungDTO {
     private String gung_history;
     private Date gung_reg_date;
     
- // 🔥 추가: 이미지 경로 필드
-    private String img_path;
+    private String img_path; // 변수 선언
 
 }

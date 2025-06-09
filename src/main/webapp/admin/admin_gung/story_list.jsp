@@ -10,11 +10,12 @@
   List<StoryDTO> storyList = null;
 
   if (keyword != null && !keyword.trim().isEmpty()) {
-      storyList = service.searchStoryByTitle(keyword.trim());
+      storyList = service.searchStoryByKeyword(keyword.trim());
   } else {
-      storyList = service.selectAllStory(); // 전체 가져오기
+      storyList = service.selectAllStory();
   }
 %>
+
 
 <div class="container mt-4">
 

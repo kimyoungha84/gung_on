@@ -17,4 +17,9 @@ public class FilePathDTO {
 	private String targerType;
 	private String targerNumber;
 	private String imgName;
+	
+	// ✅ 웹에서 사용할 전체 경로 반환
+	public String getFullWebPath() {
+	    return path;
+	}
 }

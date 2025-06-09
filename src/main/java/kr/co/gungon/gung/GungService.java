@@ -2,10 +2,14 @@ package kr.co.gungon.gung;
 
 import java.util.List;
 
+import kr.co.gungon.file.FilePathDAO;
+import kr.co.gungon.file.FilePathDTO;
+
 
 
 public class GungService {
     private GungDAO dao = new GungDAO();
+    
 
     public GungDTO getGungDetail(String gungName) {
         return dao.getGungByName(gungName);
@@ -24,4 +28,8 @@ public class GungService {
     public boolean deleteGung(int id) {
     	return dao.deleteGung(id);
     }
+    public boolean insertGung(GungDTO dto) {
+        return new GungDAO().insertGung(dto);
+    }
+
 }

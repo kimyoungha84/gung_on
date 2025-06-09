@@ -19,7 +19,7 @@
 <body class="container mt-5">
   <h2 class="mb-4">궁 이야기 등록</h2>
 
-<form action="story_register_action.jsp" method="post" enctype="multipart/form-data">
+<form action="story_register_action.jsp" method="post">
     <!-- 제목 입력 -->
     <div class="mb-3">
       <label for="story_name" class="form-label">전각 이름</label>

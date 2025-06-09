@@ -1,13 +1,14 @@
 @charset "UTF-8";
 
 .gung-wrap {
-	width: 500px;
+	width: 700px;
 	max-width: 800px;
 	margin-left: 300px;
 	padding-top: 50px;
 }
 
 .gung-button-wrap {
+	width : 500px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
