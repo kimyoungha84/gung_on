@@ -70,7 +70,7 @@ request.setAttribute("faqList", faqList);
         <div class="section-title">자주묻는 질문</div>
         <ul class="item-list">
           <c:forEach var="fDTO" items="${ faqList }" varStatus="i">
-          <li><a href="faq_main.jsp" class="item-link">${ fDTO.faq_title }</a>
+          <li><a href="/Gung_On/cs/faq_main.jsp" class="item-link">${ fDTO.faq_title }</a>
           <span class="item-date"><fmt:formatDate value="${ fDTO.faq_regDate }" pattern="yyyy-MM-dd"/></span></li>
 		</c:forEach>
         </ul>

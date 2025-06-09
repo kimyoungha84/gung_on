@@ -116,7 +116,6 @@ public class CourseDAO {
 	                	cDTO.setCourse_Num(rs.getInt("course_num"));
 	                	cDTO.setMember_Id(rs.getString("member_id"));
 	                	cDTO.setCourse_Title(rs.getString("course_title"));
-	                    // CLOB 데이터 읽기
 	                    Clob clob = rs.getClob("course_content");
 	                    if (clob != null) {
 	                    	cDTO.setCourse_Content(clob.getSubString(1, (int) clob.length()));
@@ -141,107 +140,67 @@ public class CourseDAO {
 			Connection con = null;
 			int result=0;
 			 
-	        System.out.println(">>> DEBUG DAO: Entering insertCourse...");
-	        System.out.println(">>> DEBUG DAO: CourseDTO - memberId=" + course.getMember_Id() + ", title=" + course.getCourse_Title() + ", gungId=" + course.getGung_Id());
-
 		        try {
 		        	con = db.getDbConn();
 		        	String insertCourseSql = "INSERT INTO course (course_num, member_id, course_title, course_content, gung_id) " +
 		        			"VALUES (course_seq.NEXTVAL, ?, ?, ?, ?)";
 
-	                System.out.println(">>> DEBUG DAO: Preparing statement: " + insertCourseSql);
 		        	pstmt = con.prepareStatement(insertCourseSql);
 		        	
-	                System.out.println(">>> DEBUG DAO: Binding 1 (member_id) = " + course.getMember_Id());
-	                System.out.println(">>> DEBUG DAO: Binding 2 (course_title) = " + course.getCourse_Title());
-	                System.out.println(">>> DEBUG DAO: Binding 3 (course_content) length = " + (course.getCourse_Content() != null ? course.getCourse_Content().length() : "null"));
-	                System.out.println(">>> DEBUG DAO: Binding 4 (gung_id) = " + course.getGung_Id());
-
 		            pstmt.setString(1, course.getMember_Id());
 		            pstmt.setString(2, course.getCourse_Title());
 		            
-	                // *** course_content CLOB 처리 ***
 	                if (course.getCourse_Content() != null) {
-	                     // Connection에서 Clob 객체 생성
 	                     Clob courseContentClob = con.createClob();
-	                     // Clob 객체에 문자열 내용 기록
 	                     courseContentClob.setString(1, course.getCourse_Content());
-	                     // pstmt.setClob()으로 바인딩
 	                     pstmt.setClob(3, courseContentClob); // 3번째 바인딩 (SQL의 ?)
 	                } else {
-	                     // 내용이 null일 경우 NULL로 설정
 	                     pstmt.setNull(3, java.sql.Types.CLOB); 
-	                }
-	                // *** CLOB 처리 끝 ***
+	                }//end else
 
-		            pstmt.setInt(4, course.getGung_Id()); // 4번째 바인딩 (SQL의 ?)
+		            pstmt.setInt(4, course.getGung_Id());
 
-	                System.out.println(">>> DEBUG DAO: Executing executeUpdate...");
 		            result=pstmt.executeUpdate();
-	                System.out.println(">>> DEBUG DAO: executeUpdate result (rows affected) = " + result);
 
 				} finally {
 					db.dbClose(null, pstmt, con); 
-	                System.out.println(">>> DEBUG DAO: insertCourse finished.");
-				} 
+				}//end finally
 		        return result;
-		    }
+		    }//insertCourse
 		 
-	     // 코스 정보 수정 메소드 (Service에서 호출)
 		 public int updateCourse(CourseDTO course) throws SQLException {
 			DbConnection db = DbConnection.getInstance();
 			PreparedStatement pstmt = null;
 			Connection con = null;
 			int result=0;
 
-	        System.out.println(">>> DEBUG DAO: Entering updateCourse...");
-	        System.out.println(">>> DEBUG DAO: CourseDTO received - courseNum=" + course.getCourse_Num() + ", title=" + course.getCourse_Title() + ", memberId=" + course.getMember_Id() + ", gungId=" + course.getGung_Id());
-	        
 	         try  {
 	        	con = db.getDbConn();
 	        	String updateCourseSql = "UPDATE course SET course_title = ?, course_content = ?, gung_id = ? " + 
 	                     "WHERE course_num = ? AND member_id = ?"; 
 
-	            System.out.println(">>> DEBUG DAO: Preparing statement: " + updateCourseSql);
 	        	pstmt = con.prepareStatement(updateCourseSql);
 
-	            // *** 바인딩 값 디버깅 출력 ***
-	            System.out.println(">>> DEBUG DAO: Binding 1 (course_title) = " + course.getCourse_Title());
-	            System.out.println(">>> DEBUG DAO: Binding 2 (course_content) length = " + (course.getCourse_Content() != null ? course.getCourse_Content().length() : "null"));
-	            System.out.println(">>> DEBUG DAO: Binding 3 (gung_id) = " + course.getGung_Id()); 
-	            System.out.println(">>> DEBUG DAO: Binding 4 (course_num) = " + course.getCourse_Num());
-	            System.out.println(">>> DEBUG DAO: Binding 5 (member_id) = " + course.getMember_Id()); 
-
-
 	            pstmt.setString(1, course.getCourse_Title());
-	            // *** course_content CLOB 처리 ***
 	            if (course.getCourse_Content() != null) {
-	                 // Connection에서 Clob 객체 생성
 	                 Clob courseContentClob = con.createClob();
-	                 // Clob 객체에 문자열 내용 기록
 	                 courseContentClob.setString(1, course.getCourse_Content());
-	                 // pstmt.setClob()으로 바인딩
-	                 pstmt.setClob(2, courseContentClob); // 2번째 바인딩 (SQL의 ?)
+	                 pstmt.setClob(2, courseContentClob);
 	            } else {
-	                 // 내용이 null일 경우 NULL로 설정
 	                 pstmt.setNull(2, java.sql.Types.CLOB); 
-	            }
-	            // *** CLOB 처리 끝 ***
+	            }//end else
 
 	            pstmt.setInt(3, course.getGung_Id()); 
 	            pstmt.setInt(4, course.getCourse_Num());
 	            pstmt.setString(5, course.getMember_Id());
 
-	            System.out.println(">>> DEBUG DAO: Executing executeUpdate...");
 	            result=pstmt.executeUpdate();
-	            System.out.println(">>> DEBUG DAO: executeUpdate result (rows affected) = " + result);
 
 	         } finally {
 	 			db.dbClose(null, pstmt, con); 
-	             System.out.println(">>> DEBUG DAO: updateCourse finished.");
-	 		} 
+	 		}//end finally
 	         return result;
-	    }
+	    }//updateCourse
 	 
 	 public int deleteCourse(int course_Num) throws SQLException  {
 		DbConnection db = DbConnection.getInstance();
@@ -362,51 +321,31 @@ public class CourseDAO {
          return cDTO;
     }//selectCourseRatingInfo 
 	 
-
-	 
 	 public int insertFilePath(FilePathDTO filePath) throws SQLException {
 			DbConnection db = DbConnection.getInstance();
 			PreparedStatement pstmt = null;
 			Connection con = null;
 			int result=0;
 
-	        System.out.println(">>> DEBUG DAO: Entering insertFilePath...");
-	        // *** Service에서 넘어온 FilePathDTO 값 디버깅 출력 ***
-	        // path, imgName, targerNumber 값이 올바른지 확인
-	        System.out.println(">>> DEBUG DAO: FilePathDTO received - path=" + filePath.getPath() + ", imgName=" + filePath.getImgName() + ", targetType=" + filePath.getTargerType() + ", targetNumber=" + filePath.getTargerNumber());
-		        
 		    try  {
 		       	con = db.getDbConn();
-		       	// property_id는 sequence 사용
 		       	String insertFileSql = "INSERT INTO file_path (property_id, path, targer_type, targer_number, img_name) " + 
 		      		"VALUES (course_file_seq.NEXTVAL, ?, ?, ?, ?)";
 
-	            System.out.println(">>> DEBUG DAO: Preparing statement: " + insertFileSql);
 		       	pstmt = con.prepareStatement(insertFileSql);
 		       	
-	            // *** DB에 바인딩될 실제 값 디버깅 출력 ***
-	            // DB에 삽입될 실제 값 확인
-	            System.out.println(">>> DEBUG DAO: Binding 1 (path) = " + filePath.getPath());
-	            System.out.println(">>> DEBUG DAO: Binding 2 (targer_type) = " + filePath.getTargerType());   
-	            System.out.println(">>> DEBUG DAO: Binding 3 (targer_number) = " + filePath.getTargerNumber()); 
-	            System.out.println(">>> DEBUG DAO: Binding 4 (img_name) = " + filePath.getImgName());
-
-	            // *** 바인딩 실행 ***
 		       	pstmt.setString(1, filePath.getPath());
 		        pstmt.setString(2, filePath.getTargerType());   
-		        pstmt.setString(3, filePath.getTargerNumber()); // targerNumber는 String 타입
+		        pstmt.setString(3, filePath.getTargerNumber()); 
 		        pstmt.setString(4, filePath.getImgName());
 
-	            System.out.println(">>> DEBUG DAO: Executing executeUpdate...");
 		        result=pstmt.executeUpdate();
-	            System.out.println(">>> DEBUG DAO: executeUpdate result (rows affected) = " + result);
 
 			} finally {
 				db.dbClose(null, pstmt, con); 
-	            System.out.println(">>> DEBUG DAO: insertFilePath finished.");
-			} 
+			}//end finally
 	        return result; 
-		    }
+		    }//insertFilePath
 	 
 	 public List<FilePathDTO> selectFilePathsByTarget(String targerType, String targerNumber) throws SQLException{
 	        List<FilePathDTO> fileList = new ArrayList<FilePathDTO>();
@@ -460,7 +399,6 @@ public class CourseDAO {
 
 	        result=pstmt.executeUpdate();
         } finally {
-			// 7.연결 끊기
 			db.dbClose(null, pstmt, con);
 		} // end finally
         return result;
@@ -495,8 +433,6 @@ public class CourseDAO {
 		    PreparedStatement pstmt = null;
 		    Connection con = null;
 
-	        System.out.println(">>> DEBUG DAO: Entering selectGungNameById for gungId=" + gungId);
-
 		    try {
 		        con = db.getDbConn();
 		        String selectGungNameSql = "SELECT gung_name FROM gung WHERE gung_id = ?";
@@ -504,21 +440,16 @@ public class CourseDAO {
 		        pstmt = con.prepareStatement(selectGungNameSql);
 		        pstmt.setInt(1, gungId);
 
-	            System.out.println(">>> DEBUG DAO: Executing query: " + selectGungNameSql + " with gungId=" + gungId);
 		        rs = pstmt.executeQuery();
 
 		        if (rs.next()) {
 		            gungName = rs.getString("gung_name");
-	                System.out.println(">>> DEBUG DAO: Found gung name: " + gungName);
-		        } else {
-	                System.out.println(">>> DEBUG DAO: No gung name found for gungId=" + gungId);
-	            }
+		        } 
 		    } finally {
 		        db.dbClose(rs, pstmt, con);
-	            System.out.println(">>> DEBUG DAO: selectGungNameById finished.");
-		    }
+		    }//end finally
 		    return gungName;
-		}
+		}//selectGungNameById
 	 
 	 public List<CourseDTO> selectUserCoursesByGungId(int gungId, String memberId) throws SQLException {
 		    List<CourseDTO> courseList = new ArrayList<CourseDTO>();
@@ -527,20 +458,18 @@ public class CourseDAO {
 		    PreparedStatement pstmt = null;
 		    Connection con = null;
 
-	        System.out.println(">>> DEBUG DAO: Entering selectUserCoursesByGungId for gungId=" + gungId + ", memberId=" + memberId);
 
 		    try {
 		        con = db.getDbConn();
 		        String selectSql = "SELECT course_num, member_id, course_title, course_rating, course_rating_cnt, course_reg_date, gung_id " +
 		                           "FROM course " +
-		                           "WHERE gung_id = ? AND member_id = ? " + // 두 조건 모두 사용
+		                           "WHERE gung_id = ? AND member_id = ? " + 
 		                           "ORDER BY course_reg_date DESC";
 
 		        pstmt = con.prepareStatement(selectSql);
 		        pstmt.setInt(1, gungId);
 	            pstmt.setString(2, memberId);
 
-	            System.out.println(">>> DEBUG DAO: Executing query: " + selectSql + " with gungId=" + gungId + ", memberId=" + memberId);
 		        rs = pstmt.executeQuery();
 
 	            CourseDTO cDTO = null;
@@ -557,11 +486,9 @@ public class CourseDAO {
 		            courseList.add(cDTO);
 	                rowCount++;
 		        }//end while
-	             System.out.println(">>> DEBUG DAO: selectUserCoursesByGungId result row count = " + rowCount);
 
 		    } finally {
 		        db.dbClose(rs, pstmt, con);
-	             System.out.println(">>> DEBUG DAO: selectUserCoursesByGungId finished.");
 		    }//end finally
 		    return courseList;
 		}//selectUserCoursesByGungId

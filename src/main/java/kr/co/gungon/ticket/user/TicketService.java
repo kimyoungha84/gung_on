@@ -429,6 +429,8 @@ public class TicketService {
 		
 		try {
 			startDate=tDAO.selectProgramDate(programName).split(",")[0].split(" ")[0];
+			//startDate=tDAO.selectProgramDate(programName);
+			System.out.println("시작일"+startDate);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 		}//end try~catch
@@ -443,6 +445,8 @@ public class TicketService {
 		
 		try {
 			endDate=tDAO.selectProgramDate(programName).split(",")[1].split(" ")[0];
+			//endDate=tDAO.selectProgramDate(programName);
+			System.out.println("마지막일"+endDate);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 		}//end try~catch

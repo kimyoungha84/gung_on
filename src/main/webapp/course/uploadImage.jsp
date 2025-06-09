@@ -10,25 +10,19 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <%
-    // 응답 Content Type 설정
     response.setContentType("application/json; charset=UTF-8");
     JSONObject jsonResponse = new JSONObject(); // JSON 응답 객체
 
-    // 파일 업로드 설정
     int maxSize = 10 * 1024 * 1024; // 최대 업로드 크기: 10MB
     String encoding = "UTF-8";
     
-    // 이미지를 저장할 베이스 디렉토리 (웹 컨텍스트 루트 기준)
-    // 이 경로는 실제 저장될 디렉토리 구조와 일치해야 합니다.
     String baseUploadPathRelative = "/Gung_On/common/images/course"; 
-    // 실제 서버 파일 시스템 경로
-    String baseUploadPathAbsolute = application.getRealPath(baseUploadPathRelative); // application.getRealPath 사용
+    String baseUploadPathAbsolute = application.getRealPath(baseUploadPathRelative);
 
-    String gungIdStr = null; // 폼 필드로 전송된 gungId 저장 변수
-    String savedFileName = null; // COS 라이브러리가 저장한 파일명
-    String originalFileName = null; // 업로드된 원본 파일명
+    String gungIdStr = null;
+    String savedFileName = null;
+    String originalFileName = null;
 
-    // --- 기본 디렉토리 생성 로직을 MultipartRequest 생성 이전으로 옮김 ---
     
     File baseUploadDir = new File(baseUploadPathAbsolute);
     if (!baseUploadDir.exists()) {
@@ -40,35 +34,29 @@
              jsonResponse.put("status", "error");
              jsonResponse.put("message", "기본 이미지 저장 폴더 생성에 실패했습니다.");
              response.getWriter().write(jsonResponse.toJSONString());
-             return; // 처리 중단
+             return;
         }
     }
-    // --- 기본 디렉토리 생성 로직 끝 ---
 
 
     try {
-        // MultipartRequest 객체 생성 (COS.jar 필요)
-        // 이 객체 생성 시 파일 업로드가 자동으로 이루어집니다.
-        // 파일은 일차적으로 baseUploadPathAbsolute에 저장됩니다.
         MultipartRequest multi = new MultipartRequest(
             request,
-            baseUploadPathAbsolute, // 파일을 저장할 기본 경로
+            baseUploadPathAbsolute,
             maxSize,
             encoding,
             new DefaultFileRenamePolicy() // 같은 이름이 있으면 자동으로 변경
         );
 
-        // 폼 필드에서 gungId 가져오기 (MultipartRequest 생성 후)
         gungIdStr = multi.getParameter("gungId");
         originalFileName = multi.getOriginalFileName("upload"); // 업로드된 원본 파일명 (MultipartRequest 생성 후)
         savedFileName = multi.getFilesystemName("upload"); // COS가 저장한 파일명 (MultipartRequest 생성 후)
         
-        System.out.println(">>> DEBUG uploadImage.jsp: Received gungIdStr = " + gungIdStr); // 디버깅 출력
+        System.out.println(">>> DEBUG uploadImage.jsp: Received gungIdStr = " + gungIdStr);
         System.out.println(">>> DEBUG uploadImage.jsp: Uploaded originalFileName = " + originalFileName);
         System.out.println(">>> DEBUG uploadImage.jsp: SavedFileName by COS = " + savedFileName);
 
 
-        // 파일 업로드 자체 실패 또는 파일이 첨부되지 않은 경우 확인
         if (savedFileName == null || originalFileName == null || savedFileName.isEmpty()) {
              jsonResponse.put("status", "error");
              jsonResponse.put("message", "업로드된 파일이 없거나 파일 업로드에 실패했습니다.");
@@ -76,11 +64,9 @@
              return;
         }
 
-        // 궁 ID 유효성 검사
         if (gungIdStr == null || gungIdStr.isEmpty()) {
              jsonResponse.put("status", "error");
              jsonResponse.put("message", "궁 ID가 누락되었습니다.");
-             // 궁 ID 누락 시 COS가 저장한 파일을 삭제
              File tempFileToDelete = new File(baseUploadPathAbsolute, savedFileName);
               if (tempFileToDelete.exists()) {
                   tempFileToDelete.delete();
@@ -106,9 +92,8 @@
              return;
          }
 
-        // *** 궁 ID(숫자)를 파일 저장에 사용할 폴더명(궁 이니셜)으로 변환하는 로직 (Service 메소드 호출) ***
         String gungInitialFolder = null; 
-        String gungName = null; // 궁 이름 변수 (디버깅용 또는 로직에 따라 사용)
+        String gungName = null; 
         
         // --- CourseService의 getGungNameById 메소드 호출 ---
         // DB 조회로 이니셜을 가져오는 것이 요청이므로, 해당 메소드가 있다고 가정하고 호출합니다.

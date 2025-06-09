@@ -152,19 +152,31 @@ public class MemberService {
 	
 	
 	public List<TicketAdminDTO> showMyTicketData(String id){
+		System.out.println("showMyTicketData=-====="+id);
 		AdminTicketService ats=new AdminTicketService();
+		
 		List<TicketAdminDTO> tlist = ats.showDefaultAdminPageData();
 		List<TicketAdminDTO> myList=new ArrayList<TicketAdminDTO>();
-		String programName=null, startTime=null, person=null;
+		TicketAdminDTO tDTO=null;
 		
 		for(int i=0; i<tlist.size();i++) {
 			if(tlist.get(i).getMember_id().equals(id)) {
-				programName=ats.getProgramNameByprogramId(tlist.get(i).getProgramId());
-				tlist.get(i).setProgram_name(programName); 
-				tlist.get(i).setStartTime(ats.getProgramStartTimeByProgramId(tlist.get(i).getProgramId()));
-				tlist.get(i).setPaymentStr(ats.changeCosttoStr(tlist.get(i).getPayment()));
-				tlist.get(i).setPerson(ats.outputPersonalCount(tlist.get(i).getAdult_person(), tlist.get(i).getKid_person()));
-				myList.add(tlist.get(i));
+				tDTO=new TicketAdminDTO();
+				System.out.println("여기여기-=--------"+tlist.get(i).getMember_id());
+				System.out.println("dma?1-------"+tlist.get(i).getMember_id().equals(id));
+			
+				tDTO.setBooking_num(tlist.get(i).getBooking_num());//booking_num
+				tDTO.setComment_flag(tlist.get(i).getComment_flag());//comment_flag
+				tDTO.setReserve_date(tlist.get(i).getReserve_date());//reserve_date
+				tDTO.setPaymentTimeStamp(tlist.get(i).getPaymentTimeStamp());//paymentTimeStamp
+				tDTO.setMember_name(tlist.get(i).getMember_name());//member_name
+				
+				tDTO.setProgram_name(ats.getProgramNameByprogramId(tlist.get(i).getProgramId()));
+				tDTO.setStartTime(ats.getProgramStartTimeByProgramId(tlist.get(i).getProgramId()));
+				tDTO.setPaymentStr(ats.changeCosttoStr(tlist.get(i).getPayment()));
+				tDTO.setPerson(ats.outputPersonalCount(tlist.get(i).getAdult_person(), tlist.get(i).getKid_person()));
+				
+				myList.add(tDTO);
 			}//end if
 		}//end for
 		

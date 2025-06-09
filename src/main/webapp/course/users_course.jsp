@@ -17,9 +17,8 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>관람코스</title>
+  <title>사용자 추천 코스</title>
   <style type="text/css">
-    /* 썸네일 이미지 스타일 */
     .course-thumbnail {
         width: 50px; 
         height: auto; 
@@ -27,7 +26,6 @@
         vertical-align: middle; 
         border-radius: 5px;
     }
-    /* select 박스 스타일 (course_write.jsp와 통일) */
     .sel_st {
         padding: 8px 12px;
         border: 1px solid #ccc;
@@ -35,7 +33,6 @@
         font-size: 1rem;
         line-height: 1.5;
     }
-    /* 수정/삭제 버튼 스타일 */
     .action-buttons .btn {
         padding: 3px 8px;
         font-size: 0.8rem;
@@ -77,16 +74,13 @@
         <h1>사용자 추천 코스</h1>
     
         <%
-           // CourseService를 사용하여 궁 목록을 가져옵니다.
            CourseService cs = new CourseService();
            List<GungDTO> gungList = null;
            try {
                gungList = cs.getAllGungs(); 
-                System.out.println(">>> DEBUG users_course.jsp: Loaded gungList size = " + (gungList != null ? gungList.size() : "null"));
            } catch (Exception e) { 
                e.printStackTrace(); 
-               System.err.println(">>> ERROR users_course.jsp: Failed to load gung list.");
-           }
+           }//end catch
            
            pageContext.setAttribute("gungList", gungList);
 
@@ -96,11 +90,10 @@
            if (gungIdParam != null && !gungIdParam.isEmpty()) {
                try {
                    selectedGungId = Integer.parseInt(gungIdParam);
-                   System.out.println(">>> DEBUG users_course.jsp: Received gung_id param = " + selectedGungId);
                } catch (NumberFormatException e) {
-                    System.err.println(">>> ERROR users_course.jsp: Invalid gung_id param format: " + gungIdParam);
-               }
-           }
+            	   e.printStackTrace();
+               }//end catch
+           }//end if
             
            int finalSelectedGungId = -1; 
 
@@ -110,29 +103,22 @@
                    for (GungDTO gung : gungList) {
                        if (gung.getGung_id() == selectedGungId) {
                            paramGungIdIsValidInList = true;
-                           System.out.println(">>> DEBUG users_course.jsp: gung_id param is valid in gungList.");
                            break;
-                       }
-                   }
-               }
+                       }//end if
+                   }//end for
+               }//end if
 
                if (paramGungIdIsValidInList) {
                    finalSelectedGungId = selectedGungId;
                } else {
                    finalSelectedGungId = gungList.get(0).getGung_id();
-                    System.out.println(">>> DEBUG users_course.jsp: No valid gung_id param, using first gung id as default: " + finalSelectedGungId);
-               }
-           } else {
-                System.out.println(">>> DEBUG users_course.jsp: No gung list available.");
-           }
+               }//end else
+           }//end if
             pageContext.setAttribute("selectedGungId", finalSelectedGungId);
-
 
            String mode = request.getParameter("mode");
            boolean isMyCoursesMode = "mycourses".equals(mode);
            pageContext.setAttribute("isMyCoursesMode", isMyCoursesMode);
-           System.out.println(">>> DEBUG users_course.jsp: isMyCoursesMode = " + isMyCoursesMode);
-
 
            CourseService courseService = new CourseService();
            List<CourseDTO> courseList = null;
@@ -141,63 +127,46 @@
            boolean isLoggedIn = (mDTO != null);
            pageContext.setAttribute("isLoggedIn", isLoggedIn);
            String loggedInMemberId = null;
+           
            if(isLoggedIn) {
                loggedInMemberId = mDTO.getId();
                pageContext.setAttribute("loggedInMemberId", loggedInMemberId);
-                System.out.println(">>> DEBUG users_course.jsp: User is logged in: " + loggedInMemberId);
-           } else {
-                System.out.println(">>> DEBUG users_course.jsp: User is not logged in.");
-           }
-
+           }//end if
 
            if (isMyCoursesMode && isLoggedIn) {
                if (finalSelectedGungId != -1) {
                    try {
-                       System.out.println(">>> DEBUG users_course.jsp: Loading user's courses for gungId=" + finalSelectedGungId + " and memberId=" + loggedInMemberId);
                         List<CourseDTO> allCoursesInGung = courseService.getCoursesByGungId(finalSelectedGungId);
                         if (allCoursesInGung != null) {
                              courseList = new ArrayList<>();
                             for (CourseDTO course : allCoursesInGung) {
                                 if (course.getMember_Id().equals(loggedInMemberId)) {
                                     courseList.add(course);
-                                }
-                            }
+                                }//end if
+                            }//end for
                         } else {
                              courseList = new ArrayList<>(); // 빈 목록
-                        }
-                       System.out.println(">>> DEBUG users_course.jsp: Filtered user's courses by gungId and memberId. Result size = " + (courseList != null ? courseList.size() : "null"));
-
+                        }//end else
 
                    } catch (Exception e) {
                        e.printStackTrace();
-                       System.err.println(">>> ERROR users_course.jsp: Failed to load user's courses by gungId and memberId.");
-                   }
-               } else {
-                    System.out.println(">>> DEBUG users_course.jsp: Cannot load user's courses by gungId because no valid gungId.");
-               }
+                   }//end catch
+               }//end catch
 
 
            } else {
                if (finalSelectedGungId != -1) {
                    try {
                        courseList = courseService.getCoursesByGungId(finalSelectedGungId);
-                       System.out.println(">>> DEBUG users_course.jsp: Loading ALL courses for gungId: " + finalSelectedGungId + ", count=" + (courseList != null ? courseList.size() : "null"));
 
                    } catch (Exception e) { 
                        e.printStackTrace(); 
-                       System.err.println(">>> ERROR users_course.jsp: Failed to load all courses by gungId.");
-                   }
-               } else {
-                    System.out.println(">>> DEBUG users_course.jsp: Cannot load ALL courses because no valid gungId.");
-               }
-           }
-
+                   }//end catch
+               }//end if
+           }//end else
            pageContext.setAttribute("courseList", courseList);
-
         %>
 
-
-        
         <form id="gungSelectForm" action="users_course.jsp" method="get">
             <div class="sel_div">
                 <select class="sel_st" name="gung_id" id="gung_id_select" 
@@ -222,7 +191,6 @@
                      <input type="hidden" name="mode" value="mycourses">
                  </c:if>
             </div>
-             
         </form>
     
     
@@ -237,7 +205,6 @@
             
             <c:choose>
                 <c:when test="${isMyCoursesMode}">
-                    
                     <button class="modify-button btn btn-secondary" onclick="window.location.href='users_course.jsp'">전체 코스 보기</button>
                 </c:when>
                 <c:otherwise>
@@ -283,27 +250,22 @@
                                 CourseService currentCourseService = new CourseService(); 
                                 List<FilePathDTO> imageList = null;
                                 try {
-                                    System.out.println(">>> DEBUG users_course.jsp: Calling getCourseImages for courseNum=" + currentCourseNum); 
                                     imageList = currentCourseService.getCourseImages(currentCourseNum);
-                                    System.out.println(">>> DEBUG users_course.jsp: getCourseImages result size = " + (imageList != null ? imageList.size() : "null")); 
                                 } catch (Exception e) { 
                                     e.printStackTrace(); 
-                                     System.err.println(">>> ERROR users_course.jsp: Failed to get images for courseNum=" + currentCourseNum); 
-                                }
+                                }//end catch
 
                                 if (imageList != null && !imageList.isEmpty()) {
                                     FilePathDTO thumbnailFile = imageList.get(0);
-                                    String thumbnailPath = thumbnailFile.getPath(); // DB에서 가져온 path 값
+                                    String thumbnailPath = thumbnailFile.getPath();
 
-                                     String thumbnailUrl = request.getContextPath() + thumbnailPath; // 방식 1: path에 컨텍스트 경로 붙임
+                                     String thumbnailUrl = request.getContextPath() + thumbnailPath;
 
-                                    System.out.println(">>> DEBUG users_course.jsp: Thumbnail Path from DB = " + thumbnailPath); 
-                                    System.out.println(">>> DEBUG users_course.jsp: Generated Thumbnail URL = " + thumbnailUrl); 
 
                                     %>
                                     <img src="<%= thumbnailUrl %>" ...>
                                     <%
-                                }
+                                }//end if
                             %>
                             
                             <a href="course_detail.jsp?course_num=${course.course_Num}" class="course-title-link">
@@ -343,12 +305,9 @@
     
     function updateFormActionAndSubmit(selectedGungId) {
         const form = document.getElementById('gungSelectForm');
-        
-        
         const urlParams = new URLSearchParams(window.location.search);
         const currentMode = urlParams.get('mode');
 
-        
         let modeInput = form.querySelector('input[name="mode"]');
         if (!modeInput && currentMode === 'mycourses') {
              
@@ -360,13 +319,10 @@
         } else if (modeInput && currentMode !== 'mycourses') {
              
              modeInput.remove();
-        }
+        }//else if
 
-
-        
-        
         form.submit(); 
-    }
+    }//updateFormActionAndSubmit
 
 
     function goToCourseWrite() {
@@ -376,12 +332,11 @@
             location.href = 'course_write.jsp?gung_id=' + encodeURIComponent(selectedGungId);
         } else {
             alert("코스를 등록할 궁을 선택해주세요.");
-        }
-    }
+        }//end else
+    }//goToCourseWrite
 
     
 </script>
-
 
   
   <jsp:include page="/common/jsp/footer.jsp" />

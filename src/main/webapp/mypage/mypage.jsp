@@ -28,7 +28,6 @@ if (user != null) {
     
     MemberService ms=new MemberService();
     List<TicketAdminDTO> myList= ms.showMyTicketData(id);
-    
     session.setAttribute("myList", myList);
 }
 %>

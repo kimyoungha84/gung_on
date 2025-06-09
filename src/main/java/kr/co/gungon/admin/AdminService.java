@@ -12,7 +12,7 @@ public class AdminService {
 
     public boolean loginCheck(String id, String pass) {
         String hashedPw = EncryptUtil.sha256(pass); 
-       System.out.println("입력된 해시값: " + hashedPw); 
+      // System.out.println("입력된 해시값: " + hashedPw); 
         return adminDAO.login(id, hashedPw) != null;
     }
 

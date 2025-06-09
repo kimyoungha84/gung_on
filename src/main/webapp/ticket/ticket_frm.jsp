@@ -76,7 +76,9 @@ String programName="경복궁 야간관람";
 TicketService ticketService=new TicketService();
 //program 시작, 끝 날짜 가져오기
 String startday=ticketService.getStartDate(programName);
+System.out.println(startday);
 String endday=ticketService.getEndDate(programName);
+System.out.println(endday);
 
 %>
 
