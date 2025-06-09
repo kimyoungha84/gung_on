@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	    // query string 구성
 	    let queryParams = [];
-	    queryParams.push("currentPage=" + currentPage);
+	    queryParams.push("currentpage="${pageContext.request.contextPath} + currentPage);
 
 	    if (searchText) {
 	        queryParams.push("searchText=" + encodeURIComponent(searchText));

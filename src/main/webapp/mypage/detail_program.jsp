@@ -54,8 +54,8 @@ FilePathService fps = new FilePathService();
 <html lang="ko">
 <head>
 <!-- 기타 공통 스타일 -->
-  <link rel="stylesheet" href="/Gung_On/common/css/common.css">
-  <c:import url="/common/jsp/external_file.jsp"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
+  <c:import url="${pageContext.request.contextPath}/common/jsp/external_file.jsp"/>
   <meta charset="UTF-8">
   <title>예약내역 변경/취소</title>
   <style>
@@ -70,7 +70,7 @@ FilePathService fps = new FilePathService();
 </head>
 <body>
 
-<jsp:include page="/common/jsp/header.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/common/jsp/header.jsp"/>
 
 <h2 style="width: 100%; position:relative; top:25px; margin-bottom:50px; padding-left: 20px; text-align: center;">예약내역 변경/취소</h2>
 
@@ -181,7 +181,7 @@ FilePathService fps = new FilePathService();
 
 </div>
 
-<jsp:include page="/common/jsp/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
 
 </body>
 </html>

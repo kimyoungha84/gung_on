@@ -13,7 +13,7 @@ MemberService ms = new MemberService();
 <head>
 <meta charset="UTF-8">
 <title>SEARCH - 아이디 찾기 / 비밀번호 찾기</title>
-<link rel="stylesheet" href="/Gung_On/common/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
 <c:import url="/common/jsp/external_file.jsp"/>
 
 <script>
@@ -22,7 +22,7 @@ $(function(){
 	$("#idBtn").click(function(){
 		var paramId={name:$("#idName").val(), email:$("#idEmail").val()};
 		$.ajax({
-			  url:"searchId_process.jsp",
+			  url:"${pageContext.request.contextPath}searchId_process.jsp",
 		  type:"POST",
 		  data:paramId,
 		  dataType:"JSON",
@@ -43,7 +43,7 @@ $(function(){
 	$("#passBtn").click(function(){
 		var paramPass={name:$("#passName").val(),id:$("#passId").val() , email:$("#passEmail").val()};
 		$.ajax({
-			  url:"searchPass_process.jsp",
+			  url:"${pageContext.request.contextPath}searchPass_process.jsp",
 		  type:"POST",
 		  data:paramPass,
 		  dataType:"JSON",
@@ -66,7 +66,7 @@ $(function(){
 </head>
 <body class="page-body">
 	<!-- 상단 메뉴 등 -->
-<jsp:include page="/common/jsp/header.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp"/>
 	<div class="search-container">
 		<h1 class="title">
 			<strong>아이디 /  비밀번호 찾기</strong>
@@ -100,6 +100,6 @@ $(function(){
 		</div>
 	</div>
 	<!-- 푸터 -->
-<jsp:include page="/common/jsp/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
 </body>
 </html>

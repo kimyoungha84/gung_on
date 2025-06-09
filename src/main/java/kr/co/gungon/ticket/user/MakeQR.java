@@ -27,7 +27,7 @@ public class MakeQR {
 	        // 200, 200은 가로, 세로 크기
 	        BitMatrix matrix = writer.encode( content.toString(), BarcodeFormat.QR_CODE, 200, 200 );
 
-	        String dirpath=SiteProperty.uploadQRPathInCom;// /Gung_On/common/images/upload/QR
+	        String dirpath=SiteProperty.uploadQRPathInCom;// ${pageContext.request.contextPath}/common/images/upload/QR
 	        File dirPathFile=new File(dirpath);
 	        
 	        //String thisPath=dirPathFile.getCanonicalPath();

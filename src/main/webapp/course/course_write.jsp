@@ -48,7 +48,7 @@
 
 
   <!-- 사용자 스타일 -->
-	<link rel="stylesheet" type="text/css" href="/Gung_On/course/css/users_course_style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/course/css/users_course_style.css" />
 	<c:import url="/common/jsp/external_file.jsp"/>
 
 
@@ -170,7 +170,7 @@
 <body class="main">
 
   
-  <jsp:include page="/common/jsp/header.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
 
   
   <main>
@@ -259,7 +259,7 @@
   </main>
 
   
-  <jsp:include page="/common/jsp/footer.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
 
 
   <script>

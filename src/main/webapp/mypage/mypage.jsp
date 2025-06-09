@@ -37,7 +37,7 @@ if (user != null) {
   <meta charset="UTF-8">
   <title>마이페이지</title>
   <!-- 기타 공통 스타일 -->
-  <link rel="stylesheet" href="/Gung_On/common/css/common.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
   <c:import url="/common/jsp/external_file.jsp"/>
 
   
@@ -47,7 +47,7 @@ $(function(){
 	
 	$(".detailProgram").click(function(){
 		var booking_num=$(this).attr('id');
-		location.href="/Gung_On/mypage/detail_program.jsp?booking_num="+booking_num;
+		location.href="${pageContext.request.contextPath}/mypage/detail_program.jsp?booking_num="+booking_num;
 	});
 	
 	$("#btnConfirm").click(function(){
@@ -64,7 +64,7 @@ $(function(){
 			}
 			
 		$.ajax({
-			  url:"mypage_process.jsp",
+			  url:"${pageContext.request.contextPath}mypage_process.jsp",
 		  type:"POST",
 		  data:param,
 		  dataType:"JSON",
@@ -86,7 +86,7 @@ $(function(){
 	
 	$("#changePass").click(function(){
 		
-		location.href="/Gung_On/mypage/changePassword.jsp";
+		location.href="${pageContext.request.contextPath}/mypage/changePassword.jsp";
 	})
 	
 	$("#tel").keyup(function (evt) {
@@ -111,7 +111,7 @@ $(function(){
 		    return;
 		}
 		$.ajax({
-			  url:"email_process.jsp",
+			  url:"${pageContext.request.contextPath}email_process.jsp",
 		  type:"GET",
 		  data: { email: email },
 		  dataType:"JSON",
@@ -215,7 +215,7 @@ $(function(){
 </head>
 <body>
 
-<jsp:include page="/common/jsp/header.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp"/>
 
 <!-- ✅ 탭 버튼 -->
 <div class="tab-container" style="position: relative; right: 70px">
@@ -226,7 +226,7 @@ $(function(){
 
 <!-- ✅ 탭 내용 1: 회원정보수정 -->
 <div id="info-tab" class="tab-content" style="position: relative; right: 70px">
-  <form method="post" name="frm" id="frm" action="/Gung_On/process.jsp" class="signup-form" style="width: 900px;">
+  <form method="post" name="frm" id="frm" action="${pageContext.request.contextPath}/process.jsp" class="signup-form" style="width: 900px;">
     <table class="signup-table">
       <tr>
         <th>아이디</th>
@@ -266,7 +266,7 @@ $(function(){
       <button type="button" class="submit" id = "btnConfirm">수정</button>
       <button type="button" class="submit btn btn-success" id = "changePass">비밀번호 변경</button>
     </div>
-    <a href="/Gung_On/mypage/removeAccount.jsp" class="withdraw-link">회원탈퇴</a>
+    <a href="${pageContext.request.contextPath}/mypage/removeAccount.jsp" class="withdraw-link">회원탈퇴</a>
   </form>
 </div>
 
@@ -300,7 +300,7 @@ $(function(){
     </table>
   </form>
 </div>
-<jsp:include page="/common/jsp/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
 
 </body>
 </html>

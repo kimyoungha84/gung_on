@@ -9,20 +9,20 @@
 <html>
 <head>
 <!-- favicon 설정 -->
-<link rel="icon shortcut"  href="http://${defaultIP}/Gung_On/common/images/cs/gungOnFavicon.ico"/>
+<link rel="icon shortcut"  href="http://${defaultIP}${pageContext.request.contextPath}/common/images/cs/gungOnFavicon.ico"/>
 
 <title>내 예매정보</title>
-<c:import url="http://${defaultIP}/Gung_On/common/jsp/header.jsp"/>	
+<c:import url="http://${defaultIP}${pageContext.request.contextPath}/common/jsp/header.jsp"/>	
 
 
 <!-- 부트스트랩  CDN -->    
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
 <!-- CSS 설정 -->
-<link rel="stylesheet" type="text/css" href="http://${defaultIP}/Gung_On/ticket/css/payment.css"/>
+<link rel="stylesheet" type="text/css" href="http://${defaultIP}${pageContext.request.contextPath}/ticket/css/payment.css"/>
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-<script src="http://${defaultIP}/Gung_On/ticket/js/payment.js" type="text/javascript"></script>
+<script src="http://${defaultIP}${pageContext.request.contextPath}/ticket/js/payment.js" type="text/javascript"></script>
 
 
 </head>
@@ -68,14 +68,14 @@
 	</form>
 	<br><br><br>
 	<div style="display:flex">
-	<form id="calcFrm" action="http://${defaultIP}/Gung_On/ticket/ticketProcess/ticket_calc_procss.jsp" method="post">
+	<form id="calcFrm" action="http://${defaultIP}${pageContext.request.contextPath}/ticket/ticketProcess/ticket_calc_procss.jsp" method="post">
 	    <div class="btnGroup">
 	        <input type="button" id="moneyCalc" value="결제하기" class="money" />
 	        <input type="hidden" id="hidPhoneNum" name="hidPhoneNum" value=""/>
 	       
 	    </div>
     </form>
-     		<input type="button" id="cancleCalc"  value="취소" class="cancel" onclick="location.href='http://${defaultIP}/Gung_On/program/programDetail/programDetail.jsp'">
+     		<input type="button" id="cancleCalc"  value="취소" class="cancel" onclick="location.href='http://${defaultIP}${pageContext.request.contextPath}/program/programDetail/programDetail.jsp'">
 	</div>
 	<br>
 	<div class="infoText">
@@ -87,6 +87,6 @@
     </div>
 
     </div><!--entireWrap-->
-    <c:import url="http://${defaultIP}/Gung_On/common/jsp/footer.jsp"/>
+    <c:import url="http://${defaultIP}${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
 </body>
 </html>

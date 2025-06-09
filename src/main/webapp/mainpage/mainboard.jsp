@@ -59,7 +59,7 @@ request.setAttribute("faqList", faqList);
           <li><a href="#" class="item-link">2025년 경복궁 청화루 특별관람 안내</a><span class="item-date">2025.04.29</span></li>
           <li><a href="#" class="item-link">창경궁 전환 복구 완료 안내</a><span class="item-date">2025.04.28</span></li> -->
         <c:forEach var="nDTO" items="${ noticeList }" varStatus="i">
-          <li><a href="/Gung_On/cs/notice_detail.jsp?num=${ nDTO.notice_num }" class="item-link">${ nDTO.notice_title }</a>
+          <li><a href="${pageContext.request.contextPath}/cs/notice_detail.jsp?num=${ nDTO.notice_num }" class="item-link">${ nDTO.notice_title }</a>
           <span class="item-date"><fmt:formatDate value="${ nDTO.notice_regDate }" pattern="yyyy-MM-dd"/></span></li>
 		</c:forEach>
         </ul>
@@ -70,7 +70,7 @@ request.setAttribute("faqList", faqList);
         <div class="section-title">자주묻는 질문</div>
         <ul class="item-list">
           <c:forEach var="fDTO" items="${ faqList }" varStatus="i">
-          <li><a href="/Gung_On/cs/faq_main.jsp" class="item-link">${ fDTO.faq_title }</a>
+          <li><a href="${pageContext.request.contextPath}/cs/faq_main.jsp" class="item-link">${ fDTO.faq_title }</a>
           <span class="item-date"><fmt:formatDate value="${ fDTO.faq_regDate }" pattern="yyyy-MM-dd"/></span></li>
 		</c:forEach>
         </ul>

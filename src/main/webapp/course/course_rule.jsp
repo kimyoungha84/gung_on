@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <title>관람규칙</title>
 
-  <link rel="stylesheet" type="text/css" href="/Gung_On/course/css/course_rule_style.css" />
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/course/css/course_rule_style.css" />
   <c:import url="/common/jsp/external_file.jsp"/>
 
 <!-- Swiper JS -->
@@ -19,7 +19,7 @@
 <body class="main">
 
   <!-- 상단 메뉴 등 -->
-  <jsp:include page="/common/jsp/header.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
 
   <!-- 본문:  -->
   <main>
@@ -32,10 +32,10 @@
             <h3>관람안내 메뉴</h3>
             <nav class="sub-nav">
                 <ul>
-                    <li><a href="/Gung_On/course/course_rule.jsp" class="active">관람규칙</a></li>
-                    <li><a href="/Gung_On/course/course_time.jsp">관람시간</a></li>
-                    <li><a href="/Gung_On/course/course.jsp">관람코스</a></li>
-                    <li><a href="/Gung_On/course/users_course.jsp">사용자 추천 코스</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/course_rule.jsp" class="active">관람규칙</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/course_time.jsp">관람시간</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/course.jsp">관람코스</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/users_course.jsp">사용자 추천 코스</a></li>
                 </ul>
             </nav>
         </div>
@@ -51,7 +51,7 @@
                       <div class="txt_wrap">
                            <div class="txt_section_tit">관람규칙</div> 관람하시면서 꼭 준수해 주셔야 할 사항입니다<br> 모두에게 기분좋은 관람이 될 수 있도록 협조하여 주시기 바랍니다
                        </div>
-                       <img src="/Gung_On/course/course_rule_img/course_rule.jpg" alt="관람규칙 아이콘">
+                       <img src="${pageContext.request.contextPath}/course/course_rule_img/course_rule.jpg" alt="관람규칙 아이콘">
                  </div>
              </div>
             <!-- sub_con_section 이동 끝 -->
@@ -290,7 +290,7 @@
   </main>
 
   <!-- 푸터 -->
-  <jsp:include page="/common/jsp/footer.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
 <!-- <div> 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/mike-zuidgeest" title="Mike Zuidgeest"> Mike Zuidgeest </a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com'</a></div> -->
 </body>
 </html>

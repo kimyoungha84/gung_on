@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
   <!-- 기타 공통 스타일 -->
-  <link rel="stylesheet" href="/Gung_On/common/css/common.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
  
   
   <!-- <style>
@@ -21,7 +21,7 @@
   
 <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-	<script src="/Gung_On/common/js/slide.js"></script>
+	<script src="${pageContext.request.contextPath}/common/js/slide.js"></script>
   <script>
     
   </script>
@@ -30,7 +30,7 @@
 
   <!-- 상단 메뉴 등 -->
   
-  <jsp:include page="/common/jsp/header.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/common/jsp/header.jsp" />
 
 
   <!-- 본문: 캐러셀 포함 -->
@@ -42,20 +42,20 @@
 	</div>
 
     <div> 
-    <jsp:include page="/mainpage/banner.jsp"/>
+    <jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/mainpage/banner.jsp"/>
     </div>
     
-    <div class= "/mainpage/banner2-main">
-	<jsp:include page="/mainpage/banner2.jsp"/>
+    <div class= "${pageContext.request.contextPath}/mainpage/banner2-main">
+	<jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/mainpage/banner2.jsp"/>
     </div>
     
     <div style="padding-left: 300px; padding-right: 300px">
-    <jsp:include page="/mainpage/mainboard.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/mainpage/mainboard.jsp" />
     </div>
   </main>
 
   <!-- 푸터 -->
-   <jsp:include page="/common/jsp/footer.jsp"/>
+   <jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
 <!-- <div> 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/mike-zuidgeest" title="Mike Zuidgeest"> Mike Zuidgeest </a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com'</a></div> -->
 </body>
 </html>

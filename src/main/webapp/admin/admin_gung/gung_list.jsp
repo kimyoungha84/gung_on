@@ -57,7 +57,7 @@
     </tbody>
   </table>
 
-  <button class="register-btn"onclick="location.href='/Gung_On/admin/admin_gung/gung_insert.jsp'">등록</button>
+  <button class="register-btn"onclick="location.href='${pageContext.request.contextPath}/admin/admin_gung/gung_insert.jsp'">등록</button>
 <!-- 페이지네이션 표시 -->
    <div>
    </div>

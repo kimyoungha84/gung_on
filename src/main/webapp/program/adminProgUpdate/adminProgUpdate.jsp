@@ -106,7 +106,7 @@ if (programName != null && !programName.trim().isEmpty()) {
         if (updatedSuccess > 0) {
             if (progImgName != null && !progImgName.trim().isEmpty()) {
                 FilePathDTO filePathDTO = new FilePathDTO();
-                filePathDTO.setPath("/Gung_On/program/images/" + progImgName);
+                filePathDTO.setPath("${pageContext.request.contextPath}/program/images/" + progImgName);
                 filePathDTO.setTargerType("program");
                 filePathDTO.setTargerNumber(String.valueOf(program.getProgramId()));
                 filePathDTO.setImgName(progImgName);

@@ -41,7 +41,7 @@
   </style>
 
   <!-- Swiper CSS -->
-	<link rel="stylesheet" type="text/css" href="/Gung_On/course/css/users_course_style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/course/css/users_course_style.css" />
 	<c:import url="/common/jsp/external_file.jsp"/>
 
 <!-- Swiper JS -->
@@ -53,7 +53,7 @@
 <body class="main">
 
   <!-- 상단 메뉴 등 -->
-  <jsp:include page="/common/jsp/header.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
 
   <!-- 본문:  -->
   <main>
@@ -62,10 +62,10 @@
             <h3>관람안내 메뉴</h3>
             <nav class="sub-nav">
                 <ul>
-                    <li><a href="/Gung_On/course/course_rule.jsp" >관람규칙</a></li>
-                    <li><a href="/Gung_On/course/course_time.jsp">관람시간</a></li>
-                    <li><a href="/Gung_On/course/course.jsp">관람코스</a></li>
-                    <li><a href="/Gung_On/course/users_course.jsp" class="active" >사용자 추천 코스</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/course_rule.jsp" >관람규칙</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/course_time.jsp">관람시간</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/course.jsp">관람코스</a></li>
+                    <li><a href="${pageContext.request.contextPath}/course/users_course.jsp" class="active" >사용자 추천 코스</a></li>
                 </ul>
             </nav>
         </div>
@@ -339,7 +339,7 @@
 </script>
 
   
-  <jsp:include page="/common/jsp/footer.jsp" />
+  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
 
 </body>
 </html>

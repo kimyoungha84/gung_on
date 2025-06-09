@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <c:import url="/common/jsp/external_file.jsp"/>
-  <link rel="stylesheet" href="/Gung_On/common/css/common.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
   <title>회원가입</title>
   <style type="text/css">
   #timer {
@@ -27,7 +27,7 @@ $(function(){
 		  if(id.length > 5 && id.length < 16){
 			  var param={id:id};
 			  $.ajax({
-				  url:"ajax_id_dup.jsp",
+				  url:"${pageContext.request.contextPath}ajax_id_dup.jsp",
 			  type:"GET",
 			  data:param,
 			  dataType:"JSON",
@@ -73,7 +73,7 @@ $(function(){
 	});//click
 	
 	$("#btnCancel").click(function(){
-		location.href = "/Gung_On/mainpage/mainpage.jsp";
+		location.href = "${pageContext.request.contextPath}/mainpage/mainpage.jsp";
 	});//click
 	
 	 $("#emailCon").click(function(){
@@ -83,7 +83,7 @@ $(function(){
 		    return;
 		}
 		$.ajax({
-			  url:"email_process.jsp",
+			  url:"${pageContext.request.contextPath}email_process.jsp",
 		  type:"GET",
 		  data: { email: email },
 		  dataType:"JSON",
@@ -237,9 +237,9 @@ function startTimer() {
 
   <body class="signup-body">
 
-<jsp:include page="/common/jsp/header.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp"/>
 
-  <form method="post" action="/Gung_On/signup/sign_up_process.jsp" class="signup-form" id="frm" name="frm">
+  <form method="post" action="${pageContext.request.contextPath}/signup/sign_up_process.jsp" class="signup-form" id="frm" name="frm">
     
     <!-- 약관 -->
     <!-- <div class="terms-box">
@@ -342,6 +342,6 @@ function startTimer() {
   </form>
   
   <!-- 푸터 -->
-<jsp:include page="/common/jsp/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
 </body>
 </html>

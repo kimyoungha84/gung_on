@@ -11,12 +11,12 @@
 <head>
 
 <!-- favicon 설정 -->
-<link rel="icon shortcut"  href="http://${defaultIP}/Gung_On/common/images/cs/gungOnFavicon.ico"/>
+<link rel="icon shortcut"  href="http://${defaultIP}${pageContext.request.contextPath}/common/images/cs/gungOnFavicon.ico"/>
 
 
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<c:import url="http://${defaultIP}/Gung_On/common/jsp/header.jsp"/>	
+<c:import url="http://${defaultIP}${pageContext.request.contextPath}/common/jsp/header.jsp"/>	
 <title>예매</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -37,7 +37,7 @@
 
 <!-- site CSS-->
  <!-- 이거 이클립스에서 한 번 실행시켜주면, 정상 작동함 ㅋㅋㅋ -->
-<link rel="stylesheet" type="text/css" href="http://${defaultIP}/Gung_On/ticket/css/ticket_ver0514.css"/>
+<link rel="stylesheet" type="text/css" href="http://${defaultIP}${pageContext.request.contextPath}/ticket/css/ticket_ver0514.css"/>
 	
 
 
@@ -82,14 +82,14 @@ System.out.println(endday);
 
 <main>
 <div class="wrap">
-    <form action="http://${defaultIP}/Gung_On/ticket/ticketProcess/ticket_process.jsp" name="viewDateFrm" method="post">
+    <form action="http://${defaultIP}${pageContext.request.contextPath}/ticket/ticketProcess/ticket_process.jsp" name="viewDateFrm" method="post">
   	   <div><input type="text" name="programName" class="title" value="<%=programName%>"/></div>
     <!-- 오른쪽 -->
     <div class="right">
 		<div class="ticket_box">
 			
 			<div class="viewTitle">
-				<img src="http://${defaultIP}/Gung_On/ticket/images/ico_date.png" width="20px"/><span class="view">관람일자</span>
+				<img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/ico_date.png" width="20px"/><span class="view">관람일자</span>
 			</div><!--viewTitle-->
 			<!-- <form action="" name="viewDateFrm" method="post"> -->
 				<div class="viewDateParent" style="position:relative"><!-- 부모 -->
@@ -97,7 +97,7 @@ System.out.println(endday);
 					<input type="hidden" class="start-day" value="<%=startday%>"/><input type="hidden" class="end-day" value="<%=endday%>"/>
 					<span class="ex"><input id="datepicker" name="datepicker" type="text" readonly placeholder="날짜를 선택해주세요." /></span>
 					<input type="hidden" class="datepickerStatus" value="non-click"/>
-					<img src="http://${defaultIP}/Gung_On/ticket/images/downArrow.png" width="16px" id="arrowDatepicker" class="arrow"/>	
+					<img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/downArrow.png" width="16px" id="arrowDatepicker" class="arrow"/>	
 				</div><!--selectionDesign-->
 				</div><!-- viewDateParent -->
 			<!-- </form>	 --><!-- viewDateFrm -->
@@ -105,14 +105,14 @@ System.out.println(endday);
 			<br>
 
 			<div class="viewTitle"> 
-				<img src="http://${defaultIP}/Gung_On/ticket/images/ico_person.png" width="20px"/><span class="view">관람인원</span>
+				<img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/ico_person.png" width="20px"/><span class="view">관람인원</span>
 			</div><!--viewTitle-->
 			<!-- <form name="viewPersonFrm " method="post"> -->
 			<div class="personWrap"><!-- 부모 -->
 				
 				<div class="selectDesign viewPersonNum" id="viewPersonNum" onclick="changeStatus('.viewPersonNum','.classificationWrap')">
 					<span class="ex personChoose">인원선택</span>
-					<img src="http://${defaultIP}/Gung_On/ticket/images/downArrow.png" id="arrow" class="arrow"  width="16px" />
+					<img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/downArrow.png" id="arrow" class="arrow"  width="16px" />
 				 </div> <!-- selectDesign viewPersonNum  -->
 					<!-- 요기 style을 display : none 이랑 block으로 해주면 된다. -->
 					<!-- --------------------------zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz----------------------------- -->
@@ -132,9 +132,9 @@ System.out.println(endday);
 				        </td>
 				        <td style="width:43%;">
 				            <div class="classifiationTable">
-				        	<div class="minusDiv"><img src="http://${defaultIP}/Gung_On/ticket/images/minusImg.png" class="minusImg minusAdultImg"/></div>
+				        	<div class="minusDiv"><img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/minusImg.png" class="minusImg minusAdultImg"/></div>
 				        	<input type="text" class="person adult" name="adult" value="0" readonly style="border:1px #333 solid; width:44px"/>
-				        	<div class="plusDiv"><img src="http://${defaultIP}/Gung_On/ticket/images/plusImg.png" class="plusImg plusAdultImg"/></div>
+				        	<div class="plusDiv"><img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/plusImg.png" class="plusImg plusAdultImg"/></div>
 				            </div>
 				        </td>
 				    </tr>
@@ -148,9 +148,9 @@ System.out.println(endday);
 				        </td>
 				        <td>
 				           <div class="classifiationTable">
-				        	<div class="minusDiv"><img src="http://${defaultIP}/Gung_On/ticket/images/minusImg.png" class="minusImg minusKidImg" id="minusImg"/></div>
+				        	<div class="minusDiv"><img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/minusImg.png" class="minusImg minusKidImg" id="minusImg"/></div>
 				        	<input type="text" class="person kid" name="kid" value="0" readonly style="border:1px #333 solid; width:44px">
-				        	<div class="plusDiv"><img src="http://${defaultIP}/Gung_On/ticket/images/plusImg.png" class="plusImg plusKidImg" id="plusImg"/></div>
+				        	<div class="plusDiv"><img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/plusImg.png" class="plusImg plusKidImg" id="plusImg"/></div>
 				            </div>
 				        </td>
 				    </tr>
@@ -173,14 +173,14 @@ System.out.println(endday);
 			<br>
 
 			<div class="viewTitle">
-				<img src="http://${defaultIP}/Gung_On/ticket/images/ico_person.png" class="20px"/><span class="view">해설관람</span><span style="font-size: 11px;">(선택사항)</span>		
+				<img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/ico_person.png" class="20px"/><span class="view">해설관람</span><span style="font-size: 11px;">(선택사항)</span>		
 			</div><!--viewTitle-->
 
 			<!-- <form name="commentFrm"> -->
 			<div class="langGroupWrap">
 				<div class="selectDesign langGroup" onclick="changeStatus('.langGroup','.langWrap')">
 					<input type="text" name="langChoose" class="ex langChoose" value="선택 안함" style="border:none;   user-select:none;">
-					<img src="http://${defaultIP}/Gung_On/ticket/images/downArrow.png" width="16px" id="arrow" class="arrow" />
+					<img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/downArrow.png" width="16px" id="arrow" class="arrow" />
 				</div>
 				<!-- 여기기기기기기기기기ㅣ -->
 				<div class="langWrap" style="display:none">
@@ -216,9 +216,9 @@ System.out.println(endday);
     <div class="left">
  <%-- 
 		<div data-slick='{}' class='slider' style=" margin-left: 35px;">
-		  <img src="http://${defaultIP}/Gung_On/ticket/images/Gyeongbokgung.jpg"/>
-		  <img src="http://${defaultIP}/Gung_On/ticket/images/Gyeongbokgung2.jpg"/>
-		  <img src="http://${defaultIP}/Gung_On/ticket/images/Gyeongbokgung3.jpg"/> 
+		  <img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/Gyeongbokgung.jpg"/>
+		  <img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/Gyeongbokgung2.jpg"/>
+		  <img src="http://${defaultIP}${pageContext.request.contextPath}/ticket/images/Gyeongbokgung3.jpg"/> 
 
 		</div><!-- data-slick -->
  --%>	
@@ -355,7 +355,7 @@ System.out.println(endday);
   </div><!--end left-->
 <!-- </form> -->
 </div><!--wrap-->
-<c:import url="http://${defaultIP}/Gung_On/common/jsp/footer.jsp"/>
+<c:import url="http://${defaultIP}${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
 </main>
 </body>
 

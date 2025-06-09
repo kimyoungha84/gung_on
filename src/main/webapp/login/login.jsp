@@ -12,8 +12,8 @@ String redirectUrl=request.getParameter("redirectUrl");
 <head>
 <meta charset="UTF-8">
     <title>로그인</title>
-    <c:import url="/common/jsp/external_file.jsp"/>
-    <link rel="stylesheet" href="/Gung_On/common/css/common.css">
+    <c:import url="${pageContext.request.contextPath}/common/jsp/external_file.jsp"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     window.onload = function() {
@@ -64,10 +64,10 @@ String redirectUrl=request.getParameter("redirectUrl");
                     if (redirectUrl) {
                         window.location.href = decodeURIComponent(redirectUrl); // 리디렉션
                     } else {
-                        window.location.href = "/Gung_On/mainpage/mainpage.jsp"; // 기본 페이지
+                        window.location.href = "${pageContext.request.contextPath}/mainpage/mainpage.jsp"; // 기본 페이지
                     }
                     /*          */
-                    /* location.href = "/Gung_On/mainpage/mainpage.jsp"; // 로그인 성공 시 이동할 페이지 */
+                    /* location.href = "${pageContext.request.contextPath}/mainpage/mainpage.jsp"; // 로그인 성공 시 이동할 페이지 */
                 } else {
                 	alert("아이디나 비밀번호를 확인해주세요.");
                 }//end else
@@ -87,7 +87,7 @@ String redirectUrl=request.getParameter("redirectUrl");
     </script>
 </head>
 <body class="login">
- <jsp:include page="/common/jsp/header.jsp"/>
+ <jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/common/jsp/header.jsp"/>
 
 <div class="login-container">
     <h2>로그인</h2>
@@ -100,13 +100,13 @@ String redirectUrl=request.getParameter("redirectUrl");
 
     <div class="link-container">
         <div class="link-box">
-            <a href="/Gung_On/mypage/searchAccount.jsp" style="margin-right: 20px;">아이디/비밀번호 찾기</a>
+            <a href="${pageContext.request.contextPath}/mypage/searchAccount.jsp" style="margin-right: 20px;">아이디/비밀번호 찾기</a>
             <span class="divider"></span>
-            <a href="/Gung_On/signup/sign_up.jsp" style="margin-left: 10px;">회원가입</a>
+            <a href="${pageContext.request.contextPath}/signup/sign_up.jsp" style="margin-left: 10px;">회원가입</a>
         </div>
     </div>
 </div>
 
- <jsp:include page="/common/jsp/footer.jsp"/>
+ <jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
 </body>
 </html>

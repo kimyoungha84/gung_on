@@ -16,7 +16,7 @@
     int maxSize = 10 * 1024 * 1024; // 최대 업로드 크기: 10MB
     String encoding = "UTF-8";
     
-    String baseUploadPathRelative = "/Gung_On/common/images/course"; 
+    String baseUploadPathRelative = "${pageContext.request.contextPath}/common/images/course"; 
     String baseUploadPathAbsolute = application.getRealPath(baseUploadPathRelative);
 
     String gungIdStr = null;

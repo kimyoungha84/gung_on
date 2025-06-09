@@ -15,7 +15,7 @@
 
     if ("POST".equalsIgnoreCase(request.getMethod())) {
     	
-    	String uploadPath = "C:/Users/user/git/Gung_On/src/main/webapp/program/images";
+    	String uploadPath = "C:/Users/user/git${pageContext.request.contextPath}/src/main/webapp/program/images";
     	int maxSize = 10 * 1024 * 1024; // 최대 10MB
 
     	MultipartRequest multi = new MultipartRequest(
@@ -130,7 +130,7 @@
             if (result > 0) {
                 if (progImgName != null && !progImgName.trim().isEmpty()) {
                     FilePathDTO filePathDTO = new FilePathDTO();
-                    filePathDTO.setPath("/Gung_On/program/images/" + progImgName);
+                    filePathDTO.setPath("${pageContext.request.contextPath}/program/images/" + progImgName);
                     filePathDTO.setTargerType("program");
                     filePathDTO.setTargerNumber(String.valueOf(programDTO.getProgramId()));
                     filePathDTO.setImgName(progImgName);

@@ -91,7 +91,7 @@ public class FilteringInfo {
 	@Override
 	public String toString() {
 		return "FilteringInfo [searchCategory=" + searchCategory + ", searchText=" + searchText + ", startDate="
-				+ startDate + ", endDate=" + endDate + ", CurrentPage=" + CurrentPage + ", StartNum=" + StartNum
+				+ startDate + ", endDate=" + endDate + ", Currentpage=" + CurrentPage + ", StartNum=" + StartNum
 				+ ", endNum=" + endNum + "]";
 	}
 	

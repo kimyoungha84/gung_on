@@ -69,7 +69,7 @@ desc = desc.replace("\"", "\\\"").replace("\n", "").replace("\r", "").replace("'
     const poster = posterData[index - 1];
 
     const link = document.createElement("a");
-    link.href = "/Gung_On/program/programInfo/programInfo.jsp?";
+    link.href = "${pageContext.request.contextPath}/program/programInfo/programInfo.jsp?";
 
     const img = document.createElement("img");
     img.src = poster.fileName;

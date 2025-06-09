@@ -75,7 +75,7 @@ try {
     if (!uploadDir.exists()) uploadDir.mkdirs();
 
     // ✅ DB에 저장할 경로는 webapp 기준으로
-    String dbPath = "/Gung_On" + savePath;
+    String dbPath = "${pageContext.request.contextPath}" + savePath;
 
     FilePathService fps = new FilePathService();
 

@@ -11,17 +11,17 @@
 <head>
 
 <!-- favicon 설정 -->
-<link rel="icon shortcut"  href="http://${defaultIP}/Gung_On/common/images/cs/gungOnFavicon.ico"/>
+<link rel="icon shortcut"  href="http://${defaultIP}${pageContext.request.contextPath}/common/images/cs/gungOnFavicon.ico"/>
 
 <title>결제완료</title>
-<c:import url="http://${defaultIP}/Gung_On/common/jsp/header.jsp"/>	
+<c:import url="http://${defaultIP}${pageContext.request.contextPath}/common/jsp/header.jsp"/>	
 
 
 <!-- 부트스트랩  CDN -->    
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
 <!-- CSS 설정 -->
-<link rel="stylesheet" type="text/css" href="http://${defaultIP}/Gung_On/ticket/css/payment.css"/>
-<link rel="stylesheet" type="text/css" href="http://${defaultIP}/Gung_On/ticket/css/paymentComplete.css"/>
+<link rel="stylesheet" type="text/css" href="http://${defaultIP}${pageContext.request.contextPath}/ticket/css/payment.css"/>
+<link rel="stylesheet" type="text/css" href="http://${defaultIP}${pageContext.request.contextPath}/ticket/css/paymentComplete.css"/>
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 
@@ -29,7 +29,7 @@
 <script type="text/javascript">
 
 $(function(){
-	history.pushState({ page: 'ticketPaymentCompleteFrm' }, '', '/Gung_On/ticket/ticketPaymentCompleteFrm.jsp');
+	history.pushState({ page: 'ticketPaymentCompleteFrm' }, '', '${pageContext.request.contextPath}/ticket/ticketPaymentCompleteFrm.jsp');
 	
 	window.addEventListener('popstate',function(event){
 		alert("ticketPaymentCompleteFrm들어오나?");
@@ -87,6 +87,6 @@ $(function(){
 
 
     </div><!--entireWrap-->
-    <c:import url="http://${defaultIP}/Gung_On/common/jsp/footer.jsp"/>
+    <c:import url="http://${defaultIP}${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
 </body>
 </html>
