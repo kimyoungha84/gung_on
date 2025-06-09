@@ -1,3 +1,4 @@
+<%@page import="kr.co.gungon.ticket.TicketDetailDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.gungon.ticket.admin.TicketAdminDTO"%>
@@ -13,20 +14,31 @@ List<TicketAdminDTO> list=new ArrayList<TicketAdminDTO>();
 Object mylist=session.getAttribute("myList");
 list=(List<TicketAdminDTO>)mylist;
 
+System.out.println("list=========="+list);
+
 
 String bookingNum=request.getParameter("booking_num");
 
-TicketAdminDTO adminDTO=new TicketAdminDTO();
+TicketAdminDTO adminDTO=null;
+TicketDetailDTO detailDTO=new TicketDetailDTO();
+List<TicketAdminDTO> showList=new ArrayList<TicketAdminDTO>();
+
 for(int i=0; i<list.size();i++){
 	
 	if(list.get(i).getBooking_num().equals(bookingNum)){
-		adminDTO=list.get(i);
+			System.out.println("bookingNum----"+bookingNum);
+			adminDTO=new TicketAdminDTO();
+			adminDTO=list.get(i);
+			System.out.println("adminDTO======="+adminDTO);
+			
+			//showList.add(adminDTO);
 	}//end if
 }//end for
 
 String str=adminDTO.getPaymentTimeStamp();
 String[] strlist=str.split(" ");
 String paymentDate=strlist[0];
+
 
 %>
 <!DOCTYPE html>
@@ -63,9 +75,9 @@ String paymentDate=strlist[0];
       <img src="/Gung_On/common/images/program/GyeongbokgungStarlightNight.jpg" alt="경복궁 이미지" style="height: 100%">
       <div class="event-details" style="width: 80%">
         <table>
-          <tr><th style="width: 20%">예약자</th><td><%=adminDTO.getMember_id() %></td></tr>
+          <tr><th style="width: 20%">예약자</th><td><%=adminDTO.getMember_name() %></td></tr>
           <tr><th>예매번호</th><td><%=adminDTO.getBooking_num()%></td></tr>
-          <tr><th>일시</th><td><%=adminDTO.getReserve_date()%><%= adminDTO.getStartTime()%></td></tr>
+          <tr><th>일시</th><td><%=adminDTO.getReserve_date()%> <%= adminDTO.getStartTime()%></td></tr>
           <tr><th>언어</th><td><%=adminDTO.getComment_flag()%></td></tr>
         </table>
       </div>
@@ -109,7 +121,7 @@ String paymentDate=strlist[0];
         <tr>
           <td><%=adminDTO.getBooking_num()%></td>
           <td><%=adminDTO.getProgram_name()%></td>
-          <td><%=adminDTO.getReserve_date()%><%= adminDTO.getStartTime()%></td>
+          <td><%=adminDTO.getReserve_date()%> <%= adminDTO.getStartTime()%></td>
           <td><%=adminDTO.getComment_flag()%></td>
           <td><%=adminDTO.getPerson()%></td>
           <td><%=adminDTO.getPaymentStr()%>원</td>
@@ -119,7 +131,7 @@ String paymentDate=strlist[0];
 
     <br>
 
-    <table class="person-table">
+  <!--   <table class="person-table">
       <thead>
         <tr><th>인원</th><th>휴대폰 번호</th></tr>
       </thead>
@@ -129,7 +141,7 @@ String paymentDate=strlist[0];
         <tr><td>대인 3</td><td>010-1111-2222</td></tr>
       </tbody>
     </table>
-
+ -->
     <div class="warning">※ 전화번호가 잘못된 경우 고객센터로 문의해주세요.</div>
   </div>
 

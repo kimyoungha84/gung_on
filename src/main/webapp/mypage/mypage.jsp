@@ -24,11 +24,10 @@ if (user != null) {
     pageContext.setAttribute("domain", domain);
 
     session.setAttribute("changePass", true);
-    // session.setAttribute("id", id); // 필요 없으면 제거
+    session.setAttribute("id", id); // 필요 없으면 제거
     
     MemberService ms=new MemberService();
     List<TicketAdminDTO> myList= ms.showMyTicketData(id);
-    
     session.setAttribute("myList", myList);
 }
 %>
