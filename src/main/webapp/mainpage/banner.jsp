@@ -10,7 +10,7 @@
   <img src="/Gung_On/common/images/mainpage/right-button.png" style="cursor: pointer;" class="custom-next"/>
 </div>
     <div class="swiper-slide">
-      <a href="palaceInfo.jsp?name=gyeongbokgung" class="slide-link">
+      <a href="/Gung_On/gung/gyungbukgung.jsp" class="slide-link">
       	<img class="banner-slide" src="/Gung_On/common/images/gung/gyeongbokgung/gyeongbokgung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
@@ -19,7 +19,7 @@
           </div>
     </div>
     <div class="swiper-slide">
-      <a href="palaceInfo.jsp?name=gyeonghuigung" class="slide-link">
+      <a href="/Gung_On/gung/gyeonghuigung.jsp" class="slide-link">
       	<img class="banner-slide" src="/Gung_On/common/images/gung/gyeonghuigung/gyeonghuigung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
@@ -28,7 +28,7 @@
           </div>
     </div>
     <div class="swiper-slide">
-      <a href="palaceInfo.jsp?name=changdeokgung" class="slide-link">
+      <a href="/Gung_On/gung/changdeokgung.jsp" class="slide-link">
       	<img class="banner-slide" src="/Gung_On/common/images/gung/changdeokgung/changdeokgung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="swiper-slide">
-      <a href="palaceInfo.jsp?name=changgyeonggung" class="slide-link">
+      <a href="/Gung_On/gung/changgyeonggung.jsp" class="slide-link">
       	<img class="banner-slide" src="/Gung_On/common/images/gung/changgyeonggung/changgyeonggung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
@@ -46,7 +46,7 @@
           </div>
     </div>
     <div class="swiper-slide">
-      <a href="palaceInfo.jsp?name=deoksugung" class="slide-link">
+      <a href="/Gung_On/gung/deoksugung.jsp" class="slide-link">
       	<img class="banner-slide" src="/Gung_On/common/images/gung/deoksugung/deoksugung.jpg"/>
       </a>
           <div class="banner-text" style="margin-left:200px">
