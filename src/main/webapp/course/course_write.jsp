@@ -11,7 +11,6 @@
 <%@page import="java.sql.SQLException"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%-- JSON 처리를 위해 json-simple 라이브러리 필요 --%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONObject"%>
 
@@ -36,10 +35,7 @@
    
   <script>
     var jq = $.noConflict(); 
-    console.log("jQuery noConflict 모드 활성화. jQuery 객체 이름: jq");
   </script>
-   
-
 
   <!-- Summernote JS -->
   
@@ -168,20 +164,16 @@
 </head>
 
 <body class="main">
-
   
   <jsp:include page="/common/jsp/header.jsp" />
-
   
   <main>
     <div class="container">
-        
 
         <article class="content">
             <h1>코스 등록</h1>
 
             <%
-               
                CourseService cs = new CourseService();
                List<GungDTO> gungList = null;
                try {
@@ -191,7 +183,6 @@
                }
                
                pageContext.setAttribute("gungList", gungList);
-
                
                String gungIdParam = request.getParameter("gung_id");
                int selectedGungId = -1; 
@@ -236,12 +227,9 @@
 
                     <div class="form-group">
                          <label for="course_content">코스 내용</label>
-                         
                          <textarea id="summernote" name="course_content"></textarea>
                     </div>
 
-                    
-                    
                     
                     <input type="hidden" name="uploadedImagesInfo" id="uploadedImagesInfo" value="[]">
 
@@ -264,105 +252,100 @@
 
   <script>
     
-    var $j = jq; 
+  var $j = jq;
 
-    
-    let uploadedFiles = []; // 업로드된 이미지 정보들을 저장할 배열
+  let uploadedFiles = []; // 업로드된 이미지 정보들을 저장할 배열
 
-    $(document).ready(function() {
-    	
-        $j('#summernote').summernote({ 
-            height: 400, 
-            lang: 'ko-KR', 
-            placeholder: '코스 내용을 작성해주세요',
-            callbacks: {
-                
-                onImageUpload: function(files) {
-                    if (files.length > 0) {
-                        const file = files[0];
-                        
-                        sendImage(file); 
-                    }
-                },
-                 
-                 onMediaDelete : function(target) { 
-                     console.log('>>> DEBUG write.jsp: Image deleted from Summernote:', target);
-                     const deletedImg = $j(target); 
-                     const deletedImgSrc = deletedImg.attr('src'); 
+  $(document).ready(function () {
+    $j('#summernote').summernote({
+      height: 400,
+      lang: 'ko-KR',
+      placeholder: '코스 내용을 작성해주세요',
+      callbacks: {
+        onImageUpload: function (files) {
+          if (files.length > 0) {
+            const file = files[0];
+            sendImage(file); // 이미지 업로드 함수 호출
+          }
+        },
+        onMediaDelete: function (target) {
+          const deletedImgSrc = $j(target).attr('src');
 
-                     uploadedFiles = uploadedFiles.filter(imgInfo => imgInfo.url !== deletedImgSrc);
-                     console.log('>>> DEBUG write.jsp: Removed image from uploadedFiles. Current size:', uploadedFiles.length);
-                     
-                     $j('#uploadedImagesInfo').val(JSON.stringify(uploadedFiles));
-                     console.log('>>> DEBUG write.jsp: Updated uploadedImagesInfo hidden field:', $j('#uploadedImagesInfo').val());
-                 }
-            } 
-        }); 
+          uploadedFiles = uploadedFiles.filter(
+            (imgInfo) => imgInfo.url !== deletedImgSrc
+          );
 
-         
-        function sendImage(file) {
-            const data = new FormData();
-            data.append('upload', file); 
+          $j('#uploadedImagesInfo').val(JSON.stringify(uploadedFiles));
+        },
+      },
+    });
 
-            const gungId = $j('#gung_id_select').val(); 
-            if (gungId && gungId !== "") { 
-                 data.append('gungId', gungId); 
-                 console.log('>>> DEBUG write.jsp: Sending image upload request with gungId:', gungId);
-            } else {
-                 alert('이미지를 업로드하려면 먼저 궁을 선택해야 합니다.');
-                 
-                 $j('#summernote').summernote('editor.delete'); 
-                 console.error('>>> ERROR write.jsp: Image upload blocked - No gungId selected.');
-                 return; 
-            }
+    function sendImage(file) {
+      const data = new FormData();
+      data.append('upload', file);
 
-            const uploadUrl = 'uploadImage.jsp'; 
+      const gung_id = $j('#gung_id_select').val();
+      if (gung_id && gung_id !== '') {
+        data.append('gung_id', gung_id);
+        
+      } else {
+        alert('이미지를 업로드하려면 먼저 궁을 선택해야 합니다.');
+        return;
+      }
 
-            
-            $j.ajax({
-                url: uploadUrl,
-                type: 'POST',
-                data: data,
-                cache: false,
-                contentType: false, 
-                processData: false, 
-                dataType: 'json', 
-                success: function(response) {
-                    console.log('>>> DEBUG write.jsp: Image upload success response:', response);
+      const uploadUrl = 'uploadImage.jsp';
 
-                    if (response.status === 'success') {
-                        const imageUrl = response.url; 
-                        const relativePath = response.relativePath; 
-                        const savedFileName = response.savedFileName; 
-                        
-                        const fileInfo = {
-                            url: imageUrl, // Summernote에 삽입된 URL (이미지 삭제 시 비교용)
-                            relativePath: relativePath, // DB 저장용 경로
-                            savedFileName: savedFileName, // DB 저장용 파일명
-                        };
-                        uploadedFiles.push(fileInfo);
-                        console.log('>>> DEBUG write.jsp: Added file info to uploadedFiles. Current size:', uploadedFiles.length);
-                        
-                        $j('#uploadedImagesInfo').val(JSON.stringify(uploadedFiles));
-                        console.log('>>> DEBUG write.jsp: Updated uploadedImagesInfo hidden field:', $j('#uploadedImagesInfo').val());
+      $j.ajax({
+        url: uploadUrl,
+        type: 'POST',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success: function (response) {
+          console.log(
+            '>>> DEBUG write.jsp: Image upload success response:',
+            response
+          );
 
-                    } else {
-                        alert('이미지 업로드 실패: ' + (response.message || '알 수 없는 오류'));
-                        console.error('>>> ERROR write.jsp: Image upload failed response:', response);
-                        
-                        $j('#summernote').summernote('editor.delete'); 
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    alert('이미지 업로드 중 오류 발생.');
-                    console.error('>>> ERROR write.jsp: Image upload Ajax error:', textStatus, errorThrown, jqXHR.responseText, jqXHR.status, jqXHR.statusText);
-                    
-                    $j('#summernote').summernote('editor.delete');
-                }
-            }); 
-        } 
+          if (response.status === 'success') {
+            const imageUrl = response.url;
+            const relativePath = response.relativePath;
+            const savedFileName = response.savedFileName;
 
-    }); 
+            // ✅ summernote 에디터 본문에 이미지 삽입
+            $j('#summernote').summernote('insertImage', imageUrl);
+
+            const fileInfo = {
+              url: imageUrl,
+              relativePath: relativePath,
+              savedFileName: savedFileName,
+            };
+            uploadedFiles.push(fileInfo);
+
+            $j('#uploadedImagesInfo').val(JSON.stringify(uploadedFiles));
+            console.log(
+              '>>> DEBUG write.jsp: Added file info. Current uploadedFiles:',
+              uploadedFiles
+            );
+          } else {
+            alert('이미지 업로드 실패: ' + (response.message || '알 수 없는 오류'));
+          }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert('이미지 업로드 중 오류 발생.');
+          console.error(
+            '>>> ERROR: Ajax error:',
+            textStatus,
+            errorThrown,
+            jqXHR.responseText
+          );
+        },
+      });
+    }
+  });
+
   </script>
 </body>
 </html>

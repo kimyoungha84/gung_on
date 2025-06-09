@@ -2,7 +2,6 @@ package kr.co.gungon.course;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.ArrayList; // 디버깅용 ArrayList 임포트
 
 import kr.co.gungon.file.FilePathDTO;
 import kr.co.gungon.gung.GungDTO;
@@ -104,7 +103,7 @@ public class CourseService {
 			flag = result > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
-            flag = false; // 예외 발생 시 실패 처리
+            flag = false; 
 		}//end catch
         
         return flag; 
@@ -123,7 +122,7 @@ public class CourseService {
 			cDTO=cDAO.selectCourseByCourseNum(courseNum);
 		} catch (SQLException e) {
 			e.printStackTrace();
-             return flag; // 예외 발생 시 실패 처리
+             return flag;
 		}//end catch
          if (cDTO == null) {
              return flag; 
@@ -237,7 +236,7 @@ public class CourseService {
 		    try {
 		        courseNum = cDAO.insertCourse(course); 
 
-		        if (courseNum <= 0) { 
+		        if (courseNum < -1) { 
 		             return false; 
 		        }//end if
 
