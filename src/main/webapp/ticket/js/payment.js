@@ -3,6 +3,8 @@
  */
 
 $(function(){
+	
+	
 	var authenNumFlag=false;
 
 	/*"인증" 버튼 눌림*/

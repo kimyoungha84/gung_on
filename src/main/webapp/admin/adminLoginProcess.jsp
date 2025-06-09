@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    info=""%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="kr.co.gungon.admin.*" %>
+
 <%
     String id = request.getParameter("admin_id");
     String pass = request.getParameter("admin_pass");
@@ -13,6 +12,6 @@
         session.setAttribute("admin_id", id);
         response.sendRedirect("adminMain.jsp");
     } else {
+        response.sendRedirect("adminLoginForm.jsp?error=1&admin_id=" + java.net.URLEncoder.encode(id, "UTF-8"));
+    }
 %>
-<script>alert("로그인 실패"); history.back();</script>
-<% } %>

@@ -422,4 +422,36 @@ public class TicketService {
 	}//sendURL
 	
 	
+	//행사 이름으로 시작일 받아오기
+	public String getStartDate(String programName) {
+		TicketDAO tDAO=TicketDAO.getInstance();
+		String startDate=null;
+		
+		try {
+			startDate=tDAO.selectProgramDate(programName).split(",")[0].split(" ")[0];
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+		}//end try~catch
+		
+		return startDate;
+	}//getStartDate
+	
+	//행사 이름으로 마지막일 받아오기
+	public String getEndDate(String programName) {
+		String endDate=null;
+		TicketDAO tDAO=TicketDAO.getInstance();
+		
+		try {
+			endDate=tDAO.selectProgramDate(programName).split(",")[1].split(" ")[0];
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+		}//end try~catch
+		
+		return endDate;
+	}//getEndDate
+	
+	
+	
+	
+	
 }// class

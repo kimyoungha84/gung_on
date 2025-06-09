@@ -123,7 +123,7 @@
 
   <% if (canReserve) { %>
     <button class="detail-btn black" type="button"
-            onclick="location.href='reservationForm.jsp?programName=<%= java.net.URLEncoder.encode(dto.getProgramName(), "UTF-8") %>'">
+            onclick="location.href='reservationForm.jsp?programName=<%= java.net.URLEncoder.encode(dto.getProgramName(), "UTF-8") %>&imgFullPath=<%=imgFullPath%>'">
       예약하기
     </button>
   <% } else { %>

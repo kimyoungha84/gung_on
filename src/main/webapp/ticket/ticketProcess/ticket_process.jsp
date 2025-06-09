@@ -30,6 +30,8 @@ TicketService ticketService=new TicketService();
 
 
 String programName=request.getParameter("programName");//행사 이름
+
+
 String date=request.getParameter("datepicker");//관람일자
 String reserveTime=ticketService.startTimeProgram(programName);
 
@@ -55,7 +57,10 @@ tDTO.setCommentFlag(langFlag);//commentFlag
 tDTO.setPayment(payment);//payment
 
 request.setAttribute("ticketDto", tDTO);
-System.out.println("ticket_process.jsp --------"+tDTO);
+//System.out.println("ticket_process.jsp --------"+tDTO);
+
+
+
 
 %>
 <jsp:forward page="../ticketPayment.jsp"/>

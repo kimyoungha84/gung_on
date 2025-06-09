@@ -34,5 +34,12 @@ tDTO.setPaymentTimeStamp(paymentTimeStamp);
 
 request.setAttribute("ticketDTO", tDTO);
 %>
-
+<script type="text/javascript">
+$(function(){
+	window.addEventListener("popstate", function(event) {
+	    alert("뒤로가기 버튼이 클릭되었습니다!");
+	    // 뒤로가기 버튼이 클릭되었을 때 수행할 추가 작업
+	});
+});
+</script>
 <jsp:forward page="../ticketPaymentCompleteFrm.jsp"/>

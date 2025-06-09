@@ -1,8 +1,10 @@
+<%@page import="kr.co.gungon.ticket.user.TicketService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     info="예매화면"%>
  <%@ include file="config/site_config.jsp"%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ 
  
 <!DOCTYPE html>
 <html>
@@ -62,11 +64,23 @@
 </head>
 
 <body>
- 
+
 <%
+
+
 //여기서 getprogramName 받아줘야한다.
-//reqeust.getParameter("programName");
+//String programName=reqeust.getParameter("programName");
+//이거 ticket_process.jsp에서 처리 완료 그냥 value 부분에 ${programName} 변경해주면 된다.
+String programName="경복궁 야간관람";
+
+TicketService ticketService=new TicketService();
+//program 시작, 끝 날짜 가져오기
+String startday=ticketService.getStartDate(programName);
+String endday=ticketService.getEndDate(programName);
+
 %>
+
+<main>
 <div class="wrap">
     <form action="http://${defaultIP}/Gung_On/ticket/ticketProcess/ticket_process.jsp" name="viewDateFrm" method="post">
   	   <div><input type="text" name="programName" class="title" value="경복궁 야간관람"/></div>
@@ -80,8 +94,10 @@
 			<!-- <form action="" name="viewDateFrm" method="post"> -->
 				<div class="viewDateParent" style="position:relative"><!-- 부모 -->
 				<div class="selectDesign viewDate" id="viewDate" >
-					<span class="ex"><input id="datepicker" name="datepicker" type="text" readonly placeholder="날짜를 선택해주세요."/></span>
-					<img src="http://${defaultIP}/Gung_On/ticket/images/downArrow.png" width="16px" id="arrow" class="arrow"/>	
+					<input type="hidden" class="start-day" value="<%=startday%>"/><input type="hidden" class="end-day" value="<%=endday%>"/>
+					<span class="ex"><input id="datepicker" name="datepicker" type="text" readonly placeholder="날짜를 선택해주세요." /></span>
+					<input type="hidden" class="datepickerStatus" value="non-click"/>
+					<img src="http://${defaultIP}/Gung_On/ticket/images/downArrow.png" width="16px" id="arrowDatepicker" class="arrow"/>	
 				</div><!--selectionDesign-->
 				</div><!-- viewDateParent -->
 			<!-- </form>	 --><!-- viewDateFrm -->
@@ -198,14 +214,19 @@
 
 	<!-- 왼쪽 -->
     <div class="left">
- 
+ <%-- 
 		<div data-slick='{}' class='slider' style=" margin-left: 35px;">
 		  <img src="http://${defaultIP}/Gung_On/ticket/images/Gyeongbokgung.jpg"/>
 		  <img src="http://${defaultIP}/Gung_On/ticket/images/Gyeongbokgung2.jpg"/>
 		  <img src="http://${defaultIP}/Gung_On/ticket/images/Gyeongbokgung3.jpg"/> 
 
 		</div><!-- data-slick -->
-	
+ --%>	
+ 		<%String imgFullPath=request.getParameter("imgFullPath"); %>
+ 		
+		<div style="margin-left:20px;">
+			<img src="<%=imgFullPath %>"/>
+		</div>
 
 
 	<div class="explain_ticket">
@@ -335,6 +356,7 @@
 <!-- </form> -->
 </div><!--wrap-->
 <c:import url="http://${defaultIP}/Gung_On/common/jsp/footer.jsp"/>
+</main>
 </body>
 
 </html>

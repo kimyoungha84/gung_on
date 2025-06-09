@@ -82,8 +82,9 @@ input[type="button"] {
 </head>
 <!-- ----------------------------------------------------------------------- -->
 <body>
-    <div class="info_wrap" >
-        <div clss="info_img">
+<div class="popup_box">
+    <div class="info_wrap" style="display:none" >
+        <div class="info_img">
             <img src="./images/banner2.png"/>
         </div>
         <div class="info_text">
@@ -129,4 +130,7 @@ input[type="button"] {
     </label>
     <br>
     <input type="button" name="today_open_btn" value="확인" /><br>
+    
+ </div><!-- popup_box -->
+    
 </body>

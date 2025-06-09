@@ -1,3 +1,4 @@
+<%@page import="kotlin.reflect.jvm.internal.impl.types.model.TypeSystemOptimizationContext"%>
 <%@page import="java.sql.Date"%>
 <%@page import="kr.co.gungon.pagination.PaginationBuilder"%>
 <%@page import="kr.co.gungon.ticket.admin.AdminTicketService"%>
@@ -28,11 +29,19 @@ PaginationBuilder paginationBuilder = new PaginationBuilder(request, pageSize, r
 
 int currentPage = paginationBuilder.getCurrentPage();
 System.out.println("currentPage------"+currentPage);
+
 int first=currentPage-1;
 int second=first*pageSize;
 int third=second+1;
-int startNum= third;
-System.out.println("startNum--------"+startNum);
 
+int startNum= third;
+int endNum=startNum+pageSize;
+/* System.out.println("startNum--------"+startNum);
+System.out.println("endNum--------"+endNum);
+
+System.out.println("ticketAdminListSize=="+ticketAdminList.size()); */
+
+List<TicketAdminDTO> pageList=ats.cutList(startNum, endNum, ticketAdminList);
+pageContext.setAttribute("pageList", pageList);
 
 %>

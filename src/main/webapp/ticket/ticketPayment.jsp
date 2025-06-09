@@ -29,11 +29,11 @@
 
 <body>
     <div class="entireWrap">
-    <div class="myTicketInfo">My 예매정보</div>
+    <div class="myTicketInfo"><span style="margin-left:150px; margin-top:100px;">My 예매정보</span></div>
         <div class="ticketInfoTable">
             <table class="table-bordered" style="width:850px; font-size: 20px; text-align: center; border: 1px solid #9398A2;">
                 <thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
-                    <tr>
+                    <tr style="background:#ECECEC">
                         <th scope="col">관람</th>
                         <th scope="col">관람 시간</th>
                         <th scope="col">해설 언어</th>
@@ -56,31 +56,33 @@
         </div><!--ticketInfoTable-->
         <br><br>
       
-  
-  	<form id="authFrm">
+ 		<div style="margin-left:250px;">QR 코드 링크를 받을 핸드폰 번호를 입력해주세요.</div>
+  	<form id="authFrm" style="margin-left:250px">
+  	
 	<input type="text" name="authenPhoneNum" id="authenPhoneNum" class="authDesign" placeholder="핸드폰 번호를 입력해주세요."/>
-	<input type="button" id="authenBtn" style="display:block" class="authDesign" value="인증"/>
+	<input type="button" id="authenBtn" style="display:block; margin-left:10px; margin-top:5px;" class="authDesign" value="인증"/>
 	
 	<input type="text" id="checkNum" class="authChk authDesign" placeholder="인증번호를 입력해주세요." style="display:none"/>
-	<input type="button" id="checkBtn" class="authChk authDesign"  value="확인" style="display:none"/>
+	<input type="button" id="checkBtn" class="authChk authDesign"  value="확인" style="display:none;margin-left:10px; margin-top:5px;"/>
 	<input type="text" readonly id="completAuthen" class="authDesign" value="인증완료" style="display:none"/>
 	</form>
 	<br><br><br>
-
+	<div style="display:flex">
 	<form id="calcFrm" action="http://${defaultIP}/Gung_On/ticket/ticketProcess/ticket_calc_procss.jsp" method="post">
 	    <div class="btnGroup">
-	        <input type="button" id="moneyCalc" value="결제하기" class="money">
+	        <input type="button" id="moneyCalc" value="결제하기" class="money" />
 	        <input type="hidden" id="hidPhoneNum" name="hidPhoneNum" value=""/>
 	       
 	    </div>
     </form>
-     		<input type="submit" id="cancleCalc"  value="취소" class="cancel">
+     		<input type="button" id="cancleCalc"  value="취소" class="cancel" onclick="location.href='http://${defaultIP}/Gung_On/program/programDetail/programDetail.jsp'">
+	</div>
 	<br>
 	<div class="infoText">
         <ul>
-            <li class="caution">※ QR 코드를 타인에게 전송했을 시, 책임은 본인에게 있습니다.</li>
+            <li class="caution">※ QR 코드 링크를 타인에게 전송했을 시, 책임은 본인에게 있습니다.</li>
             <li>추가 문의 사항이 있을 경우, 고객센터로 연락하시거나 글을 남겨주세요.</li>
-            <li class="caution">※ 24시간 내로 QR 코드가 전송이 되지 않을 경우, 고객센터로 연락하시거나 글을 남겨주세요.</li>
+            <li class="caution">※ 24시간 내로 QR 코드 링크가 전송이 되지 않을 경우, 고객센터로 연락하시거나 글을 남겨주세요.</li>
         </ul>
     </div>
 

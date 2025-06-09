@@ -21,12 +21,8 @@
   <!-- 상단 메뉴 등 -->
   <jsp:include page="/common/jsp/header.jsp" />
 
-  <!-- 본문:  -->
   <main>
 
-    
-    <!-- 사이드바와 콘텐츠를 감싸는 container div -->
-    <!-- sub-header와 container 사이에 margin-top 또는 sub-header에 margin-bottom으로 간격 조절 -->
    <div class="container">
         <div class="sidebar">
             <h3>관람안내 메뉴</h3>
@@ -38,13 +34,11 @@
                     <li><a href="/Gung_On/course/users_course.jsp"  >사용자 추천 코스</a></li>
                 </ul>
             </nav>
-            <!-- 추가적인 사이드바 요소가 있다면 여기에 포함 -->
         </div>
 
         <article class="content">
             <h1>관람시간</h1>
 
-            <!-- 정기휴일 섹션 -->
             <section>
                 <h2>정기휴일</h2>
                 <div class="holiday-section">
