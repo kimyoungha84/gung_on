@@ -24,12 +24,7 @@
     MemberDTO mDTO = (MemberDTO)session.getAttribute("userData");
 
     if (mDTO == null) {
-<<<<<<< HEAD
         script.println("<script>alert('로그인이 필요합니다.');window.location.href = '/member/login.jsp';</script>"); script.close();
-=======
-        script.println("<script>alert('로그인이 필요합니다.');window.location.href = '${pageContext.request.contextPath}/member/login.jsp';</script>"); script.close();
-        System.out.println(">>> DEBUG process: User not logged in. Redirecting.");
->>>>>>> 380e24bde21b4a74612c37e073be0c77486fb31e
         return; 
     }
 
