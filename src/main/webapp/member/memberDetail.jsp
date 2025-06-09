@@ -46,9 +46,14 @@
 
 <div id="layoutSidenav_content">
 <main>
-    <div class="container-fluid mt-4">
-        <h2>회원 상세정보</h2>
+    <div class="container-fluid">
+        <h2 class="mt-4">회원 관리</h2>
         <hr/>
+        
+        <div class="card m-3"><!-- card m-3 start -->
+        <div class="card-body"><!-- card-body start -->
+        <h2>회원 상세</h2>
+        
         <form id="updateForm" method="post" action="<%= request.getContextPath() %>/member/memberUpdate.jsp">
             <input type="hidden" name="id" value="<%= dto.getId() %>">
 
@@ -80,6 +85,8 @@
             </div>
         </form>
     </div>
+    </div><!-- card-body end -->
+     </div><!-- card m-3 end -->
 </main>
 <%@ include file="/admin/common/footer.jsp" %>
 

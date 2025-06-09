@@ -34,6 +34,9 @@
             <h2 class="mt-4">회원 관리</h2>
             <hr/>
         
+        <div class="card m-3"><!-- card m-3 start -->
+        <div class="card-body"><!-- card-body start -->
+        <h2>회원 목록</h2>
             <table class="table table-bordered table-hover">
                 <thead class="table-light">
                 <tr>
@@ -74,6 +77,8 @@
                 <%= pagination.build("memberList.jsp") %>
             </div>
         </div>
+        </div><!-- card-body end -->
+        </div><!-- card m-3 end -->
     </main>
 
 <%@ include file="/admin/common/footer.jsp" %>
