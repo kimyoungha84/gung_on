@@ -454,7 +454,19 @@ public class TicketService {
 		return endDate;
 	}//getEndDate
 	
-	
+	public int remove(String bookin_num) {
+	    int result = 0;
+
+	    TicketDAO tDAO = TicketDAO.getInstance();
+
+	    try {
+	        result = tDAO.deleteTicket(bookin_num);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return result;
+	}
 	
 	
 	

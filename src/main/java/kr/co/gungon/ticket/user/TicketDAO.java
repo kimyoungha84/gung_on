@@ -214,4 +214,30 @@ public class TicketDAO {
 		return programDate;
 	}//selectProgramDate
 	
+	// 행사 이름으로 프로그램 삭제하기
+	public int deleteTicket(String booking_num) throws SQLException {
+	    DbConnection db = DbConnection.getInstance();
+
+	    PreparedStatement pstmt = null;
+	    Connection con = null;
+	    int deletedRowCount = 0;
+
+	    try {
+	        con = db.getDbConn();
+
+	        String deleteQuery = "DELETE FROM ticket_reservation WHERE booking_num = ?";
+	        pstmt = con.prepareStatement(deleteQuery);
+	        pstmt.setString(1, booking_num);
+
+	        // 삭제된 행 수 반환
+	        deletedRowCount = pstmt.executeUpdate();
+
+	    } finally {
+	        db.dbClose(null, pstmt, con);
+	    }
+
+	    return deletedRowCount; // 몇 개 삭제됐는지 리턴
+	}
+	
+	
 }// class

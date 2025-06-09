@@ -1,3 +1,6 @@
+<%@page import="kr.co.gungon.program.ProgramService"%>
+<%@page import="kr.co.gungon.file.FilePathService"%>
+<%@page import="kr.co.gungon.ticket.user.TicketService"%>
 <%@page import="kr.co.gungon.ticket.TicketDetailDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -6,6 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     info=""%>
+<%@ include file="/common/jsp/login_chk.jsp" %>
 <%-- <%@ include file="../common/jsp/site_config.jsp" %> --%>
 <%-- <%@ include file="/common/jsp/login_chk.jsp" %> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -39,6 +43,11 @@ String str=adminDTO.getPaymentTimeStamp();
 String[] strlist=str.split(" ");
 String paymentDate=strlist[0];
 
+TicketService ts = new TicketService();
+//ts.remove(adminDTO.getBooking_num());
+ProgramService ps = new ProgramService();
+
+FilePathService fps = new FilePathService();
 
 %>
 <!DOCTYPE html>
@@ -72,7 +81,7 @@ String paymentDate=strlist[0];
   <div class="section">
     <div class="section-title"><%=adminDTO.getProgram_name()%></div>
     <div class="event-info">
-      <img src="/Gung_On/common/images/program/GyeongbokgungStarlightNight.jpg" alt="경복궁 이미지" style="height: 100%">
+      <img src="<%=fps.getImageFullPath("program", Integer.toString(ps.getProgramByName(adminDTO.getProgram_name()).getProgramId()) ) %>" alt="경복궁 이미지" style="height: 100%">
       <div class="event-details" style="width: 80%">
         <table>
           <tr><th style="width: 20%">예약자</th><td><%=adminDTO.getMember_name() %></td></tr>
@@ -162,11 +171,13 @@ String paymentDate=strlist[0];
   </div>
 
   <!-- 버튼 -->
-  <div class="button-group" style="margin-bottom: 30px">
-    <button class="btn btn-success">확 인</button>
-    <button class="btn btn-info">예약 변경</button>
-    <button class="btn btn-danger">예약 취소</button>
-  </div>
+<div class="button-group" style="margin-bottom: 30px">
+  <form method="post" action="cancelTicket.jsp" onsubmit="return confirm('정말 예약을 취소하시겠습니까?');">
+    <input type="hidden" name="booking_num" value="<%=adminDTO.getBooking_num()%>">
+    <button type="submit" class="btn btn-danger">예약 취소</button>
+  </form>
+  <button class="btn btn-success" onclick="history.back()">확 인</button>
+</div>
 
 </div>
 
