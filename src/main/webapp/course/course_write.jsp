@@ -215,7 +215,6 @@
                     <div class="form-group">
                          <label for="gung_id_select">관람 궁 선택</label>
                          <select class="form-control sel_st" name="gung_id" id="gung_id_select" required> 
-                            <option value="">궁 선택</option> 
                             <c:if test="${not empty gungList}"> 
                                 <c:forEach items="${gungList}" var="gung"> 
                                     <option value="${gung.gung_id}" 
@@ -271,7 +270,7 @@
     let uploadedFiles = []; // 업로드된 이미지 정보들을 저장할 배열
 
     $(document).ready(function() {
-        
+    	
         $j('#summernote').summernote({ 
             height: 400, 
             lang: 'ko-KR', 
@@ -306,7 +305,6 @@
             data.append('upload', file); 
 
             const gungId = $j('#gung_id_select').val(); 
-             // 궁이 선택되었는지 유효성 검사
             if (gungId && gungId !== "") { 
                  data.append('gungId', gungId); 
                  console.log('>>> DEBUG write.jsp: Sending image upload request with gungId:', gungId);

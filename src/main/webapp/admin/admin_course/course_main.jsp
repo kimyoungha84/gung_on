@@ -48,7 +48,6 @@
     String startDateParam = request.getParameter("startDate");
     String endDateParam = request.getParameter("endDate");
 
-    // 검색 버튼을 눌렀다면 (searchHid는 숨은 input)
     if (request.getParameter("searchHid") != null) {
         String categoryValue = request.getParameter("searchCategory");
         searchCategoryParam = "title".equals(categoryValue) ? "notice_title" : "notice_content";
@@ -56,7 +55,6 @@
         searchTextParam = request.getParameter("searchText").trim();
     }
 
-    // 날짜 파싱
     Date startDate = null, endDate = null;
     try {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -70,19 +68,16 @@
         e.printStackTrace();
     }
 
-    // FilteringInfo 세팅
     fi.setSearchText(searchTextParam);
     fi.setSearchCategory(searchCategoryParam);
     fi.setStartDate(startDate);
     fi.setEndDate(endDate);
 
-    // --- 페이지네이션 처리 ---
     int pageSize = 10;
     int rowCounts = css.totalNoticeCount(fi);
 
     PaginationBuilder paginationBuilder = new PaginationBuilder(request, pageSize, rowCounts);
 
-    // 검색 파라미터 유지용 쿼리스트링
     StringBuilder extraParams = new StringBuilder();
     if (searchTextParam != null && !searchTextParam.isEmpty()) {
         extraParams.append("searchText=").append(java.net.URLEncoder.encode(searchTextParam, "UTF-8"));
@@ -100,20 +95,17 @@
         extraParams.append("endDate=").append(endDateParam);
     }
 
-    // 페이지네이션 HTML 생성
     String paginationHtml = paginationBuilder.build(request.getRequestURI(), extraParams.toString());
 
     int currentPage = paginationBuilder.getCurrentPage();
     int startNum = (currentPage - 1) * pageSize + 1;
     int endNum = currentPage * pageSize;
 
-    // 시작/끝번호 fi에 세팅
     fi.setStartNum(startNum);
     fi.setEndNum(endNum);
 
     List<NoticeDTO> noticeList = css.searchNotice(fi);
 
-    // 페이지에 데이터 바인딩
     pageContext.setAttribute("noticeList", noticeList);
     pageContext.setAttribute("paginationHtml", paginationHtml);
     pageContext.setAttribute("fi", fi);
@@ -133,7 +125,7 @@
         
          #datatablesSimple {
             width: 100%;
-            table-layout: fixed; /* 고정된 너비로 설정 */
+            table-layout: fixed; 
         }
 
         #datatablesSimple th, #datatablesSimple td {
@@ -141,15 +133,14 @@
             padding: 8px;
         }
 
-        /* 각 열에 대한 너비 설정 */
         #datatablesSimple th:nth-child(1), 
         #datatablesSimple td:nth-child(1) {
-            width: 5%;  /* 첫 번째 열 너비 10% */
+            width: 5%;
         }
 
         #datatablesSimple th:nth-child(2), 
         #datatablesSimple td:nth-child(2) {
-            width: 10%;  /* 두 번째 열 너비 20% */
+            width: 10%; 
         }
 
         #datatablesSimple th:nth-child(3), 

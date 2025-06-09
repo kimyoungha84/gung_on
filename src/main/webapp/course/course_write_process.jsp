@@ -54,13 +54,11 @@
     System.out.println(">>> DEBUG process: Received uploadedImagesInfoJson = " + uploadedImagesInfoJson);
 
 
-    // 3. 코스 번호 및 궁 ID 유효성 검사 및 변환
-    // 코스 등록이므로 코스 번호는 여기서 생성되지 않음. 궁 ID만 유효성 검사.
     int gungId = 0;
     if (gungIdStr != null && !gungIdStr.isEmpty()) {
         try {
             gungId = Integer.parseInt(gungIdStr);
-             if (gungId < 1 || gungId > 5) { // 궁 ID 범위 예시
+             if (gungId < 1 || gungId > 5) { 
                   script.println("<script>alert('유효하지 않은 궁 정보입니다.');window.history.back();</script>"); script.close();
                    System.err.println(">>> ERROR process: Invalid gungId range: " + gungId);
                   return;
@@ -104,15 +102,9 @@
                 
                 JSONObject jsonObject = (JSONObject) obj;
                 
-                // *** Summernote JavaScript가 uploadedImagesInfo 숨김 필드에 저장한 속성 이름으로 가져옵니다. ***
-                // *** uploadImage.jsp가 반환한 키 이름("relativePath", "savedFileName")과 다를 수 있습니다. ***
-                // *** 로그에서 "relativePath"와 "savedFileName" 키로 저장되었음을 확인했습니다. ***
                 Object imageUrlObj = jsonObject.get("url"); 
                 Object savedFileNameObj = jsonObject.get("savedFileName"); // uploadImage.jsp가 반환한 키 이름
                 Object relativePathObj = jsonObject.get("relativePath"); // uploadImage.jsp가 반환한 키 이름
-                // 만약 Summernote JS가 키 이름을 변경한다면, 여기서 변경된 키 이름으로 가져와야 합니다.
-                // 예: Object savedFileNameObj = jsonObject.get("imgName"); 
-                // 예: Object relativePathObj = jsonObject.get("path"); 
 
 
                 String imageUrl = (imageUrlObj != null) ? imageUrlObj.toString() : null;
@@ -120,14 +112,10 @@
                 String relativePath = (relativePathObj != null) ? relativePathObj.toString() : null;
 
 
-                // *** 각 이미지 JSON 정보 디버깅 출력 (값 확인) ***
-                // 올바른 값으로 파싱되었는지 다시 확인
                 System.out.println(">>> DEBUG process: Image JSON (after get) - url=" + imageUrl + ", savedFileName=" + savedFileName + ", relativePath=" + relativePath);
 
-                // *** FilePathDTO 객체 생성 및 정보 설정 ***
                 FilePathDTO fileDTO = new FilePathDTO();
                 
-                // path 필드에 uploadImage.jsp에서 반환한 relativePath 값 설정 (DB 저장 경로)
                 if (relativePath != null && !relativePath.isEmpty()) {
                      fileDTO.setPath(relativePath); 
                      System.out.println(">>> DEBUG process: FilePathDTO path set to: " + relativePath);
@@ -143,14 +131,8 @@
                      System.err.println(">>> WARNING process: savedFileName (from JSON) is null or empty! FilePathDTO imgName will be null.");
                 }
 
-                // targetType, targerNumber는 Service 메소드에서 설정됨
-
-
-                // *** FilePathDTO 설정 값 디버깅 출력 (Service로 넘기기 전) ***
-                // targetType, targerNumber는 아직 설정 안됨.
                 System.out.println(">>> DEBUG process: FilePathDTO created (before add to list) - path=" + fileDTO.getPath() + ", imgName=" + fileDTO.getImgName() + ", targetType=" + fileDTO.getTargerType() + ", targerNumber=" + fileDTO.getTargerNumber()); 
 
-                // path와 imgName이 유효한 경우에만 목록에 추가 (DB 삽입 오류 방지)
                  if (fileDTO.getPath() != null && !fileDTO.getPath().isEmpty() && fileDTO.getImgName() != null && !fileDTO.getImgName().isEmpty()) {
                     uploadedFileList.add(fileDTO); 
                     System.out.println(">>> DEBUG process: Added FilePathDTO to uploadedFileList.");
@@ -182,8 +164,6 @@
         System.out.println(">>> DEBUG process: Calling CourseService.addCourseWithImages...");
         System.out.println(">>> DEBUG process: Args - course title=" + (course != null ? course.getCourse_Title() : "null") + ", uploadedFileList size=" + uploadedFileList.size() + ", memberId=" + id);
 
-        // CourseService.addCourseWithImages 메소드는
-        // CourseDTO 삽입, FilePathDTO 목록 삽입을 하나의 트랜잭션으로 처리합니다.
         isAdded = courseService.addCourseWithImages(course, uploadedFileList, id); 
         
         System.out.println(">>> DEBUG process: CourseService.addCourseWithImages result = " + isAdded);
