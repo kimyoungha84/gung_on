@@ -18,7 +18,7 @@
   <nav class="header-nav">
     <ul class="header-nav-list">
       <li class="header-nav-item">
-        <a href="#" class="header-nav-link">궁 안내</a>
+        <a href="/Gung_On/gung/gyungbukgung.jsp" class="header-nav-link">궁 안내</a>
         <ul class="header-submenu">
           <li><a href="/Gung_On/gung/gyungbukgung.jsp">경복궁</a></li>
           <li><a href="/Gung_On/gung/gyeonghuigung.jsp">경희궁</a></li>
@@ -30,9 +30,8 @@
       <li class="header-nav-item">
         <a href="#" class="header-nav-link">행사 안내</a>
         <ul class="header-submenu">
-          <li><a href="#">행사 안내</a></li>
-          <li><a href="#">행사 모아보기</a></li>
-          <li><a href="#">행사 조회/취소</a></li>
+          <li><a href="/Gung_On/program/programInfo/programInfo.jsp">행사 안내</a></li>
+          <li><a href="/Gung_On/program/programAll/programAll.jsp">행사 모아보기</a></li>
         </ul>
       </li>
       <li class="header-nav-item">

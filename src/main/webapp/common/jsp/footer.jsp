@@ -15,19 +15,18 @@
       <div>
         <strong>궁 안내</strong>
         <ul>
-          <li><a href="#">경복궁</a></li>
-          <li><a href="#">경희궁</a></li>
-          <li><a href="#">창덕궁</a></li>
-          <li><a href="#">창경궁</a></li>
-          <li><a href="#">덕수궁</a></li>
+          <li><a href="/Gung_On/gung/gyungbukgung.jsp">경복궁</a></li>
+          <li><a href="/Gung_On/gung/gyeonghuigung.jsp">경희궁</a></li>
+          <li><a href="/Gung_On/gung/changdeokgung.jsp">창덕궁</a></li>
+          <li><a href="/Gung_On/gung/changgyeonggung.jsp">창경궁</a></li>
+          <li><a href="/Gung_On/gung/deoksugung.jsp">덕수궁</a></li>
         </ul>
       </div>
       <div>
         <strong>행사 안내</strong>
         <ul>
-          <li><a href="#">행사 안내</a></li>
-          <li><a href="#">행사 모아보기</a></li>
-          <li><a href="#">행사 조회/취소</a></li>
+          <li><a href="/Gung_On/program/programInfo/programInfo.jsp">행사 안내</a></li>
+          <li><a href="/Gung_On/program/programAll/programAll.jsp">행사 모아보기</a></li>
         </ul>
       </div>
       <div>
@@ -50,8 +49,7 @@
       <div>
         <strong>마이페이지</strong>
         <ul>
-          <li><a href="#">내 정보</a></li>
-          <li><a href="#">예약 확인</a></li>
+          <li><a href="/Gung_On/mypage/mypage.jsp">내 정보</a></li>
         </ul>
       </div>
     </div>
