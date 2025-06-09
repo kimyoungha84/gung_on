@@ -3,7 +3,7 @@
  */
 
 $(function(){
-	history.pushState({ page: 'payment' }, '', '${pageContext.request.contextPath}/ticket/ticketPayment.jsp');
+	history.pushState({ page: 'payment' }, '', '/Gung_On/ticket/ticketPayment.jsp');
 	var authenNumFlag=false;
 
 	/*"인증" 버튼 눌림*/
@@ -13,7 +13,7 @@ $(function(){
 		var param="phoneNum="+$("#authenPhoneNum").val();
 		
 		$.ajax({
-			url:"${pageContext.request.contextPath}${pageContext.request.contextPath}/ticket/ticketProcess/authen_process.jsp",
+			url:"/Gung_On/ticket/ticketProcess/authen_process.jsp",
 			type:"post",
 			data: param,
 			
@@ -47,7 +47,7 @@ $(function(){
 		
 		
 		$.ajax({
-			url:"${pageContext.request.contextPath}${pageContext.request.contextPath}/ticket/ticketProcess/authenCheck_process.jsp",
+			url:"/Gung_On/ticket/ticketProcess/authenCheck_process.jsp",
 			type:"post",
 			data: param,
 			
@@ -104,7 +104,7 @@ $(function(){
 	
 	/*취소버튼 클릭*/
 	$("#cancleCalc").click(function(){
-		window.location.href="${pageContext.request.contextPath}/ticket/ticket_frm.jsp";
+		window.location.href="/Gung_On/ticket/ticket_frm.jsp";
 	});//click
 	
 });//ready

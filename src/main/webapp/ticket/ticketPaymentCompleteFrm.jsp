@@ -11,33 +11,36 @@
 <head>
 
 <!-- favicon 설정 -->
-<link rel="icon shortcut"  href="http://${defaultIP}${pageContext.request.contextPath}/common/images/cs/gungOnFavicon.ico"/>
+<link rel="icon shortcut"  href="http://${defaultIP}/common/images/cs/gungOnFavicon.ico"/>
 
 <title>결제완료</title>
-<c:import url="http://${defaultIP}${pageContext.request.contextPath}/common/jsp/header.jsp"/>	
+<c:import url="http://${defaultIP}/common/jsp/header.jsp"/>	
 
 
 <!-- 부트스트랩  CDN -->    
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
 <!-- CSS 설정 -->
-<link rel="stylesheet" type="text/css" href="http://${defaultIP}${pageContext.request.contextPath}/ticket/css/payment.css"/>
-<link rel="stylesheet" type="text/css" href="http://${defaultIP}${pageContext.request.contextPath}/ticket/css/paymentComplete.css"/>
+<link rel="stylesheet" type="text/css" href="http://${defaultIP}/ticket/css/payment.css"/>
+<link rel="stylesheet" type="text/css" href="http://${defaultIP}/ticket/css/paymentComplete.css"/>
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 
 
-<script type="text/javascript">
+<!-- ticketPaymentCompleteFrm.jsp -->
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+    // URL 변경 (뒤로가기를 감지할 수 있게)
+    history.pushState({ page: 'complete' }, '', location.pathname + '?complete=1');
 
-$(function(){
-	history.pushState({ page: 'ticketPaymentCompleteFrm' }, '', '${pageContext.request.contextPath}/ticket/ticketPaymentCompleteFrm.jsp');
-	
-	window.addEventListener('popstate',function(event){
-		alert("ticketPaymentCompleteFrm들어오나?");
-		history.back();
-	});
-});//ready
-
-
+    window.addEventListener('popstate', function (event) {
+        const confirmBack = confirm("뒤로가기를 누르면 결제가 중복 처리될 수 있습니다.\n그래도 진행하시겠습니까?");
+        if (confirmBack) {
+            history.go(-2); // 또는 location.href = 'ticket_frm.jsp';
+        } else {
+            history.pushState({ page: 'complete' }, '', location.pathname + '?complete=1'); // 상태 복구
+        }
+    });
+});
 </script>
 
 </head>
@@ -87,6 +90,6 @@ $(function(){
 
 
     </div><!--entireWrap-->
-    <c:import url="http://${defaultIP}${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
+    <c:import url="http://${defaultIP}/common/jsp/footer.jsp"/>
 </body>
 </html>

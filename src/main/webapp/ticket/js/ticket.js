@@ -4,7 +4,7 @@
 
 $(function(){
 	
-	history.pushState({ page: 'ticket_frm' }, '', 'http://localhost${pageContext.request.contextPath}/ticket/ticket_frm.jsp');
+	history.pushState({ page: 'ticket_frm' }, '', 'http://localhost/Gung_On/ticket/ticket_frm.jsp');
 	
 	$('.slider').slick({
 		dots: true,
@@ -172,7 +172,7 @@ function changeStatus(parentClassValue,classValue){
 				$(classValue).css("display","none");
 				$(parentClassValue).children('img').attr('src','images/downArrow.png');
 				
-				//http://localhost${pageContext.request.contextPath}/ticket/images/downArrow.png
+				//http://localhost/Gung_On/ticket/images/downArrow.png
 			}//end if
 		
 		}else{//값이 같을 경우에는 그냥 닫히면 되지
