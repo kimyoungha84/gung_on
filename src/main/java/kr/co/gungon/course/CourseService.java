@@ -192,7 +192,7 @@ public class CourseService {
 	        return list; 
 	    }//getUserCourses
 	 
-	 public boolean addCourseRating(int course_Num, double rating) { // 인자: 코스 번호, 사용자가 등록한 별점 값
+	 public boolean addCourseRating(int course_Num, double rating) { 
 			CourseDAO cDAO= CourseDAO.getInstance();
 			boolean flag=false; // 최종 성공 여부
 
@@ -244,7 +244,7 @@ public class CourseService {
 	            System.out.println(">>> DEBUG Service: Args - courseNum=" + course_Num + ", newAverageRating=" + newAverageRating + ", newRatingCnt=" + newRatingCount);
 
 				// DAO의 updateCourseRating 메소드는 인자 3개를 받습니다.
-				int result = cDAO.updateCourseRating(course_Num, newAverageRating, newRatingCount); 
+				int result = cDAO.updateCourseRating(course_Num, newAverageRating); 
 	            System.out.println(">>> DEBUG Service: CourseDAO.updateCourseRating result = " + result);
 
 				flag=result > 0; // 업데이트된 행 수가 0보다 크면 성공
