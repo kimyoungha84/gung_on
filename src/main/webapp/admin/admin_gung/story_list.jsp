@@ -25,7 +25,7 @@
 
     StoryDAO dao = StoryDAO.getInstance();
     int rowCount = dao.getStoryCount(); // 전체 전각 수
-    int pageSize = 5; // 페이지 당 전각 수
+    int pageSize = 10; // 페이지 당 전각 수
 
     kr.co.gungon.pagination.PaginationBuilder pagination =
         new PaginationBuilder(request, pageSize, rowCount);
@@ -33,7 +33,12 @@
     int start = (pagination.getCurrentPage() - 1) * pageSize + 1;
     int end = pagination.getCurrentPage() * pageSize;
 
-    List<StoryDTO> StoryList = dao.getStoryList(start, end);
+    List<StoryDTO> StoryList = null;
+    if (keyword != null && !keyword.trim().isEmpty()) {
+        storyList = dao.searchStoryList(keyword.trim(), start, end); // 이 메서드 만들어야 함
+    } else {
+        storyList = dao.getStoryList(start, end);
+    }
 %>
 
 

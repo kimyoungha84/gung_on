@@ -7,7 +7,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title><c:out value="${ site_name }"/></title>
+<title>경희궁</title>
 <c:import url="../common/jsp/external_file.jsp"/>
 <link rel="stylesheet" href="../common/css/common.css">
 <link rel="stylesheet" href="mainGung.css">

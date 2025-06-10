@@ -5,7 +5,6 @@
 <%@ include file="/admin/common/sidebar.jsp" %>
 <%@ page language="java" %>
 
-
 <%
   request.setCharacterEncoding("UTF-8");
 
@@ -63,7 +62,7 @@
 
   <!-- ✅ 버튼 영역 -->
   <div class="mt-4">
-    <a href="gung_tab.jsp" class="btn btn-secondary">목록으로</a>
+    <a href="gung_list.jsp" class="btn btn-secondary">목록으로</a>
     <a href="gung_modify.jsp?id=<%= dto.getGung_id() %>" class="btn btn-warning">수정</a>
     <a href="gung_delete.jsp?id=<%= dto.getGung_id() %>" class="btn btn-danger"
        onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
@@ -72,7 +71,7 @@
     } else {
   %>
     <div class="alert alert-danger">해당 궁 정보를 찾을 수 없습니다.</div>
-    <a href="gung_tab.jsp" class="btn btn-secondary">돌아가기</a>
+    <a href="gung_list.jsp" class="btn btn-secondary">돌아가기</a>
   <%
     }
   %>

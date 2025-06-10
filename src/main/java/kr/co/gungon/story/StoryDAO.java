@@ -368,5 +368,71 @@ public List<StoryDTO> selectStoriesByGungId(int gungId) {
 
     return list;
 }
+public List<StoryDTO> searchStoryList(String keyword, int start, int end) throws SQLException {
+    List<StoryDTO> list = new ArrayList<>();
+    String sql = """
+        SELECT * FROM (
+            SELECT ROWNUM rnum, A.*
+            FROM (
+                SELECT s.*, g.gung_name
+                FROM story s
+                JOIN gung g ON s.gung_id = g.gung_id
+                WHERE LOWER(s.story_name) LIKE LOWER(?) 
+                   OR LOWER(g.gung_name) LIKE LOWER(?)
+                ORDER BY s.story_id DESC
+            ) A
+            WHERE ROWNUM <= ?
+        ) WHERE rnum >= ?
+    """;
+
+    try (Connection conn = DbConnection.getInstance().getDbConn();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        String search = "%" + keyword + "%";
+        pstmt.setString(1, search);
+        pstmt.setString(2, search);
+        pstmt.setInt(3, end);
+        pstmt.setInt(4, start);
+
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                StoryDTO dto = new StoryDTO();
+                dto.setStory_id(rs.getInt("story_id"));
+                dto.setStory_name(rs.getString("story_name"));
+                dto.setStory_info(rs.getString("story_info"));
+                dto.setStory_reg_date(rs.getDate("story_reg_date"));
+                dto.setGung_name(rs.getString("gung_name"));
+                list.add(dto);
+            }
+        }
+    }
+    return list;
+}
+public int getSearchStoryCount(String keyword) {
+    int count = 0;
+    String sql = """
+        SELECT COUNT(*)
+        FROM story s
+        JOIN gung g ON s.gung_id = g.gung_id
+        WHERE LOWER(s.story_name) LIKE LOWER(?) 
+           OR LOWER(g.gung_name) LIKE LOWER(?)
+    """;
+
+    try (
+        Connection conn = DbConnection.getInstance().getDbConn();
+        PreparedStatement pstmt = conn.prepareStatement(sql)
+    ) {
+        String search = "%" + keyword + "%";
+        pstmt.setString(1, search);
+        pstmt.setString(2, search);
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) count = rs.getInt(1);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return count;
+}
+
 
 } // end class

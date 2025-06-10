@@ -3,7 +3,7 @@
 <%@page import="kr.co.gungon.story.StoryService"%>
 <%@page import="kr.co.gungon.file.FilePathDTO"%>
 <%@page import="kr.co.gungon.file.FilePathService"%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     request.setCharacterEncoding("UTF-8");
     String storyName = request.getParameter("name");

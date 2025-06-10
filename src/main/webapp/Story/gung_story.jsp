@@ -45,7 +45,7 @@
       color: white;
     }
   </style>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<jsp:include page="/common/jsp/external_file.jsp" />
   <script type="text/javascript">
     $(function(){
       $(".gung-btn").on("click", function(e){
@@ -53,7 +53,7 @@
         const palaceName = $(this).data("name");
 
         $.ajax({
-          url: "<%= request.getContextPath() %>/Story/g_story.jsp",
+          url: "g_story.jsp",
           type: "GET",
           data: { name: palaceName },
           success: function(response){

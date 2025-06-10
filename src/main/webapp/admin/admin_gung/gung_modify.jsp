@@ -18,18 +18,9 @@
 
         GungDTO original = service.selectGungById(gungId);
 
-        // HTML 템플릿 구조 유지하면서 텍스트만 교체
-        String updatedInfoHtml = original.getGung_info().replaceAll(
-            "(?s)(<div class=\\\"txt_wrap\\\">).*?(</div>)", "$1" + infoText + "$2");
-
-        String updatedHistoryHtml = original.getGung_history().replaceAll(
-            "(?s)(<div class=\\\"wrap\\\">).*?(</div>)", "$1" + historyText + "$2");
-
         GungDTO newDto = new GungDTO();
         newDto.setGung_id(gungId);
         newDto.setGung_name(name);
-        newDto.setGung_info(updatedInfoHtml);
-        newDto.setGung_history(updatedHistoryHtml);
 
         boolean success = service.modifyGung(newDto);
 
@@ -72,7 +63,7 @@
 
       <div class="mb-3">
         <label class="form-label">궁 이름</label>
-        <input type="text" name="gung_name" class="form-control" value="<%= dto.getGung_name() %>" required>
+        <input type="text" name="gung_name" class="form-control" readonly="readonly" value="<%= dto.getGung_name() %>" required>
       </div>
 
       <div class="mb-3">

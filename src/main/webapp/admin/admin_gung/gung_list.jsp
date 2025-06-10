@@ -7,12 +7,7 @@
 <%
   GungService service = new GungService();
   List<GungDTO> gungList = service.selectAllGung();
-  
-  
 %>
-
-
-
 
 <div id="layoutSidenav_content">
 <main>
@@ -63,12 +58,7 @@
       %>
     </tbody>
   </table>
-  <button class="register-btn"onclick="location.href='${pageContext.request.contextPath}/admin/admin_gung/gung_insert.jsp'">등록</button>
 </div>
-<!-- 페이지네이션 표시 -->
-   <div>
-   
-   </div>
 </div>
 </div>
 </main>
