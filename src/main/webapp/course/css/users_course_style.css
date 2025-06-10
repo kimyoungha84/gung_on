@@ -569,3 +569,25 @@ margin-bottom: 15px;
         margin-left: 5px;
     }
     
+
+    .course-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover; /* 이미지 비율 유지하면서 잘라냄 */
+    margin-right: 10px;
+    vertical-align: middle;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+    .course-title-link {
+    text-decoration: none;      /* 밑줄 제거 */
+    color: #333;                /* 검정에 가까운 색상 */
+    font-weight: 500;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.course-title-link:hover {
+    color: #007bff;             /* 부트스트랩 블루 */
+    text-shadow: 0 1px 3px rgba(0, 123, 255, 0.3);
+}
+    

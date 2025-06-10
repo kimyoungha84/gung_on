@@ -39,110 +39,11 @@
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script> 
 
   <!-- 사용자 스타일 -->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/course/css/users_course_style.css" />
-	<c:import url="/common/jsp/external_file.jsp"/>
-
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/course/css/users_course_style.css" />
+  <c:import url="/common/jsp/external_file.jsp"/>
 
   <style type="text/css">
-    .container {
-        max-width: 1200px;
-        margin: 20px auto;
-        padding: 0 15px;
-    }
-    .course-form-area {
-        padding: 20px;
-        border: 1px solid #eee;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-    }
-    .form-group {
-        margin-bottom: 15px;
-    }
-    label {
-        font-weight: bold;
-        margin-bottom: 5px;
-        display: block; 
-    }
-    .btn-group { 
-        margin-top: 20px;
-    }
-    .btn-group .btn {
-        margin-right: 10px; 
-    }
-    .note-editor {
-        border: 1px solid #ccc !important; 
-    }
-
-    .note-editor .modal {
-        position: fixed; 
-        top: 50%; 
-        left: 50%; 
-        transform: translate(-50%, -50%); 
-        z-index: 1050; 
-        display: none; 
-        overflow: auto; 
-        max-height: 90%; 
-    }
-
-    .note-editor .modal-dialog {
-        margin: 30px auto; 
-        max-width: 500px; 
-        width: 95%; 
-    }
-
-    .note-editor .modal-content {
-        position: relative; 
-        background-color: #fff;
-        border: 1px solid rgba(0, 0, 0, .2);
-        border-radius: 6px;
-        box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
-        background-clip: padding-box;
-        outline: 0;
-    }
-
-    .note-editor .modal-header {
-        padding: 15px;
-        border-bottom: 1px solid #e5e5e5;
-    }
-
-    .note-editor .modal-body {
-        position: relative;
-        padding: 15px;
-        overflow-y: auto; 
-    }
-
-    .note-editor .modal-footer {
-        padding: 15px;
-        border-top: 1px solid #e5e5e5;
-        text-align: right; 
-        display: flex; 
-        justify-content: flex-end; 
-        align-items: center; 
-    }
-
-    .note-editor .modal-footer .btn {
-        margin-left: 5px; 
-    }
-    
-    .note-editor .note-modal-form .form-group {
-        margin-bottom: 15px;
-    }
-    
-    .note-editor .modal-header .close {
-         
-    }
-
-    .note-modal-footer { 
-        padding: 15px;
-        border-top: 1px solid #e5e5e5;
-        text-align: right;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }
-    .note-modal-footer .btn {
-        margin-left: 5px;
-    }
+    /* 기존 스타일 유지 */
   </style>
 </head>
 
@@ -174,7 +75,6 @@
                    try {
                        selectedGungId = Integer.parseInt(gungIdParam);
                    } catch (NumberFormatException e) {
-                       
                    }
                }
                pageContext.setAttribute("selectedGungId", selectedGungId);
@@ -185,42 +85,38 @@
             %>
 
             <div class="course-form-area">
-                <form id="courseWriteForm" action="course_write_process.jsp" method="post">
-                    <div class="form-group">
-                         <label for="gung_id_select">관람 궁 선택</label>
-                         <select class="form-control sel_st" name="gung_id" id="gung_id_select" required> 
-                            <c:if test="${not empty gungList}"> 
-                                <c:forEach items="${gungList}" var="gung"> 
-                                    <option value="${gung.gung_id}" 
-                                            <c:if test="${selectedGungId == gung.gung_id}">selected</c:if>>
-                                        ${gung.gung_name} 
-                                    </option>
-                                </c:forEach>
-                            </c:if>
-                             <c:if test="${empty gungList}">
-                                  <option value="">궁 목록을 불러올 수 없습니다.</option> 
-                             </c:if>
-                         </select>
-                    </div>
+            <form id="courseWriteForm" action="course_write_process.jsp" method="post">
+    <div class="form-group">
+        <label for="gung_id_select">관람 궁 선택</label>
+        <select class="form-control sel_st" name="gung_id" id="gung_id_select" required> 
+            <c:forEach items="${gungList}" var="gung"> 
+                <option value="${gung.gung_id}" 
+                        <c:if test="${selectedGungId == gung.gung_id}">selected</c:if>>
+                    ${gung.gung_name}
+                </option>
+            </c:forEach>
+        </select>
+    </div>
 
-                    <div class="form-group">
-                         <label for="course_title">코스 제목</label>
-                         <input type="text" class="form-control" id="course_title" name="course_title" required>
-                    </div>
+    <div class="form-group">
+        <label for="course_title">코스 제목</label>
+        <input type="text" class="form-control" id="course_title" name="course_title" required>
+    </div>
 
-                    <div class="form-group">
-                         <label for="course_content">코스 내용</label>
-                         <textarea id="summernote" name="course_content"></textarea>
-                    </div>
+    <div class="form-group">
+        <label for="course_content">코스 내용</label>
+        <textarea id="summernote" name="course_content"></textarea>
+    </div>
 
-                    <input type="hidden" name="uploadedImagesInfo" id="uploadedImagesInfo" value="[]">
+    <!-- 이미지 관련 hidden 필드 -->
+    <input type="hidden" name="newUploadedImagesInfo" id="newUploadedImagesInfo" value="[]">
+    <input type="hidden" name="deletedFileIds" id="deletedFileIds" value="">
 
-                    <div class="btn-group">
-                         <button type="submit" class="btn btn-primary">등록</button>
-                         
-                         <button type="button" class="btn btn-secondary" onclick="window.history.back()">취소</button>
-                    </div>
-                </form>
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">등록</button>
+        <button type="button" class="btn btn-secondary" onclick="window.history.back()">취소</button>
+    </div>
+</form>
             </div>
 
         </article>
@@ -232,158 +128,177 @@
   <jsp:include page="/common/jsp/footer.jsp" />
 
   <script>
-    var $j = jq;
-    let uploadedFiles = []; // 업로드된 이미지 정보들을 저장할 배열
+  var $j = jq; 
 
-    $(document).ready(function () {
-    	  let uploadedFiles = []; // 업로드된 이미지 정보들을 저장할 배열
-    	  
-    	  $j('#summernote').summernote({
-    	    height: 400,
-    	    toolbar: [
-    	      ['style', ['style']],
-    	      ['font', ['bold', 'underline', 'clear']],
-    	      ['fontsize', ['fontsize']],
-    	      ['color', ['color']],
-    	      ['para', ['ul', 'ol', 'paragraph']],
-    	      ['insert', ['link', 'picture']]
-    	    ],
-    	    fontsize: ['8', '10', '12', '14', '18', '24', '36'],
-    	    lang: 'ko-KR',
-    	    placeholder: '코스 내용을 작성해주세요',
-    	    callbacks: {
-    	      onImageUpload: function(files) {
-    	        if (files.length > 0) {
-    	          const file = files[0];
-    	          sendImage(file); // 이미지 업로드 함수 호출
-    	        }
-    	      },
-    	      onMediaDelete: function(target) {
-    	    	  const deletedImgSrc = $(target).attr('src');  // 삭제할 이미지의 src 속성 (URL)
-    	    	  console.log('이미지 삭제 시도:', deletedImgSrc); // 이 부분 추가하여 src 값 확인
-    	    	  
-    	    	  const relativePath = deletedImgSrc.split('/')[1]; // 상대 경로 추출
-    	    	  console.log('상대 경로:', relativePath); // 상대 경로 확인
-    	    	  
-    	    	  if (relativePath) {
-    	    	    $.ajax({
-    	    	      url: 'deleteImage.jsp',  // 이미지를 삭제할 서버-side 파일
-    	    	      type: 'POST',
-    	    	      data: { imagePath: relativePath },
-    	    	      success: function(response) {
-    	    	        console.log('이미지 삭제 성공', response); // 성공 로그
-    	    	      },
-    	    	      error: function(xhr, status, error) {
-    	    	        console.log('이미지 삭제 실패', error); // 실패 로그
-    	    	      }
-    	    	    });
-    	    	  }
-    	    	},
-    	    	 onInit: function () {
-    	    	      observeEditorMutations(); // 서머노트가 준비되면 DOM 감시 시작
-    	    	    }
+  let newlyUploadedFiles = [];
 
-    	    }
-    	  });
-
-    	  // 이미지 업로드 함수
-    	  function sendImage(file) {
-    	    const data = new FormData();
-    	    data.append('upload', file);
-
-    	    const gung_id = $j('#gung_id_select').val();
-    	    if (!gung_id) {
-    	      alert('이미지를 업로드하려면 먼저 궁을 선택해야 합니다.');
-    	      return;
-    	    }
-    	    data.append('gung_id', gung_id);
-
-    	    $.ajax({
-    	      url: 'uploadImage.jsp',  // 서버-side 이미지 업로드 파일
-    	      type: 'POST',
-    	      data: data,
-    	      cache: false,
-    	      contentType: false,
-    	      processData: false,
-    	      dataType: 'json',
-    	      success: function(response) {
-    	        if (response.status === 'success') {
-    	          const imageUrl = response.url;
-    	          // 여기에 서머노트에 이미지 삽입
-    	          $j('#summernote').summernote('insertImage', imageUrl);
-
-    	          uploadedFiles.push({
-    	            url: imageUrl,
-    	            relativePath: response.relativePath,
-    	            savedFileName: response.savedFileName,
-    	          });
-    	          $j('#uploadedImagesInfo').val(JSON.stringify(uploadedFiles));
-    	        } else {
-    	          alert('이미지 업로드 실패: ' + (response.message || '알 수 없는 오류'));
-    	        }
-    	      },
-    	      error: function(jqXHR, textStatus, errorThrown) {
-    	        alert('이미지 업로드 중 오류 발생.');
-    	        console.error('Ajax error:', textStatus, errorThrown, jqXHR.responseText);
-    	      }
-    	    });
-    	  }
-    	});
-    
-    
-    let currentImages = new Set();
-
-    function updateCurrentImages() {
-      currentImages.clear();
-      $('#summernote').next().find('img').each(function () {
-        currentImages.add($(this).attr('src'));
-      });
-    }
-
-    function handleDeletedImages(newImages) {
-      currentImages.forEach(src => {
-        if (!newImages.has(src)) {
-          const relativePath = src.split('/')[1];
-          if (relativePath) {
-            $.ajax({
-              url: 'deleteImage.jsp',
-              type: 'POST',
-              data: { imagePath: relativePath },
-              success: function () {
-                console.log('MutationObserver로 삭제됨:', relativePath);
+  $(document).ready(function() {
+      $j('#summernote').summernote({ 
+          height: 400, 
+          toolbar: [
+              ['style', ['style']],
+              ['font', ['bold', 'underline', 'clear']],
+              ['fontsize', ['fontsize']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['insert', ['link', 'picture']]
+            ],
+            fontsize: ['8', '10', '12', '14', '18', '24', '36'],
+          lang: 'ko-KR', 
+          placeholder: '코스 내용을 작성해주세요',
+          callbacks: {
+              onImageUpload: function(files) {
+                  if (files.length > 0) {
+                      const file = files[0];
+                      sendImage(file); 
+                  }
               },
-              error: function (err) {
-                console.error('삭제 실패:', err);
-              }
-            });
+
+
+               onMediaDelete : function(target) { 
+                   const deletedImg = $j(target); 
+                   const deletedImgSrc = deletedImg.attr('src'); 
+                   const deletedPropertyId = deletedImg.attr('data-property-id'); 
+
+                   if (deletedPropertyId) {
+                        let deletedFileIds = $j('#deletedFileIds').val() ? $j('#deletedFileIds').val().split(',') : []; 
+                        
+                        if (!deletedFileIds.includes(String(deletedPropertyId))) {
+                            deletedFileIds.push(String(deletedPropertyId));
+                            $j('#deletedFileIds').val(deletedFileIds.join(','));
+                        }
+                   } else {
+                        console.log('>>> DEBUG modify.jsp: Detected deletion of potentially new image with src:', deletedImgSrc);
+                        newlyUploadedFiles = newlyUploadedFiles.filter(imgInfo => imgInfo.url !== deletedImgSrc);
+                        $j('#newUploadedImagesInfo').val(JSON.stringify(newlyUploadedFiles));
+                   }
+
+               } 
+          } 
+      }); 
+
+      function sendImage(file) {
+          const data = new FormData();
+          data.append('upload', file); 
+
+          const gung_id = $j('#gung_id_select').val(); 
+          if (gung_id && gung_id !== "" && gung_id !== "-1") { 
+               data.append('gung_id', gung_id); 
+          } else {
+               alert('이미지를 업로드하려면 먼저 궁을 선택해야 합니다.');
+               $j('#summernote').summernote('editor.delete');
+               console.error('>>> ERROR modify.jsp: Image upload blocked - No valid gungId selected.');
+               return; 
           }
-        }
+
+          const uploadUrl = 'uploadImage.jsp'; 
+
+          $j.ajax({
+              url: uploadUrl,
+              type: 'POST',
+              data: data,
+              cache: false,
+              contentType: false, 
+              processData: false, 
+              dataType: 'json', 
+              success: function(response) {
+                  console.log('>>> DEBUG modify.jsp: Image upload success response:', response);
+
+                  if (response.status === 'success') {
+                      const imageUrl = response.url;
+                      const relativePath = response.relativePath;
+                      const savedFileName = response.savedFileName;
+
+                      const newImageInfo = {
+                          url: imageUrl,
+                          relativePath: relativePath,
+                          savedFileName: savedFileName,
+                      };
+                      newlyUploadedFiles.push(newImageInfo);
+                      $j('#newUploadedImagesInfo').val(JSON.stringify(newlyUploadedFiles));
+
+                      $j('#summernote').summernote('insertImage', imageUrl, function($image) {
+                          $image.attr('data-relative-path', relativePath)
+                                .attr('data-saved-name', savedFileName);
+                      });
+
+                  } else {
+                      alert('이미지 업로드 실패: ' + (response.message || '알 수 없는 오류'));
+                      console.error('>>> ERROR modify.jsp: Image upload failed response:', response);
+                      $j('#summernote').summernote('editor.delete');
+                  }
+              },
+
+              error: function(jqXHR, textStatus, errorThrown) {
+                  alert('이미지 업로드 중 오류 발생.');
+                  console.error('>>> ERROR modify.jsp: Image upload Ajax error:', textStatus, errorThrown, jqXHR.responseText, jqXHR.status, jqXHR.statusText);
+                  $j('#summernote').summernote('editor.delete'); // 오류 시 미리보기 이미지 제거
+              }
+          }); 
+      } 
+
+      const existingImagesJson = $j('#existingImagesJson').val();
+
+      if (existingImagesJson && existingImagesJson !== "[]") {
+           try {
+               const existingImages = JSON.parse(existingImagesJson);
+               if (existingImages && existingImages.length > 0) {
+                   existingImages.forEach(function(img) {
+                       if (img.url) {
+                           const imgNode = $j('<img>').attr('src', img.url).attr('data-property-id', img.propertyId).attr('data-original-name', img.originalFileName).attr('data-saved-name', img.savedFileName).attr('data-relative-path', img.relativePath); 
+                           $j('#summernote').summernote('insertNode', imgNode[0]); 
+                       }
+                   });
+               }
+           } catch (e) {
+               console.error('>>> ERROR modify.jsp: Failed to parse existing images JSON or insert existing images.', e);
+               alert('기존 이미지 로드 중 오류 발생.');
+           }
+      }
+
+      
+      const observer = new MutationObserver(function(mutationsList, observer) {
+          for (let mutation of mutationsList) {
+              if (mutation.type === 'childList') {
+                  mutation.removedNodes.forEach(node => {
+                      if (node.tagName === 'IMG' && node.src) {
+                          const propertyId = node.getAttribute('data-property-id');
+                          const relativePath = node.getAttribute('data-relative-path');
+
+                          if (propertyId) {
+                              let deletedFileIds = $j('#deletedFileIds').val() ? $j('#deletedFileIds').val().split(',') : [];
+                              if (!deletedFileIds.includes(propertyId)) {
+                                  deletedFileIds.push(propertyId);
+                                  $j('#deletedFileIds').val(deletedFileIds.join(','));
+                              }
+                          } else if (relativePath) {
+                              newlyUploadedFiles = newlyUploadedFiles.filter(img => img.relativePath !== relativePath);
+                              $j('#newUploadedImagesInfo').val(JSON.stringify(newlyUploadedFiles));
+
+                              $j.ajax({
+                                  url: 'deleteImage.jsp',
+                                  type: 'POST',
+                                  data: { relativePath: relativePath },
+                                  success: function(res) {
+                                  },
+                                  error: function(err) {
+                                      console.error(">>> ERROR: 이미지 실제 파일 삭제 실패", err);
+                                  }
+                              });
+                          }
+                      }
+                  });
+              }
+          }
       });
-      currentImages = newImages;
-    }
 
-    function observeEditorMutations() {
-      const editorContent = document.querySelector('.note-editable');
-      if (!editorContent) return;
-
-      const observer = new MutationObserver(() => {
-        const newImages = new Set();
-        $(editorContent).find('img').each(function () {
-          newImages.add($(this).attr('src'));
-        });
-        handleDeletedImages(newImages);
+      observer.observe(document.querySelector('.note-editable'), {
+          childList: true,
+          subtree: true
       });
 
-      observer.observe(editorContent, {
-        childList: true,
-        subtree: true
-      });
-
-      // 최초 이미지 목록 저장
-      updateCurrentImages();
-    }
-
-
+      
+  }); 
   </script>
 
 </body>

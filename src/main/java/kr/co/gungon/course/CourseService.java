@@ -226,7 +226,7 @@ public class CourseService {
 		}//end catch
     
          return flag;
-	 }//removeAllCourseImages
+	 }//getCourseImages
 	
 	 public boolean addCourseWithImages(CourseDTO course, List<FilePathDTO> uploadedFileList, String member_Id) {
 		    CourseDAO cDAO = CourseDAO.getInstance();

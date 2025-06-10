@@ -44,7 +44,7 @@
 
 
   <!-- 사용자 스타일 -->
-	<link rel="stylesheet" type="text/css" href="/course/css/users_course_style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/course/css/users_course_style.css" />
 	<c:import url="/common/jsp/external_file.jsp"/>
 
 
@@ -256,18 +256,14 @@
                    out.println("<script>alert('본인이 작성한 코스만 수정할 수 있습니다.'); window.history.back();</script>");
                    return;
                }
-                System.out.println(">>> DEBUG modify.jsp: Course found and ownership confirmed. Title=" + courseDetail.getCourse_Title());
 
 
                
                List<GungDTO> gungList = null;
                try {
                    gungList = courseService.getAllGungs(); 
-                    System.out.println(">>> DEBUG modify.jsp: Loaded gungList size = " + (gungList != null ? gungList.size() : "null"));
                } catch (Exception e) { 
                    e.printStackTrace(); 
-                   System.err.println(">>> ERROR modify.jsp: Failed to load gung list for form.");
-                   
                }
 
 
@@ -289,13 +285,10 @@
                     }
                      
                      pageContext.setAttribute("existingImagesJson", existingImagesJsonArray.toJSONString());
-                     System.out.println(">>> DEBUG modify.jsp: existingImagesJson = " + existingImagesJsonArray.toJSONString());
 
                } else {
                     pageContext.setAttribute("existingImagesJson", "[]"); 
-                     System.out.println(">>> DEBUG modify.jsp: No existing images found, existingImagesJson = []");
                }
-
 
             %>
 
@@ -338,8 +331,7 @@
 
                     <div class="btn-group">
                          <button type="submit" class="btn btn-primary">수정 완료</button>
-                         
-                         <button type="button" class="btn btn-secondary" onclick="window.location.href='users_course.jsp?mode=mycourses'">취소</button> 
+                         <button type="button" class="btn btn-secondary" onclick="window.location.href='users_course.jsp?mode=mycourses&gung_id=<%= request.getParameter("gung_id") %>'">취소</button>
                     </div>
                  </form>
             </div>
@@ -361,11 +353,19 @@
     $(document).ready(function() {
         $j('#summernote').summernote({ 
             height: 400, 
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['insert', ['link', 'picture']]
+              ],
+              fontsize: ['8', '10', '12', '14', '18', '24', '36'],
             lang: 'ko-KR', 
             placeholder: '코스 내용을 작성해주세요',
             callbacks: {
                 onImageUpload: function(files) {
-                    console.log('>>> DEBUG modify.jsp: onImageUpload callback fired. Files:', files);
                     if (files.length > 0) {
                         const file = files[0];
                         sendImage(file); 
@@ -374,26 +374,21 @@
 
 
                  onMediaDelete : function(target) { 
-                     console.log('>>> DEBUG modify.jsp: onMediaDelete callback fired. Target:', target);
                      const deletedImg = $j(target); 
                      const deletedImgSrc = deletedImg.attr('src'); 
                      const deletedPropertyId = deletedImg.attr('data-property-id'); 
 
                      if (deletedPropertyId) {
-                          console.log('>>> DEBUG modify.jsp: Detected deletion of existing image with propertyId:', deletedPropertyId);
                           let deletedFileIds = $j('#deletedFileIds').val() ? $j('#deletedFileIds').val().split(',') : []; 
                           
                           if (!deletedFileIds.includes(String(deletedPropertyId))) {
                               deletedFileIds.push(String(deletedPropertyId));
                               $j('#deletedFileIds').val(deletedFileIds.join(','));
-                              console.log('>>> DEBUG modify.jsp: Added propertyId ' + deletedPropertyId + ' to deletedFileIds. Current list:', $j('#deletedFileIds').val());
                           }
                      } else {
                           console.log('>>> DEBUG modify.jsp: Detected deletion of potentially new image with src:', deletedImgSrc);
                           newlyUploadedFiles = newlyUploadedFiles.filter(imgInfo => imgInfo.url !== deletedImgSrc);
-                          console.log('>>> DEBUG modify.jsp: Removed image from newlyUploadedFiles. Current size:', newlyUploadedFiles.length);
                           $j('#newUploadedImagesInfo').val(JSON.stringify(newlyUploadedFiles));
-                          console.log('>>> DEBUG modify.jsp: Updated newUploadedImagesInfo hidden field:', $j('#newUploadedImagesInfo').val());
                      }
 
                  } 
@@ -404,13 +399,12 @@
             const data = new FormData();
             data.append('upload', file); 
 
-            const gungId = $j('#gung_id_select').val(); 
-            if (gungId && gungId !== "" && gungId !== "-1") { 
-                 data.append('gungId', gungId); 
-                 console.log('>>> DEBUG modify.jsp: Sending image upload request with gungId:', gungId);
+            const gung_id = $j('#gung_id_select').val(); 
+            if (gung_id && gung_id !== "" && gung_id !== "-1") { 
+                 data.append('gung_id', gung_id); 
             } else {
                  alert('이미지를 업로드하려면 먼저 궁을 선택해야 합니다.');
-                 $j('#summernote').summernote('editor.delete'); // 방금 삽입된 미리보기 이미지 제거
+                 $j('#summernote').summernote('editor.delete');
                  console.error('>>> ERROR modify.jsp: Image upload blocked - No valid gungId selected.');
                  return; 
             }
@@ -424,31 +418,35 @@
                 cache: false,
                 contentType: false, 
                 processData: false, 
-                dataType: 'json', // 서버 응답 타입을 JSON으로 기대
+                dataType: 'json', 
                 success: function(response) {
                     console.log('>>> DEBUG modify.jsp: Image upload success response:', response);
 
                     if (response.status === 'success') {
-                        const imageUrl = response.url; 
-                        const relativePath = response.relativePath; 
-                        const savedFileName = response.savedFileName; 
+                        const imageUrl = response.url;
+                        const relativePath = response.relativePath;
+                        const savedFileName = response.savedFileName;
 
                         const newImageInfo = {
-                            url: imageUrl, 
-                            relativePath: relativePath, 
-                            savedFileName: savedFileName, 
+                            url: imageUrl,
+                            relativePath: relativePath,
+                            savedFileName: savedFileName,
                         };
                         newlyUploadedFiles.push(newImageInfo);
-                        console.log('>>> DEBUG modify.jsp: Added new image info to newlyUploadedFiles. Current size:', newlyUploadedFiles.length);
                         $j('#newUploadedImagesInfo').val(JSON.stringify(newlyUploadedFiles));
-                        console.log('>>> DEBUG modify.jsp: Updated newUploadedImagesInfo hidden field:', $j('#newUploadedImagesInfo').val());
+
+                        $j('#summernote').summernote('insertImage', imageUrl, function($image) {
+                            $image.attr('data-relative-path', relativePath)
+                                  .attr('data-saved-name', savedFileName);
+                        });
 
                     } else {
                         alert('이미지 업로드 실패: ' + (response.message || '알 수 없는 오류'));
                         console.error('>>> ERROR modify.jsp: Image upload failed response:', response);
-                        $j('#summernote').summernote('editor.delete'); // 실패 시 미리보기 이미지 제거
+                        $j('#summernote').summernote('editor.delete');
                     }
                 },
+
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert('이미지 업로드 중 오류 발생.');
                     console.error('>>> ERROR modify.jsp: Image upload Ajax error:', textStatus, errorThrown, jqXHR.responseText, jqXHR.status, jqXHR.statusText);
@@ -467,7 +465,6 @@
                          if (img.url) {
                              const imgNode = $j('<img>').attr('src', img.url).attr('data-property-id', img.propertyId).attr('data-original-name', img.originalFileName).attr('data-saved-name', img.savedFileName).attr('data-relative-path', img.relativePath); 
                              $j('#summernote').summernote('insertNode', imgNode[0]); 
-                             console.log('>>> DEBUG modify.jsp: Inserted existing image to editor with propertyId:', img.propertyId, 'url:', img.url);
                          }
                      });
                  }
@@ -477,7 +474,49 @@
              }
         }
 
-    }); // $(document).ready 끝
+        
+        const observer = new MutationObserver(function(mutationsList, observer) {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    mutation.removedNodes.forEach(node => {
+                        if (node.tagName === 'IMG' && node.src) {
+                            const propertyId = node.getAttribute('data-property-id');
+                            const relativePath = node.getAttribute('data-relative-path');
+
+                            if (propertyId) {
+                                let deletedFileIds = $j('#deletedFileIds').val() ? $j('#deletedFileIds').val().split(',') : [];
+                                if (!deletedFileIds.includes(propertyId)) {
+                                    deletedFileIds.push(propertyId);
+                                    $j('#deletedFileIds').val(deletedFileIds.join(','));
+                                }
+                            } else if (relativePath) {
+                                newlyUploadedFiles = newlyUploadedFiles.filter(img => img.relativePath !== relativePath);
+                                $j('#newUploadedImagesInfo').val(JSON.stringify(newlyUploadedFiles));
+
+                                $j.ajax({
+                                    url: 'deleteImage.jsp',
+                                    type: 'POST',
+                                    data: { relativePath: relativePath },
+                                    success: function(res) {
+                                    },
+                                    error: function(err) {
+                                        console.error(">>> ERROR: 이미지 실제 파일 삭제 실패", err);
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+        observer.observe(document.querySelector('.note-editable'), {
+            childList: true,
+            subtree: true
+        });
+
+        
+    }); 
   </script>
 
 </body>

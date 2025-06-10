@@ -224,18 +224,22 @@
 
             } catch (Exception e) {
               e.printStackTrace();
-              System.err.println(">>> ERROR course_detail.jsp: Failed to load course detail for course_num " + courseNum);
             }
           }
           pageContext.setAttribute("courseDetail", courseDetail);
           pageContext.setAttribute("courseNum", courseNum);
         %>
+	
+		<%
+  			String gungId = request.getParameter("gung_id");
+ 			 if (gungId == null) gungId = "";
+		%>
 
         <c:choose>
           <c:when test="${courseDetail == null}">
             <h2>코스를 찾을 수 없습니다.</h2>
             <p>요청하신 코스 정보를 불러오는데 실패했습니다.</p>
-            <button class="btn btn-secondary mt-3" onclick="window.location.href='users_course.jsp'">목록으로 돌아가기</button>
+             <button class="btn btn-secondary" onclick="window.location.href='users_course.jsp?gung_id=<%= gungId %>'">목록으로 돌아가기</button>
           </c:when>
           <c:otherwise>
             <div class="course-detail-header">
@@ -312,7 +316,7 @@
             </div>
 
             <div class="mt-4">
-              <button class="btn btn-secondary" onclick="window.location.href='users_course.jsp'">목록으로 돌아가기</button>
+              <button class="btn btn-secondary" onclick="window.location.href='users_course.jsp?gung_id=<%= gungId %>'">목록으로 돌아가기</button>
             </div>
           </c:otherwise>
         </c:choose>
@@ -403,11 +407,9 @@
                      checkedRate(); 
                  },
             }); 
-
         }); 
 
     }); 
-
 
     function filledRate(index) {
         if (!stars || stars.length === 0) return; 
