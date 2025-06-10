@@ -62,4 +62,4 @@ request.setAttribute("ticketDto", tDTO);
 %>
 
 
-<jsp:forward page="../ticketPayment.jsp"/>
+<jsp:forward page="/ticket/ticketPayment.jsp"/>

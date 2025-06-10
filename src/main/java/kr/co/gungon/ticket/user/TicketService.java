@@ -466,7 +466,35 @@ public class TicketService {
 	    }
 
 	    return result;
-	}
+	}//remove
+	
+		
+	public int countAuthenNum(String remoteAddr) {
+		TicketDAO tDAO=TicketDAO.getInstance();
+		int count=0;
+		
+		try {
+			tDAO.insertAuthenCount(remoteAddr);
+			count=getAuthenCount();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//try~catch
+		
+		return count;
+	}//countAuthenNum
+	
+	public int getAuthenCount() {
+		TicketDAO tDAO=TicketDAO.getInstance();
+		int count = 0;
+		
+		try {
+			count=tDAO.selectAuthenCount();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//try~catch
+		
+		return count;
+	}//getAuthenCount
 	
 	
 	

@@ -12,7 +12,7 @@
 <%
 /*한국어 변환*/
 request.setCharacterEncoding("UTF-8");
-String phoneNum=request.getParameter("hidPhoneNum");
+String phoneNum=request.getParameter("hidPhoneNum");//인증된 전화번호
 
 TicketDTO tDTO=(TicketDTO)session.getAttribute("ticketDTO");
 TicketService tservice=new TicketService();
@@ -38,4 +38,4 @@ tDTO.setPaymentTimeStamp(paymentTimeStamp);
 request.setAttribute("ticketDTO", tDTO);
 
 %>
-<jsp:forward page="../ticketPaymentCompleteFrm.jsp"/>
+<jsp:forward page="/ticket/ticketAdmin/ticketPaymentCompleteFrm.jsp"/>

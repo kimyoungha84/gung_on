@@ -11,6 +11,9 @@
 //현재 tDTO에 들어있는 값
 //programName, reserveDate, payment
 TicketDTO tDTO = (TicketDTO)request.getAttribute("ticketDto");
+if(tDTO == null){
+	response.sendRedirect("/ticket/ticket_frm.jsp");
+}//end if
 
 
 

@@ -5,75 +5,77 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<!DOCTYPE html>
-<html>
-<head>
+
+
 <!-- favicon 설정 -->
-<link rel="icon shortcut"  href="http://${defaultIP}${pageContext.request.contextPath}/common/images/cs/gungOnFavicon.ico"/>
+<link rel="icon shortcut"  href="/common/images/cs/gungOnFavicon.ico"/>
 <meta charset="UTF-8">
-<title>예매 관리</title>
+
 
 <%@ include file="/admin/common/header.jsp" %>
 <%@ include file="/admin/common/sidebar.jsp" %>
 
 <!-- 스타일 설정 -->
-<link href="http://${defaultIP}${pageContext.request.contextPath}/ticket/ticketAdmin/css/ticket_manage_css.css" rel="stylesheet">
+<link href="/ticket/ticketAdmin/css/ticket_manage_css.css" rel="stylesheet">
 <!-- CSS 설정 -->
-<link rel="stylesheet" type="text/css" href="http://${defaultIP}${pageContext.request.contextPath}/ticket/css/payment.css"/>
-<link rel="stylesheet" type="text/css" href="http://${defaultIP}${pageContext.request.contextPath}/ticket/css/paymentComplete.css"/>
+<link rel="stylesheet" type="text/css" href="/ticket/css/payment.css"/>
+<link rel="stylesheet" type="text/css" href="/ticket/css/paymentComplete.css"/>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- 부트스트랩  CDN -->    
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
+ 
 
 <script type="text/javascript">
 $(function(){
-	history.pushState({ page: 'manageFrm' }, '', 'http://localhost${pageContext.request.contextPath}/ticket/ticketAdmin/manageFrm.jsp');
+   //history.pushState({ page: 'manageFrm' }, '', 'http://localhost/ticket/ticketAdmin/manageFrm.jsp');
 
-	$(".wrapTableBody").click(function(){
-		
-		var id=$(this).attr("id");
-		var param="bookingNum="+id;
-		//debugger;
-		//window.location.href="http://localhost${pageContext.request.contextPath}/ticket/ticketAdmin/manage_detail_Frm.jsp?bookingNum="+id;
-		$.ajax({
-			
-			url:"${pageContext.request.contextPath}${pageContext.request.contextPath}/ticket/ticketAdmin/manage_detail_Frm.jsp",
-			type:"GET",
-			data : param,
-			
-			dataType: "html",
-			error : function(xhr){
-				
-				alert(xhr.status);
-			},//error
-			success:function(data){
-				
-				$(".entireWrap").html(data);
-			}//success
-			
-		});//ajax
-	
-	});//click	
-	
-	$(".datatable-bottom").click(function(){
-		
-	});
-	
-	
+   $(".wrapTableBody").click(function(){
+      
+      var id=$(this).attr("id");
+      var param="bookingNum="+id;
+      //debugger;
+      //window.location.href="http://localhost/ticket/ticketAdmin/manage_detail_Frm.jsp?bookingNum="+id;
+      $.ajax({
+         
+         url:"/ticket/ticketAdmin/manage_detail_Frm.jsp",
+         type:"GET",
+         data : param,
+         
+         dataType: "html",
+         error : function(xhr){
+            
+            alert(xhr.status);
+         },//error
+         success:function(data){
+            
+            $(".entireWrap").html(data);
+         }//success
+         
+      });//ajax
+   
+   });//click   
+   
+   $(".datatable-bottom").click(function(){
+      
+   });
+   
+   
 });//ready
 
 
 </script>
+<div id="layoutSidenav_content">
+<main>
+  <div class="container-fluid px-4">
+           <h2 class="mt-4">예매 관리</h2>
+           <hr/>
+<!-- <div class="entireWrap" style="margin-left:300px; margin-top:100px"> -->
 
-</head>
-<body>
-<div class="entireWrap" style="margin-left:300px; margin-top:100px">
-<div class="title">
- <img src="${pageContext.request.contextPath}/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">  
- <span class="titlep" style="font-weight:bold; font-size:35px">예매 관리</span>
-</div>
 <br><br>
+<div class="card m-3"><!-- card m-3 start -->
+<div class="card-body"><!-- card-body start -->
+<h2>예매 목록</h2>
 <div class="">
 <form method="POST" id="">
 <input type="date" id="date" style="margin-left:10px;" name="date" value=""/><span style="font-weight: bold;"></span>
@@ -100,37 +102,39 @@ $(function(){
         </tr>
     </thead>
     <tbody class="border-start border-end" style="height:90px">
-    	<%int cnt=startNum; %>
-    	<c:forEach var="adminTicketDTO" items="${ pageList }" varStatus="i">
-			<tr class="wrapTableBody" id="${ adminTicketDTO.booking_num }">
-				<td><c:out value="<%=cnt%>"/></td>
-				<td><c:out value="${ adminTicketDTO.booking_num }"/></td>
-				<td><c:out value="${ adminTicketDTO.member_name }"/></td>
-				<td><c:out value="${ adminTicketDTO.member_id }"/></td>
-				<td><c:out value="${ adminTicketDTO.total_person }"/></td>
-				<td><c:out value="${ adminTicketDTO.phone_number}"/></td>
-				<td><c:out value="${ adminTicketDTO.comment_flag }"/></td>
-			</tr>
-			<% cnt++;%>
-			
-		</c:forEach>
-		
-		
+       <%int cnt=startNum; %>
+       <c:forEach var="adminTicketDTO" items="${ pageList }" varStatus="i">
+         <tr class="wrapTableBody" id="${ adminTicketDTO.booking_num }">
+            <td><c:out value="<%=cnt%>"/></td>
+            <td><c:out value="${ adminTicketDTO.booking_num }"/></td>
+            <td><c:out value="${ adminTicketDTO.member_name }"/></td>
+            <td><c:out value="${ adminTicketDTO.member_id }"/></td>
+            <td><c:out value="${ adminTicketDTO.total_person }"/></td>
+            <td><c:out value="${ adminTicketDTO.phone_number}"/></td>
+            <td><c:out value="${ adminTicketDTO.comment_flag }"/></td>
+         </tr>
+         <% cnt++;%>
+         
+      </c:forEach>
+      
+      
     </tbody>
 </table>
-		<%//페이지네이션 HTML 생성
-		String paginationHtml = paginationBuilder.build(request.getRequestURI());
-		%>
-		<nav aria-label="Page navigation"><%= paginationHtml %></nav>
+      <%//페이지네이션 HTML 생성
+      String paginationHtml = paginationBuilder.build(request.getRequestURI());
+      %>
+      <nav aria-label="Page navigation"><%= paginationHtml %></nav>
     <div class="datatable-bottom" style="display:flex; align-items: center;">
-		
-	</div>
+      
+   </div>
 </div><!-- includeTable -->
 
 <br><br><br><br><br><br><br><br><br>
+</div></div>
+</main>
 <%@ include file="/admin/common/footer.jsp" %>
-</div><!-- entireWrap -->
-
+<!-- </div>entireWrap -->
+</div><!-- container-fluid -->
 
 </body>
 

@@ -19,6 +19,7 @@ public class SendMessage {
 		
 		if(sendMsg.matches("^[0-9]{6}$")) {
 			message.setText("인증번호를 입력해주세요.\n"+sendMsg);//인증번호(String) 넣기 - 6자리 RandomNumber
+			//여기에 양해문자 넣기
 		}else {
 			//URL 전송~~!!
 			message.setText(sendMsg);

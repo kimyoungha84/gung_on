@@ -237,7 +237,69 @@ public class TicketDAO {
 	    }
 
 	    return deletedRowCount; // 몇 개 삭제됐는지 리턴
-	}
+	}//deleteTicket
+	
+	
+	//자~  인증번호 선택하면 count 증가합니다아
+	public void insertAuthenCount(String remoteAddr) throws SQLException {
+		/*여기서 list 처리도 해야함*/
+		DbConnection db=DbConnection.getInstance();
+		ResultSet rs=null; PreparedStatement pstmt=null; Connection con=null;
+
+		try { 
+			  //1.JNDI 사용객체 생성 
+			  //2.DBCP에서 연결객체 얻기(DataSource) 
+			  //3.Connection 얻기
+				  con = db.getDbConn();
+				  //4.쿼리문 생성객체 얻기 
+				  StringBuilder insertQuery=new StringBuilder(); 
+				  insertQuery.append("	insert into test(authencount) values (?)	");
+				 
+				  pstmt=con.prepareStatement(insertQuery.toString()); 
+
+				  pstmt.setString(1, remoteAddr);
+
+				  //6.쿼리문 수행 후 결과를 얻기 
+				  rs=pstmt.executeQuery();//아마 결과가 boolean으로 나올 텐테... 이걸받을까 말까
+			
+		  }finally { 
+			  //7.연결 끊기 
+			  db.dbClose(rs, pstmt, con); 
+		  }//try~finally	  
+		  
+	}//end insertReservationDetail
+	
+	
+	//자 ~~ 인증번호 몇 번이나 테스트 했는지 가져옵시다아
+	public int selectAuthenCount() throws SQLException {
+		/*여기서 list 처리도 해야함*/
+		DbConnection db=DbConnection.getInstance();
+		ResultSet rs=null; PreparedStatement pstmt=null; Connection con=null;
+		int count=0;
+
+		try { 
+			  //1.JNDI 사용객체 생성 
+			  //2.DBCP에서 연결객체 얻기(DataSource) 
+			  //3.Connection 얻기
+				  con = db.getDbConn();
+				  //4.쿼리문 생성객체 얻기 
+				  StringBuilder selectQuery=new StringBuilder(); 
+				  selectQuery.append("	select count(authencount) as count from test	");
+				  pstmt=con.prepareStatement(selectQuery.toString()); 
+				  //6.쿼리문 수행 후 결과를 얻기 
+				  rs=pstmt.executeQuery();//아마 결과가 boolean으로 나올 텐테... 이걸받을까 말까
+				  
+				  if (rs.next()) {
+					  count=rs.getInt("count");
+				  }//end if
+			
+		  }finally { 
+			  //7.연결 끊기 
+			  db.dbClose(rs, pstmt, con); 
+		  }//try~finally
+		 	
+		return count;
+	}//selectAuthenCount
 	
 	
 }// class

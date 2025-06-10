@@ -4,7 +4,7 @@
 
 $(function(){
 	
-	history.pushState({ page: 'ticket_frm' }, '', 'http://localhost/Gung_On/ticket/ticket_frm.jsp');
+	//history.pushState({ page: 'ticket_frm' }, '', '/ticket/ticket_frm.jsp');
 	
 	$('.slider').slick({
 		dots: true,
@@ -145,9 +145,13 @@ $(function(){
 	
 	}//onClick
 	window.addEventListener('click',onClick);
+	
+	$(".reserveBtn").click(function(){
+		//예매하기 버튼이 클릭되었을 때 유효성 검사
+		
+	});//click
 
 	
-	$(".popup_box").hide();
 	
 });//ready
 
