@@ -32,18 +32,15 @@
     
     int startNo = totalCount - (currentPage - 1) * pageSize;
 %>
-<link href="../adminProgInfo/adminProgInfo.css" rel="stylesheet" />
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <jsp:include page="${pageContext.request.contextPath}/admin/common/sidebar.jsp" />
-        </div>
+    <link href="adminProgInfo.css" rel="stylesheet" />
         
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <ol class="breadcrumb mb-4 custom-breadcrumb">
+                	<h2 class="mt-4">행사목록</h2>
+<!--                     <ol class="breadcrumb mb-4 custom-breadcrumb">
                         <li class="breadcrumb-item active custom-breadcrumb-text">행사목록</li>
-                    </ol>
+                    </ol> -->
 
                     <form method="get" action="adminProgInfo.jsp">
                         <input class="form-control search-place-input" type="text" name="placeSearchInput"
@@ -99,10 +96,8 @@
                     </div>
                 </div>
             </main>
-		</div>
-	</div>
-	
 <%@ include file="/admin/common/footer.jsp" %>
+		</div>
 
     <script>
         function goToDetail(programName) {

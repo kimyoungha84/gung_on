@@ -68,7 +68,7 @@ public class FilePathDAO {
     
     public int updateImagePath(FilePathDTO dto) throws SQLException {
         String sql = "UPDATE file_path SET path = ?, img_name = ? " +
-                     "WHERE property_id = ?";
+        		"WHERE property_id = ? AND targer_type = ?";
 
         try (Connection con = DbConnection.getInstance().getDbConn();
              PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -76,6 +76,7 @@ public class FilePathDAO {
             pstmt.setString(1, dto.getPath());
             pstmt.setString(2, dto.getImgName());
             pstmt.setInt(3, dto.getPropertyId());
+            pstmt.setString(4, dto.getTargerType());
 
             return pstmt.executeUpdate();
         }

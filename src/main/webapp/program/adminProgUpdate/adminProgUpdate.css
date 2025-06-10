@@ -73,6 +73,10 @@
     		background-color: #FFFDDF !important;
 		}
 		
+		.update-form {
+    		margin-top: 3rem;
+		}
+		
 		form .card {
     		max-width: 900px;
     		margin: 0 auto;

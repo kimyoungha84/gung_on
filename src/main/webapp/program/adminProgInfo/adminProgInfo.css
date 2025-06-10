@@ -48,6 +48,10 @@
 		.viewScheduleBtn:hover {
   	  		background-color: #333;
 		}
+		
+		.search-place-input {
+    		margin-top: 5rem;
+		}
 
 		.event-table {
     	  	width: 100%;

@@ -9,13 +9,15 @@
 <%@page import="java.io.File"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ include file="/admin/common/header.jsp" %>
+<%@ include file="/admin/common/sidebar.jsp" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
 
     if ("POST".equalsIgnoreCase(request.getMethod())) {
     	
-    	String uploadPath = "C:/Users/user/git${pageContext.request.contextPath}/src/main/webapp/program/images";
+    	String uploadPath = application.getRealPath("/program/images");
     	int maxSize = 10 * 1024 * 1024; // 최대 10MB
 
     	MultipartRequest multi = new MultipartRequest(
@@ -130,7 +132,7 @@
             if (result > 0) {
                 if (progImgName != null && !progImgName.trim().isEmpty()) {
                     FilePathDTO filePathDTO = new FilePathDTO();
-                    filePathDTO.setPath("${pageContext.request.contextPath}/program/images/" + progImgName);
+                    filePathDTO.setPath("/program/images/" + progImgName);
                     filePathDTO.setTargerType("program");
                     filePathDTO.setTargerNumber(String.valueOf(programDTO.getProgramId()));
                     filePathDTO.setImgName(progImgName);
@@ -166,116 +168,17 @@
         }
     } */
 %>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Dashboard - SB Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
     <link href="adminProgRegister.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body class="sb-nav-fixed">
-
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand ps-3" href="adminMain.jsp">
-            <img src="${pageContext.request.contextPath}/img/logo.png" class="logo">
-        </a>
-    </nav>
-
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">관리자 메뉴</div>
-
-                            <a class="nav-link" href="adminMain.jsp">
-                                대시보드
-                            </a>
-
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                궁 관리
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">세부메뉴 1</a>
-                                    <a class="nav-link" href="#">세부메뉴 2</a>
-                                </nav>
-                            </div>
-
-							<a class="nav-link active" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2"
-   							   aria-expanded="true" aria-controls="collapseLayouts2">
-   							    행사 관리
-							</a>
-
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts3">
-                                예약 관리
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">세부메뉴 1</a>
-                                    <a class="nav-link" href="#">세부메뉴 2</a>
-                                </nav>
-                            </div>
-
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts4">
-                                관람 관리
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">세부메뉴 1</a>
-                                    <a class="nav-link" href="#">세부메뉴 2</a>
-                                </nav>
-                            </div>
-
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts5" aria-expanded="false" aria-controls="collapseLayouts5">
-                                회원 관리
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts5" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="memberList.jsp"onclick="loadPage('${pageContext.request.contextPath}/admin/memberList.jsp')">회원 목록</a>
-                                    <a class="nav-link" href="#">세부메뉴 2</a>
-                                </nav>
-                            </div>
-
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts6" aria-expanded="false" aria-controls="collapseLayouts6">
-                                고객센터 관리
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts6" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">세부메뉴 1</a>
-                                    <a class="nav-link" href="#">세부메뉴 2</a>
-                                </nav>
-                            </div>
-
-                        </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    관리자
-                </div>
-            </nav>
-        </div>
 
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <ol class="breadcrumb mb-4 custom-breadcrumb">
+                	<h2 class="mt-4">행사등록</h2>
+<!--                     <ol class="breadcrumb mb-4 custom-breadcrumb">
                         <li class="breadcrumb-item active custom-breadcrumb-text">행사등록</li>
-                    </ol>
+                    </ol> -->
 
-<form action="adminProgRegister.jsp" method="post" enctype="multipart/form-data">
+<form class="register-form" action="adminProgRegister.jsp" method="post" enctype="multipart/form-data">
     <div class="card p-4">
         <div class="row g-2">
             <div class="col-md-6">
@@ -351,43 +254,24 @@
             </div> --%>
             
             <div class="col-12">
-    			<label for="progImgFile" class="form-label">이미지 업로드</label>
-    			<input type="file" class="form-control" name="progImgFile" id="progImgFile" accept="image/*">
+				<label for="progImgFile" class="form-label">이미지 업로드</label>
+                <input type="file" class="form-control" name="progImgFile" id="progImgFile" accept="image/*" onchange="previewImage(event)">
+                <img id="preview" style="max-width: 200px; margin-top: 10px;" />
 			</div>
-
+			
             <div class="col-12 d-flex justify-content-end">
                 <button type="submit" class="registerBtn" onclick="return confirm('정말 등록하시겠습니까?')">확인</button>
                 <button class="cancelBtn" onclick="history.back()">취소</button>
             </div>
+            
         </div>
     </div>
 </form>
-				</div>
-				
+
+				</div>	
             </main>
-
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="${pageContext.request.contextPath}/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="${pageContext.request.contextPath}/assets/demo/chart-area-demo.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-    <script src="${pageContext.request.contextPath}/js/datatables-simple-demo.js"></script>
+<%@ include file="/admin/common/footer.jsp" %>
+		</div>
 
 <script>
 let lastChecked = null;
@@ -399,6 +283,11 @@ function toggleRadio(radio) {
     } else {
         lastChecked = radio;
     }
+}
+
+function previewImage(event) {
+    const preview = document.getElementById('preview');
+    preview.src = URL.createObjectURL(event.target.files[0]);
 }
 </script>
 
