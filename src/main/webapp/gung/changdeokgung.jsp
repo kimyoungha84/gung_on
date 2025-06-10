@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><c:out value="${ site_name }"/></title>
+<title>창덕궁</title>
 
 <c:import url="${ url }/common/jsp/external_file.jsp"/>
 <link rel="stylesheet" href="/common/css/common.css">
