@@ -6,6 +6,7 @@ $(function(){
 	
 	//history.pushState({ page: 'ticket_frm' }, '', '/ticket/ticket_frm.jsp');
 	
+	
 	$('.slider').slick({
 		dots: true,
 		infinite: true,
@@ -57,12 +58,19 @@ $(function(){
 	
 	//adult의 plus 이미지가 클릭되었을 때,
 	$(".plusAdultImg").click(function(){
-		personValue++;
-		adultPersonValue++;
-		
-		$(".adult").val(adultPersonValue);
-		$(".calcValue").html("￦"+feeCalc('adult','plus').toLocaleString('ko-kr'));
-		
+		if(personValue < 10){
+			personValue++;
+			adultPersonValue++;
+			
+/*			console.log(personValue);
+			console.log(totalpersonValue);*/
+			
+			
+			$(".adult").val(adultPersonValue);
+			$(".calcValue").html("￦"+feeCalc('adult','plus').toLocaleString('ko-kr'));
+		}else{
+			alert("최대 10명 까지만 선택 가능합니다.");
+		}
 	});//click
 	
 	//adult의 minus 이미지가 클릭되었을 때
@@ -83,11 +91,16 @@ $(function(){
 	var kidPersonValue=0;
 	//kid의 plus 이미지가 클릭되었을 때,
 	$(".plusKidImg").click(function(){
-		personValue++;
-		kidPersonValue++;
-		
-		$(".kid").val(kidPersonValue);
-		$(".calcValue").html("￦"+feeCalc('kid','plus').toLocaleString('ko-kr'));
+		if(personValue < 10){
+			personValue++;
+			kidPersonValue++;
+			
+			
+			$(".kid").val(kidPersonValue);
+			$(".calcValue").html("￦"+feeCalc('kid','plus').toLocaleString('ko-kr'));
+		}else{
+			alert("최대 10명 까지만 선택 가능합니다.");
+		}//if~else
 	});//click
 
 	//kid의 minus 이미지가 클릭되었을 때
@@ -108,9 +121,9 @@ $(function(){
 		$(".priceView").val("￦"+totalCost.toLocaleString('ko-kr'));
 		changeStatus('.viewPersonNum','.classificationWrap');	
 		
-		totalPersonValue=adultPersonValue+kidPersonValue;
+		var totalPersonValue=adultPersonValue+kidPersonValue;
 		
-		if(totalPersonValue != 0){
+		if(totalPersonValue != 0 && totalPersonValue<11){
 			$(".personChoose").html(totalPersonValue+"명");	
 		}else{
 			$(".personChoose").html("인원선택");
@@ -147,7 +160,38 @@ $(function(){
 	window.addEventListener('click',onClick);
 	
 	$(".reserveBtn").click(function(){
-		//예매하기 버튼이 클릭되었을 때 유효성 검사
+		const jsonData={
+			member_id: $("#member_id").val(),
+			programName : $("#programName").val(),
+			datepicker: $("#datepicker").val(),
+			adult: $("#adult").val(),
+			kid: $("#kid").val(),
+			adultCost: $("#adultCost").val(),
+			kidCost: $("#kidCost").val(),
+			langChoose: $("#langChoose").val()
+		};
+		alert();
+		
+		
+		$.ajax({
+			url:"/ticket/ticket_process.jsp",
+			type:"post",
+			
+			dataType:"json",
+			data:jsonData,
+			error: function(xhr){
+				console.log(xhr.status + " / " + xhr.statusText);
+			},//error
+			success:function(jsonData){
+				alert(jsonData);
+				//$(".wrap").html(xmlData);
+			}//success
+			
+		});//ajax
+		
+		
+		
+		
 		
 	});//click
 
@@ -268,5 +312,37 @@ function initCal(){
 	$(".adult").val("0");
 	$(".kid").val("0");
 	$(".personChoose").html("인원선택");
-}
+}//initCal
 
+
+/***************************************************************************** */
+
+/************유효성 검사 완료*************************************** */
+function forSubmit(){
+	const form=document.querySelector('form');
+	
+	if(valiableData()){
+		form.submit();
+	}//end if
+}//forSubmit
+
+
+function valiableData(){
+	//날자와 사람 명수를 선택했을 경우,
+	//return false, 아닌 경우 return true 반환
+	var str=$("#datepicker").val();
+	var personStr=$(".personChoose").html();
+	
+	debugger;
+	
+	if(str ==""){
+		alert("날짜를 선택해주세요.");
+		return false;	
+	}else if(personStr=="인원선택"){
+		alert("사람 인원수를 선택해주세요.");
+		return false;
+	}else{
+		return true;
+	}//end if~else
+
+}//valiableData

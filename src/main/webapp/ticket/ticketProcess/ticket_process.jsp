@@ -1,10 +1,11 @@
+<%@page import="org.json.simple.JSONObject"%>
 <%@page import="kr.co.gungon.ticket.TicketDTO"%>
 <%@page import="java.sql.Date"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.apache.catalina.filters.SetCharacterEncodingFilter"%>
 <%@page import="kr.co.gungon.ticket.user.TicketService"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 
@@ -19,9 +20,10 @@
 
 -->
 
-<jsp:useBean id="tDTO" class="kr.co.gungon.ticket.TicketDTO" scope="page"/>
-
 <%
+
+TicketDTO tDTO=new TicketDTO();
+
 /*한국어 변환*/
 request.setCharacterEncoding("UTF-8");
 
@@ -30,7 +32,7 @@ TicketService ticketService=new TicketService();
 
 
 String programName=request.getParameter("programName");//행사 이름
-
+System.out.println("프로그램 이름"+programName);
 
 String date=request.getParameter("datepicker");//관람일자
 String reserveTime=ticketService.startTimeProgram(programName);
@@ -59,7 +61,34 @@ tDTO.setPayment(payment);//payment
 request.setAttribute("ticketDto", tDTO);
 //System.out.println("ticket_process.jsp --------"+tDTO);
 
+
+
+//1.JSONObject를 생성//여기 노란줄 뜨는건 신경안써도 도니다.
+JSONObject json=new JSONObject();
+
+//2.값 할당
+json.put("programName", programName);
+
+json.put("date", date);
+json.put("reserveTime", reserveTime);
+
+json.put("adult", adult);
+json.put("kid", kid);
+
+json.put("adultCost", adultCost);
+json.put("kidCost", kidCost);
+
+json.put("langChoose", langChoose);
+json.put("langFlag", langFlag);
+json.put("payment", payment);
+
+
+//3.값을 가진 JSONObject 객체를 String으로 얻기
+String jsonStr=json.toJSONString();
+request.setAttribute("jsonStr", jsonStr);
+
+response.sendRedirect("/ticket/ticketPayment.jsp");
+
 %>
 
 
-<jsp:forward page="/ticket/ticketPayment.jsp"/>

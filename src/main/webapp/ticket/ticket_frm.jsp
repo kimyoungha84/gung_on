@@ -70,8 +70,11 @@
 <%
 //여기서 getprogramName 받아줘야한다.
 //String programName=request.getParameter("programName");//이거 나중에 주석 풀어야 함.
+//String member_id=(String)session.getAttribute("member_id");//이거 나중에 주석 풀기
+
 //value 부분에 ${programName} 변경 필요
 
+String member_id="test";
 String programName="경복궁 야간관람";
 
 TicketService ticketService=new TicketService();
@@ -85,8 +88,9 @@ System.out.println(endday);
 
 <main>
 <div class="wrap">
-    <form action="/ticket/ticketProcess/ticket_process.jsp" name="viewDateFrm" method="post">
-  	   <div><input type="text" name="programName" class="title" value="<%=programName%>"/></div>
+    <form onsubmit="return valiableData()" action="/ticket/ticketProcess/ticket_process.jsp" name="viewDateFrm" method="post">
+    	<input type="hidden" id="member_id" name="member_id" value="<%=member_id%>"/>
+  	   <div><input type="text" id="programName" name="programName" class="title" value="<%=programName%>"/></div>
     <!-- 오른쪽 -->
     <div class="right">
 		<div class="ticket_box">
@@ -131,12 +135,12 @@ System.out.println(endday);
 				      	    <span style="font-size: 10px;">만 19세 이상<br>(경로포함)</span>
 				        </td>  
 				        <td style="width:30%;">
-				            <input type="text" class="ticketCost" name="adultCost" value="￦5,000" readonly style="border:none">
+				            <input type="text" class="ticketCost" id="adultCost" name="adultCost" value="￦5,000" readonly style="border:none">
 				        </td>
 				        <td style="width:43%;">
 				            <div class="classifiationTable">
 				        	<div class="minusDiv"><img src="/ticket/images/minusImg.png" class="minusImg minusAdultImg"/></div>
-				        	<input type="text" class="person adult" name="adult" value="0" readonly style="border:1px #333 solid; width:44px"/>
+				        	<input type="text" class="person adult"  id="adult"  name="adult" value="0" readonly style="border:1px #333 solid; width:44px"/>
 				        	<div class="plusDiv"><img src="/ticket/images/plusImg.png" class="plusImg plusAdultImg"/></div>
 				            </div>
 				        </td>
@@ -147,12 +151,12 @@ System.out.println(endday);
 				            <span style="font-size: 10px;">만 7세 ~ 만 18세</span>
 				        </td>
 				        <td>
-				        	<input type="text" class="ticketCost" name="kidCost" value="￦2,500" readonly style="border:none">
+				        	<input type="text" class="ticketCost" id="kidCost" name="kidCost" value="￦2,500" readonly style="border:none">
 				        </td>
 				        <td>
 				           <div class="classifiationTable">
 				        	<div class="minusDiv"><img src="/ticket/images/minusImg.png" class="minusImg minusKidImg" id="minusImg"/></div>
-				        	<input type="text" class="person kid" name="kid" value="0" readonly style="border:1px #333 solid; width:44px">
+				        	<input type="text" class="person kid" id="kid" name="kid" value="0" readonly style="border:1px #333 solid; width:44px">
 				        	<div class="plusDiv"><img src="/ticket/images/plusImg.png" class="plusImg plusKidImg" id="plusImg"/></div>
 				            </div>
 				        </td>
@@ -182,7 +186,7 @@ System.out.println(endday);
 			<!-- <form name="commentFrm"> -->
 			<div class="langGroupWrap">
 				<div class="selectDesign langGroup" onclick="changeStatus('.langGroup','.langWrap')">
-					<input type="text" name="langChoose" class="ex langChoose" value="선택 안함" style="border:none;   user-select:none;">
+					<input type="text"  id="langChoose" name="langChoose" class="ex langChoose" value="선택 안함" style="border:none;   user-select:none;">
 					<img src="/ticket/images/downArrow.png" width="16px" id="arrow" class="arrow" />
 				</div>
 				<!-- 여기기기기기기기기기ㅣ -->
@@ -197,7 +201,7 @@ System.out.println(endday);
 			<!-- </form> -->
 			<!-- viewPersonFrm -->
 
-			<input type="button" value="예매하기" class="reserveBtn"/>
+			<input type="button" value="예매하기" class="reserveBtn" onclick="forSubmit()"/>
 		<!-- 	
 			<a href="/ticketProcess/ticket_process.jsp" class="reserveBtn">
 				<font class="reserveBtnFont">예매하기</font>
