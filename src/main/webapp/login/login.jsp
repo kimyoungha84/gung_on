@@ -12,7 +12,7 @@ String redirectUrl=request.getParameter("redirectUrl");
 <head>
 <meta charset="UTF-8">
     <title>로그인</title>
-    <c:import url="${pageContext.request.contextPath}/common/jsp/external_file.jsp"/>
+    <c:import url="/common/jsp/external_file.jsp"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -87,7 +87,7 @@ String redirectUrl=request.getParameter("redirectUrl");
     </script>
 </head>
 <body class="login">
- <jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/common/jsp/header.jsp"/>
+ <jsp:include page="/common/jsp/header.jsp"/>
 
 <div class="login-container">
     <h2>로그인</h2>
@@ -107,6 +107,6 @@ String redirectUrl=request.getParameter("redirectUrl");
     </div>
 </div>
 
- <jsp:include page="${pageContext.request.contextPath}${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
+ <jsp:include page="/common/jsp/footer.jsp"/>
 </body>
 </html>

@@ -135,38 +135,49 @@ public class CourseDAO {
 	 
 	 
 	 public int insertCourse(CourseDTO course) throws SQLException {
-			DbConnection db = DbConnection.getInstance();
-			PreparedStatement pstmt = null;
-			Connection con = null;
-			int result=0;
-			 
-		        try {
-		        	con = db.getDbConn();
-		        	String insertCourseSql = "INSERT INTO course (course_num, member_id, course_title, course_content, gung_id) " +
-		        			"VALUES (course_seq.NEXTVAL, ?, ?, ?, ?)";
+		    DbConnection db = DbConnection.getInstance();
+		    PreparedStatement pstmt = null;
+		    Connection con = null;
+		    ResultSet rs = null;
+		    int courseNum = -1;
 
-		        	pstmt = con.prepareStatement(insertCourseSql);
-		        	
-		            pstmt.setString(1, course.getMember_Id());
-		            pstmt.setString(2, course.getCourse_Title());
-		            
-	                if (course.getCourse_Content() != null) {
-	                     Clob courseContentClob = con.createClob();
-	                     courseContentClob.setString(1, course.getCourse_Content());
-	                     pstmt.setClob(3, courseContentClob); // 3번째 바인딩 (SQL의 ?)
-	                } else {
-	                     pstmt.setNull(3, java.sql.Types.CLOB); 
-	                }//end else
+		    try {
+		        con = db.getDbConn();
+		        String insertCourseSql = "INSERT INTO course (course_num, member_id, course_title, course_content, gung_id) " +
+		                                 "VALUES (course_seq.NEXTVAL, ?, ?, ?, ?)";
+		        
+		        // 반환할 생성된 키를 요청
+		        pstmt = con.prepareStatement(insertCourseSql, new String[] {"course_num"});
+		        
+		        pstmt.setString(1, course.getMember_Id());
+		        pstmt.setString(2, course.getCourse_Title());
 
-		            pstmt.setInt(4, course.getGung_Id());
+		        if (course.getCourse_Content() != null) {
+		            Clob courseContentClob = con.createClob();
+		            courseContentClob.setString(1, course.getCourse_Content());
+		            pstmt.setClob(3, courseContentClob);
+		        } else {
+		            pstmt.setNull(3, java.sql.Types.CLOB);
+		        }
 
-		            result=pstmt.executeUpdate();
+		        pstmt.setInt(4, course.getGung_Id());
 
-				} finally {
-					db.dbClose(null, pstmt, con); 
-				}//end finally
-		        return result;
-		    }//insertCourse
+		        int result = pstmt.executeUpdate();
+
+		        if (result > 0) {
+		            rs = pstmt.getGeneratedKeys();
+		            if (rs.next()) {
+		                courseNum = rs.getInt(1); // 생성된 course_num
+		            }
+		        }
+
+		    } finally {
+		        db.dbClose(rs, pstmt, con);
+		    }
+
+		    return courseNum;
+		}
+
 		 
 		 public int updateCourse(CourseDTO course) throws SQLException {
 			DbConnection db = DbConnection.getInstance();

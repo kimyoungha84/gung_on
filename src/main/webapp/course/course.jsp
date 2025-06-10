@@ -612,15 +612,15 @@
 <body class="main">
 
   <!-- 상단 메뉴 등 -->
-  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
+  <jsp:include page="/common/jsp/header.jsp" />
 
   <!-- 본문: 콘텐츠가 동적으로 로드될 영역 -->
   <div id="main-content">
-      <jsp:include page="${pageContext.request.contextPath}/course/course_gbg.jsp" />
+      <jsp:include page="/course/course_gbg.jsp" />
   </div>
 
   <!-- 푸터 -->
-  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
+  <jsp:include page="/common/jsp/footer.jsp" />
 
   <div class="dim" style="display: none;"></div>
   <div id="pop_course01" class="popup" style="display: none;">

@@ -53,7 +53,7 @@
 <body class="main">
 
   <!-- 상단 메뉴 등 -->
-  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
+  <jsp:include page="/common/jsp/header.jsp" />
 
   <!-- 본문:  -->
   <main>
@@ -339,7 +339,7 @@
 </script>
 
   
-  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
+  <jsp:include page="/common/jsp/footer.jsp" />
 
 </body>
 </html>

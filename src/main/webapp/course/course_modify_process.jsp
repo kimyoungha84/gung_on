@@ -27,7 +27,7 @@
     // 1. 로그인 상태 확인
     MemberDTO mDTO = (MemberDTO)session.getAttribute("userData");
     if (mDTO == null) {
-        script.println("<script>alert('로그인이 필요합니다.');window.location.href = '${pageContext.request.contextPath}/member/login.jsp';</script>"); script.close();
+        script.println("<script>alert('로그인이 필요합니다.');window.location.href = '/member/login.jsp';</script>"); script.close();
         System.out.println(">>> DEBUG modify_process: User not logged in. Redirecting.");
         return; 
     }
