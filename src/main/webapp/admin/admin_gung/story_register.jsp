@@ -14,7 +14,7 @@
 <div id="layoutSidenav_content">
 <main>
   <div class="container-fluid px-4">
-  <h2 class="mb-4">궁 관리</h2>
+  <h2 class="mt-4">궁 관리</h2>
   <hr/>
   
   <div class="card m-3">

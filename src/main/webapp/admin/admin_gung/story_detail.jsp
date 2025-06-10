@@ -35,8 +35,14 @@
 <main>
 
 
-<div class="container-fluid px-4 mt-4">
-  <h2 class="mb-4">이야기 상세보기</h2>
+<div class="container-fluid px-4">
+  <h2 class="mt-4">궁 관리</h2>
+  <hr/>
+  
+    <div class="card m-3">
+  <div class="card-body">
+  <h2>이야기 상세보기</h2>
+  </div>
 
   <%
     if (dto != null) {
@@ -95,6 +101,7 @@
   <%
     }
   %>
+  </div>
 </div>
 </main>
 <%@ include file="/admin/common/footer.jsp" %>

@@ -27,8 +27,14 @@
 <div id="layoutSidenav_content">
 <main>
 
-<div class="container-fluid px-4 mt-4">
+<div class="container-fluid px-4">
+  <h2 class="mt-4">궁 관리</h2>
+  <hr/>
+  
+    <div class="card m-3">
+  <div class="card-body">
   <h2>이야기 수정</h2>
+  </div>
 
   <form action="story_modify_action.jsp" method="post" enctype="multipart/form-data">
     <input type="hidden" name="story_id" value="<%= dto.getStory_id() %>">
@@ -82,6 +88,7 @@
       <a href="story_detail.jsp?id=<%= dto.getStory_id() %>" class="btn btn-secondary">취소</a>
     </div>
   </form>
+</div>
 </div>
 </main>
 <%@ include file="/admin/common/footer.jsp" %>

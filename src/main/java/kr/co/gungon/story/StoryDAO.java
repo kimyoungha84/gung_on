@@ -177,19 +177,25 @@ public class StoryDAO {
                 }
             }
 
+            // ✅ /Gung_On 제거
+            if (filePath.startsWith("/Gung_On")) {
+                filePath = filePath.replaceFirst("^/Gung_On", "");
+            }
+
             String insertSql = """
                 INSERT INTO file_path (property_id, path, target_type, target_number, img_name)
                 VALUES (?, ?, 'story', ?, ?)
             """;
             try (PreparedStatement pstmt = conn.prepareStatement(insertSql)) {
                 pstmt.setInt(1, propertyId);
-                pstmt.setString(2, filePath);
+                pstmt.setString(2, filePath); // ⬅ Gung_On 빠진 상대경로만 저장됨
                 pstmt.setInt(3, storyId);
                 pstmt.setString(4, originalFileName);
                 pstmt.executeUpdate();
             }
         }
     }
+
 
     public List<String> getImageNamesByStoryId(int storyId) {
         List<String> imgList = new ArrayList<>();

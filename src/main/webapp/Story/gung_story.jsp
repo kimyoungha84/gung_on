@@ -20,10 +20,10 @@
   <meta charset="UTF-8">
   <title>전각 이야기</title>
   <c:import url="/common/jsp/external_file.jsp"/>
-  <link rel="stylesheet" href="/common/css/common.css">
-  <link rel="stylesheet" href="/gung/mainGung.css">
-  <link rel="stylesheet" href="/Story/Story.css">
-  <link rel="stylesheet" href="/gung/sideTab.css">
+  <link rel="stylesheet" href="../common/css/common.css">
+  <link rel="stylesheet" href="../gung/mainGung.css">
+  <link rel="stylesheet" href="../Story/Story.css">
+  <link rel="stylesheet" href="../gung/sideTab.css">
   <style>
     .gung-button-wrap {
       display: flex;
@@ -53,7 +53,7 @@
         const palaceName = $(this).data("name");
 
         $.ajax({
-          url: "g_story.jsp",
+          url: "<%= request.getContextPath() %>/Story/g_story.jsp",
           type: "GET",
           data: { name: palaceName },
           success: function(response){
@@ -94,7 +94,8 @@
       </div>
 
       <!-- ✅ 전각 설명 AJAX 결과 영역 -->
-      <div id="gung-info" class="gung-info-box">
+      <div id="gung-info" class="gung-info-box" style="margin-left: calc(50% - 360px); transform: translateX(-10%); width: 700px;">
+      
         <p>전각 버튼을 클릭하면 정보가 출력됩니다.</p>
       </div>
     </div>

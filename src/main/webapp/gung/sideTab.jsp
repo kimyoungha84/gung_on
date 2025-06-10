@@ -34,9 +34,9 @@ $(function(){
     <li>
       <button class="toggle">경복궁</button>
       <ul class="submenu">
-        <li><a href="http://localhost/Gung_On/gung/gyungbukgung.jsp"
+        <li><a href="../gung/gyungbukgung.jsp"
                class="<%= currentPath.contains("/gung/gyungbukgung.jsp") ? "active" : "" %>">경복궁 소개·역사</a></li>
-        <li><a href="http://localhost/Gung_On/Story/gung_story.jsp"
+        <li><a href="../Story/gung_story.jsp"
                class="<%= currentPath.contains("/Story/gung_story.jsp") ? "active" : "" %>">경복궁 이야기</a></li>
       </ul>
     </li>
@@ -44,9 +44,9 @@ $(function(){
     <li>
       <button class="toggle">창덕궁</button>
       <ul class="submenu">
-        <li><a href="http://localhost/Gung_On/gung/changdeokgung.jsp"
+        <li><a href="../gung/changdeokgung.jsp"
                class="<%= currentPath.contains("/gung/changdeokgung.jsp") ? "active" : "" %>">창덕궁 소개</a></li>
-        <li><a href="http://localhost/Gung_On/Story/changdeokgung_story.jsp"
+        <li><a href="../Story/changdeokgung_story.jsp"
                class="<%= currentPath.contains("/Story/changdeokgung_story.jsp") ? "active" : "" %>">창덕궁 이야기</a></li>
       </ul>
     </li>
@@ -54,9 +54,9 @@ $(function(){
     <li>
       <button class="toggle">창경궁</button>
       <ul class="submenu">
-        <li><a href="http://localhost/Gung_On/gung/changgyeonggung.jsp"
+        <li><a href="../gung/changgyeonggung.jsp"
                class="<%= currentPath.contains("/gung/changgyeonggung.jsp") ? "active" : "" %>">창경궁 소개</a></li>
-        <li><a href="http://localhost/Gung_On/Story/changgyeonggung_story.jsp"
+        <li><a href="../Story/changgyeonggung_story.jsp"
                class="<%= currentPath.contains("/Story/changgyeonggung_story.jsp") ? "active" : "" %>">창경궁 이야기</a></li>
       </ul>
     </li>
@@ -64,9 +64,9 @@ $(function(){
     <li>
       <button class="toggle">덕수궁</button>
       <ul class="submenu">
-        <li><a href="http://localhost/Gung_On/gung/deoksugung.jsp"
+        <li><a href="../gung/deoksugung.jsp"
                class="<%= currentPath.contains("/gung/deoksugung.jsp") ? "active" : "" %>">덕수궁 소개</a></li>
-        <li><a href="http://localhost/Gung_On/Story/deoksugung_story.jsp"
+        <li><a href="../Story/deoksugung_story.jsp"
                class="<%= currentPath.contains("/Story/deoksugung_story.jsp") ? "active" : "" %>">덕수궁 이야기</a></li>
       </ul>
     </li>
@@ -74,9 +74,9 @@ $(function(){
     <li>
       <button class="toggle">경희궁</button>
       <ul class="submenu">
-        <li><a href="http://localhost/Gung_On/gung/gyeonghuigung.jsp"
+        <li><a href="../gung/gyeonghuigung.jsp"
                class="<%= currentPath.contains("/gung/gyeonghuigung.jsp") ? "active" : "" %>">경희궁 소개·역사</a></li>
-        <li><a href="http://localhost/Gung_On/Story/gyeonghuigung_story.jsp"
+        <li><a href="../Story/gyeonghuigung_story.jsp"
                class="<%= currentPath.contains("/Story/gyeonghuigung_story.jsp") ? "active" : "" %>">경희궁 이야기</a></li>
       </ul>
     </li>

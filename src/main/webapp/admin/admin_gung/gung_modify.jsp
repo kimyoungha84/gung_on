@@ -59,7 +59,13 @@
 <main >
 
   <div class="container-fluid px-4 mt-4">
-    <h2>궁 정보 수정</h2>
+    <h2 class="mt-4">궁 관리</h2>
+    <hr/>
+    
+     <div class="card m-3">
+  <div class="card-body">
+  <h2>궁 정보 수정</h2>
+  </div>
 
     <form method="post" action="gung_modify_action.jsp">
       <input type="hidden" name="gung_id" value="<%= dto.getGung_id() %>">
@@ -85,6 +91,7 @@
       </div>
     </form>
   </div>
+  </div>
     </main>
-    </div>
 <%@ include file="/admin/common/footer.jsp" %>  
+    </div>

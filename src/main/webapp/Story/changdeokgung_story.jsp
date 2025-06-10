@@ -1,83 +1,108 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.List" %>
+<%@ page import="kr.co.gungon.story.StoryDTO" %>
+<%@ page import="kr.co.gungon.story.StoryService" %>
+
+<%
+    // 1. 선택한 궁 ID 받아오기 (기본은 경복궁 ID 1)
+    String gungIdStr = request.getParameter("gung_id");
+    int gungId = (gungIdStr != null && !gungIdStr.trim().isEmpty()) ? Integer.parseInt(gungIdStr) : 2;
+
+    // 2. 전각 목록 불러오기
+    StoryService storyService = new StoryService();
+    List<StoryDTO> storyList = storyService.getStoriesByGungId(gungId);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title><c:out value="${ site_name }"/></title>
-<c:import url="${ url }/common/jsp/external_file.jsp"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/gung/mainGung.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/Story/Story.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/gung/sideTab.css">
-<style>
-
-</style>
-
-<script type="text/javascript">
-$(function(){
-    $(".gung-btn").on("click", function(e){
+  <meta charset="UTF-8">
+  <title>전각 이야기</title>
+  <c:import url="/common/jsp/external_file.jsp"/>
+  <link rel="stylesheet" href="/common/css/common.css">
+  <link rel="stylesheet" href="../gung/mainGung.css">
+  <link rel="stylesheet" href="../Story/Story.css">
+  <link rel="stylesheet" href="../gung/sideTab.css">
+  <style>
+    .gung-button-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .gung-btn {
+      padding: 8px 14px;
+      border: 1px solid #007bff;
+      background-color: white;
+      color: #007bff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .gung-btn:hover {
+      background-color: #007bff;
+      color: white;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      $(".gung-btn").on("click", function(e){
         e.preventDefault();
         const palaceName = $(this).data("name");
 
         $.ajax({
-            url: "g_story.jsp",
-            type: "GET",
-            data: { name: palaceName },
-            success: function(response){
-                $("#gung-info").html(response);
-            },
-            error: function(){
-                $("#gung-info").html("<p>정보를 불러오는 데 실패했습니다.</p>");
-            }
+          url: "g_story.jsp",
+          type: "GET",
+          data: { name: palaceName },
+          success: function(response){
+            $("#gung-info").html(response);
+          },
+          error: function(){
+            $("#gung-info").html("<p>정보를 불러오는 데 실패했습니다.</p>");
+          }
         });
+      });
     });
-});
-</script>
-
+  </script>
 </head>
 <body>
 
 <header data-bs-theme="dark">
- <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
+  <jsp:include page="/common/jsp/header.jsp" />
 </header>
 
 <main>
-<div id="container">
+  <div id="container">
 
     <!-- ✅ 사이드탭 -->
     <div id="side-tab">
-        <jsp:include page="${pageContext.request.contextPath}/gung/sideTab.jsp" />
+      <jsp:include page="/gung/sideTab.jsp" />
     </div>
 
-<div class="gung-wrap">
-    <!-- ✅ 버튼 영역 -->
-    <div class="gung-button-wrap">
-        <button class="gung-btn" data-name="돈화문">돈화문</button>
-        <button class="gung-btn" data-name="금천교">금천교</button>
-        <button class="gung-btn" data-name="선원전">선원전</button>
-        <button class="gung-btn" data-name="선정전">선정전</button>
-        <button class="gung-btn" data-name="희정당">희정당</button>
-        <button class="gung-btn" data-name="대조전">대조전</button>
-        <button class="gung-btn" data-name="성정각">성정각</button>
-        <button class="gung-btn" data-name="낙선재">낙선재</button>
-        <button class="gung-btn" data-name="후원">후원</button>
-        <button class="gung-btn" data-name="궐내각사">궐내각사</button>
-    </div>
+    <div class="gung-wrap">
+      <!-- ✅ 전각 버튼 영역 -->
+      <div class="gung-button-wrap">
+        <% if (storyList != null && !storyList.isEmpty()) {
+             for (StoryDTO s : storyList) { %>
+               <button class="gung-btn" data-name="<%= s.getStory_name() %>"><%= s.getStory_name() %></button>
+        <%   }
+           } else { %>
+               <p>전각 정보가 없습니다.</p>
+        <% } %>
+      </div>
 
-    <!-- ✅ AJAX 결과 출력 영역 -->
-    <div id="gung-info" class="gung-info-box">
-        <!-- AJAX 로딩 시 궁 정보가 여기에 표시됩니다 -->
-        <p>원하는 궁 버튼을 선택해주세요.</p>
+      <!-- ✅ 전각 설명 AJAX 결과 영역 -->
+      <div id="gung-info" class="gung-info-box">
+        <p>전각 버튼을 클릭하면 정보가 출력됩니다.</p>
+      </div>
     </div>
-
-</div>
-</div>
+  </div>
 </main>
 
 <footer class="text-body-secondary py-5">
- <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
+  <jsp:include page="/common/jsp/footer.jsp" />
 </footer>
 
 </body>
