@@ -64,6 +64,46 @@ public class AdminDAO {
         }
     }
     
+ // 검색조건 없이 전체 회원 목록 조회용 메서드
+    public List<MemberDTO> getMemberList(int start, int end) throws SQLException {
+        DbConnection db = DbConnection.getInstance();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        List<MemberDTO> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM (" +
+                     "SELECT ROWNUM rnum, A.* FROM (" +
+                     "SELECT * FROM member ORDER BY member_reg_date DESC" +
+                     ") A" +
+                     ") WHERE rnum BETWEEN ? AND ?";
+
+        try {
+            conn = db.getDbConn();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, start);
+            pstmt.setInt(2, end);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                MemberDTO mDTO = new MemberDTO();
+                mDTO.setId(rs.getString("member_id"));
+                mDTO.setPass(rs.getString("member_pass"));
+                mDTO.setName(rs.getString("member_name"));
+                mDTO.setTel(rs.getString("member_tel"));
+                mDTO.setUseEmail(rs.getString("member_email"));
+                mDTO.setIp(rs.getString("member_ip"));
+                mDTO.setFlag(rs.getString("member_flag"));
+                mDTO.setInput_date(rs.getDate("member_reg_date"));
+                list.add(mDTO);
+            }
+        } finally {
+            db.dbClose(rs, pstmt, conn);
+        }
+
+        return list;
+    }
+    
     public int getMemberCount() {
         int count = 0;
         String sql = "SELECT COUNT(*) FROM member";
@@ -79,46 +119,97 @@ public class AdminDAO {
         return count;
     }
     
-    public List<MemberDTO> getMemberList(int start, int end) throws SQLException {
-    	
-    	DbConnection db = DbConnection.getInstance();
-		
-	    MemberDTO mDTO = null;
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-	    List<MemberDTO> list = new ArrayList<>();
-    	
-	    try {
-	    	conn = db.getDbConn();
-	    	
-	    	String sql = "SELECT * FROM (SELECT ROWNUM rnum, A.* FROM " +
-                     "(SELECT * FROM member ORDER BY member_reg_date DESC) A) " +
-                     "WHERE rnum BETWEEN ? AND ?";
-	    	
-	    	pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, start);
-            pstmt.setInt(2, end);
-            pstmt.executeQuery();
-            
+    //검색
+    public int getMemberCount(String keyfield, String keyword) throws SQLException {
+        DbConnection db = DbConnection.getInstance();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int count = 0;
+        
+        String sql = "SELECT COUNT(*) FROM member";
+        String condition = "";
+
+        if (keyword != null && !keyword.trim().equals("")) {
+            switch (keyfield) {
+                case "1": condition = " WHERE member_name LIKE ?"; break;
+                case "2": condition = " WHERE member_id LIKE ?"; break;
+                case "3": condition = " WHERE member_email LIKE ?"; break;
+            }
+        }
+
+        try {
+            conn = db.getDbConn();
+            pstmt = conn.prepareStatement(sql + condition);
+            if (!condition.isEmpty()) {
+                pstmt.setString(1, "%" + keyword + "%");
+            }
             rs = pstmt.executeQuery();
-            
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } finally {
+            db.dbClose(rs, pstmt, conn);
+        }
+
+        return count;
+    }
+    
+    public List<MemberDTO> getMemberList(String keyfield, String keyword, int start, int end) throws SQLException {
+        DbConnection db = DbConnection.getInstance();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        List<MemberDTO> list = new ArrayList<>();
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM (");
+        sql.append("SELECT ROWNUM rnum, A.* FROM (");
+        sql.append("SELECT * FROM member");
+
+        String condition = "";
+        if (keyword != null && !keyword.trim().equals("")) {
+            switch (keyfield) {
+                case "1": condition = " WHERE member_name LIKE ?"; break;
+                case "2": condition = " WHERE member_id LIKE ?"; break;
+                case "3": condition = " WHERE member_email LIKE ?"; break;
+            }
+        }
+
+        sql.append(condition);
+        sql.append(" ORDER BY member_reg_date DESC");
+        sql.append(") A) WHERE rnum BETWEEN ? AND ?");
+
+        try {
+            conn = db.getDbConn();
+            pstmt = conn.prepareStatement(sql.toString());
+
+            int idx = 1;
+            if (!condition.isEmpty()) {
+                pstmt.setString(idx++, "%" + keyword + "%");
+            }
+            pstmt.setInt(idx++, start);
+            pstmt.setInt(idx, end);
+
+            rs = pstmt.executeQuery();
             while (rs.next()) {
-            	mDTO = new MemberDTO();
-            	mDTO.setId(rs.getString("member_id"));
-            	mDTO.setPass(rs.getString("member_pass"));
-            	mDTO.setName(rs.getString("member_name"));
-            	mDTO.setTel(rs.getString("member_tel"));
-            	mDTO.setUseEmail(rs.getString("member_email"));
-            	mDTO.setIp(rs.getString("member_ip"));
-            	mDTO.setFlag(rs.getString("member_flag"));
-            	mDTO.setInput_date(rs.getDate("member_reg_date"));
+                MemberDTO mDTO = new MemberDTO();
+                mDTO.setId(rs.getString("member_id"));
+                mDTO.setPass(rs.getString("member_pass"));
+                mDTO.setName(rs.getString("member_name"));
+                mDTO.setTel(rs.getString("member_tel"));
+                mDTO.setUseEmail(rs.getString("member_email"));
+                mDTO.setIp(rs.getString("member_ip"));
+                mDTO.setFlag(rs.getString("member_flag"));
+                mDTO.setInput_date(rs.getDate("member_reg_date"));
                 list.add(mDTO);
             }
         } finally {
             db.dbClose(rs, pstmt, conn);
         }
+
         return list;
     }
+    
     
 }

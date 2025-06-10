@@ -16,7 +16,7 @@
             <hr/>
 
             <!-- 여기부터 콘텐츠 영역 -->
-            <jsp:include page="${pageContext.request.contextPath}/dashboard/dashboard.jsp" />
+            <jsp:include page="/dashboard/dashboard.jsp" />
         </div>
     </main>
 <%@ include file="/admin/common/footer.jsp" %>
