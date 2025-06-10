@@ -46,6 +46,25 @@
         // 특정 조건에 따라 action을 변경하는 함수
         function writeProcess() {
 		    var $form = $("#summerNoteFrm"); // jQuery로 폼 선택
+		    
+		    var title = $("#title").val().trim(); // 제목 입력값
+
+		    // 제목이 비었거나 공백만 있으면
+		    if (title === "") {
+		        alert("제목은 필수입력입니다.");
+		        return; // 유효성 검사 실패 시 함수 종료
+		    }
+
+		    var content = $("#summernote").summernote('code').trim();  // summernote에서 HTML 코드 가져오기
+
+			 // HTML 코드에서 실제 텍스트만 추출 (공백/특수문자 제거)
+			 var plainText = $("<div>").html(content).text().trim();  // 텍스트 추출 후 trim()
+	
+			 // 비어있는지 체크
+			 if (plainText === '' || content === '<p><br></p>' || content === '&lt;p&gt;&lt;br&gt;&lt;/p&gt;') {
+			     alert("내용은 필수입력입니다.");
+			     return;
+			 }
 		
 		    if ($form.length > 0) {
 		        // 사용자 확인 다이얼로그

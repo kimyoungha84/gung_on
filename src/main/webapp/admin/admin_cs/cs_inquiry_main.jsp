@@ -234,6 +234,12 @@
 		table#datatablesSimple th {
    		 	vertical-align: middle !important;
   		}
+  		
+  		.card-body{
+  		
+  		min-width: 1600px; 
+  		
+  		}
 		
 
 		</style>
@@ -292,6 +298,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	    const inquiryNumList = Array.from(checkedBoxes).map(cb => {
 	      return cb.closest("tr").children[1].textContent.trim(); // 두 번째 칸이 번호
 	    });
+	    
+	    const confirmDelete = confirm(`선택한 1:1문의를 삭제하시겠습니까?`);
+	    if (!confirmDelete) return;
 
 	    console.log("삭제할 inquiry_num 목록:", inquiryNumList);
 	    

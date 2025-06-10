@@ -123,7 +123,7 @@ if (numStr != null && !numStr.isEmpty()) {
     font-size: 14px;
   }
 
-  .answer-area button {
+  /* .answer-area button {
     margin-top: 10px;
     padding: 8px 16px;
     font-size: 14px;
@@ -132,11 +132,11 @@ if (numStr != null && !numStr.isEmpty()) {
     color: white;
     border-radius: 6px;
     cursor: pointer;
-  }
+  } */
 
-  .answer-area button:hover {
+  /* .answer-area button:hover {
     background-color: #0056b3;
-  }
+  } */
 </style>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -158,7 +158,7 @@ if (numStr != null && !numStr.isEmpty()) {
               // 텍스트 영역이 비어있는지 체크
               if (answerContent === "") {
                 // 비어있으면 경고창 띄우기
-                alert("답변을 입력해 주세요.");
+                alert("답변은 필수입력입니다.");
               } else {
                 // 비어 있지 않으면 폼 제출 (이 부분은 필요에 따라 수정 가능)
                 $('#answerFrm').submit(); // 폼을 전송하려면 주석을 제거하고 사용
@@ -170,6 +170,11 @@ if (numStr != null && !numStr.isEmpty()) {
               checkAnswerValidation();
             });
           });
+        
+        
+        function moveToMain() {
+            window.location.href = "cs_inquiry_main.jsp";  
+        }
       
         
 
@@ -214,7 +219,8 @@ if (numStr != null && !numStr.isEmpty()) {
     <label for="answerText"><strong>답변</strong></label>
     <textarea id="answerText" placeholder="답변을 입력하세요..." name="answer_content">${ iDTO.inquiry_answer }</textarea>
     <input type="hidden" name="num" value="${param.num}"/>
-    <button type="button" id="saveBtn">답변 저장</button>
+    <button type="button" id="saveBtn" class="btn btn-info mt-3">답변 저장</button>
+    <button type="button" id="cancleBtn" class="btn btn-secondary mt-3" onclick="moveToMain()">취소</button>
   </form>
   </div>
 </div>
@@ -225,7 +231,7 @@ if (numStr != null && !numStr.isEmpty()) {
 </div>              
                             
                 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="cs_common/simple-datatables.js"></script>
         <script src="cs_common/datatables-simple-demo.js"></script>
