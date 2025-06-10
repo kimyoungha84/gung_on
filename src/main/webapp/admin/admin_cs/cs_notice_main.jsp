@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	    // query string 구성
 	    let queryParams = [];
-	    queryParams.push("currentpage="${pageContext.request.contextPath} + currentPage);
+	    queryParams.push("currentPage=" + currentPage);
 
 	    if (searchText) {
 	        queryParams.push("searchText=" + encodeURIComponent(searchText));
@@ -331,8 +331,8 @@ $(document).ready(function() {
 <%@ include file="/admin/common/header.jsp" %>
 <%@ include file="/admin/common/sidebar.jsp" %>
 
-<div id="layoutSidenav_content">
     <main>
+<div id="layoutSidenav_content">
         <div class="container-fluid px-4">
             <h2 class="mt-4">고객센터 관리</h2>
             <hr/>
@@ -424,18 +424,17 @@ $(document).ready(function() {
 
 </div>
 
-</div>
 
+</div>
     
     
     
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     
-
-
+</div>
+<%@ include file="/admin/common/footer.jsp" %>
   </div>
   </main>
-<%@ include file="/admin/common/footer.jsp" %>
 		
     
     

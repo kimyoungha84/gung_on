@@ -68,7 +68,7 @@ if (numStr != null && !numStr.isEmpty()) {
 	}
   
 </script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/cs/cs_notice.css" />
+<link rel="stylesheet" type="text/css" href="/Gung_On/cs/cs_notice.css" />
 
   <style>
    /* .background-image {
@@ -126,7 +126,7 @@ if (numStr != null && !numStr.isEmpty()) {
 
 <body>
   <!-- 배경 이미지 -->
-  <img class="background-image" src="${pageContext.request.contextPath}/common/images/cs/궁온.png" alt="배경 이미지">
+  <img class="background-image" src="/Gung_On/common/images/cs/궁온.png" alt="배경 이미지">
 
   <div class="board_detail_wrap bd_wrap">
     <h2 style="font-size: 35px; font-weight: bold; margin-bottom: 30px;">

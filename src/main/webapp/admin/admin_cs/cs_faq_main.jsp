@@ -1,3 +1,4 @@
+<%@page import="kotlin.reflect.jvm.internal.impl.types.model.TypeSystemOptimizationContext"%>
 <%@page import="kr.co.gungon.cs.FaqDTO"%>
 <%@page import="kr.co.gungon.pagination.PaginationBuilder"%>
 <%@page import="kr.co.gungon.cs.CsService"%>
@@ -94,7 +95,6 @@
 
     // 페이지네이션 HTML 생성
     String paginationHtml = paginationBuilder.build(request.getRequestURI(), extraParams.toString());
-
     int currentPage = paginationBuilder.getCurrentPage();
     int startNum = (currentPage - 1) * pageSize + 1;
     int endNum = currentPage * pageSize;
@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	    // query string 구성
 	    let queryParams = [];
-	    queryParams.push("currentpage="${pageContext.request.contextPath} + currentPage);
+	    queryParams.push("currentPage=" + currentPage);
 
 	    if (searchText) {
 	        queryParams.push("searchText=" + encodeURIComponent(searchText));
@@ -338,8 +338,8 @@ $(document).ready(function() {
 <%@ include file="/admin/common/header.jsp" %>
 <%@ include file="/admin/common/sidebar.jsp" %>
 
-<div id="layoutSidenav_content">
     <main>
+<div id="layoutSidenav_content">
         <div class="container-fluid px-4">
             <h2 class="mt-4">고객센터 관리</h2>
             <hr/>
@@ -460,8 +460,7 @@ $(document).ready(function() {
     
     
     
-
-   
+   </div>
                             
                                
                 
@@ -472,9 +471,9 @@ $(document).ready(function() {
         <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script> -->
     
             <!-- 또는 직접 작성해도 됨 -->
+<%@ include file="/admin/common/footer.jsp" %>
         </div>
     </main>
-<%@ include file="/admin/common/footer.jsp" %>
 
 
 		

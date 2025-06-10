@@ -21,14 +21,14 @@ if (flag) {
 %>
 <script>
     alert('문의 등록에 성공했습니다.');
-    window.location.href = 'cs_faq_main.jsp';
+    window.location.href = 'myinquiry.jsp';
 </script>
 <%
 } else {
 %>
 <script>
     alert('문의 등록에 실패했습니다. 다시 시도해주세요.');
-    window.location.href = 'cs_faq_main.jsp';
+    window.location.href = 'myinquiry.jsp';
 </script>
 <%
 }

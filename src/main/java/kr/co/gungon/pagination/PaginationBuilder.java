@@ -49,7 +49,7 @@ public class PaginationBuilder {
         // 중간 페이지들
         for (int i = startPage; i <= endPage; i++) {
             sb.append("<li class='page-item " + (i == currentPage ? "active" : "") + "'>");
-            sb.append("<a class='page-link' href='" + baseUrl + "?currentpage=" + i + extra + "'>" + i + "</a></li>");
+            sb.append("<a class='page-link' href='" + baseUrl + "?currentPage=" + i + extra + "'>" + i + "</a></li>");
         }
 
         // 다음 페이지
@@ -65,7 +65,7 @@ public class PaginationBuilder {
 
     private String buildPageItem(String label, int page, boolean disabled, String baseUrl, String extra) {
         return "<li class='page-item " + (disabled ? "disabled" : "") + "'>" +
-               "<a class='page-link' href='" + (disabled ? "#" : baseUrl + "?currentpage=" + page + extra) + "'>" +
+               "<a class='page-link' href='" + (disabled ? "#" : baseUrl + "?currentPage=" + page + extra) + "'>" +
                label + "</a></li>";
     }
 
