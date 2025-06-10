@@ -53,7 +53,7 @@
         const palaceName = $(this).data("name");
 
         $.ajax({
-          url: "g_story.jsp",
+        	url: "<%= request.getContextPath() %>/Story/g_story.jsp",
           type: "GET",
           data: { name: palaceName },
           success: function(response){
