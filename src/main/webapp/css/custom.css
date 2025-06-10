@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+/* 검색어를 입력하세요 */
+
+
+
+input[type="search"]{
+	width: 200px;/* 칸 길이 */
+	height: 30px;/* 칸 높이 */
+	text-align: left;
+}
+
+ul,ol,li{
+	list-style:none;
+	padding-left: 0px;
+}

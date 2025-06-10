@@ -30,7 +30,7 @@
 
   <!-- 상단 메뉴 등 -->
   
-  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
+  <jsp:include page="/common/jsp/header.jsp" />
 
 
   <!-- 본문: 캐러셀 포함 -->
@@ -42,20 +42,20 @@
 	</div>
 
     <div> 
-    <jsp:include page="${pageContext.request.contextPath}/mainpage/banner.jsp"/>
+    <jsp:include page="/mainpage/banner.jsp"/>
     </div>
     
     <div class= "${pageContext.request.contextPath}/mainpage/banner2-main">
-	<jsp:include page="${pageContext.request.contextPath}/mainpage/banner2.jsp"/>
+	<jsp:include page="/mainpage/banner2.jsp"/>
     </div>
     
     <div style="padding-left: 300px; padding-right: 300px">
-    <jsp:include page="${pageContext.request.contextPath}/mainpage/mainboard.jsp" />
+    <jsp:include page="/mainpage/mainboard.jsp" />
     </div>
   </main>
 
   <!-- 푸터 -->
-   <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp"/>
+   <jsp:include page="/common/jsp/footer.jsp"/>
 <!-- <div> 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/mike-zuidgeest" title="Mike Zuidgeest"> Mike Zuidgeest </a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com'</a></div> -->
 </body>
 </html>
