@@ -9,10 +9,8 @@ request.setCharacterEncoding("UTF-8");
 NoticeDTO nDTO = new NoticeDTO();
 nDTO.setNotice_title(request.getParameter("title")); 
 
-System.out.println(request.getParameter("title"));
 nDTO.setNotice_content(request.getParameter("content"));
 
-System.out.println(request.getParameter("content"));
 
 CsService css = new CsService();
 boolean flag = css.addNotice(nDTO);

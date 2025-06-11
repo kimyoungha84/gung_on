@@ -151,7 +151,6 @@ if (numStr != null && !numStr.isEmpty()) {
      <%@ include file="summernoteExample.jsp" %>
     <button type="button" id="writeBtn" class="btn btn-primary" onclick="modifyProcess()">수정</button>
     <button type="button" class="btn btn-info" onclick="previewFaq()">미리보기</button>
-    <button type="button" class="btn btn-secondary" onclick="viewSource()">소스보기(테스트용)</button>
     <button type="button" class="btn btn-secondary" onclick="moveToMain()">뒤로가기</button>
     
      

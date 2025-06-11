@@ -14,7 +14,7 @@
 
 
 <%
-	/* session.setAttribute("admin_id", "admin"); */
+	/* session.setAttribute("admin_id", "admin"); */ 
     request.setCharacterEncoding("UTF-8");
 
     FilteringInfo fi = new FilteringInfo();

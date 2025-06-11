@@ -27,7 +27,6 @@ iDTO.setInquiry_answerDate(now);
 
 CsService css = new CsService();
 boolean flag = css.modifyInquiry(iDTO);
-System.out.println("ii : " + iDTO);
 
 if (flag) {
 %>

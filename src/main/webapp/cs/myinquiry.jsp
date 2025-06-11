@@ -13,11 +13,11 @@
 
 <% request.setCharacterEncoding("UTF-8"); 
    request.setAttribute("currentMenu", "inquiry");
-   MemberDTO mDTO = new MemberDTO();
    
    
    // 테스트용 지워야함
-   /* mDTO.setId("유저1");
+   /* MemberDTO mDTO = new MemberDTO();
+   mDTO.setId("유저1");
    session.setAttribute("userData", mDTO); */
    ///////////////////////////////////////////////
 %>
