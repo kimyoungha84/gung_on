@@ -67,7 +67,7 @@
 <br><br>
 
     <div class="btnGroup">
-        <input type="button" style="margin-left:550px;" value="확인" class="check">
+        <input type="button" style="margin-left:550px;" value="확인"  class="check" onclick="location.replace('/program/programInfo/programInfo.jsp')">
         
     </div>
 

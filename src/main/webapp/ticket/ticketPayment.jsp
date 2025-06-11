@@ -74,7 +74,7 @@
 	       
 	    </div>
     </form>
-     		<input type="button" id="cancleCalc"  value="취소" class="cancel" onclick="location.replace('/program/programInfo/programInfo.jsp')">
+     		<input type="button" id="cancleCalc"  value="취소" class="cancel">
 	</div>
 	<br><br>
 	<div class="infoText">

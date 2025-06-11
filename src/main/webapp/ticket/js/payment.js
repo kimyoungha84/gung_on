@@ -146,7 +146,7 @@ $(function(){
 	
 	/*취소버튼 클릭*/
 	$("#cancleCalc").click(function(){
-		window.location.href="/ticket/ticketAdmin/ticketProcess/ticket_frm.jsp";
+		location.replace('/ticket/ticket_frm.jsp');
 	});//click
 	
 });//ready
