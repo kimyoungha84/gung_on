@@ -162,7 +162,7 @@ function redirectToLoginPage() {
 			        <tr>
 			            <td colspan="3" style="text-align:center; padding:20px; font-size:24px; font-weight:bold;">
 			                <div style="display: flex; justify-content: center; align-items: center; height: 200px; font-size:24px; font-weight:bold;">
-			                    문의 내용이 존재하지 않습니다.
+			                    문의 내역이 존재하지 않습니다.
 			                </div>
 			            </td>
 			        </tr>

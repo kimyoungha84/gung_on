@@ -28,7 +28,7 @@ if (numStr != null && !numStr.isEmpty()) {
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>공지사항 미리보기</title>
+  <title>FAQ 미리보기</title>
 
   <!-- CSS 포함 (원래 사이트 스타일 유지) -->
   <link rel="stylesheet" type="text/css" href="../royal_css/common.css" />

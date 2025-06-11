@@ -34,6 +34,7 @@
 
 	    var $textarea = $('#inquiry_textarea');
 	    var $counter = $('#char_counter');
+	    var $submitBtn = $('#registerBtn');
 
 	    function updateCounter(val) {
 	        var len = val.length;
@@ -62,6 +63,16 @@
 
 	        updateCounter(val);
 	    });
+	    
+	    $submitBtn.on('click', function (e) {
+	        var val = $textarea.val().trim();
+
+	        if (val === '') {
+	          alert('문의 내용을 입력해주세요.');
+	          $textarea.focus();
+	          e.preventDefault(); // form 제출 방지
+	        }
+	      });
 	});
 
 </script>

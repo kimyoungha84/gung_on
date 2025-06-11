@@ -50,9 +50,9 @@
 
   
   <form method="post" id="summerNoteFrm">
-    제목: <input type="text" name="title" id="title" placeholder="제목을 입력하세요" class="form-control mb-3"><br>
+    제목 <input type="text" name="title" id="title" placeholder="제목을 입력하세요" class="form-control mb-3"><br>
 
-    내용:
+    내용
     <textarea id="summernote" name="content"></textarea><br>
     <input type="hidden" name="num" value="${ param.num }">
 
