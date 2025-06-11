@@ -8,6 +8,7 @@
 
 <%
 String bookingNum=request.getParameter("bookingNum");
+
 session.setAttribute("bookingNum", bookingNum);
 
 AdminTicketService ats=new AdminTicketService();
@@ -26,5 +27,6 @@ pageContext.setAttribute("person", person);
 
 String paymentStr= ats.changeCosttoStr(adminDTO.getPayment());
 pageContext.setAttribute("paymentStr", paymentStr);
+
 
 %>

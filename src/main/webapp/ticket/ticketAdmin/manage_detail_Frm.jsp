@@ -1,21 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../config/site_config.jsp"%>
-<%@ include file="adminProcess/ticket_manage_detail_process.jsp" %>
+<%@ include file="/ticket/ticketAdmin/adminProcess/ticket_manage_detail_process.jsp" %>
 <%@ include file="/admin/common/header.jsp" %>
 <%@ include file="/admin/common/sidebar.jsp" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
 <!-- favicon 설정 -->
 <link rel="icon shortcut"  href="/common/images/cs/gungOnFavicon.ico"/>
+
+
+
 <link href="css/ticket_manage_detail_css.css" rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- 부트스트랩  CDN -->    
-<!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
+
+<style>
+.custom-table {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 14px;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 6px 12px;
+  vertical-align: middle;
+}
+
+</style>
+
 
 <script type="text/javascript">
 
@@ -36,18 +54,17 @@
 
 <div class="" id="tab1" role="tabpanel">
 
-<span class="titlep" style="font-weight:bold; font-size:35px">예매 정보 상세</span>
 </div>
 
 <div>
-<span style="font-weight:bold; font-size:25px">예매 번호</span><span style="font-size:20px;margin-left:10px;"><c:out value="${adminDTO.getBooking_num() }"/></span><span style="font-weight:bold; font-size:25px; margin-left:20px;"> 결제일</span><span style="font-size:20px;margin-left:10px"><c:out value="${adminDTO.getPaymentTimeStamp() }"/></span>
-<input type="hidden" class="bookingNum" value="${adminDTO.getBooking_num() }"/>
+<span style="font-weight:bold; font-size:16px">예매 번호</span><span style="font-size:20px;margin-left:10px;"><c:out value="${adminDTO.getBooking_num() }"/></span><span style="font-weight:bold; font-size:25px; margin-left:20px;"> 결제일</span><span style="font-size:20px;margin-left:10px"><c:out value="${adminDTO.getPaymentTimeStamp() }"/></span>
+<input type="hidden" class="bookingNum" value="<%-- ${adminDTO.getBooking_num() } --%>"/>
 </div>
 
 <div class="entireWrap">
     <br>
-    	<table class="table-bordered" style="font-size: 20px; text-align: center; border: 1px solid #9398A2; width:1200px">
-    	<thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
+    	<table class="table table-bordered table-hover text-center custom-table">
+    	<thead class="table-light">
     		<tr style="background:#ECECEC">
 	    		<th>행사 이름</th>
 	    		<th>행사 시간</th>
@@ -56,7 +73,7 @@
 	    		<th>결제 금액</th>
     		</tr>
     	</thead>
-    	<tbody class="border-start border-end" style="height:90px">
+    	<tbody>
     	<tr >
 	    	<td>${programName }</td>
 	    	<td>${adminDTO.getReserve_date()} ${startTime}</td>
@@ -71,16 +88,16 @@
     	
     	<br>
     	
-        <table class="table-bordered" style=" font-size: 20px; text-align: center; border: 1px solid #9398A2; width:1200px ">
-	    <thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
-        <tr style="background:#ECECEC">
+      <table class="table table-bordered table-hover text-center custom-table">
+	    <thead class="table-light">
+        <tr>
         	<th></th>
             <th  style="height:80px;">연령구분</th>
             <th style="height:80px;">입장시간</th>
             <th style="height:80px;">입장 여부</th>
         </tr>
    	 	</thead>
-    	<tbody class="border-start border-end" style="height:90px">
+    	<tbody>
     		<%int cnt=1; %>
 	    	<c:forEach var="tDetailDTO" items="${adminDTO.getCompanies()}" varStatus="i">
 				<tr>
@@ -103,7 +120,7 @@
 </div> <!--entireWrap --> 
 </div> <!-- container-fluid -->
 </main>
-</div><!-- layoutSidenav_content -->
 
+</div>
 </body>
 </html>

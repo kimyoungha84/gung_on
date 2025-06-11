@@ -30,34 +30,18 @@
 $(function(){
 
    $(".wrapTableBody").click(function(){
+      $("#bookingNum").val($(this).attr("id"));
       
-      var id=$(this).attr("id");
-      var param="bookingNum="+id;
+      $("#tableFrm").submit();
     
-      $.ajax({
          
-         url:"/ticket/ticketAdmin/manage_detail_Frm.jsp",
-         type:"GET",
-         data : param,
-         
-         dataType: "html",
-         error : function(xhr){
-            
-            alert(xhr.status);
-         },//error
-         success:function(data){
-            
-            $(".entireWrap").html(data);
-         }//success
-         
-      });//ajax
+   });//click
    
-   });//click   
    
    $(".datatable-bottom").click(function(){
       
    });
-   
+
    
 });//ready
 
@@ -85,9 +69,11 @@ $(function(){
 
 
 <div class="">
-<table class="table-bordered table-hover" style="font-size: 20px; text-align: center; border: 1px solid #9398A2; padding:20px; width:100%">
-    <thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
-        <tr style="background:#ECECEC;">
+ <form action="manage_detail_Frm.jsp" id="tableFrm" method="post">
+ <input type="hidden" id="bookingNum" name="bookingNum" value=""/>
+<table class="table table-bordered table-hover text-center">
+   <thead class="table-light">
+        <tr>
             <th>번호</th>
             <th>예매번호</th>
             <th>이름</th>
@@ -97,9 +83,10 @@ $(function(){
             <th>해설 선택 여부</th>
         </tr>
     </thead>
-    <tbody class="border-start border-end" style="height:90px">
+    <tbody class="border-start border-end">
        <%int cnt=startNum; %>
        <c:forEach var="adminTicketDTO" items="${ pageList }" varStatus="i">
+      
          <tr class="wrapTableBody" id="${ adminTicketDTO.booking_num }">
             <td><c:out value="<%=cnt%>"/></td>
             <td><c:out value="${ adminTicketDTO.booking_num }"/></td>
@@ -110,12 +97,14 @@ $(function(){
             <td><c:out value="${ adminTicketDTO.comment_flag }"/></td>
          </tr>
          <% cnt++;%>
+    
          
       </c:forEach>
       
       
     </tbody>
 </table>
+   </form>
       <%//페이지네이션 HTML 생성
       String paginationHtml = paginationBuilder.build(request.getRequestURI());
       %>
