@@ -33,9 +33,11 @@ $(function(){
 				}
 				else if(result != "yes"){
 					alert("알맞지 않은 핸드폰 번호 입니다.\n다시 입력해주세요.");
+					$("#authenPhoneNum").val("");//핸드폰 번호창 지워주기
 				}else{
 				$("#authenBtn").css("display","none");
 				$("#authenPhoneNum").attr("readonly",true);//핸드폰 번호 창은 더 못건드리게.....
+				$("#authenPhoneNum").css("background","#ECECEC");
 				$(".authChk").css("display","block");
 				
 				}//end if~else
@@ -74,14 +76,20 @@ $(function(){
 				
 				
 				else if(result != "yes"){
-					alert("인증번호가 다릅니다.\n다시 확인해 주세요.");
+					alert("인증번호가 다릅니다.\n휴대폰 번호부터 다시 입력해주세요.");
 										
 					//전화번호 입력창이랑
 					//인증 버튼 다시 뜨게끔 만들어줘야 함.
 					$("#authenBtn").css("display","block");
 					$("#checkNum").css("display","none");
+					$("#checkNum").val("");
 					$("#checkBtn").css("display","none");
+					
+					
+					$("#authenPhoneNum").val("");//핸드폰 번호창 지워주기
 					$("#authenPhoneNum").attr("readonly",false);//핸드폰 번호 창, 다시 쓸 수 있게 열어줘야해
+					$("#authenPhoneNum").css("background","#FFFFFF");
+					
 					
 				}else{
 					//alert("인증완료 되었습니다.");
@@ -112,8 +120,8 @@ $(function(){
 	/*인증이 완료되면 DB로 보냅시다아.*/	
 	$("#moneyCalc").click(function(){
 		var param="phoneNum="+$("#hidPhoneNum").val();
-		debugger;
-		alert("hidePhoneNum" +$("#hidPhoneNum").val());
+		//debugger;
+		//alert("hidePhoneNum" +$("#hidPhoneNum").val());
 		
 		if(testStrangeFlag){
 			alert("해당 네트워크에서 접근 20번을 초과했습니다.\n관리자에게 문의해주세요 ㅇㅅㅇ");

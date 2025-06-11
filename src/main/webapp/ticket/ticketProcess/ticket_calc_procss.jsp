@@ -14,14 +14,14 @@
 request.setCharacterEncoding("UTF-8");
 String phoneNum=request.getParameter("phoneNum");//인증된 전화번호
 pageContext.setAttribute("phoneNum", phoneNum);
-System.out.println("phoneNum-----calc-----"+phoneNum);
+//System.out.println("phoneNum-----calc-----"+phoneNum);
 
 
 TicketDTO tDTO=(TicketDTO)session.getAttribute("ticketDTO");
 TicketService tservice=new TicketService();
 
 
-System.out.println("ticket_calc_process.jsp session---------"+tDTO);
+//System.out.println("ticket_calc_process.jsp session---------"+tDTO);
 
 
 //1.예매번호 생성
@@ -35,7 +35,7 @@ String paymentTimeStamp=tservice.makePaymentTimeStamp();
 //tDTO에 넣기
 //예매번호, 전화번호, 결제 일자
 tDTO.setBookingNum(bookingNum);
-tDTO.setPhoneNum(phoneNum);
+tDTO.setPhoneNum(tservice.replacedphoneNum(phoneNum));
 tDTO.setPaymentTimeStamp(paymentTimeStamp);
 
 

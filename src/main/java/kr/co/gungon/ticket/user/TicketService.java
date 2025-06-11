@@ -150,6 +150,14 @@ public class TicketService {
 
 		return flag;
 	}// checkPhoneNum
+	
+	//만약 010-1234-1234 형태일 경우, 그걸 반환해주자 .... ㅎ.... 이걸 지금봤네...
+	public String replacedphoneNum(String phoneNum) {
+		String phoneNumberStr=phoneNum.replace("-", "");
+		
+		return phoneNumberStr;
+	}//replacedphoneNum
+	
 
 	/* 6자리 렌덤값 생성해서 사용자 폰 번호로 전송 */
 	public String makeRandomNum(String phoneNum, String sessionId, TicketDTO ticketDTO) {
