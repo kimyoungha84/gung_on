@@ -29,6 +29,7 @@
 %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/custom.css">
+
 <div id="layoutSidenav_content">
 
 <script type="text/javascript">
@@ -50,6 +51,7 @@ $(function(){
             data: form_data,
             dataType: 'json',
             success: function(param){
+                console.log('param 전체:', param);
                 $('#member-data').empty();
                 $('#pagination-area').empty();
 
@@ -57,20 +59,23 @@ $(function(){
                     $('#member-data').html('<tr><td colspan="6" style="text-align:center;">존재하지 않는 회원입니다.</td></tr>');
                 } else {
                     let output = '';
-                    $(param.list).each(function(index, item){
-                        let flagText = item.flag === 'Y' ? '탈퇴' : '정상';
-                        let rowStyle = item.flag === 'Y' ? 'style="color:gray; cursor:default;"' : 'style="cursor:pointer;"';
-                        let clickable = item.flag === 'Y' ? '' : `onclick="location.href='memberDetail.jsp?id=${item.id}'"`;
+                    $(param.list).each(function(index, item) {
+                        const flagText = item.flag === 'Y' ? '탈퇴' : '정상';
+                        const rowStyle = item.flag === 'Y' ? 'style="color:gray; cursor:default;"' : 'style="cursor:pointer;"';
+                        const clickable = item.flag === 'Y' ? '' : 'onclick="location.href=\'memberDetail.jsp?id=' + item.id + '\'"';
 
-                        output += `<tr ${rowStyle} ${clickable}>`;
-                        output += `<td>${item.name}</td>`;
-                        output += `<td>${item.id}</td>`;
-                        output += `<td>${item.tel}</td>`;
-                        output += `<td>${item.useEmail}</td>`;
-                        output += `<td>${item.input_date}</td>`;
-                        output += `<td>${flagText}</td>`;
-                        output += `</tr>`;
+                        let row = '<tr ' + rowStyle + ' ' + clickable + '>';
+                        row += '<td>' + (item.name || '-') + '</td>';
+                        row += '<td>' + (item.id || '-') + '</td>';
+                        row += '<td>' + (item.tel || '-') + '</td>';
+                        row += '<td>' + (item.useEmail || '-') + '</td>';
+                        row += '<td>' + (item.input_date || '-') + '</td>';
+                        row += '<td>' + flagText + '</td>';
+                        row += '</tr>';
+
+                        output += row;
                     });
+
                     $('#member-data').html(output);
                     $('#pagination-area').html(param.page);
                 }
@@ -93,8 +98,8 @@ $(function(){
         <h2>회원 목록</h2>
         <div class="main-search">
 				<!-- 검색 시작 -->
-				<form id="mem_search_form" method="get" action="memberList.jsp">
-					<div class="main-search">
+				<form id="mem_search_form" method="get" >
+					<div class="mem-search">
 						<ul class="search">
 							<li>
 								<select name="keyfield" style="height: 30px;">
@@ -155,7 +160,8 @@ $(function(){
         </div><!-- card-body end -->
         </div><!-- card m-3 end -->
     </main>
-
+<script src="${pageContext.request.contextPath}/member/member_js/scripts.js"></script>
+<script src="${pageContext.request.contextPath}/member/member_js/datatables-simple-demo.js"></script>
 <%@ include file="/admin/common/footer.jsp" %>
 
 <script>
