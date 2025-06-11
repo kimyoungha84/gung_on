@@ -10,12 +10,8 @@
 <html>
 <head>
 <!-- favicon 설정 -->
-<link rel="icon shortcut"  href="http://${defaultIP}${pageContext.request.contextPath}/common/images/cs/gungOnFavicon.ico"/>
+<link rel="icon shortcut"  href="/common/images/cs/gungOnFavicon.ico"/>
 <link href="css/ticket_manage_detail_css.css" rel="stylesheet">
-
-
-<meta charset="UTF-8">
-<title>상세 예매 관리</title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- 부트스트랩  CDN -->    
@@ -24,26 +20,22 @@
 <script type="text/javascript">
 
 
-$(function(){
-	history.pushState({ page: 'manage_detail_Frm' }, '', 'http://localhost${pageContext.request.contextPath}/ticket/ticketAdmin/manage_detail_Frm.jsp');
-	
-	window.addEventListener('popstate',function(event){
-		//alert("여기여기");
-		history.back();
-	});
-});//ready
+
 
 
 </script>
-
-</head>
-<body>
-<div class="entireWrap" >
-
+<div id="layoutSidenav_content">
+<main>
+  <div class="container-fluid px-4">
+           <h2 class="mt-4">예매 정보 상세</h2>
+           <hr/>
+<!-- <div class="entireWrap" > -->
+<div class="card m-3 entireWrap"><!-- card m-3 start -->
+<div class="card-body"><!-- card-body start -->
+<h2>예매 목록</h2>
 
 <div class="" id="tab1" role="tabpanel">
 
-<img src="${pageContext.request.contextPath}/common/images/mainpage/header_icon.png" style="/* width: 120px; height: 100px; */  margin-right: 10px; ">
 <span class="titlep" style="font-weight:bold; font-size:35px">예매 정보 상세</span>
 </div>
 
@@ -104,14 +96,14 @@ $(function(){
 			</table>
 		
 
-
+</div>
 </div>
 <br><br>
 <%@ include file="/admin/common/footer.jsp" %>
-</div><!--entireWrap -->
-    
-
-
+</div> <!--entireWrap --> 
+</div> <!-- container-fluid -->
+</main>
+</div><!-- layoutSidenav_content -->
 
 </body>
 </html>

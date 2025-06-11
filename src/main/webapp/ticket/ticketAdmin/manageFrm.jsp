@@ -28,14 +28,12 @@
 
 <script type="text/javascript">
 $(function(){
-   //history.pushState({ page: 'manageFrm' }, '', 'http://localhost/ticket/ticketAdmin/manageFrm.jsp');
 
    $(".wrapTableBody").click(function(){
       
       var id=$(this).attr("id");
       var param="bookingNum="+id;
-      //debugger;
-      //window.location.href="http://localhost/ticket/ticketAdmin/manage_detail_Frm.jsp?bookingNum="+id;
+    
       $.ajax({
          
          url:"/ticket/ticketAdmin/manage_detail_Frm.jsp",
@@ -72,24 +70,22 @@ $(function(){
            <hr/>
 <!-- <div class="entireWrap" style="margin-left:300px; margin-top:100px"> -->
 
-<br><br>
-<div class="card m-3"><!-- card m-3 start -->
+<div class="card m-3 entireWrap"><!-- card m-3 start -->
 <div class="card-body"><!-- card-body start -->
 <h2>예매 목록</h2>
+<br>
 <div class="">
 <form method="POST" id="">
 <input type="date" id="date" style="margin-left:10px;" name="date" value=""/><span style="font-weight: bold;"></span>
 <input class="" placeholder="입력해주세요" type="search" style="margin-left:100px;" title="wow" />
 <input type="button" id="btn" value="검색" class=""/>
-    
 </form>
-
 </div>
-<br><br>
+<br>
 
 
 <div class="">
-<table class="table-bordered table-hover" style="font-size: 20px; text-align: center; border: 1px solid #9398A2; padding:20px; width:1200px">
+<table class="table-bordered table-hover" style="font-size: 20px; text-align: center; border: 1px solid #9398A2; padding:20px; width:100%">
     <thead class="border-start border-end border border-2" style="height:50px ; border: #9398A2; ">
         <tr style="background:#ECECEC;">
             <th>번호</th>

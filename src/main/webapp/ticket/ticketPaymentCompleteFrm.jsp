@@ -14,7 +14,7 @@
 <link rel="icon shortcut"  href="/common/images/cs/gungOnFavicon.ico"/>
 
 <title>결제완료</title>
-<c:import url="/common/jsp/header.jsp"/>	
+<%-- <c:import url="/common/jsp/header.jsp"/>	 --%>
 
 
 <!-- 부트스트랩  CDN -->    
