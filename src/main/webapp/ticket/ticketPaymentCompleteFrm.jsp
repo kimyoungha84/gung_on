@@ -70,10 +70,8 @@
         <input type="button" style="margin-left:550px;" value="확인" class="check">
         
     </div>
-	<br>
-
 
     </div><!--entireWrap-->
-    <c:import url="/common/jsp/footer.jsp"/>
 </body>
+    <%-- <c:import url="/common/jsp/footer.jsp"/> --%>
 </html>

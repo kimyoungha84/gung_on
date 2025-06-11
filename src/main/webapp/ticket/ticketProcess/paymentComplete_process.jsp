@@ -7,13 +7,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<jsp:useBean id="ticketDTO" class="kr.co.gungon.ticket.TicketDTO" scope="page"/>
+<%-- <jsp:useBean id="ticketDTO" class="kr.co.gungon.ticket.TicketDTO" scope="page"/> --%>
 
 
 
 <%
 //String jsonStr=(String)session.getAttribute("jsonStr");
-ticketDTO=(TicketDTO)request.getAttribute("ticketDTO");
+TicketDTO ticketDTO=(TicketDTO)request.getAttribute("ticketDTO");
+
+if(ticketDTO == null){
+	ticketDTO = (TicketDTO)session.getAttribute("ticketDTO");
+}//end if
+
 
 TicketService ts=new TicketService();
 
@@ -42,9 +47,9 @@ String paymentStr=ats.changeCosttoStr(ticketDTO.getPayment());
 //2. DB에 저장
 ticketDTO=ts.createQR(ticketDTO);
 
-
 /*값들을 DB로 넘기기*/
 ts.addReservationValue(ticketDTO);
+
 //3. QR 코드 서버로 전송, URL 사용자에게 보내기
 ts.sendURL(ticketDTO);
 

@@ -52,8 +52,8 @@
 
             </table>
         </div><!--ticketInfoTable-->
-        <br><br>
-      
+        <br><br><br>
+        
  		<div style="margin-left:250px;">QR 코드 링크를 받을 핸드폰 번호를 입력해주세요.</div>
   	<form id="authFrm" style="margin-left:250px">
   	
@@ -65,8 +65,9 @@
 	<input type="text" readonly id="completAuthen" class="authDesign" value="인증완료" style="display:none"/>
 	</form>
 	<br><br><br>
+		
 	<div style="display:flex">
-	<form id="calcFrm" action="/ticket/ticketProcess/ticket_calc_procss.jsp" method="post">
+	<form id="calcFrm" method="post">
 	    <div class="btnGroup">
 	        <input type="button" id="moneyCalc" value="결제하기" class="money" />
 	        <input type="hidden" id="hidPhoneNum" name="hidPhoneNum" value=""/>
@@ -75,7 +76,7 @@
     </form>
      		<input type="button" id="cancleCalc"  value="취소" class="cancel" onclick="location.replace('/program/programInfo/programInfo.jsp')">
 	</div>
-	<br><br><br><br><br>
+	<br><br>
 	<div class="infoText">
         <ul>
             <li class="caution">※ QR 코드 링크를 타인에게 전송했을 시, 책임은 본인에게 있습니다.</li>

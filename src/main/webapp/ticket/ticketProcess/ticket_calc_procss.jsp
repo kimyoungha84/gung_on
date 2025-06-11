@@ -12,7 +12,10 @@
 <%
 /*한국어 변환*/
 request.setCharacterEncoding("UTF-8");
-String phoneNum=request.getParameter("hidPhoneNum");//인증된 전화번호
+String phoneNum=request.getParameter("phoneNum");//인증된 전화번호
+pageContext.setAttribute("phoneNum", phoneNum);
+System.out.println("phoneNum-----calc-----"+phoneNum);
+
 
 TicketDTO tDTO=(TicketDTO)session.getAttribute("ticketDTO");
 TicketService tservice=new TicketService();
@@ -36,9 +39,15 @@ tDTO.setPhoneNum(phoneNum);
 tDTO.setPaymentTimeStamp(paymentTimeStamp);
 
 
+
 System.out.println("calc에서 프로그램ㅇ ㅣㅇ름"+tDTO.getProgramName());
 
 request.setAttribute("ticketDTO", tDTO);
 
+RequestDispatcher rd=request.getRequestDispatcher("/ticket/ticketPaymentCompleteFrm.jsp");
+rd.include(request, response);
+ 
 %>
-<jsp:forward page="/ticket/ticketPaymentCompleteFrm.jsp"/>
+<%-- <jsp:forward page="/ticket/ticketPaymentCompleteFrm.jsp"/> --%>
+<%-- <%@ include file="/ticket/ticketPaymentCompleteFrm.jsp" %> --%>
+

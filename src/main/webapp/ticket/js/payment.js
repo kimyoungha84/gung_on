@@ -111,13 +111,35 @@ $(function(){
 	/*결제하기 버튼 클릭*/
 	/*인증이 완료되면 DB로 보냅시다아.*/	
 	$("#moneyCalc").click(function(){
+		var param="phoneNum="+$("#hidPhoneNum").val();
+		debugger;
+		alert("hidePhoneNum" +$("#hidPhoneNum").val());
+		
 		if(testStrangeFlag){
 			alert("해당 네트워크에서 접근 20번을 초과했습니다.\n관리자에게 문의해주세요 ㅇㅅㅇ");
 		}//end if
 		else if(authenNumFlag == false){
 			alert("휴대폰 번호 인증을 먼저 수행해 주세요.");
 		}else{
-			 $("#calcFrm").submit();
+			$.ajax({
+				url:"/ticket/ticketProcess/ticket_calc_procss.jsp",
+				type:"post",
+				data: param,
+				
+				dataType:"html",
+				error : function(xhr){
+					console.log(xhr.status+" / "+xhr.statusText);
+				},
+				success: function(htmlData){
+					//var result=$.trim(data);
+					//alert(htmlData);
+					$(".entireWrap").html(htmlData);
+					
+				}//success
+				
+			});//ajax
+			 
+			//$("#calcFrm").submit();
 		}//end if~else
 	});//click
 

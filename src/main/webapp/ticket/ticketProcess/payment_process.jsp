@@ -14,12 +14,16 @@
 //programName, reserveDate, payment
 TicketDTO tDTO = (TicketDTO)session.getAttribute("ticketDto");
 String jsonStr= (String)session.getAttribute("jsonStr");
-System.out.println("jsonStr------"+jsonStr);
 
+//아... 근데 이거 이미 DB에 넣어놔서 필요없을 텐데...//야 ... 안넣어 놨었다 ...
+String hiddenPhoneNum=(String)request.getAttribute("phoneNum");//인증받은 핸드폰 번호
+//System.out.println("jsonStr------"+jsonStr);
 
-if(jsonStr == null){
+if(tDTO == null){
 	response.sendRedirect("/ticket/ticket_frm.jsp");
 }//end if
+
+tDTO.setPhoneNum(hiddenPhoneNum);
 
 //JSONParser parser=new JSONParser();
 //JSONObject jsonValue=(JSONObject) parser.parse(jsonStr);
