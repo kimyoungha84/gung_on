@@ -5,7 +5,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.apache.catalina.filters.SetCharacterEncodingFilter"%>
 <%@page import="kr.co.gungon.ticket.user.TicketService"%>
-<%@ page language="java" contentType="application/json; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 
@@ -30,12 +30,14 @@ request.setCharacterEncoding("UTF-8");
 /*예매를 DB에 추가*/
 TicketService ticketService=new TicketService();
 
-
+String member_id=request.getParameter("member_id");
 String programName=request.getParameter("programName");//행사 이름
-System.out.println("프로그램 이름"+programName);
 
-String date=request.getParameter("datepicker");//관람일자
+String reserveDate=request.getParameter("datepicker");//관람일자
+//System.out.println("datepicker========"+reserveDate);
+
 String reserveTime=ticketService.startTimeProgram(programName);
+//System.out.println("reserveTime-------"+reserveTime);
 
 int adult=Integer.parseInt(request.getParameter("adult"));//관람인원 - 대인
 int kid=Integer.parseInt(request.getParameter("kid"));//관람인원 - 소인
@@ -48,9 +50,9 @@ String langFlag=ticketService.makeCommentFlag(langChoose);//해설관람 Flag
 
 int payment=(adultCost*adult)+(kidCost*kid);
 
-tDTO.setMember_id("testest");//memeberID를 넣어 주어야 한다. session으로 받아와서...
+tDTO.setMember_id(member_id);//memeberID를 넣어 주어야 한다. session으로 받아와서...
 tDTO.setProgramName(programName);//programName
-tDTO.setReserveDate(date);//reserveDate
+tDTO.setReserveDate(reserveDate);//reserveDate
 tDTO.setReserveTime(reserveTime);//reserveTime
 tDTO.setAdultCount(adult);//adultCount
 tDTO.setKidCount(kid);//kidCount
@@ -58,7 +60,9 @@ tDTO.setCommentLang(langChoose);//commentLang
 tDTO.setCommentFlag(langFlag);//commentFlag
 tDTO.setPayment(payment);//payment
 
-request.setAttribute("ticketDto", tDTO);
+
+System.out.println("ticket_process.jsp-----"+tDTO);
+session.setAttribute("ticketDto", tDTO);
 //System.out.println("ticket_process.jsp --------"+tDTO);
 
 
@@ -67,27 +71,30 @@ request.setAttribute("ticketDto", tDTO);
 JSONObject json=new JSONObject();
 
 //2.값 할당
+json.put("member_id",member_id);//지금은 이렇게 상수 박아넣자
 json.put("programName", programName);
 
-json.put("date", date);
+json.put("reserveDate", reserveDate);
 json.put("reserveTime", reserveTime);
 
-json.put("adult", adult);
-json.put("kid", kid);
+json.put("adultCount", adult);
+json.put("kidCount", kid);
 
 json.put("adultCost", adultCost);
 json.put("kidCost", kidCost);
 
-json.put("langChoose", langChoose);
-json.put("langFlag", langFlag);
+json.put("langChoose", langChoose);//commentLang
+json.put("langFlag", langFlag);//commnetFlag
 json.put("payment", payment);
 
 
 //3.값을 가진 JSONObject 객체를 String으로 얻기
 String jsonStr=json.toJSONString();
-request.setAttribute("jsonStr", jsonStr);
+session.setAttribute("jsonStr", jsonStr);
+System.out.println("ticket_process.jsp-----"+jsonStr);
 
-response.sendRedirect("/ticket/ticketPayment.jsp");
+RequestDispatcher rd=request.getRequestDispatcher("/ticket/ticketPayment.jsp");
+rd.include(request,response);
 
 %>
 

@@ -3,7 +3,7 @@
  */
 
 $(function(){
-	history.pushState({ page: 'payment' }, '', '/ticket/ticketPayment.jsp');
+	//history.pushState({ page: 'payment' }, '', '/ticket/ticketPayment.jsp');
 	var authenNumFlag=false;
 	var testStrangeFlag=false;
 

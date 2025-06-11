@@ -26,10 +26,16 @@ $(function(){
 	
 	//debugger;
 	$("#datepicker").datepicker({
+		
+		 container: document.querySelector('.viewDateParent'),
+		isMobile:false,
+
 		autoClose : true,
 		language: 'ko',
 		minDate: new Date(startDay),
 		maxDate: new Date(endDay),
+		position: 'bottom left',
+		
 
 	});//datepicker
 	
@@ -159,41 +165,14 @@ $(function(){
 	}//onClick
 	window.addEventListener('click',onClick);
 	
-	$(".reserveBtn").click(function(){
-		const jsonData={
-			member_id: $("#member_id").val(),
-			programName : $("#programName").val(),
-			datepicker: $("#datepicker").val(),
-			adult: $("#adult").val(),
-			kid: $("#kid").val(),
-			adultCost: $("#adultCost").val(),
-			kidCost: $("#kidCost").val(),
-			langChoose: $("#langChoose").val()
-		};
-		alert();
-		
-		
-		$.ajax({
-			url:"/ticket/ticket_process.jsp",
-			type:"post",
-			
-			dataType:"json",
-			data:jsonData,
-			error: function(xhr){
-				console.log(xhr.status + " / " + xhr.statusText);
-			},//error
-			success:function(jsonData){
-				alert(jsonData);
-				//$(".wrap").html(xmlData);
-			}//success
-			
-		});//ajax
+	
+
+	
 		
 		
 		
 		
-		
-	});//click
+
 
 	
 	
@@ -319,10 +298,11 @@ function initCal(){
 
 /************유효성 검사 완료*************************************** */
 function forSubmit(){
-	const form=document.querySelector('form');
+	//const form=document.querySelector('form');
 	
 	if(valiableData()){
-		form.submit();
+		//form.submit(); //나는 ajax써서 넘길거니까아....
+		sendAjax();
 	}//end if
 }//forSubmit
 
@@ -346,3 +326,42 @@ function valiableData(){
 	}//end if~else
 
 }//valiableData
+
+
+
+/***************************************************** */
+function sendAjax(){
+	
+	const jsonData={
+		member_id: $("#member_id").val(),
+		programName : $("#programName").val(),
+		datepicker: $("#datepicker").val(),
+		adult:	$("#adult").val(),
+		kid:  	$("#kid").val(),
+		adultCost:  $("#adultCost").val(),
+		kidCost:  $("#kidCost").val(),
+		langChoose: $("#langChoose").val()
+	};
+
+	//alert("member_id-------"+$("#member_id").val());		
+
+	
+	
+	
+	$.ajax({
+			url:"/ticket/ticketProcess/ticket_process.jsp",
+			type:"post",
+			
+			dataType:"html",
+			data:jsonData,
+			error: function(xhr){
+				console.log(xhr.status + " / " + xhr.statusText);
+			},//error
+			success:function(htmlData){
+				//alert(htmlData);
+				$(".wrap").html(htmlData);
+			}//success
+			
+		});//ajax
+		
+}//sendAjax

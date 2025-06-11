@@ -18,7 +18,7 @@ TicketDTO tDTO=(TicketDTO)session.getAttribute("ticketDTO");
 TicketService tservice=new TicketService();
 
 
-//System.out.println("ticket_calc_process.jsp session---------"+tDTO);
+System.out.println("ticket_calc_process.jsp session---------"+tDTO);
 
 
 //1.예매번호 생성
@@ -35,7 +35,10 @@ tDTO.setBookingNum(bookingNum);
 tDTO.setPhoneNum(phoneNum);
 tDTO.setPaymentTimeStamp(paymentTimeStamp);
 
+
+System.out.println("calc에서 프로그램ㅇ ㅣㅇ름"+tDTO.getProgramName());
+
 request.setAttribute("ticketDTO", tDTO);
 
 %>
-<jsp:forward page="/ticket/ticketAdmin/ticketPaymentCompleteFrm.jsp"/>
+<jsp:forward page="/ticket/ticketPaymentCompleteFrm.jsp"/>

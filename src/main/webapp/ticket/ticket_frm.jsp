@@ -74,7 +74,7 @@
 
 //value 부분에 ${programName} 변경 필요
 
-String member_id="test";
+String member_id="testest";
 String programName="경복궁 야간관람";
 
 TicketService ticketService=new TicketService();
@@ -99,7 +99,7 @@ System.out.println(endday);
 				<img src="/ticket/images/ico_date.png" width="20px"/><span class="view">관람일자</span>
 			</div><!--viewTitle-->
 			<!-- <form action="" name="viewDateFrm" method="post"> -->
-				<div class="viewDateParent" style="position:relative"><!-- 부모 -->
+				<div class="viewDateParent calendarParent" style="position:relative"><!-- 부모 -->
 				<div class="selectDesign viewDate" id="viewDate" >
 					<input type="hidden" class="start-day" value="<%=startday%>"/><input type="hidden" class="end-day" value="<%=endday%>"/>
 					<span class="ex"><input id="datepicker" name="datepicker" type="text" readonly placeholder="날짜를 선택해주세요." /></span>
@@ -232,7 +232,7 @@ System.out.println(endday);
  		<%String imgFullPath=request.getParameter("imgFullPath"); %>
  		
 		<div style="">
-			<img src="<%=imgFullPath %>" style="width:679px;height:900px"/>
+			<img src="<%=imgFullPath %>" style="width:339px;height:450px; margin-top:20px;"/>
 		</div>
 
 

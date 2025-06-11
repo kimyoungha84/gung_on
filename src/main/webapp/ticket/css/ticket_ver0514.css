@@ -10,10 +10,25 @@
 	color: #fff;
 } */
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.wrap {
+  flex: 1;
+}
 
 .wrap {
 	/* background-color: rgb(151, 151, 151); */ 
-	height: 5000px;
+	height: 100%;
 	width: 1200px;
 
  	/* border:solid 3px #FF0000;  */
@@ -33,6 +48,15 @@
 	 /*border:solid 1px #DDDDDD; */
 	/* background-color:yellowgreen; */
 	padding-left: 10px;
+	 /* margin-top: 150px; */ 
+}
+
+.langChoose{
+	width:250px;
+	 line-height: 20px;
+	margin-bottom: 30px;
+	 vertical-align: middle;     /* 수직 정렬 */
+	
 }
 
 .slick-list .slick-track{
@@ -49,14 +73,20 @@
 	/*border:solid 1px #00FF00;*/
 	/* background-color: blueviolet; */
 	z-index:6;
+	margin-bottom: 300px;
 }
 
 
 .title{
 	font-size : 50px;
 	font-weight : bold;
-	margin-top:50px;
+	margin-top:200px;
 	/* margin-left: 250px; */
+	 background-color: transparent; 
+	   outline: none; 
+	    border: none !important;
+  outline: none !important;     
+  box-shadow: none !important;
 }
 
 .wrap .left .explain_ticket li{
@@ -107,6 +137,7 @@ table,th,td{
 	border-style: solid;
 	border-width: 1px;
 	border-color: #DDDDDD;
+	background:#FFFFFF;
 
 	/* border-radius: 5%; */
 	margin-top: 120px;
@@ -142,6 +173,38 @@ table,th,td{
 	
 	cursor : pointer;
 }
+
+
+.selectDesign .langGroup {
+  flex: 1;
+  height: 100%;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;           /* 글씨 진하게 */
+  color: #333;                 /* 글씨 색 어둡게 */
+  background: transparent;
+  outline: none;
+  padding: 0 10px;
+  line-height: 40px;   
+ 
+}
+
+.langChoose {
+  height: 100%;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  background: transparent;
+  outline: none;
+
+  /* 위치 조절 핵심 */
+   margin-top: -7px !important;  
+  
+  
+  line-height: 1;         /* 기본값보다 줄여서 높이 영향 제거 */
+}
+
 
 .personWrap{
 	position:relative;
@@ -209,12 +272,11 @@ table,th,td{
 	border:none;
 	background-color: #FF4D4D;
 	color: whitesmoke;
-
 	
 	cursor:pointer;
 	
 	text-decoration: none;
-	
+	font-size:30px;
 	text-align: center;
 	align-content: center;
 }
@@ -275,7 +337,7 @@ table,th,td{
    	border:none;
    
     color:#FF4D4D;
-   
+   padding-bottom: 120px;
    	
     width:65px;
     font-size: 18px;
@@ -343,18 +405,15 @@ table,th,td{
 .chooseBtn:active, .reserveBtn:active{
 	background-color:#990000;
 }
-/* 
-.datepicker{
-	display:block; 
-	position:absolute; 
-	z-index:6;
-	margin-left: 27px;
-	padding : 10px;
-	margin-top:13px;
-	width:330px;
+
+.datepicker {
+  position: absolute;
+  top: 100%; /* 혹은 원하는 위치 */
+  left: 0;
+  z-index: 999;
 }
 
- */
+
 .calcValue{
 	position:relative;
 	/* float : right; */

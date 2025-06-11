@@ -3,7 +3,7 @@
     info="My 예매정보 페이지"%>
 <%@ include file="config/site_config.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="ticketProcess/payment_process.jsp" %>
+<%@include file="/ticket/ticketProcess/payment_process.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -41,7 +41,7 @@
                 </thead>
                 <tbody class="border-start border-end" style="height:90px">
                     <tr>
-                        <td><%=tDTO.getProgramName() %></td>
+                       <td><%=tDTO.getProgramName() %></td>
                         <td><%=chooseDate %></td> 
                         <td><%=tDTO.getCommentLang() %></td>
                         <td><%=personString %><br></td>    
@@ -73,9 +73,9 @@
 	       
 	    </div>
     </form>
-     		<input type="button" id="cancleCalc"  value="취소" class="cancel" onclick="location.href='/program/programDetail/programDetail.jsp'">
+     		<input type="button" id="cancleCalc"  value="취소" class="cancel" onclick="location.replace('/program/programInfo/programInfo.jsp')">
 	</div>
-	<br>
+	<br><br><br><br><br>
 	<div class="infoText">
         <ul>
             <li class="caution">※ QR 코드 링크를 타인에게 전송했을 시, 책임은 본인에게 있습니다.</li>
@@ -85,6 +85,6 @@
     </div>
 
     </div><!--entireWrap-->
-    <c:import url="/common/jsp/footer.jsp"/>
 </body>
+    <%-- <c:import url="/common/jsp/footer.jsp"/> --%>
 </html>
