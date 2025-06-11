@@ -17,8 +17,8 @@
    
    
    // 테스트용 지워야함
-   mDTO.setId("유저1");
-   session.setAttribute("userData", mDTO);
+   /* mDTO.setId("유저1");
+   session.setAttribute("userData", mDTO); */
    ///////////////////////////////////////////////
 %>
 
