@@ -14,7 +14,6 @@
         return;
     }
 
-    // 스토리 정보 가져오기
     StoryService ss = new StoryService();
     StoryDTO story = ss.getStoryByName(storyName);
     if (story == null) {
@@ -24,22 +23,17 @@
         return;
     }
 
-    // 이미지 경로 가져오기
     FilePathService fps = new FilePathService();
     List<FilePathDTO> imageList = fps.getStoryImagesByName("story", String.valueOf(story.getStory_id()));
     int imageCount = (imageList != null) ? imageList.size() : 0;
 %>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title><%= story.getStory_name() %> | 스토리</title>
+
 <style>
   .story-container {
     max-width: 700px;
     margin: 0 auto;
     padding: 20px;
-    text-align: left; /* ✅ 전체 왼쪽 정렬 */
+    text-align: left;
   }
   .story-container h2 {
     font-size: 32px;
@@ -55,7 +49,7 @@
     width: 600px;
     height: 400px;
     overflow: hidden;
-    margin: 30px 0; /* ✅ 가운데 → 왼쪽으로 바꾸기 */
+    margin: 30px auto;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
   }
@@ -83,27 +77,61 @@
   }
   .slider-btn.left { left: 0; }
   .slider-btn.right { right: 0; }
+
+  /* 썸네일 스타일 */
+  .thumbnail-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+  }
+  .thumbnail {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border 0.2s;
+  }
+  .thumbnail:hover,
+  .thumbnail.active {
+    border: 2px solid #007bff;
+  }
 </style>
-</head>
-<body>
+
 <div class="story-container">
   <h2><%= story.getStory_name() %></h2>
 
   <% if (imageCount > 0) { %>
   <div class="slider-container">
     <div class="slider-images" id="imageSlider">
-<% 
-    for (FilePathDTO img : imageList) {
-        String rawPath = img.getPath();  // 예: /common/images/gung/...
-        String contextPath = request.getContextPath(); // 예: /Gung_On
-        String path = rawPath.startsWith(contextPath) ? rawPath.substring(contextPath.length()) : rawPath;
-        String fullPath = contextPath + path;
-%>
-      <img src="<%= fullPath %>" alt="스토리 이미지">
-<% } %>
+    <% 
+        for (FilePathDTO img : imageList) {
+            String rawPath = img.getPath();
+            String contextPath = request.getContextPath();
+            String path = rawPath.startsWith(contextPath) ? rawPath.substring(contextPath.length()) : rawPath;
+            String fullPath = contextPath + path;
+    %>
+        <img src="<%= fullPath %>" alt="스토리 이미지">
+    <% } %>
     </div>
     <button class="slider-btn left" onclick="prevSlide()">&#10094;</button>
     <button class="slider-btn right" onclick="nextSlide()">&#10095;</button>
+  </div>
+
+  <div class="thumbnail-list" id="thumbnailList">
+    <% 
+        for (int i = 0; i < imageList.size(); i++) {
+            FilePathDTO img = imageList.get(i);
+            String rawPath = img.getPath();
+            String contextPath = request.getContextPath();
+            String path = rawPath.startsWith(contextPath) ? rawPath.substring(contextPath.length()) : rawPath;
+            String fullPath = contextPath + path;
+    %>
+      <img class="thumbnail" src="<%= fullPath %>" alt="썸네일" onclick="goToSlide(<%= i %>)">
+    <% } %>
   </div>
   <% } else { %>
     <p>이미지가 없습니다.</p>
@@ -113,35 +141,45 @@
 </div>
 
 <script>
+(function() {
   let index = 0;
   const total = <%= imageCount %>;
 
   function updateSlider() {
     const slider = document.getElementById("imageSlider");
-    slider.style.transform = "translateX(" + (-600 * index) + "px)";
+    if (slider) {
+      slider.style.transform = "translateX(" + (-600 * index) + "px)";
+    }
+    updateThumbnailActive();
   }
 
-  function prevSlide() {
+  window.prevSlide = function() {
     if (index > 0) {
       index--;
       updateSlider();
     }
-  }
+  };
 
-  function nextSlide() {
+  window.nextSlide = function() {
     if (index < total - 1) {
       index++;
       updateSlider();
     }
+  };
+
+  window.goToSlide = function(i) {
+    index = i;
+    updateSlider();
+  };
+
+  function updateThumbnailActive() {
+    const thumbs = document.querySelectorAll(".thumbnail");
+    thumbs.forEach((t, i) => {
+      if (i === index) t.classList.add("active");
+      else t.classList.remove("active");
+    });
   }
 
-  // ✅ 페이지가 로드될 때 첫 위치 초기화
-  window.onload = function() {
-    if (total > 0) {
-      updateSlider();
-    }
-  };
+  updateSlider(); // 초기화
+})();
 </script>
-
-</body>
-</html>

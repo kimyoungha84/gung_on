@@ -24,11 +24,17 @@ try {
         "UTF-8",
         new DefaultFileRenamePolicy()
     );
+    
 
     int storyId = Integer.parseInt(multi.getParameter("story_id"));
     String storyNameKor = multi.getParameter("story_name");     // ex: 흥례문
     String storyInfo = multi.getParameter("story_info");
     String gungKorName = multi.getParameter("gung_name");
+    
+
+    // 🛑 기존 값 가져오기
+    StoryService service = new StoryService();
+    StoryDTO oldDto = service.getStoryById(storyId);
 
     // 🔁 한글 전각명 → 영문 전각 디렉토리명
     String storyName = "UnknownStory";
@@ -81,6 +87,7 @@ try {
 
     // ✅ 삭제 이미지 처리
     String[] deleteImgs = multi.getParameterValues("delete_img");
+    boolean isImageDeleted = deleteImgs != null && deleteImgs.length > 0;
     if (deleteImgs != null) {
         for (String imgName : deleteImgs) {
             FilePathDTO delDto = new FilePathDTO();
@@ -96,6 +103,7 @@ try {
 
     // ✅ 새 이미지 업로드 처리
     Enumeration files = multi.getFileNames();
+    boolean isNewImageUploaded = false;
     while (files.hasMoreElements()) {
         String field = (String) files.nextElement();
         String fileName = multi.getFilesystemName(field);
@@ -123,6 +131,16 @@ try {
             fps.insertFilePath(imgDto);
         }
     }
+    // 변경 여부 체크
+    boolean isModified =
+        !storyNameKor.equals(oldDto.getStory_name()) ||
+        !storyInfo.equals(oldDto.getStory_info()) ||
+        isNewImageUploaded || isImageDeleted;
+
+    if (!isModified) {
+        out.println("<script>alert('변경된 내용이 없습니다.'); history.back();</script>");
+        return;
+    }
 
     // ✅ 이야기 본문 수정
     StoryDTO dto = new StoryDTO();
@@ -130,7 +148,6 @@ try {
     dto.setStory_name(storyNameKor);
     dto.setStory_info(storyInfo);
 
-    StoryService service = new StoryService();
     service.updateStory(dto);
 
     response.sendRedirect("story_detail.jsp?id=" + storyId);

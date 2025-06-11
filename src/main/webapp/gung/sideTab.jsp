@@ -21,8 +21,19 @@ $(function(){
     $(this).next(".submenu").slideToggle();
     $(".toggle").not(this).removeClass("active").next(".submenu").slideUp(); // 하나만 열리도록
   });
+
+  // ✅ 페이지 로딩 시 현재 메뉴 활성화 유지
+  const currentPath = "<%= currentPath %>";
+  $(".submenu a").each(function() {
+    if (currentPath.includes($(this).attr("href").replace("..", ""))) {
+      $(this).addClass("active");
+      $(this).closest(".submenu").show(); // 서브메뉴 펼치기
+      $(this).closest(".submenu").prev(".toggle").addClass("active"); // 상위 toggle 버튼 활성화
+    }
+  });
 });
 </script>
+
 </head>
 <body>
 

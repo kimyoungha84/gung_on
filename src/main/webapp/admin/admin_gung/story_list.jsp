@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="kr.co.gungon.pagination.PaginationBuilder"%>
 <%@page import="kr.co.gungon.story.StoryDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -101,7 +102,8 @@
   </table>
         <!-- 페이지네이션 표시 -->
             <div>
-            	<%= pagination.build("story_list.jsp") %>
+            <%= pagination.build("story_list.jsp") %>
+            
             </div>
         </div>
         </div><!-- card m-3 end -->

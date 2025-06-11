@@ -7,15 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>경복궁</title>
-<c:import url="../common/jsp/external_file.jsp"/>
-<link rel="stylesheet" href="../common/css/common.css">
+<c:import url="/common/jsp/external_file.jsp"/>
+<link rel="stylesheet" href="/common/css/common.css">
 <link rel="stylesheet" href="mainGung.css">
 <link rel="stylesheet" href="sideTab.css">
 <style>
   .history-table {
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin: 0 auto 50px 150px; /* ✅ 가운데 정렬 + 하단 여백 */
   }
   .history-table th, .history-table td {
     border: 1px solid #ddd;
@@ -48,7 +49,7 @@
         if (gung != null) {
             String[] historyRows = gung.getGung_history().split("\\s*/\\s*");  // ✅ 여기를 수정
     %>
-        <h2><%= gung.getGung_name() %></h2>
+         <h2><%= gung.getGung_name() %></h2> 
 
       <% if (gung.getImg_path() != null && !gung.getImg_path().trim().isEmpty()) { %>
     <img src="<%= request.getContextPath() + gung.getImg_path() %>" alt="<%= gung.getGung_name() %> 이미지" class="gung-img" />

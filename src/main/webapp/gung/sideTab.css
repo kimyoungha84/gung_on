@@ -31,15 +31,16 @@
   font-size: 15px;
   font-weight: bold;
   color: #000;
-  background-color: #eee; /* ✅ 호버 시 배경 추가 */
+  background-color: transparent; /* ✅ 배경 제거 */
 }
 
 .side-menu a.active {
   font-weight: bold;
-  color: #007bff;
+  color: #000; /* ✅ 파란색 → 검정색 */
   font-size: 15px;
-  background-color: #eaf3ff; /* ✅ active 강조 배경 */
+  background-color: transparent; /* ✅ 배경 제거 */
 }
+
 
 /* 리스트 초기화 */
 .accordion,

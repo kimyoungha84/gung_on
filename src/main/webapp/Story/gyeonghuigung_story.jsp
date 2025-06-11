@@ -20,10 +20,10 @@
   <meta charset="UTF-8">
   <title>전각 이야기</title>
   <c:import url="/common/jsp/external_file.jsp"/>
-  <link rel="stylesheet" href="../common/css/common.css">
-  <link rel="stylesheet" href="../gung/mainGung.css">
-  <link rel="stylesheet" href="../Story/Story.css">
-  <link rel="stylesheet" href="../gung/sideTab.css">
+  <link rel="stylesheet" href="/common/css/common.css">
+  <link rel="stylesheet" href="/gung/mainGung.css">
+  <link rel="stylesheet" href="/Story/Story.css">
+  <link rel="stylesheet" href="/gung/sideTab.css">
   <style>
     .gung-button-wrap {
       display: flex;
@@ -33,19 +33,19 @@
     }
     .gung-btn {
       padding: 8px 14px;
-      border: 1px solid #007bff;
+      border: 1px solid #333;
       background-color: white;
-      color: #007bff;
+      color: #333;
       border-radius: 5px;
       cursor: pointer;
       transition: all 0.2s;
     }
     .gung-btn:hover {
-      background-color: #007bff;
+      background-color: #333;
       color: white;
     }
   </style>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <jsp:include page="/common/jsp/external_file.jsp" />
   <script type="text/javascript">
     $(function(){
       $(".gung-btn").on("click", function(e){

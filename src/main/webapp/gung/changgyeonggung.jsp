@@ -8,15 +8,16 @@
 
 <meta charset="UTF-8">
 <title>창경궁</title>
-<c:import url="../common/jsp/external_file.jsp"/>
-<link rel="stylesheet" href="../common/css/common.css">
+<c:import url="/common/jsp/external_file.jsp"/>
+<link rel="stylesheet" href="/common/css/common.css">
 <link rel="stylesheet" href="sideTab.css">
 <link rel="stylesheet" href="mainGung.css">
 <style>
   .history-table {
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin: 0 auto 50px 150px; /* ✅ 가운데 정렬 + 하단 여백 */
   }
   .history-table th, .history-table td {
     border: 1px solid #ddd;

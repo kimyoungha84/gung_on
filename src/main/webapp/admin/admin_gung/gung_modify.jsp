@@ -45,6 +45,8 @@
     }
 %>
 
+
+
 <div id="layoutSidenav_content">
 
 <main >
@@ -58,7 +60,7 @@
   <h2>궁 정보 수정</h2>
   </div>
 
-    <form method="post" action="gung_modify_action.jsp">
+    <form method="post" action="gung_modify_action.jsp" onsubmit="return validateForm()">
       <input type="hidden" name="gung_id" value="<%= dto.getGung_id() %>">
 
       <div class="mb-3">
@@ -73,13 +75,31 @@
 
       <div class="mb-3">
         <label class="form-label">궁 역사</label>
-        <textarea name="gung_history" class="form-control" rows="7" required><%= dto.getGung_history() %></textarea>
+        <textarea name="gung_history" class="form-control" rows="7" ><%= dto.getGung_history() %></textarea>
       </div>
 
       <div class="text-center">
         <button type="submit" class="btn btn-primary">수정 완료</button>
         <a href="gung_detail.jsp?id=<%= dto.getGung_id() %>" class="btn btn-secondary">취소</a>
       </div>
+<script>
+  function validateForm() {
+    const history = document.querySelector('textarea[name="gung_history"]').value.trim();
+
+    if (history === "") {
+      alert(
+        "궁 역사 입력은 필수입니다.\n\n" +
+        "※ 입력 가이드\n" +
+        "- ':' (콜론)은 테이블 항목 구분용입니다.\n" +
+        "- '/' (슬래시)는 줄바꿈 기호로 사용됩니다.\n\n" +
+        "예시: 1395년(태조 4): 경복궁 창건 / 1592년(선조 25): 임진왜란으로 소실"
+      );
+      return false; // 제출 막기
+    }
+
+    return true; // 통과
+  }
+</script>
     </form>
   </div>
   </div>

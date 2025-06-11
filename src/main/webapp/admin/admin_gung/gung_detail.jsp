@@ -64,8 +64,7 @@
   <div class="mt-4">
     <a href="gung_list.jsp" class="btn btn-secondary">목록으로</a>
     <a href="gung_modify.jsp?id=<%= dto.getGung_id() %>" class="btn btn-warning">수정</a>
-    <a href="gung_delete.jsp?id=<%= dto.getGung_id() %>" class="btn btn-danger"
-       onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+    
   </div>
   <%
     } else {

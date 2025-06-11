@@ -36,7 +36,7 @@
   <h2>이야기 수정</h2>
   </div>
 
-  <form action="story_modify_action.jsp" method="post" enctype="multipart/form-data">
+  <form action="story_modify_action.jsp" method="post" enctype="multipart/form-data" onsubmit="return confirmDeletion();">
     <input type="hidden" name="story_id" value="<%= dto.getStory_id() %>">
     <input type="hidden" name="gung_name" value="<%= dto.getGung_name() %>">
 
@@ -52,7 +52,7 @@
 
     <div class="mb-3">
       <label>소개</label>
-      <textarea name="story_info" class="form-control" rows="6"><%= dto.getStory_info() %></textarea>
+      <textarea name="story_info" class="form-control" rows="6" required><%= dto.getStory_info() %></textarea>
     </div>
 
     <div class="image-box">
@@ -90,6 +90,18 @@
   </form>
 </div>
 </div>
+<script>
+  function confirmDeletion() {
+    const deleteChecks = document.querySelectorAll('input[name="delete_img"]:checked');
+    if (deleteChecks.length > 0) {
+      const ok = confirm("정말 삭제하시겠습니까?");
+      if (!ok) return false;
+      alert("삭제되었습니다.");
+    }
+    return true;
+  }
+</script>
+
 </main>
 <%@ include file="/admin/common/footer.jsp" %>
 </div>

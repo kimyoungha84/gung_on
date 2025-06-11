@@ -20,10 +20,10 @@
   <meta charset="UTF-8">
   <title>전각 이야기</title>
   <c:import url="/common/jsp/external_file.jsp"/>
-  <link rel="stylesheet" href="../common/css/common.css">
-  <link rel="stylesheet" href="../gung/mainGung.css">
-  <link rel="stylesheet" href="../Story/Story.css">
-  <link rel="stylesheet" href="../gung/sideTab.css">
+  <link rel="stylesheet" href="/common/css/common.css">
+  <link rel="stylesheet" href="/gung/mainGung.css">
+  <link rel="stylesheet" href="/Story/Story.css">
+  <link rel="stylesheet" href="/gung/sideTab.css">
   <style>
     .gung-button-wrap {
       display: flex;
