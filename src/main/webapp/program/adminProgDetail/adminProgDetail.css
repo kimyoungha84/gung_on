@@ -28,6 +28,11 @@
     		padding-bottom: 5px;
 		}
 		
+		.underline-title {
+    		border-bottom: 2px solid #dee2e6;
+    		padding-bottom: 15px;
+		}
+		
 		table.table {
     	  	width: 60%;
     	  	margin: 1rem auto;

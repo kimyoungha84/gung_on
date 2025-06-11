@@ -17,8 +17,8 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
-ProgramService pService = new ProgramService();
-ProgramDTO program = null;
+	ProgramService pService = new ProgramService();
+	ProgramDTO program = null;
 
 	if (request.getMethod().equalsIgnoreCase("get")) {
 		
@@ -28,58 +28,39 @@ ProgramDTO program = null;
         	program = pService.getProgramByName(programName);
     	}
 	}
+	
+	FilePathService fps = new FilePathService();
+	
+	String imgFullPath = null;
+	if (program != null) {
+	    imgFullPath = fps.getImageFullPath("program", String.valueOf(program.getProgramId()));
+	}
+	if (imgFullPath == null) {
+	    imgFullPath = request.getContextPath() + "/images/no-image.png"; // 대체 이미지 경로
+	}
 
     if (request.getMethod().equalsIgnoreCase("post")) {
     	
-    	String uploadPath = "C:/Users/user/git/Gung_On/src/main/webapp/program/images";
-    	int maxSize = 10 * 1024 * 1024; // 최대 10MB
-
-    	MultipartRequest multi = new MultipartRequest(
-    	    request,
-    	    uploadPath,
-    	    maxSize,
-    	    "UTF-8",
-    	    new DefaultFileRenamePolicy()
-    	);
-    	
-/*         String programPlace = request.getParameter("programPlace");
-        String programName = request.getParameter("programName");
+    	String programPlace = request.getParameter("programPlace");
         String startDateStr = request.getParameter("startDate");
         String endDateStr = request.getParameter("endDate");
         String openTimeStr = request.getParameter("openTime");
         String closeTimeStr = request.getParameter("closeTime");
         String priceAdultStr = request.getParameter("priceAdult");
         String priceChildStr = request.getParameter("priceChild");
-        String language = request.getParameter("languageKorean"); */
         
-        String programPlace = multi.getParameter("programPlace");
-        String programName = multi.getParameter("programName");
-        
+        String programName = request.getParameter("programName");        
         if (programName != null && !programName.trim().isEmpty()) {
             program = pService.getProgramByName(programName);
         }
         
-        String startDateStr = multi.getParameter("startDate");
-        String endDateStr = multi.getParameter("endDate");
-        String openTimeStr = multi.getParameter("openTime");
-        String closeTimeStr = multi.getParameter("closeTime");
-        String priceAdultStr = multi.getParameter("priceAdult");
-        String priceChildStr = multi.getParameter("priceChild");
-        String language = multi.getParameter("languageKorean");
-        
+        String language = request.getParameter("languageKorean");        
         if (language == null || language.trim().isEmpty()) {
             language = "no";
         }
         
-/*         String contactPerson = request.getParameter("contactPerson");
-        String progImgName = request.getParameter("progImgName"); */        String contactPerson = multi.getParameter("contactPerson");
-        String progImgName = null;
-
-        
-        File file = multi.getFile("progImgFile");
-        if (file != null) {
-            progImgName = file.getName();
-        }
+        String contactPerson = request.getParameter("contactPerson");
+        String progImgName = request.getParameter("progImgName");
 
         // 숫자 타입 파싱
         int priceAdult = 0;
@@ -151,18 +132,9 @@ ProgramDTO program = null;
         String redirectURL = request.getContextPath() + "/program/adminProgDetail/adminProgDetail.jsp?programName=" + encodedProgramName;
 
         if (updatedSuccess > 0) {
-            if (progImgName != null && !progImgName.trim().isEmpty()) {
-                FilePathDTO filePathDTO = new FilePathDTO();
-                filePathDTO.setPath("/program/images/" + progImgName);
-                filePathDTO.setPropertyId(program.getProgramId());
-                filePathDTO.setImgName(progImgName);
-
-                FilePathService filePathService = new FilePathService();
-                filePathService.updateImagePath(filePathDTO);
-            }
-
             response.sendRedirect(redirectURL);
             return;
+            
         } else {
 %>
 <script>alert('수정에 실패했습니다.'); history.back();</script>
@@ -170,29 +142,15 @@ ProgramDTO program = null;
             return;
         }
     }
-/*     String imagesPath = application.getRealPath("/program/images");
-    System.out.println("이미지 경로 확인: " + imagesPath);
-
-    File folder = new File(imagesPath);
-    File[] imageFiles = folder.listFiles();
-
-    if(imageFiles != null){
-        for(File file : imageFiles){
-            System.out.println("파일: " + file.getName());
-        }
-    } */
 %>
     <link href="adminProgUpdate.css" rel="stylesheet" />
 
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                	<h2 class="mt-4">행사수정</h2>
-<!--                     <ol class="breadcrumb mb-4 custom-breadcrumb">
-                        <li class="breadcrumb-item active custom-breadcrumb-text">행사수정</li>
-                    </ol> -->
+                	<h2 class="mt-4 underline-title">행사수정</h2>
 
-<form class="update-form" action="adminProgUpdate.jsp" method="post" enctype="multipart/form-data">
+<form class="update-form" method="post">
     <div class="card p-4">
         <div class="row g-2">
             <div class="col-md-6">
@@ -252,31 +210,10 @@ ProgramDTO program = null;
                 <button type="submit" class="updateBtn" onclick="return confirm('정말 수정하시겠습니까?')">확인</button>
                 <button type="button" class="cancelBtn" onclick="history.back()">취소</button>
             </div>
-            
-<%--             <div class="col-12">
-                <label for="progImgName" class="form-label">이미지 선택</label>
-				<select name="progImgName" id="progImgName" class="form-select">
-    				<option value="">-- 이미지 선택 --</option>
-			<%
-			String currentImgName = (String) request.getAttribute("imgName");
-			if (imageFiles != null) {
-    			for (File file : imageFiles) {
-        			if (file.isFile()) {
-            			String fileName = file.getName();
-            			String selected = fileName.equals(currentImgName) ? "selected" : "";
-			%>
-			<option value="<%=fileName%>" <%=selected%>><%=fileName%></option>
-			<%
-        }
-    }
-}
-%>
-			   </select>
-			</div> --%>
 			
 			<div class="col-12">
-    			<label for="progImgFile" class="form-label">이미지 업로드</label>
-    			<input type="file" class="form-control" name="progImgFile" id="progImgFile" accept="image/*">
+    			<label class="form-label">행사 이미지</label><br>
+    			<img src="<%= request.getContextPath() + imgFullPath %>" alt="<%= program.getProgramName() %> 행사 이미지" style="max-width: 300px; height: auto;" />
 			</div>
 			
         </div>

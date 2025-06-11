@@ -31,7 +31,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>행사 상세 정보</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
+  <link rel="stylesheet" href="/common/css/common.css">
   <link rel="stylesheet" href="../programDetail/programDetail.css" />
   
   <style>
@@ -41,7 +41,7 @@
 </head>
 <body>
 <header>
-  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
+  <jsp:include page="/common/jsp/header.jsp" />
 </header>
 
 <div class="sub_visual">
@@ -96,7 +96,7 @@
   <h4>[<%= dto.getProgramPlace() %>] <%= dto.getProgramName() %></h4>
 
   <div class="centered-container">
-    <img src="<%= imgFullPath %>" alt="<%= dto.getProgramName() %> 행사 이미지" class="program-detail-img" />
+    <img src="<%= request.getContextPath() + imgFullPath %>" alt="<%= dto.getProgramName() %> 행사 이미지" class="program-detail-img" />
   </div>
 
   <p>행사기간 : <%= sdf.format(dto.getStartDate()) %> ~ <%= sdf.format(dto.getEndDate()) %></p>
@@ -147,7 +147,7 @@
 </div>
 
 <footer>
-  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
+  <jsp:include page="/common/jsp/footer.jsp" />
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -37,7 +37,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                	<h2 class="mt-4">행사목록</h2>
+                	<h2 class="mt-4 underline-title">행사목록</h2>
 <!--                     <ol class="breadcrumb mb-4 custom-breadcrumb">
                         <li class="breadcrumb-item active custom-breadcrumb-text">행사목록</li>
                     </ol> -->

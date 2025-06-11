@@ -53,7 +53,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                	<h2 class="mt-4">상세정보</h2>
+                	<h2 class="mt-4 underline-title">상세정보</h2>
 <!--                     <ol class="breadcrumb mb-4 custom-breadcrumb">
                         <li class="breadcrumb-item active custom-breadcrumb-text">행사상세</li>
                     </ol> -->

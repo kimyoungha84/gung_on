@@ -28,6 +28,11 @@
     		padding-bottom: 5px;
 		}
 		
+		.underline-title {
+    		border-bottom: 2px solid #dee2e6;
+    		padding-bottom: 15px;
+		}
+		
 		.button-container {
     		text-align: center;
 		}
