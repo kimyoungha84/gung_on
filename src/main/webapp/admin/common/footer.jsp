@@ -16,6 +16,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script> 
+
 <%-- <script src="${pageContext.request.contextPath}/js/scripts.js"></script>
 <script src="${pageContext.request.contextPath}/assets/demo/chart-area-demo.js"></script>
 <script src="${pageContext.request.contextPath}/assets/demo/chart-bar-demo.js"></script>
