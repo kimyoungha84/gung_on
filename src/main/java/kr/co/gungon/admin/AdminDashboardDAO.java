@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import kr.co.gungon.config.DbConnection;
 
@@ -81,4 +83,30 @@ public class AdminDashboardDAO {
         String sql = "SELECT COUNT(*) FROM inquiry WHERE answer_status = 'Y'";
         return getCount(sql);
     }
+    
+ // 행사별 예매
+    public Map<String, Integer> getReservationCountByProgram() throws SQLException {
+        Map<String, Integer> result = new LinkedHashMap<>();
+        String sql = "SELECT p.program_name, COUNT(t.booking_num) AS reservation_count " +
+                     "FROM program p " +
+                     "LEFT JOIN ticket_reservation t ON p.program_id = t.program_id " +
+                     "GROUP BY p.program_name " +
+                     "ORDER BY p.program_name ASC";
+
+        DbConnection db = DbConnection.getInstance();
+        try (
+            Connection conn = db.getDbConn();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery()
+        ) {
+            while (rs.next()) {
+                result.put(rs.getString("program_name"), 
+                		rs.getInt("reservation_count"));
+            }
+        }
+
+        return result;
+    }
+    
+    
 }

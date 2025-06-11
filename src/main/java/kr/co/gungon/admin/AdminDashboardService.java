@@ -1,6 +1,8 @@
 package kr.co.gungon.admin;
 
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Map;
 
 public class AdminDashboardService {
 
@@ -24,5 +26,15 @@ public class AdminDashboardService {
         }
 
         return dto;
+    }
+
+    // 행사별 예매 수 통계 
+    public Map<String, Integer> getReservationChartData() {
+        try {
+            return dao.getReservationCountByProgram();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Collections.emptyMap();
+        }
     }
 }

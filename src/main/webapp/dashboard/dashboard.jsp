@@ -94,3 +94,50 @@
         </div>
     </div>
 </div>
+
+<!-- 행사별 예매 현황 -->
+<div class="card mb-4">
+    <div class="card-header bg-info text-white">
+        <h5 class="mb-0">행사별 예매 현황</h5>
+    </div>
+    <div class="card-body">
+        <canvas id="programChart" height="100"></canvas>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("<%= request.getContextPath() %>/dashboard/dashboardChartData.jsp")
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById("programChart").getContext("2d");
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: '예매 수',
+                        data: data.data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1
+                            }
+                        }]
+                    }
+                }
+            });
+        })
+        .catch(err => {
+            console.error("차트 로드 실패:", err);
+        });
+});
+</script>
