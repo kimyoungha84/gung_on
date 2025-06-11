@@ -40,7 +40,7 @@
 
             if (imgFullPath != null && !imgFullPath.isEmpty()) {
                 sb.append("<div class='event-image'><img src='")
-                  .append(imgFullPath)
+                  .append(contextPath + imgFullPath)
                   .append("' alt='행사 이미지' /></div>");
             }
 

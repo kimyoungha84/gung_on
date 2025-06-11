@@ -26,7 +26,7 @@ public class TicketService {
 	/* 예약 추가 */
 	public void addReservationValue(TicketDTO tDTO) {
 		TicketDAO tDAO = TicketDAO.getInstance();
-		System.out.println("addReservationValue============="+tDTO.getCompanies().size());
+		//System.out.println("addReservationValue============="+tDTO.getCompanies().size());
 
 		try {
 			tDAO.insertReservationValue(tDTO);
@@ -150,6 +150,14 @@ public class TicketService {
 
 		return flag;
 	}// checkPhoneNum
+	
+	//만약 010-1234-1234 형태일 경우, 그걸 반환해주자 .... ㅎ.... 이걸 지금봤네...
+	public String replacedphoneNum(String phoneNum) {
+		String phoneNumberStr=phoneNum.replace("-", "");
+		
+		return phoneNumberStr;
+	}//replacedphoneNum
+	
 
 	/* 6자리 렌덤값 생성해서 사용자 폰 번호로 전송 */
 	public String makeRandomNum(String phoneNum, String sessionId, TicketDTO ticketDTO) {
@@ -466,7 +474,35 @@ public class TicketService {
 	    }
 
 	    return result;
-	}
+	}//remove
+	
+		
+	public int countAuthenNum(String remoteAddr) {
+		TicketDAO tDAO=TicketDAO.getInstance();
+		int count=0;
+		
+		try {
+			tDAO.insertAuthenCount(remoteAddr);
+			count=getAuthenCount();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//try~catch
+		
+		return count;
+	}//countAuthenNum
+	
+	public int getAuthenCount() {
+		TicketDAO tDAO=TicketDAO.getInstance();
+		int count = 0;
+		
+		try {
+			count=tDAO.selectAuthenCount();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//try~catch
+		
+		return count;
+	}//getAuthenCount
 	
 	
 	

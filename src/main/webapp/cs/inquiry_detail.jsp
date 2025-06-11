@@ -32,6 +32,10 @@
    CsService css = new CsService();
    InquiryDTO iDTO = css.searchOneInquiry(inquiryNum);
    
+   if(iDTO == null){
+	   response.sendRedirect(request.getContextPath() + "/errorpage/gungon_error.jsp");
+   }
+   
    pageContext.setAttribute("iDTO", iDTO);
 %>
 

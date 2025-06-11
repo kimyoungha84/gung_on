@@ -3,7 +3,7 @@
     info="결제완료 페이지"%>
 <%@ include file="config/site_config.jsp"%>
 
-<%@include file="ticketProcess/paymentComplete_process.jsp" %>
+<%@include file="/ticket/ticketProcess/paymentComplete_process.jsp" %>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -11,38 +11,22 @@
 <head>
 
 <!-- favicon 설정 -->
-<link rel="icon shortcut"  href="http://${defaultIP}/common/images/cs/gungOnFavicon.ico"/>
+<link rel="icon shortcut"  href="/common/images/cs/gungOnFavicon.ico"/>
 
 <title>결제완료</title>
-<c:import url="http://${defaultIP}/common/jsp/header.jsp"/>	
+<%-- <c:import url="/common/jsp/header.jsp"/>	 --%>
 
 
 <!-- 부트스트랩  CDN -->    
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
 <!-- CSS 설정 -->
-<link rel="stylesheet" type="text/css" href="http://${defaultIP}/ticket/css/payment.css"/>
-<link rel="stylesheet" type="text/css" href="http://${defaultIP}/ticket/css/paymentComplete.css"/>
+<link rel="stylesheet" type="text/css" href="/ticket/css/payment.css"/>
+<link rel="stylesheet" type="text/css" href="/ticket/css/paymentComplete.css"/>
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
 
 
 <!-- ticketPaymentCompleteFrm.jsp -->
-<script>
-window.addEventListener('DOMContentLoaded', function () {
-    // URL 변경 (뒤로가기를 감지할 수 있게)
-    history.pushState({ page: 'complete' }, '', location.pathname + '?complete=1');
-
-    window.addEventListener('popstate', function (event) {
-        const confirmBack = confirm("뒤로가기를 누르면 결제가 중복 처리될 수 있습니다.\n그래도 진행하시겠습니까?");
-        if (confirmBack) {
-            history.go(-2); // 또는 location.href = 'ticket_frm.jsp';
-        } else {
-            history.pushState({ page: 'complete' }, '', location.pathname + '?complete=1'); // 상태 복구
-        }
-    });
-});
-</script>
-
 </head>
 
 <body>
@@ -83,13 +67,11 @@ window.addEventListener('DOMContentLoaded', function () {
 <br><br>
 
     <div class="btnGroup">
-        <input type="button" style="margin-left:550px;" value="확인" class="check">
+        <input type="button" style="margin-left:550px;" value="확인"  class="check" onclick="location.replace('/program/programInfo/programInfo.jsp')">
         
     </div>
-	<br>
-
 
     </div><!--entireWrap-->
-    <c:import url="http://${defaultIP}/common/jsp/footer.jsp"/>
 </body>
+    <%-- <c:import url="/common/jsp/footer.jsp"/> --%>
 </html>

@@ -19,7 +19,7 @@ var param = "adminNum="+str +"&img="+imgimg;
 
 
 $.ajax({
-	url : "/Gung_On/ticket/ticketProcess/qr_process_detail.jsp",
+	url : "/ticket/ticketProcess/qr_process_detail.jsp",
 	type : "post",
 	data : param,
 	

@@ -205,11 +205,11 @@
             
             <c:choose>
                 <c:when test="${isMyCoursesMode}">
-                    <button class="modify-button btn btn-secondary" onclick="window.location.href='users_course.jsp'">전체 코스 보기</button>
+                    <button class="modify-button btn btn-secondary" onclick="window.location.href='users_course.jsp?gung_id=${param.gung_id}'">전체 코스 보기</button>
                 </c:when>
                 <c:otherwise>
                     
-                     <button class="modify-button btn btn-secondary" onclick="window.location.href='users_course.jsp?mode=mycourses'">코스 관리</button>
+                     <button class="modify-button btn btn-secondary" onclick="window.location.href='users_course.jsp?mode=mycourses&gung_id=${param.gung_id}'">코스 관리</button>
                 </c:otherwise>
             </c:choose>
             
@@ -239,13 +239,14 @@
             </c:when>
             <c:otherwise>
                 <c:forEach items="${courseList}" var="course" varStatus="status">
+                <c:set var="currentCourse" value="${course}" scope="page" />
                     <tr>
                         <td>${status.count}</td>
                         
                         <td>
                             <%
-                                CourseDTO currentCourse = (CourseDTO)pageContext.getAttribute("course");
-                                int currentCourseNum = currentCourse.getCourse_Num();
+                            CourseDTO currentCourse = (CourseDTO) pageContext.getAttribute("currentCourse");
+                            int currentCourseNum = currentCourse.getCourse_Num();
 
                                 CourseService currentCourseService = new CourseService(); 
                                 List<FilePathDTO> imageList = null;
@@ -263,12 +264,13 @@
 
 
                                     %>
-                                    <img src="<%= thumbnailUrl %>" ...>
+                                    <img src="<%= thumbnailUrl %>" class="course-thumbnail" alt="썸네일 이미지">
+
                                     <%
                                 }//end if
                             %>
                             
-                            <a href="course_detail.jsp?course_num=${course.course_Num}" class="course-title-link">
+                            <a href="course_detail.jsp?course_num=${course.course_Num}&gung_id=${param.gung_id}" class="course-title-link">
                                 ${course.course_Title} 
                             </a>
                         </td>
@@ -277,17 +279,15 @@
                         <td><fmt:formatDate value="${course.course_Reg_Date}" pattern="yyyy-MM-dd HH:mm"/></td>
                         
                         <c:if test="${isMyCoursesMode && isLoggedIn}">
-                             
-                             <td class="action-buttons">
-                                 
-                                 <button class="btn btn-sm btn-primary" 
-                                         onclick="window.location.href='course_modify.jsp?course_num=${course.course_Num}'">수정</button>
-                                 
-                                 
-                                 <button class="btn btn-sm btn-danger" 
-                                         onclick="if(confirm('정말로 삭제하시겠습니까?')) { window.location.href='course_delete_process.jsp?course_num=${course.course_Num}'; }">삭제</button>
-                             </td>
-                        </c:if>
+    						<td class="action-buttons">
+        						<button class="btn btn-sm btn-primary" 
+                				onclick="window.location.href='course_modify.jsp?course_num=${course.course_Num}&gung_id=${selectedGungId}&mode=mycourses'">수정</button>
+
+        						<button class="btn btn-sm btn-danger" 
+                				onclick="if(confirm('정말로 삭제하시겠습니까?')) { 
+                    			window.location.href='course_delete_process.jsp?course_num=${course.course_Num}&gung_id=${selectedGungId}&mode=mycourses'; }">삭제</button>
+    						</td>
+						</c:if>
                     </tr>
                 </c:forEach>
             </c:otherwise>

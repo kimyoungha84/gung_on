@@ -29,7 +29,6 @@
     int end = pagination.getCurrentPage() * pageSize;
 
     List<MemberDTO> list = dao.getMemberList(keyfield, keyword, start, end);
-
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     StringBuilder json = new StringBuilder();
@@ -41,12 +40,12 @@
         String formattedDate = (dto.getInput_date() != null) ? sdf.format(dto.getInput_date()) : "";
 
         json.append("{");
-        json.append("\"id\":\"").append(dto.getId()).append("\",");
-        json.append("\"name\":\"").append(dto.getName()).append("\",");
-        json.append("\"tel\":\"").append(dto.getTel()).append("\",");
-        json.append("\"useEmail\":\"").append(dto.getUseEmail()).append("\",");
+        json.append("\"id\":\"").append(dto.getId() != null ? dto.getId() : "").append("\",");
+        json.append("\"name\":\"").append(dto.getName() != null ? dto.getName() : "").append("\",");
+        json.append("\"tel\":\"").append(dto.getTel() != null ? dto.getTel() : "").append("\",");
+        json.append("\"useEmail\":\"").append(dto.getUseEmail() != null ? dto.getUseEmail() : "").append("\",");
         json.append("\"input_date\":\"").append(formattedDate).append("\",");
-        json.append("\"flag\":\"").append(dto.getFlag()).append("\"");
+        json.append("\"flag\":\"").append(dto.getFlag() != null ? dto.getFlag() : "N").append("\"");
         json.append("}");
         if (i < list.size() - 1) {
             json.append(",");
@@ -54,7 +53,10 @@
     }
 
     json.append("],");
-    json.append("\"page\":\"").append(pagination.build("memberList.jsp", "keyfield=" + keyfield + "&keyword=" + keyword).replace("\"", "\\\"")).append("\"");
+
+    String pageHtml = pagination.build("memberList.jsp", "keyfield=" + keyfield + "&keyword=" + keyword);
+    json.append("\"page\":\"").append(pageHtml.replace("\"", "\\\"")).append("\"");
+
     json.append("}");
 
     out.print(json.toString());

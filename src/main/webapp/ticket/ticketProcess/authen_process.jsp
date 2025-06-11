@@ -13,6 +13,13 @@ String phoneNum=request.getParameter("phoneNum");
 ticketDTO=(TicketDTO)session.getAttribute("ticketDTO");
 
 //System.out.println("authen_process.jsp   "+tservice.checkPhoneNum(phoneNum));
+if(tservice.getAuthenCount()>20){
+	%>
+	badstatus	
+	<%
+	return;
+}//end 
+
 
 if(tservice.checkPhoneNum(phoneNum)){
 	//알맞은 핸드폰 형식일 경우

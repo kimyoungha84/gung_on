@@ -23,6 +23,11 @@ if (numStr != null && !numStr.isEmpty()) {
     css.addViews(num);
     
     NoticeDTO nDTO = css.searchOneNotice(num);
+    if(nDTO == null){
+    	 response.sendRedirect(request.getContextPath() + "/errorpage/gungon_error.jsp");
+    	 return;
+    }
+    
     pageContext.setAttribute("nDTO", nDTO);
     
 }

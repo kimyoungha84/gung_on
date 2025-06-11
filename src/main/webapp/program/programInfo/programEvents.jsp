@@ -36,7 +36,7 @@
 
             sb.append("<div class='program-item'>");
 
-            sb.append("<img src='").append(imgFullPath)
+            sb.append("<img src='").append(contextPath + imgFullPath)
               .append("' alt='").append(dto.getProgramName()).append(" 이미지")
               .append("' class='program-image'>");
 

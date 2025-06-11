@@ -28,6 +28,11 @@
     		padding-bottom: 5px;
 		}
 		
+		.underline-title {
+    		border-bottom: 2px solid #dee2e6;
+    		padding-bottom: 15px;
+		}
+		
 		table.table {
     	  	width: 60%;
     	  	margin: 1rem auto;
@@ -38,7 +43,7 @@
     		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     		font-size: 0.95rem;
     		text-align: center;
-    		margin-top: 1rem;
+    		margin-top: 2rem;
    		}
    		
    		.table th, .table td {
@@ -49,22 +54,10 @@
         	background-color: black;
         	color: #ffffff;
     	}
-		
-		.container-fluid.px-4 {
-    		padding: 2rem 1.5rem;
-    		background-color: #f9f9f9;
-		}
-
-		h2 {
-    		font-weight: 700;
-    		color: #343a40;
-    		margin-bottom: 1.5rem;
-		}
-		
+    	
 		.centered-container {
-    		display: flex;
-    		justify-content: center;
-    		margin-bottom: 1.5rem;
+    		text-align: center;
+    		margin-top: 4rem;
 		}
 		
 		.program-detail-img {
@@ -136,9 +129,4 @@
     		display: flex;
     		justify-content: center;
     		margin-top: 20px;
-		}
-
-		.button-group-right form,
-		.button-group-center button {
-    		margin: 0;
 		}

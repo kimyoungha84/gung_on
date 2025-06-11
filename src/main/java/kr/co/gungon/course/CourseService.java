@@ -3,6 +3,8 @@ package kr.co.gungon.course;
 import java.sql.SQLException;
 import java.util.List;
 
+import kr.co.gungon.cs.CsDAO;
+import kr.co.gungon.cs.FilteringInfo;
 import kr.co.gungon.file.FilePathDTO;
 import kr.co.gungon.gung.GungDTO;
 
@@ -31,6 +33,18 @@ public class CourseService {
 		}//end catch
 		return list;
     }//getCoursesByGungId
+	
+	
+	public List<CourseDTO> getCoursesByGungId(int gung_Id, String fi) {
+	    List<CourseDTO> list = null;
+	    CourseDAO cDAO = CourseDAO.getInstance();
+	    try {
+	        list = cDAO.selectCoursesByGungIdAndFilter(gung_Id, fi);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return list;
+	}
 	
 	public CourseDTO getCourseDetail(int course_Num) {
 		CourseDTO cDTO=null;
@@ -142,6 +156,34 @@ public class CourseService {
          return flag;
     }//removeCourse
 	 
+	 
+	 public boolean removeCourse(int courseNum) {
+			CourseDAO cDAO= CourseDAO.getInstance();
+			boolean flag=false;
+
+	         CourseDTO cDTO = null;
+	         try {
+				cDTO=cDAO.selectCourseByCourseNum(courseNum);
+			} catch (SQLException e) {
+				e.printStackTrace();
+	             return flag;
+			}//end catch
+	         if (cDTO == null) {
+	             return flag; 
+	         }
+	         int result=0;
+			try {
+				result = cDAO.deleteCourse(courseNum);
+				flag=result > 0;
+			} catch (SQLException e) {
+				e.printStackTrace();
+	             flag = false; // 예외 발생 시 실패 처리
+			}//end catch
+	         return flag;
+	    }//removeCourse
+	 
+	 
+	 
 	 public List<CourseDTO> getUserCourses(String member_Id) {
 		 List<CourseDTO> list=null;
 		 CourseDAO cDAO= CourseDAO.getInstance();
@@ -226,7 +268,7 @@ public class CourseService {
 		}//end catch
     
          return flag;
-	 }//removeAllCourseImages
+	 }//getCourseImages
 	
 	 public boolean addCourseWithImages(CourseDTO course, List<FilePathDTO> uploadedFileList, String member_Id) {
 		    CourseDAO cDAO = CourseDAO.getInstance();
@@ -291,12 +333,7 @@ public class CourseService {
 	        if (deletedFileIds != null && !deletedFileIds.isEmpty()) {
 	            for (Integer fileId : deletedFileIds) {
 	            	try {
-						int deleteResult = cDAO.deleteFilePath(fileId) ;
-                        if (deleteResult <= 0) {
-                            System.err.println(">>> WARNING Service: modifyCourseWithImages - File path DB deletion failed for propertyId: " + fileId + ", executeUpdate result <= 0.");
-                        } else {
-                             System.out.println(">>> DEBUG Service: File path DB deletion successful for propertyId: " + fileId);
-                        }//end else
+						cDAO.deleteFilePath(fileId) ;
 
 					} catch (SQLException e) {
 						e.printStackTrace();
@@ -343,6 +380,24 @@ public class CourseService {
 
          return gungName;
      }//getGungNameById
+     
+     
+	public int totalCourseCount( FilteringInfo fi ) {
+		
+		int cnt = 0;
+		var cDAO = CourseDAO.getInstance();
+		try {
+			cnt = cDAO.selectTotalCourseCount(fi);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//catch
+		return cnt;
+	}//totalCourseCount
+
+	public List<CourseDTO> getFilteredCoursesByGungId(int gungId, FilteringInfo fi) throws Exception {
+		var cDAO = CourseDAO.getInstance();
+	    return cDAO.getFilteredCoursesByGungId(gungId, fi);
+	}
 
 	 
 }//class

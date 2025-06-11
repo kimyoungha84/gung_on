@@ -28,6 +28,11 @@
     		padding-bottom: 5px;
 		}
 		
+		.underline-title {
+    		border-bottom: 2px solid #dee2e6;
+    		padding-bottom: 15px;
+		}
+		
 		.button-container {
     		text-align: center;
 		}
@@ -71,6 +76,10 @@
 		.col-md-8 select,
 		.col-md-8 textarea {
     		background-color: #FFFDDF !important;
+		}
+		
+		.register-form {
+    		margin-top: 3rem;
 		}
 		
 		form .card {

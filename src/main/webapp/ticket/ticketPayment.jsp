@@ -3,35 +3,26 @@
     info="My 예매정보 페이지"%>
 <%@ include file="config/site_config.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="ticketProcess/payment_process.jsp" %>
+<%@include file="/ticket/ticketProcess/payment_process.jsp" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <!-- favicon 설정 -->
-<link rel="icon shortcut"  href="http://${defaultIP}/common/images/cs/gungOnFavicon.ico"/>
+<link rel="icon shortcut"  href="common/images/cs/gungOnFavicon.ico"/>
 
 <title>내 예매정보</title>
-<c:import url="http://${defaultIP}/common/jsp/header.jsp"/>	
+<%-- <c:import url="/common/jsp/header.jsp"/>	 --%>
 
 
 <!-- 부트스트랩  CDN -->    
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
 <!-- CSS 설정 -->
-<link rel="stylesheet" type="text/css" href="http://${defaultIP}/ticket/css/payment.css"/>
+<link rel="stylesheet" type="text/css" href="/ticket/css/payment.css"/>
 <!-- jquery CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-<script src="http://${defaultIP}/ticket/js/payment.js" type="text/javascript"></script>
-<script type="text/javascript">
-<!-- ticketPayment.jsp -->
-<script type="text/javascript">
-window.addEventListener('DOMContentLoaded', function () {
-    history.pushState({ page: 'payment' }, '', location.pathname + '?step=pay');
-});
-</script>
-
-
+<script src="/ticket/js/payment.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -50,7 +41,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 </thead>
                 <tbody class="border-start border-end" style="height:90px">
                     <tr>
-                        <td><%=tDTO.getProgramName() %></td>
+                       <td><%=tDTO.getProgramName() %></td>
                         <td><%=chooseDate %></td> 
                         <td><%=tDTO.getCommentLang() %></td>
                         <td><%=personString %><br></td>    
@@ -61,8 +52,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
             </table>
         </div><!--ticketInfoTable-->
-        <br><br>
-      
+        <br><br><br>
+        
  		<div style="margin-left:250px;">QR 코드 링크를 받을 핸드폰 번호를 입력해주세요.</div>
   	<form id="authFrm" style="margin-left:250px">
   	
@@ -74,17 +65,18 @@ window.addEventListener('DOMContentLoaded', function () {
 	<input type="text" readonly id="completAuthen" class="authDesign" value="인증완료" style="display:none"/>
 	</form>
 	<br><br><br>
+		
 	<div style="display:flex">
-	<form id="calcFrm" action="http://${defaultIP}/ticket/ticketProcess/ticket_calc_procss.jsp" method="post">
+	<form id="calcFrm" method="post">
 	    <div class="btnGroup">
 	        <input type="button" id="moneyCalc" value="결제하기" class="money" />
 	        <input type="hidden" id="hidPhoneNum" name="hidPhoneNum" value=""/>
 	       
 	    </div>
     </form>
-     		<input type="button" id="cancleCalc"  value="취소" class="cancel" onclick="location.href='http://${defaultIP}/program/programDetail/programDetail.jsp'">
+     		<input type="button" id="cancleCalc"  value="취소" class="cancel">
 	</div>
-	<br>
+	<br><br>
 	<div class="infoText">
         <ul>
             <li class="caution">※ QR 코드 링크를 타인에게 전송했을 시, 책임은 본인에게 있습니다.</li>
@@ -94,6 +86,6 @@ window.addEventListener('DOMContentLoaded', function () {
     </div>
 
     </div><!--entireWrap-->
-    <c:import url="http://${defaultIP}/common/jsp/footer.jsp"/>
 </body>
+    <%-- <c:import url="/common/jsp/footer.jsp"/> --%>
 </html>

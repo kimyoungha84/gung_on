@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>궁온 헤더 탭</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
+  <link rel="stylesheet" href="/common/css/common.css">
   <link rel="stylesheet" href="../programInfo/programInfo.css" />
   <style>
 
@@ -17,7 +17,7 @@
 <body>
 
 <header>
-  <jsp:include page="${pageContext.request.contextPath}/common/jsp/header.jsp" />
+  <jsp:include page="/common/jsp/header.jsp" />
 </header>
 
 <div class="sub_visual">
@@ -115,7 +115,7 @@ window.addEventListener("message", function (event) {
 </script>
 
 <footer>
-  <jsp:include page="${pageContext.request.contextPath}/common/jsp/footer.jsp" />
+  <jsp:include page="/common/jsp/footer.jsp" />
 </footer>
 
 </body>

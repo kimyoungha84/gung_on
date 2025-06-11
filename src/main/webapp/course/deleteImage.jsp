@@ -1,29 +1,21 @@
-<%@ page import="java.io.File" %>
-<%@ page contentType="application/json; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page import="java.io.File"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
-    String imagePath = request.getParameter("imagePath");
-
-    try {
-        if (imagePath == null || imagePath.trim().equals("")) {
-            out.print("{\"status\":\"error\",\"message\":\"imagePath 파라미터가 없습니다.\"}");
-            return;
-        }
-
-        String realPath = application.getRealPath("/" + imagePath);
+    String relativePath = request.getParameter("relativePath");
+    if (relativePath != null && !relativePath.isEmpty()) {
+        String realPath = application.getRealPath(relativePath);
         File file = new File(realPath);
-
-        if (file.exists()) {
+        if (file.exists() && file.isFile()) {
             if (file.delete()) {
-                out.print("{\"status\":\"success\",\"message\":\"삭제 성공\"}");
+                out.print("{\"status\":\"success\"}");
             } else {
-                out.print("{\"status\":\"error\",\"message\":\"삭제 실패 (file.delete() false)\"}");
+                out.print("{\"status\":\"fail\", \"message\":\"파일 삭제 실패\"}");
             }
         } else {
-            out.print("{\"status\":\"error\",\"message\":\"파일이 존재하지 않음\"}");
+            out.print("{\"status\":\"fail\", \"message\":\"파일 존재하지 않음\"}");
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-        out.print("{\"status\":\"error\",\"message\":\"서버 예외: " + e.getMessage() + "\"}");
+    } else {
+        out.print("{\"status\":\"fail\", \"message\":\"삭제 경로 누락\"}");
     }
 %>
