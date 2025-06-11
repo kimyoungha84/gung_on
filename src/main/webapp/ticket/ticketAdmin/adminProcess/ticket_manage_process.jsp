@@ -19,8 +19,6 @@ ticketAdminList=ats.showDefaultAdminPageData();
 
 pageContext.setAttribute("ticketAdminList", ticketAdminList);
 
-
-
 //--- 페이지네이션 처리 ---
 int pageSize = 5;
 int rowCounts = ticketAdminList.size();

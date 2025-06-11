@@ -330,6 +330,6 @@ public class AdminTicketDAO {
 		  
 		  return entryStatus;
 	 }//selectStatucByQrHash
-	
+
 	
 }//class

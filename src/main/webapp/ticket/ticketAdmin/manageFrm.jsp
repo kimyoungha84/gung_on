@@ -40,7 +40,12 @@ $(function(){
    
    $(".datatable-bottom").click(function(){
       
-   });
+   });//click
+   
+   
+   $("#idFrm").click(function(){
+	   
+   });//click
 
    
 });//ready
@@ -58,13 +63,13 @@ $(function(){
 <div class="card-body"><!-- card-body start -->
 <h2>예매 목록</h2>
 <br>
-<div class="">
+<!-- <div class="">
 <form method="POST" id="">
-<input class="" placeholder="이름을 입력해주세요" type="search" style="margin-left:20px;" title="wow" />
+<input class="" placeholder="id을 입력해주세요" type="search" id="idFrm" style="margin-left:20px;" title="wow" />
 <input type="button" id="btn" value="검색" class=""/>
 </form>
 </div>
-<br>
+ --><br>
 
 
 <div class="">

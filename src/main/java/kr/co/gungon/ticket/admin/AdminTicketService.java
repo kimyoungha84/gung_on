@@ -278,4 +278,23 @@ public class AdminTicketService {
 	}//returnStatusByQRHash
 	
 	
+	public List<TicketAdminDTO> searchById(String id){
+		List<TicketAdminDTO> ticketAdminList=new ArrayList<TicketAdminDTO>();
+		AdminTicketService ts=new AdminTicketService();
+		List<TicketAdminDTO> searchList=new ArrayList<TicketAdminDTO>();
+		
+		ticketAdminList=ts.showDefaultAdminPageData();
+		
+		for(int i=0; i<ticketAdminList.size();i++) {
+			if(ticketAdminList.get(i).getMember_id().equals(id)) {
+				searchList.add(ticketAdminList.get(i));
+			}//end if
+		}//end for
+		
+		
+		
+		return searchList;
+	}//searchById
+	
+	
 }//class

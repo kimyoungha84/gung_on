@@ -29,6 +29,7 @@ $.ajax({
 	},
 	success: function(htmldata){
 		var data=$.trim(htmldata);
+		//alert(data);
 		
 		if( data == "yes"){
 			alert("성공");

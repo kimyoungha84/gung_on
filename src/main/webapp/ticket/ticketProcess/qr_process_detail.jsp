@@ -19,7 +19,7 @@ AdminTicketService adminTs=new AdminTicketService();
 
 if(adminNumStr.equals(password)){
 	//이미 처리된 상태인 경우
-	if(adminTs.returnStatusByQRHash(imgStr).equals('O')){
+	if(adminTs.returnStatusByQRHash(imgStr).equals("O")){
 		%>
 		already
 		<%
