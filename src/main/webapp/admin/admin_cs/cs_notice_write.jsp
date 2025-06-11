@@ -45,20 +45,19 @@
 
         // 특정 조건에 따라 action을 변경하는 함수
         function writeProcess() {
-		    var $form = $("#summerNoteFrm"); // jQuery로 폼 선택
+		    var $form = $("#summerNoteFrm"); 
 		    
-		    var title = $("#title").val().trim(); // 제목 입력값
+		    var title = $("#title").val().trim(); 
 
 		    // 제목이 비었거나 공백만 있으면
 		    if (title === "") {
 		        alert("제목은 필수입력입니다.");
-		        return; // 유효성 검사 실패 시 함수 종료
+		        return; 
 		    }
 
-		    var content = $("#summernote").summernote('code').trim();  // summernote에서 HTML 코드 가져오기
+		    var content = $("#summernote").summernote('code').trim();  
 
-			 // HTML 코드에서 실제 텍스트만 추출 (공백/특수문자 제거)
-			 var plainText = $("<div>").html(content).text().trim();  // 텍스트 추출 후 trim()
+			 var plainText = $("<div>").html(content).text().trim();  
 	
 			 // 비어있는지 체크
 			 if (plainText === '' || content === '<p><br></p>' || content === '&lt;p&gt;&lt;br&gt;&lt;/p&gt;') {
@@ -72,7 +71,6 @@
 		            $("#summerNoteFrm").attr("action", "noticewrite_process.jsp");
 		            $form.submit(); // 확인을 누른 경우에만 제출
 		        } else {
-		            // 사용자가 취소를 누른 경우 아무 일도 하지 않음
 		            return;
 		        }
 		    } else {
@@ -110,10 +108,9 @@
     </div>
     
      <%@ include file="summernoteExample.jsp" %>
-    <button type="button" id="writeBtn" class="btn btn-primary mt-3" onclick="writeProcess()">작성</button>
-    <button type="button" class="btn btn-info mt-3" onclick="previewNotice()">미리보기</button>
-    <button type="button" class="btn btn-secondary mt-3" onclick="viewSource()">소스보기(테스트용)</button>
-    <button type="button" class="btn btn-secondary mt-3" onclick="moveToMain()">뒤로가기</button>
+    <button type="button" id="writeBtn" class="btn btn-primary" onclick="writeProcess()">작성</button>
+    <button type="button" class="btn btn-info" onclick="previewNotice()">미리보기</button>
+    <button type="button" class="btn btn-secondary" onclick="moveToMain()">뒤로가기</button>
     
      
     
@@ -126,11 +123,7 @@
                                
                 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <!-- <script src="js/scripts.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-      <!--   <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script> -->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script> -->
         <script src="cs_common/simple-datatables.js"></script>
         <script src="cs_common/datatables-simple-demo.js"></script>
             

@@ -181,43 +181,6 @@ function toggleAnswer(element, event) {
 	<div class="txt_section_tit">FAQ</div>
 	<div class="bd_wrap">
 		<ul class="q_list">
-			<!-- <li class="q_item open">
-					<div class="q_box">
-						<a href="#" class="box_inn ic_q" onclick="fn_increment('qna','20231218113029485809',this);" title="답변 열기">
-							<span class="ic">Q</span>
-							<span class="txt">
-								<div class="tit_txt">조선왕릉 중 일부를 공개하지 않는 이유</div>
-							</span>
-						</a>
-					</div>
-					<div class="a_box">
-						<div class="box_inn ic_a_yes">
-							<span class="ic">A</span>
-							<span class="txt">
-								조선왕릉 중 일부를 공개제한 하는 것은 국가유산&nbsp;보존과 훼손 방지를 위해서이며, 구체적인 사유는 다음과 같습니다.<br>
- - 사유지 내에 있어서 상시 관람을 위한 진입 공간이 확보되지 않았거나, 주변의 장애물 등으로 인하여 접근이 어려운 경우<br>
- - 고건물, 석조물, 전통 조경물, 관람 시설물, 소방 시설물의 수리 혹은 복원공사가 전면적이고 장기간 시행되어 관람 환경에 영향을 미칠 경우<br>
- - 관리 면적이 좁아서 관람 환경을 마련할 수 없는 경우<br> - 자연 생태 환경(동물, 식생, 수문, 토양 등) 보존을 위해 필요한 경우 등</span>
-						</div>
-					</div>
-				</li>
-			<li class="q_item">
-					<div class="q_box">
-						<a href="#" class="box_inn ic_q" onclick="" title="답변 열기">
-							<span class="ic">Q</span>
-							<span class="txt">
-								<div class="tit_txt">입장권을 미리 사두면, 입장 시간이 지나도 입장이 가능한가요?</div>
-							</span>
-						</a>
-					</div>
-					<div class="a_box">
-						<div class="box_inn ic_a_yes">
-							<span class="ic">A</span>
-							<span class="txt">
-								입장권을 소지하고 있더라도, 입장 시간이 지난 후에는 입장 및 환불이 불가합니다.</span>
-						</div>
-					</div>
-				</li> -->
 				
 				<c:forEach var="fDTO" items="${ faqList }" varStatus="i">
 				<li class="q_item">

@@ -9,10 +9,8 @@ request.setCharacterEncoding("UTF-8");
 FaqDTO fDTO = new FaqDTO();
 fDTO.setFaq_title(request.getParameter("title")); 
 
-System.out.println(request.getParameter("title"));
 fDTO.setFaq_content(request.getParameter("content"));
 
-System.out.println(request.getParameter("content"));
 
 CsService css = new CsService();
 boolean flag = css.addFaq(fDTO);

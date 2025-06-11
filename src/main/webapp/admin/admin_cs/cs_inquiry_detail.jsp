@@ -21,9 +21,13 @@ if (numStr != null && !numStr.isEmpty()) {
     
     InquiryDTO iDTO = css.searchOneInquiry(num);
     
+    if(iDTO == null){
+      response.sendRedirect(request.getContextPath() + "/errorpage/gungon_error.jsp");
+   	  return;
+    }
+    
     pageContext.setAttribute("iDTO", iDTO);
     
-    System.out.println(iDTO);
  // notice_title에서 "를 &quot;로 치환
     
 %>
@@ -41,7 +45,7 @@ if (numStr != null && !numStr.isEmpty()) {
         
         <style>
         
-        .form-select, .datatable-selector {
+ /*        .form-select, .datatable-selector {
     display: block;
     width: 100%;
     padding: 0.375rem 2.25rem 0.375rem 0.75rem;
@@ -62,7 +66,7 @@ if (numStr != null && !numStr.isEmpty()) {
     -moz-appearance: none;
     appearance: none;
 }
-        
+         */
         
         .border-secondary{
   			border-width: 3px !important;
@@ -87,8 +91,9 @@ if (numStr != null && !numStr.isEmpty()) {
   .inquiry-box {
     width: 1500px;
     margin: 20px auto;
+    margin-top: 0px !important;
     height: 600px;
-    border: 3px solid #353535;
+    /* border: 3px solid #353535; */
     border-radius: 12px;
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -100,16 +105,17 @@ if (numStr != null && !numStr.isEmpty()) {
     margin-bottom: 15px;
     font-weight: bold;
     font-size: 16px;
+    border-bottom: 1px solid #333;
   }
 
   .inquiry-content {
     background-color: #bcbcbc;
-    padding: 15px;
+    /* padding: 15px; */
     border-radius: 8px;
     min-height: 200px;
     max-height: 200px;
     overflow-y: auto;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     white-space: pre-wrap;
   }
 
@@ -121,6 +127,16 @@ if (numStr != null && !numStr.isEmpty()) {
     border-radius: 8px;
     border: 2px solid #606060;
     font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .inquiry-user{
+  padding : 10px; 
+  
+  }
+  
+  .inquiry-status{
+  padding : 10px;
   }
 
   /* .answer-area button {
@@ -152,20 +168,16 @@ if (numStr != null && !numStr.isEmpty()) {
         $(document).ready(function() {
             // checkAnswerValidation 함수 정의
             function checkAnswerValidation() {
-              // 텍스트 영역의 값 가져오기
               var answerContent = $('#answerText').val().trim();
               
               // 텍스트 영역이 비어있는지 체크
               if (answerContent === "") {
-                // 비어있으면 경고창 띄우기
                 alert("답변은 필수입력입니다.");
               } else {
-                // 비어 있지 않으면 폼 제출 (이 부분은 필요에 따라 수정 가능)
-                $('#answerFrm').submit(); // 폼을 전송하려면 주석을 제거하고 사용
+                $('#answerFrm').submit(); 
               }
             }
 
-            // 버튼 클릭 이벤트에 checkAnswerValidation 함수 연결
             $('#saveBtn').click(function() {
               checkAnswerValidation();
             });
@@ -205,8 +217,8 @@ if (numStr != null && !numStr.isEmpty()) {
 
 <div class="inquiry-box">
   <div class="inquiry-header">
-    <div>작성자: <span id="writerId">${ iDTO.member_id }</span></div>
-    <div>처리상태: <span id="status">${ iDTO.answer_status == true ? '답변완료' : '답변대기' }</span></div>
+    <div class="inquiry-user">작성자ID: <span id="writerId">${ iDTO.member_id }</span></div>
+    <div class="inquiry-status">처리상태: <span id="status" style="font-weight : bold; color: ${ iDTO.answer_status == true ? 'green' : 'red' }">${ iDTO.answer_status == true ? '답변완료' : '답변대기' }</span></div>
   </div>
 
   <label for="answerText"><strong>문의내용</strong></label>
@@ -219,8 +231,10 @@ if (numStr != null && !numStr.isEmpty()) {
     <label for="answerText"><strong>답변</strong></label>
     <textarea id="answerText" placeholder="답변을 입력하세요..." name="answer_content">${ iDTO.inquiry_answer }</textarea>
     <input type="hidden" name="num" value="${param.num}"/>
-    <button type="button" id="saveBtn" class="btn btn-info mt-3">답변 저장</button>
-    <button type="button" id="cancleBtn" class="btn btn-secondary mt-3" onclick="moveToMain()">취소</button>
+    <div style="margin-left: 600px;">
+    <button type="button" id="saveBtn" class="btn btn-primary">답변 저장</button>
+    <button type="button" id="cancleBtn" class="btn btn-secondary" onclick="moveToMain()">취소</button>
+    </div>
   </form>
   </div>
 </div>

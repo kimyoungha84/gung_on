@@ -925,7 +925,7 @@ public class CsDAO {
 
         try {
             con = db.getDbConn();
-            System.out.println(ifi);
+			//System.out.println(ifi); 
             
             StringBuilder sql = new StringBuilder();
             sql.append("SELECT inquiry_num, member_id, inquiry_content, inquiry_answer, answer_status, inquiry_reg_date, inquiry_answer_date ")
@@ -968,39 +968,39 @@ public class CsDAO {
             // 검색어 바인딩
             if (ifi.getSearchText() != null && !"".equals(ifi.getSearchText())) {
                 pstmt.setString(idx++, "%" + ifi.getSearchText() + "%");
-                System.out.println("검색어 바인딩");
-                System.out.println("searchText: " + ifi.getSearchText()); 
+//                System.out.println("검색어 바인딩");
+//                System.out.println("searchText: " + ifi.getSearchText()); 
             }
 
             // 날짜 바인딩
             if (ifi.getStartDate() != null && ifi.getEndDate() != null) {
                 pstmt.setDate(idx++, new java.sql.Date(ifi.getStartDate().getTime()));
                 pstmt.setDate(idx++, new java.sql.Date(ifi.getEndDate().getTime()));
-                System.out.println("getStartDate, endDate 바인딩");
+//                System.out.println("getStartDate, endDate 바인딩");
                 
             } else if (ifi.getStartDate() != null) {
                 pstmt.setDate(idx++, new java.sql.Date(ifi.getStartDate().getTime()));
-                System.out.println("getStartDate 바인딩");
+//                System.out.println("getStartDate 바인딩");
             } else if (ifi.getEndDate() != null) {
                 pstmt.setDate(idx++, new java.sql.Date(ifi.getEndDate().getTime()));
-                System.out.println("getEndDate 바인딩");
+//                System.out.println("getEndDate 바인딩");
             }
 
             // answer_status 바인딩
             if (ifi.getAnswerStatus() != null) {
                 pstmt.setString(idx++, ifi.getAnswerStatus() ? "Y" : "N");
                 
-                System.out.println("answer_status 바인딩");
+//                System.out.println("answer_status 바인딩");
             }
             
-            System.out.println("SQL: " + sql.toString());
+//            System.out.println("SQL: " + sql.toString());
 
             // 페이징 번호 바인딩
             pstmt.setInt(idx++, ifi.getStartNum());
-            System.out.println("startnum바인딩");
+//            System.out.println("startnum바인딩");
             pstmt.setInt(idx++, ifi.getEndNum());
-            System.out.println("endnum바인딩");
-            System.out.println("최종 idx = " + idx);
+//            System.out.println("endnum바인딩");
+//            System.out.println("최종 idx = " + idx);
             
             
 //            System.out.println("searchCategory: " + ifi.getSearchCategory());
