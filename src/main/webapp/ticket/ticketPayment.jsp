@@ -10,7 +10,7 @@
 <head>
 <!-- favicon 설정 -->
 <link rel="icon shortcut"  href="common/images/cs/gungOnFavicon.ico"/>
-
+<br><br><br><br>
 <title>내 예매정보</title>
 <%-- <c:import url="/common/jsp/header.jsp"/>	 --%>
 

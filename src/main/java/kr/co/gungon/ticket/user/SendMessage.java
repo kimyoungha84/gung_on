@@ -40,8 +40,8 @@ public class SendMessage {
 		} catch (Exception ex) {
 		  System.out.println(ex.getMessage());
 		}//end try~catch
-		
 		*/
+		
 	}//makeMessage
 	
 }//class

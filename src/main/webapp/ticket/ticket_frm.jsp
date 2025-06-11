@@ -4,7 +4,7 @@
     info="예매화면"%>
  <%@ include file="config/site_config.jsp"%>
  
- <%-- <%@ include file="/common/jsp/login_chk.jsp" %> --%>
+ <%@ include file="/common/jsp/login_chk.jsp" %>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
  
@@ -69,13 +69,13 @@
 
 <%
 //여기서 getprogramName 받아줘야한다.
-//String programName=request.getParameter("programName");//이거 나중에 주석 풀어야 함.
-//String member_id=(String)session.getAttribute("member_id");//이거 나중에 주석 풀기
+String programName=request.getParameter("programName");//이거 나중에 주석 풀어야 함.
+String member_id=(String)session.getAttribute("member_id");//이거 나중에 주석 풀기
 
 //value 부분에 ${programName} 변경 필요
 
-String member_id="testest";
-String programName="경복궁 야간관람";
+//String member_id="testest";
+//String programName="경복궁 야간관람";
 
 TicketService ticketService=new TicketService();
 //program 시작, 끝 날짜 가져오기
@@ -90,7 +90,7 @@ System.out.println(endday);
 <div class="wrap">
     <form onsubmit="return valiableData()" action="/ticket/ticketProcess/ticket_process.jsp" name="viewDateFrm" method="post">
     	<input type="hidden" id="member_id" name="member_id" value="<%=member_id%>"/>
-  	   <div><input type="text" id="programName" name="programName" class="title" value="<%=programName%>"/></div>
+  	   <div><input type="text" id="programName" name="programName" class="title" value="<%=programName%>" style="margin-left: 80px"/></div>
     <!-- 오른쪽 -->
     <div class="right">
 		<div class="ticket_box">
@@ -232,7 +232,7 @@ System.out.println(endday);
  		<%String imgFullPath=request.getParameter("imgFullPath"); %>
  		
 		<div style="">
-			<img src="<%=imgFullPath %>" style="width:339px;height:450px; margin-top:20px;"/>
+			<img src="<%=imgFullPath %>" style="width:339px;height:450px; margin-top:20px;margin-left:100px;"/>
 		</div>
 
 

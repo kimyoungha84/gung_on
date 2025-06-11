@@ -283,4 +283,53 @@ public class AdminTicketDAO {
 		  return programStartTime;
 	 }//selectProgramNameByProgramId
 	
+	
+	
+	 
+	/**
+	 * QRHash 코드를 이용해 현재 처리 상태 반환
+	 * @param QRhash
+	 * @return
+	 * @throws SQLException
+	 */
+	public String selectStatucByQrHash(String QRhash) throws SQLException {
+		 DbConnection db=DbConnection.getInstance();
+		 String entryStatus=null;
+		 
+		  ResultSet rs=null; PreparedStatement pstmt=null; Connection con=null;
+		  
+		  try { 
+			 //1.JNDI 사용객체 생성 
+			  //2.DBCP에서 연결객체 얻기(DataSource) 
+			  //3.Connection 얻기
+			  con=db.getDbConn(); 
+			  //4.쿼리문 생성객체 얻기 
+			  StringBuilder selectQuery=new StringBuilder(); 
+			  selectQuery.append("	select entry_status from ticket_reservation_detail		")
+			  .append("	where qr_hash=?	");
+			  
+			  
+			  pstmt=con.prepareStatement(selectQuery.toString()); 
+			  
+			  
+			  //5.바인드 변수에 값 할당
+			  pstmt.setString(1, QRhash);
+			  
+			  //6.쿼리문 수행 후 결과를 얻기 
+			  rs=pstmt.executeQuery();
+			  
+			  if(rs.next()) {
+				  entryStatus=rs.getString("entry_status");
+			  }//end if
+			  
+		  }finally { 
+			  //7.연결 끊기 
+			  db.dbClose(rs, pstmt, con); 
+		  }//try~finally
+		
+		  
+		  return entryStatus;
+	 }//selectStatucByQrHash
+	
+	
 }//class

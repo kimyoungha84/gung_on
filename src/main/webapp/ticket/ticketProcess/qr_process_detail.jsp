@@ -15,10 +15,18 @@ String password="12345";
 System.out.println("adminNumStr-----"+adminNumStr);
 System.out.println("imgStr======="+imgStr);
 
+AdminTicketService adminTs=new AdminTicketService();
 
 if(adminNumStr.equals(password)){
+	//이미 처리된 상태인 경우
+	if(adminTs.returnStatusByQRHash(imgStr).equals('O')){
+		%>
+		already
+		<%
+		return;
+	}//end if
+	
 	//qr을 찍었을 떄, 처리하는 부분
-	AdminTicketService adminTs=new AdminTicketService();
 	adminTs.modifyStatus(imgStr);
 	//이미지도 덮어쓰도록 바꿔줘야하지
 	OverlayCompleteQR overlay=new OverlayCompleteQR();

@@ -60,8 +60,7 @@ $(function(){
 <br>
 <div class="">
 <form method="POST" id="">
-<input type="date" id="date" style="margin-left:10px;" name="date" value=""/><span style="font-weight: bold;"></span>
-<input class="" placeholder="입력해주세요" type="search" style="margin-left:100px;" title="wow" />
+<input class="" placeholder="이름을 입력해주세요" type="search" style="margin-left:20px;" title="wow" />
 <input type="button" id="btn" value="검색" class=""/>
 </form>
 </div>

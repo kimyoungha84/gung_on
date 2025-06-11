@@ -36,7 +36,29 @@
 
 
 <script type="text/javascript">
-
+$(function(){
+	$("#resendBtn").click(function(){
+		$.ajax({
+			var param="bookingNum="+bookingNum+"&ageClassification="+ageClassification+"&numClassification="+numClassification;
+			url:"/ticket/ticketAdmin/adminProcess/resendQR.jsp",
+			type:"post",
+			data: param,
+			
+			dataType:"html",
+			error : function(xhr){
+				console.log(xhr.status+" / "+xhr.statusText);
+			},//error
+			success: function(data){
+				var result=$.trim(data);
+			//와 ... 머리가 아예 안돌아가는데?...ㅎ....
+				
+			}//success
+		});//ajax
+		alert("전송완료");
+	});//click
+	
+	
+});//ready
 
 
 
@@ -56,13 +78,18 @@
 
 </div>
 
-<div>
-<span style="font-weight:bold; font-size:16px">예매 번호</span><span style="font-size:20px;margin-left:10px;"><c:out value="${adminDTO.getBooking_num() }"/></span><span style="font-weight:bold; font-size:25px; margin-left:20px;"> 결제일</span><span style="font-size:20px;margin-left:10px"><c:out value="${adminDTO.getPaymentTimeStamp() }"/></span>
-<input type="hidden" class="bookingNum" value="<%-- ${adminDTO.getBooking_num() } --%>"/>
-</div>
+
 
 <div class="entireWrap">
     <br>
+ <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto 12px auto; font-size: 15px;">
+<div><span style="font-weight:bold;">예매 번호: <c:out value="${adminDTO.getBooking_num() }"/></span></div>
+<div><span style="font-weight:bold;"> 결제일: <c:out value="${adminDTO.getPaymentTimeStamp() }"/></span></div>
+<input type="hidden" class="bookingNum" value="${adminDTO.getBooking_num() }"/>
+<input type="hidden" class="ageClassification" value="${ tDetailDTO.getAgeClassification()}"/>
+<input type="hidden" class="numClassification" value="${ tDetailDTO.getNumClassification()} }"/>
+</div>
+      
     	<table class="table table-bordered table-hover text-center custom-table">
     	<thead class="table-light">
     		<tr style="background:#ECECEC">
@@ -79,7 +106,7 @@
 	    	<td>${adminDTO.getReserve_date()} ${startTime}</td>
 	    	<td>${adminDTO.getComment_flag() }</td>
 	    	<td>${person}</td>
-	    	<td><%=paymentStr %>원</td>
+	    	<td>${paymentStr}원</td>
     	</tr>
     	</tbody>
     	
@@ -92,9 +119,9 @@
 	    <thead class="table-light">
         <tr>
         	<th></th>
-            <th  style="height:80px;">연령구분</th>
-            <th style="height:80px;">입장시간</th>
-            <th style="height:80px;">입장 여부</th>
+            <th>연령구분</th>
+            <th>입장시간</th>
+            <th>입장 여부</th>
         </tr>
    	 	</thead>
     	<tbody>
@@ -105,7 +132,6 @@
 				<td><c:out value="${ tDetailDTO.getAgeClassification()}  ${ tDetailDTO.getNumClassification()}"/></td>
 				<td><c:out value="${ tDetailDTO.getEntryTime() }"/></td>
 				<td><c:out value="${ tDetailDTO.getEntryStatus() }"/></td>
-			
 				</tr>
 				<% cnt++;%>
 			</c:forEach>

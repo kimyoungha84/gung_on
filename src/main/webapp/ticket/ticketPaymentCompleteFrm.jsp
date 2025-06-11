@@ -12,7 +12,7 @@
 
 <!-- favicon 설정 -->
 <link rel="icon shortcut"  href="/common/images/cs/gungOnFavicon.ico"/>
-
+<br><br><br><br>
 <title>결제완료</title>
 <%-- <c:import url="/common/jsp/header.jsp"/>	 --%>
 

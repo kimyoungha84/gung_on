@@ -263,4 +263,19 @@ public class AdminTicketService {
 		return list;
 	}//end cutList
 	
+	
+	public String returnStatusByQRHash(String QRHash) {
+		AdminTicketDAO tDAO=AdminTicketDAO.getInstance();
+		String entryStatus=null;
+		
+		try {
+			entryStatus=tDAO.selectStatucByQrHash(QRHash);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}//end try~catch
+		
+		return entryStatus;
+	}//returnStatusByQRHash
+	
+	
 }//class
