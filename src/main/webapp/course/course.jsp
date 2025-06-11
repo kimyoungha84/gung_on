@@ -56,13 +56,11 @@
     if (targetTabLink) {
         targetTabLink.closest('.item').classList.add('current'); 
     } else {
-         console.warn(`Tab link for ${tabId} not found in popup.`);
          const defaultTabLink = popup.querySelector('.tab_menu .item a[data-tab="cs0"]');
          if (defaultTabLink) {
              defaultTabLink.closest('.item').classList.add('current');
              tabId = 'cs0'; 
          } else {
-             console.error('Default tab cs0 not found either. No tab could be activated.');
              return; 
          }
     }
@@ -73,9 +71,7 @@
          tabContents.forEach(content => {
            content.classList.remove('current'); 
          });
-     } else {
-         console.warn('No tab contents (.tab_con) found in popup.');
-     }
+     } 
 
     const targetTabContents = popup.querySelectorAll('.tab_con.' + tabId);
     if (targetTabContents.length > 0) {
@@ -108,19 +104,14 @@
                  } else {
                       console.log('Swiper element found but no instance:', swiperEl.id);
                  }
-             } else {
-                 console.log('No Swiper element (.course_pop_slide) found in active popup tab content.');
-             }
+             } 
            });
-    } else {
-        console.warn(`No tab contents (.tab_con.${tabId}) found in popup for tabId: ${tabId}.`);
     }
 
   }
 
   function closePopup() {
     if (!dim || !popup) {
-        console.error('Popup or Dim element is null when trying to close popup.');
         return;
     }
     dim.style.display = 'none';
@@ -141,9 +132,7 @@
          if(zoomInButton) { zoomInButton.addEventListener('click', () => panzoom.zoomIn()); }
          if(zoomOutButton) { zoomOutButton.addEventListener('click', () => panzoom.zoomOut()); }
          if(resetButton) { resetButton.addEventListener('click', () => panzoom.reset()); }
-       } else {
-         console.log('Panzoom container (#panzoom-container) not found in loaded main content.');
-       }
+       } 
 
        const buildingTabLinks = containerElement.querySelectorAll('.course_num_list .course_num_item');
        const photoDiv = containerElement.querySelector('#photoDiv');
