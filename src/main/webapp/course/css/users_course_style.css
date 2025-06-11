@@ -465,9 +465,6 @@ margin-bottom: 15px;
         margin-right: 10px;
     }
     
-    /* Summernote 이미지 삽입 모달 스타일 조정 */
-
-/* 모달 전체 컨테이너 */
 .note-editor .modal {
     /* Bootstrap 모달과 Summernote 모달의 충돌 방지 및 기본 위치 설정 */
     position: fixed; /* 고정 위치 */
@@ -554,7 +551,6 @@ margin-bottom: 15px;
         vertical-align: middle; 
         border-radius: 5px;
     }
-    /* select 박스 스타일 (course_write.jsp와 통일) */
     .sel_st {
         padding: 8px 12px;
         border: 1px solid #ccc;
@@ -562,7 +558,6 @@ margin-bottom: 15px;
         font-size: 1rem;
         line-height: 1.5;
     }
-    /* 수정/삭제 버튼 스타일 */
     .action-buttons .btn {
         padding: 3px 8px;
         font-size: 0.8rem;
@@ -590,4 +585,62 @@ margin-bottom: 15px;
     color: #007bff;             /* 부트스트랩 블루 */
     text-shadow: 0 1px 3px rgba(0, 123, 255, 0.3);
 }
-    
+
+/* 테이블 높이 균일하게 */
+table tr td {
+  height: 60px;
+  vertical-align: middle;
+  padding: 0 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 제목 셀 너비 넉넉히 */
+td.title {
+  width: 45%;
+  max-width: 600px; /* 최대 폭 제한 가능 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+}
+
+/* 썸네일 크기 및 마진 */
+td.title img.course-thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+/* 작성자 ID 셀 말줄임 */
+td.writer_id {
+  width: 15%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 나머지 셀들은 균등 분배 (예: 날짜, 조회수 등) */
+td.other-cell {
+  width: auto;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 제목 링크 스타일 (필요시) */
+td.title a {
+  color: #333;
+  font-weight: 600;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+td.title a:hover {
+  text-decoration: underline;
+}
+

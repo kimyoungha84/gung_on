@@ -30,9 +30,9 @@
     String id = mDTO.getId();
 
     String courseTitle = request.getParameter("course_title");
-    String courseContent = request.getParameter("course_content"); // Summernote 에디터의 HTML 내용
+    String courseContent = request.getParameter("course_content"); 
     String gungIdStr = request.getParameter("gung_id");
-    String uploadedImagesInfoJson = request.getParameter("uploadedImagesInfo"); // Summernote 숨김 필드 값
+    String uploadedImagesInfoJson = request.getParameter("newUploadedImagesInfo"); 
 
     if (courseContent != null) {
         int maxLength = 500;
