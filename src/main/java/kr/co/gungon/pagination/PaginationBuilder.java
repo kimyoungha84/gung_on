@@ -73,7 +73,7 @@ public class PaginationBuilder {
         return "<style>" +
                ".pagination-wrapper { text-align: center; margin-top: 20px; }" +
                ".pagination { display: inline-flex; gap: 6px; padding: 0; list-style: none; }" +
-               ".page-item .page-link { padding: 6px 12px; font-size: 14px; color: #007bff; border: 1px solid #dee2e6; border-radius: 6px; text-decoration: none; transition: 0.2s; }" +
+               ".page-item .page-link { padding: 6px 12px; font-weight: bold; font-size: 14px; color: #333; border: 1px solid #8c8c8c; border-radius: 6px; text-decoration: none; transition: 0.2s; }" +
                ".page-item .page-link:hover { background-color: #007bff; color: #fff; }" +
                ".page-item.active .page-link { background-color: #007bff; color: #fff; border-color: #007bff; }" +
                ".page-item.disabled .page-link { color: #aaa; pointer-events: none; background-color: #f5f5f5; border-color: #ddd; }" +

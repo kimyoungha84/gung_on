@@ -167,18 +167,18 @@
     </div>
 
     <div class="qa-section">
+            <c:choose>
+                <c:when test="${empty iDTO.inquiry_answer}">
+                    <span style="font-size: 25px; font-weight: bold;">답변 준비중입니다.</span>
+                </c:when>
+                <c:otherwise>
         <div class="qa-date"><fmt:formatDate value="${iDTO.inquiry_answerDate}" pattern="yyyy-MM-dd" /></div>
         <div class="qa-label">문의 답변</div>
         <div class="qa-content">
-            <c:choose>
-                <c:when test="${empty iDTO.inquiry_answer}">
-                    <span style="font-size: 30px; font-weight: bold;">답변 준비중입니다.</span>
-                </c:when>
-                <c:otherwise>
                     ${iDTO.inquiry_answer}
+        </div>
                 </c:otherwise>
             </c:choose>
-        </div>
     </div>
 </div>
  

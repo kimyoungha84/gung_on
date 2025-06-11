@@ -26,7 +26,6 @@ int startNum = 0;
 int endNum = 0;
 int pageSize = 0;
 
-System.out.println(searchText == null);
 
 
 /* if( searchText.equals("null")){
@@ -109,8 +108,7 @@ Date endDate = null;
 try {
     if (startDateStr != null && !startDateStr.isEmpty()) {
         startDate = Date.valueOf(startDateStr); // 형식: "yyyy-MM-dd"
-System.out.println("startDateStr: " + startDateStr);
-System.out.println("endDateStr: " + endDateStr);
+
     }
     if (endDateStr != null && !endDateStr.isEmpty()) {
         endDate = Date.valueOf(endDateStr);

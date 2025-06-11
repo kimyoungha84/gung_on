@@ -123,7 +123,16 @@
         #datatablesSimple th, #datatablesSimple td {
             text-align: left;
             padding: 8px;
+            vertical-align: middle;
         }
+        #datatablesSimple th{
+        	height: 45.5px;
+        }
+        
+        #datatablesSimple tr{
+        	height: 43px;
+        }
+        
 
         /* 각 열에 대한 너비 설정 */
         #datatablesSimple th:nth-child(1), 
@@ -149,6 +158,19 @@
 		tr.selected-delete {
    		 background-color: #ffd6d6 !important; /* 삭제용 하이라이트 색상 */
  		}
+ 		
+ 		
+ 		#datatablesSimple a {
+		  font-weight: bold !important;        /* 기본적으로 굵은 글씨 */
+		  color: #080839 !important;             /* 기본 텍스트 색은 검정색 */
+		  text-decoration: none !important;    /* 밑줄 없애기 */
+		  transition: color 0.3s !important;   /* 색상 변화가 부드럽게 전환되도록 설정 */
+		}
+		
+		#datatablesSimple a:hover {
+		  color: gray !important;              /* 호버 시 텍스트 색을 회색으로 변경 */
+		}
+		
 		        
         
         .border-secondary{
@@ -172,6 +194,54 @@
   		min-width: 1600px; 
   		
   		}
+  		
+  		
+  		
+  		
+  		
+  		div{
+  		display: unset;
+  		}
+  		
+  		.form-control, .datatable-input{
+  		width: 150px !important;
+  		
+  		}
+  		.datatable-search {
+  		
+  		width: 40%;
+	    padding: 10px !important;
+	    border: 2px solid #d6d6d6;
+	    display: flex;
+	    margin-top: 20px !important;
+	    justify-content: flex-end;
+	    margin-left: auto;
+	    border-radius: 15px 15px 15px 15px !important;
+	    
+  		}
+  		
+  		form{
+  		display: unset;
+  		margin: 0px;
+  		}
+  		
+  		.selectCount{
+  		font-weight: bold;
+  		}
+  		
+  		.selectCountDiv{
+  		height: 25px;
+  		display: block;
+  		
+  		}
+  		
+  		.form-select{
+  		display: unset !important;
+  		}
+  		
+  		.datatable-input{
+  		display: unset !important;
+  		}
 
 		</style>
   		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -185,7 +255,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const dataTable = new simpleDatatables.DataTable("#datatablesSimple", {
     searchable: false,
     perPageSelect: false,
-    paging: false
+    paging: false,
+    sortable: false
   });
 
   const tableBody = document.querySelector("#datatablesSimple tbody");
@@ -199,6 +270,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cb.checked = checked;
         cb.closest("tr").classList.toggle("selected-delete", checked);
       });
+      updateSelectedCount();
     });
   }
 
@@ -214,8 +286,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const all = tableBody.querySelectorAll(".rowCheck").length;
     const checked = tableBody.querySelectorAll(".rowCheck:checked").length;
     selectAll.checked = all === checked;
+    updateSelectedCount();
   });
 }
+  
+  function updateSelectedCount() {
+	    const selectedRows = tableBody.querySelectorAll(".rowCheck:checked").length;
+	    selectCount.textContent = "선택 : " + selectedRows + "건";  // 선택된 항목 수 표시
+  } 
 
   // 삭제 버튼 클릭 시 체크된 번호 수집
   document.getElementById("deleteBtn").addEventListener("click", function () {
@@ -230,7 +308,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return cb.closest("tr").children[1].textContent.trim(); // 두 번째 칸이 번호
   });
 
-  const confirmDelete = confirm(`선택한 공지사항을 삭제하시겠습니까?`);
+  const confirmDelete = confirm("선택한 공지사항 (" + noticeNumList.length + ")건을 삭제하시겠습니까?");
   if (!confirmDelete) return;
 
   console.log("삭제할 notice_num 목록:", noticeNumList);
@@ -346,20 +424,19 @@ $(document).ready(function() {
   <!-- <div class="card-header">
   </div> -->
   <div class="card-body">
-  <h2>공지사항 관리</h2>
+  <h2 style="font-weight: bold;">공지사항</h2>
     <div class="tab-content">
     </div>
     <div class="datatable-wrapper no-footer sortable searchable fixed-columns">
     
-<div class="datatable-top" >
+<div class="datatable-search">
 
 <form method="POST" id="searchInfoFrm" action="${pageContext.request.requestURI}">
 <input type="date" id="startDate" name="startDate" value="${param.startDate != null ? param.startDate : ''}"/><span style="font-weight: bold;"> - </span>
 <input type="date" id="endDate" name="endDate" value="${param.endDate != null ? param.endDate : ''}"/>
 <input type="hidden" name="searchHid" value="true"/>
-<div class="datatable-search" style="width: 300px; height : 69px; display: flex; align-items: center;  gap: 8px;" >
 	<div class="dataTable-category-filter ms-2">
-						        <select id="category" class="form-select form-select-sm w-auto" name="searchCategory" style="display: inline;">
+						        <select id="category" class="form-select form-select-sm w-auto" name="searchCategory">
 						            <option value="title" ${'title' == param.searchCategory ? 'selected' : ''}>제목</option>
 									<option value="content" ${'content' == param.searchCategory ? 'selected' : ''}>내용</option>
 						        </select>
@@ -369,11 +446,13 @@ $(document).ready(function() {
 						    
 	<input class="datatable-input" placeholder="입력해주세요" type="search" title="Search within table" aria-controls="datatablesSimple" name="searchText" value="${param.searchText != null ? param.searchText : ''}">
     <input type="button" id="searchBtn" value="검색" class="btn btn-success"/>
-        </div>
 </form>
         
 </div>
 <div class="datatable-container">
+<div class="selectCountDiv">
+<span id="selectCount" class="selectCount">선택 : 0건</span> 
+</div>
 <form id="frm" method="post">
                      <table id="datatablesSimple" class="table table-striped">
 									    <thead>
@@ -396,7 +475,6 @@ $(document).ready(function() {
 									    	<c:forEach var="nDTO" items="${ noticeList }" varStatus="i">
 											<tr>
 											<td><input type="checkbox" name="rowCheck" class="rowCheck"></td> <!-- 개별 체크박스 -->
-											<%-- <td><c:out value="${ totalCount - (fi.currentPage -1) * pageScale - i.index }"/></td> --%>
 											<td><c:out value="${ nDTO.notice_num }"/></td>
 											<td>
 											  <a href="#" onclick="openNoticePopup(${nDTO.notice_num}); return false;">
@@ -406,23 +484,16 @@ $(document).ready(function() {
 											<td><fmt:formatDate value="${ nDTO.notice_regDate }" pattern="yyyy-MM-dd a HH:mm:ss"/></td>
 											</tr>
 											</c:forEach>
-									        <!-- <tr>
-									            <td><input type="checkbox" name="rowCheck" class="rowCheck"></td> 개별 체크박스
-									            <td>Tiger Nixon</td>
-									            <td>System Architect</td>
-									            <td>Edinburgh</td>
-									        </tr> -->
 									    </tbody>
 									</table>
                                 </form>
-<%-- <%@ include file="customPagination.jsp" %> --%>
 
 </div>
 <div class="datatable-bottom" style="display: flex; align-items: center;">
  <%= paginationHtml %>
     <div style= "margin-left: auto;">
-    <input type="button" style="width:80px; height: 40px;" class="btn btn-success" value="작성" id="writeBtn" onclick="location.href='cs_notice_write.jsp';"/>
-    <input type="button" style="width:80px; height: 40px;" class="btn btn-info" value="삭제" id="deleteBtn"/>
+    <input type="button" style="width:80px; height: 40px;" class="btn btn-primary" value="작성" id="writeBtn" onclick="location.href='cs_notice_write.jsp';"/>
+    <input type="button" style="width:80px; height: 40px;" class="btn btn-danger" value="삭제" id="deleteBtn"/>
     </div>
     <nav class="datatable-pagination"><ul class="datatable-pagination-list"></ul></nav>
 </div></div>

@@ -78,7 +78,7 @@
   </header>
 
   <!-- <div class="mb-4" style="width: 700px; margin: 0 auto;"> -->
-  <div class="main" style="width: 1000px; margin: 150px auto 0 auto;">
+  <div class="main" style="width: 1000px; margin: 50px auto 0 auto;">
    <h2 style="font-size: 35px; font-weight: bold;">1:1문의 작성</h2><br>
    
    
@@ -102,7 +102,7 @@
     </label>
     
     <!-- 텍스트 영역 -->
-   <form action="inquirywrite_process.jsp">
+   <form action="inquirywrite_process.jsp" method="post">
    <textarea id="inquiry_textarea" name="inquiryContent"
     placeholder="문의 내용을 입력해주세요." 
     maxlength="2000"
