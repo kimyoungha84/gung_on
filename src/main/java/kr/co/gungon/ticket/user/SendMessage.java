@@ -14,7 +14,7 @@ public class SendMessage {
 		Message message=new Message();
 	
 		message.setFrom(SiteProperty.authenPhoneNum);
-		message.setTo(SiteProperty.authenPhoneNum);
+		message.setTo(phoneNumber);
 		
 		
 		if(sendMsg.matches("^[0-9]{6}$")) {
