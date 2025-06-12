@@ -70,8 +70,9 @@
 <%
 //여기서 getprogramName 받아줘야한다.
 String programName=request.getParameter("programName");//이거 나중에 주석 풀어야 함.
-String member_id=(String)session.getAttribute("member_id");//이거 나중에 주석 풀기
-
+//pageContext.setAttribute("programName", programName);
+String member_id=((MemberDTO)session.getAttribute("userData")).getId();//이거 나중에 주석 풀기
+//pageContext.setAttribute("member_id", member_id);
 //value 부분에 ${programName} 변경 필요
 
 //String member_id="testest";
