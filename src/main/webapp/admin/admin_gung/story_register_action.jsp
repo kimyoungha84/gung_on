@@ -12,11 +12,15 @@ request.setCharacterEncoding("UTF-8");
 
 try {
     int maxSize = 10 * 1024 * 1024;
-    String rootPath = application.getRealPath("/");
+
+    // 1. 임시 저장 디렉토리
+    String tempPath = application.getRealPath("/temp");
+    File tempDir = new File(tempPath);
+    if (!tempDir.exists()) tempDir.mkdirs();
 
     MultipartRequest multi = new MultipartRequest(
         request,
-        rootPath,
+        tempPath,
         maxSize,
         "UTF-8",
         new DefaultFileRenamePolicy()
@@ -25,19 +29,11 @@ try {
     String storyName = multi.getParameter("story_name");
     String storyInfo = multi.getParameter("story_info");
     String gungIdStr = multi.getParameter("gung_id");
-    String gungKorName = multi.getParameter("gung_name"); // 이미지 저장 경로 구성용
+    String gungKorName = multi.getParameter("gung_name");
 
-    System.out.println(">> 받은 gungId = " + gungIdStr);
+    int gungId = Integer.parseInt(gungIdStr);
 
-    int gungId = 0;
-    try {
-        gungId = Integer.parseInt(gungIdStr);
-    } catch (NumberFormatException e) {
-        out.println("<script>alert('궁 ID가 잘못되었습니다.'); history.back();</script>");
-        return;
-    }
-
-    // 🔁 전각명 → 영문 디렉토리
+    // 전각명 → 영문 폴더
     String storyFolder = "UnknownStory";
     if (storyName != null) {
         switch (storyName) {
@@ -47,7 +43,7 @@ try {
         }
     }
 
-    // 🔁 궁 이름 → 영문 폴더
+    // 궁 이름 → 영문 폴더
     String gungFolder = "etc";
     if (gungKorName != null) {
         switch (gungKorName) {
@@ -64,44 +60,38 @@ try {
     File uploadDir = new File(uploadPath);
     if (!uploadDir.exists()) uploadDir.mkdirs();
 
-    // ✅ 스토리 등록
+    // 스토리 등록
     StoryDTO dto = new StoryDTO();
     dto.setStory_name(storyName);
     dto.setStory_info(storyInfo);
     dto.setGung_id(gungId);
 
     StoryService service = new StoryService();
-    int storyId = service.registerStory(dto); // 등록 성공 시 ID 반환
+    int storyId = service.registerStory(dto);
 
-    // ✅ 이미지 업로드 처리
+    // 이미지 업로드
     FilePathService fps = new FilePathService();
-    Enumeration files = multi.getFileNames();
-    while (files.hasMoreElements()) {
-        String field = (String) files.nextElement();
+    String[] uploadFields = {"file1", "file2", "file3"};
+    for (String field : uploadFields) {
         String fileName = multi.getFilesystemName(field);
 
         if (fileName != null && !fileName.trim().isEmpty()) {
-            File uploadedFile = new File(rootPath + File.separator + fileName);
-            File finalFile = new File(uploadPath, fileName);
+            File tempFile = new File(tempPath, fileName);
+            if (tempFile.exists() && tempFile.length() > 0) {
+                File finalFile = new File(uploadPath, fileName);
+                tempFile.renameTo(finalFile);
 
-            try (InputStream in = new FileInputStream(uploadedFile);
-                 OutputStream fout = new FileOutputStream(finalFile)) {
-                byte[] buf = new byte[1024];
-                int len;
-                while ((len = in.read(buf)) > 0) {
-                    fout.write(buf, 0, len);
-                }
+                FilePathDTO imgDto = new FilePathDTO();
+                imgDto.setPath(savePath + "/" + fileName);
+                imgDto.setTargerType("story");
+                imgDto.setTargerNumber(String.valueOf(storyId));
+                imgDto.setImgName(fileName);
+                fps.insertFilePath(imgDto);
+            } else {
+                tempFile.delete(); // 💥 빈 파일일 경우 삭제
             }
-
-            FilePathDTO imgDto = new FilePathDTO();
-            imgDto.setPath(savePath + "/" + fileName);
-            imgDto.setTargerType("story");
-            imgDto.setTargerNumber(String.valueOf(storyId));
-            imgDto.setImgName(fileName);
-            fps.insertFilePath(imgDto);
         }
     }
-
 %>
     <script>
         alert("스토리가 등록되었습니다.");
