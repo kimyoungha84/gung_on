@@ -1,6 +1,10 @@
 # Gung On 홈페이지
 ## 프로젝트 주제
-궁 소개 홈페이지 제작 (이 말을 좀 수정해야 할 것 같은데 ....)
+궁 소개 및 예매 통합 홈페이지
+사용자는 궁온 홈페이지에서 궁에 대한 역사와 다양한 이야기를 살펴볼 수 있고, 각종 행사나 체험 프로그램을 온라인으로 예매할 수 있다. 1:1 문의 등 고객 편의를 위한 기능도 갖추고 있다.
+
+## 시연 영상 링크
+https://youtu.be/H5TmKR9tiUc
 
 ## ERD-table
 ![](imges/GungOnERD.png)
@@ -8,9 +12,6 @@
 
 ## Class-Diagram
 ![](imges/GungOnClassDiagram.png)
-
-## 시연 영상 링크
-https://youtu.be/H5TmKR9tiUc
 
 
 ## 결과 화면
