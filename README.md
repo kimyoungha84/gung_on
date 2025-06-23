@@ -9,6 +9,9 @@
 ## Class-Diagram
 ![](imges/GungOnClassDiagram.png)
 
+## 시연 영상 링크
+https://youtu.be/H5TmKR9tiUc
+
 
 ## 결과 화면
 
