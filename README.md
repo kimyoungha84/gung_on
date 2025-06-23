@@ -3,11 +3,11 @@
 
 
 ## ERD-table
-![image](https://github.com/user-attachments/assets/3831a7fa-432d-41f9-a2a6-6bba6ff650fc)
+![](imges/GungOnERD.png)
 
 
 ## Class-Diagram
-![image](https://github.com/user-attachments/assets/658a220e-aca4-47f3-9c2f-c65a096cc399)
+![](imges/GungOnClassDiagram.png)
 
 
 ## 결과 화면
