@@ -1,6 +1,6 @@
 # Gung On 홈페이지
 ## 프로젝트 주제
-
+궁 소개 홈페이지 제작 (이 말을 좀 수정해야 할 것 같은데 ....)
 
 ## ERD-table
 ![](imges/GungOnERD.png)
