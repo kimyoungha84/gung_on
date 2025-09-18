@@ -31,7 +31,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>행사 상세 정보</title>
-  <link rel="stylesheet" href="/common/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
   <link rel="stylesheet" href="../programDetail/programDetail.css" />
   
   <style>

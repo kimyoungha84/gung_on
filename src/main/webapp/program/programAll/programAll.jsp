@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <title>궁온 헤더 탭</title>
-  <link rel="stylesheet" href="/common/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/common.css">
   <link rel="stylesheet" href="../programAll/programAll.css" />
   
   <style>
