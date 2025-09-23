@@ -8,7 +8,7 @@
 ## 데이터 구조 (ERD)
 
 <p align="center">
-  <img src="images/gungon_erd.png" alt="GUNG ON ERD" width="700">
+  <img src="images/gungon_erd.png" alt="GUNG ON ERD" width="600">
 </p>
 
 ---
@@ -16,7 +16,7 @@
 ## 시연 영상
 
 <p align="center">
-  <a href="https://youtu.be/H5TmKR9tiUc">
-    <img src="https://img.youtube.com/vi/H5TmKR9tiUc/0.jpg" alt="GUNG ON Demo" width="640">
+  <a href="https://youtu.be/KAxzQRIQ2jo">
+    <img src="https://img.youtube.com/vi/KAxzQRIQ2jo/0.jpg" alt="GUNG ON Demo" width="700">
   </a>
 </p>
