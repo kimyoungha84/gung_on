@@ -1,9 +1,22 @@
-# GUNG ON  
-## JSP & Servlet 기반 웹 프로젝트  
-궁능유적본부를 벤치마킹하여 설계한 궁궐 정보 통합 웹 서비스  
+# GUNG ON
 
-## 데이터 구조
-![](images/gungon_erd.png)
+**JSP & Servlet 기반 웹 프로젝트**  
+궁능유적본부를 벤치마킹하여 설계한 **궁궐 정보 통합 웹 서비스**
+
+---
+
+## 데이터 구조 (ERD)
+
+<p align="center">
+  <img src="images/gungon_erd.png" alt="GUNG ON ERD" width="700">
+</p>
+
+---
 
 ## 시연 영상
-https://youtu.be/H5TmKR9tiUc
+
+<p align="center">
+  <a href="https://youtu.be/H5TmKR9tiUc">
+    <img src="https://img.youtube.com/vi/H5TmKR9tiUc/0.jpg" alt="GUNG ON Demo" width="640">
+  </a>
+</p>
