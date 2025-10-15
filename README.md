@@ -16,7 +16,7 @@
 ## 시연 영상
 
 <p align="center">
-  <a href="https://youtu.be/KAxzQRIQ2jo">
-    <img src="https://img.youtube.com/vi/KAxzQRIQ2jo/0.jpg" alt="GUNG ON Demo" width="700">
+  <a href="https://youtu.be/-oSPGFcqBpU">
+    <img src="https://img.youtube.com/vi/-oSPGFcqBpU/0.jpg" alt="GUNG ON Demo" width="700">
   </a>
 </p>
